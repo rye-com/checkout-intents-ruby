@@ -1,0 +1,324 @@
+module CheckoutIntents
+  module Models
+    type checkout_intent =
+      CheckoutIntents::CheckoutIntent::RetrievingOfferCheckoutIntent
+      | CheckoutIntents::CheckoutIntent::AwaitingConfirmationCheckoutIntent
+      | CheckoutIntents::CheckoutIntent::PlacingOrderCheckoutIntent
+      | CheckoutIntents::CheckoutIntent::CompletedCheckoutIntent
+      | CheckoutIntents::CheckoutIntent::FailedCheckoutIntent
+
+    module CheckoutIntent
+      extend CheckoutIntents::Internal::Type::Union
+
+      type retrieving_offer_checkout_intent =
+        {
+          state: CheckoutIntents::Models::CheckoutIntent::RetrievingOfferCheckoutIntent::state
+        }
+
+      class RetrievingOfferCheckoutIntent < CheckoutIntents::Models::BaseCheckoutIntent
+        def state: -> CheckoutIntents::Models::CheckoutIntent::RetrievingOfferCheckoutIntent::state
+
+        def state=: (
+          CheckoutIntents::Models::CheckoutIntent::RetrievingOfferCheckoutIntent::state _
+        ) -> CheckoutIntents::Models::CheckoutIntent::RetrievingOfferCheckoutIntent::state
+
+        def initialize: (
+          state: CheckoutIntents::Models::CheckoutIntent::RetrievingOfferCheckoutIntent::state
+        ) -> void
+
+        def to_hash: -> {
+          state: CheckoutIntents::Models::CheckoutIntent::RetrievingOfferCheckoutIntent::state
+        }
+
+        type state = :retrieving_offer
+
+        module State
+          extend CheckoutIntents::Internal::Type::Enum
+
+          RETRIEVING_OFFER: :retrieving_offer
+
+          def self?.values: -> ::Array[CheckoutIntents::Models::CheckoutIntent::RetrievingOfferCheckoutIntent::state]
+        end
+      end
+
+      type awaiting_confirmation_checkout_intent =
+        {
+          offer: CheckoutIntents::Offer,
+          state: CheckoutIntents::Models::CheckoutIntent::AwaitingConfirmationCheckoutIntent::state,
+          payment_method: CheckoutIntents::Models::payment_method
+        }
+
+      class AwaitingConfirmationCheckoutIntent < CheckoutIntents::Models::BaseCheckoutIntent
+        def offer: -> CheckoutIntents::Offer
+
+        def offer=: (CheckoutIntents::Offer _) -> CheckoutIntents::Offer
+
+        def state: -> CheckoutIntents::Models::CheckoutIntent::AwaitingConfirmationCheckoutIntent::state
+
+        def state=: (
+          CheckoutIntents::Models::CheckoutIntent::AwaitingConfirmationCheckoutIntent::state _
+        ) -> CheckoutIntents::Models::CheckoutIntent::AwaitingConfirmationCheckoutIntent::state
+
+        def payment_method: -> CheckoutIntents::Models::payment_method?
+
+        def payment_method=: (
+          CheckoutIntents::Models::payment_method _
+        ) -> CheckoutIntents::Models::payment_method
+
+        def initialize: (
+          offer: CheckoutIntents::Offer,
+          state: CheckoutIntents::Models::CheckoutIntent::AwaitingConfirmationCheckoutIntent::state,
+          ?payment_method: CheckoutIntents::Models::payment_method
+        ) -> void
+
+        def to_hash: -> {
+          offer: CheckoutIntents::Offer,
+          state: CheckoutIntents::Models::CheckoutIntent::AwaitingConfirmationCheckoutIntent::state,
+          payment_method: CheckoutIntents::Models::payment_method
+        }
+
+        type state = :awaiting_confirmation
+
+        module State
+          extend CheckoutIntents::Internal::Type::Enum
+
+          AWAITING_CONFIRMATION: :awaiting_confirmation
+
+          def self?.values: -> ::Array[CheckoutIntents::Models::CheckoutIntent::AwaitingConfirmationCheckoutIntent::state]
+        end
+      end
+
+      type placing_order_checkout_intent =
+        {
+          offer: CheckoutIntents::Offer,
+          payment_method: CheckoutIntents::Models::payment_method,
+          state: CheckoutIntents::Models::CheckoutIntent::PlacingOrderCheckoutIntent::state
+        }
+
+      class PlacingOrderCheckoutIntent < CheckoutIntents::Models::BaseCheckoutIntent
+        def offer: -> CheckoutIntents::Offer
+
+        def offer=: (CheckoutIntents::Offer _) -> CheckoutIntents::Offer
+
+        def payment_method: -> CheckoutIntents::Models::payment_method
+
+        def payment_method=: (
+          CheckoutIntents::Models::payment_method _
+        ) -> CheckoutIntents::Models::payment_method
+
+        def state: -> CheckoutIntents::Models::CheckoutIntent::PlacingOrderCheckoutIntent::state
+
+        def state=: (
+          CheckoutIntents::Models::CheckoutIntent::PlacingOrderCheckoutIntent::state _
+        ) -> CheckoutIntents::Models::CheckoutIntent::PlacingOrderCheckoutIntent::state
+
+        def initialize: (
+          offer: CheckoutIntents::Offer,
+          payment_method: CheckoutIntents::Models::payment_method,
+          state: CheckoutIntents::Models::CheckoutIntent::PlacingOrderCheckoutIntent::state
+        ) -> void
+
+        def to_hash: -> {
+          offer: CheckoutIntents::Offer,
+          payment_method: CheckoutIntents::Models::payment_method,
+          state: CheckoutIntents::Models::CheckoutIntent::PlacingOrderCheckoutIntent::state
+        }
+
+        type state = :placing_order
+
+        module State
+          extend CheckoutIntents::Internal::Type::Enum
+
+          PLACING_ORDER: :placing_order
+
+          def self?.values: -> ::Array[CheckoutIntents::Models::CheckoutIntent::PlacingOrderCheckoutIntent::state]
+        end
+      end
+
+      type completed_checkout_intent =
+        {
+          offer: CheckoutIntents::Offer,
+          order_id: String?,
+          payment_method: CheckoutIntents::Models::payment_method,
+          state: CheckoutIntents::Models::CheckoutIntent::CompletedCheckoutIntent::state
+        }
+
+      class CompletedCheckoutIntent < CheckoutIntents::Models::BaseCheckoutIntent
+        def offer: -> CheckoutIntents::Offer
+
+        def offer=: (CheckoutIntents::Offer _) -> CheckoutIntents::Offer
+
+        def order_id: -> String?
+
+        def order_id=: (String? _) -> String?
+
+        def payment_method: -> CheckoutIntents::Models::payment_method
+
+        def payment_method=: (
+          CheckoutIntents::Models::payment_method _
+        ) -> CheckoutIntents::Models::payment_method
+
+        def state: -> CheckoutIntents::Models::CheckoutIntent::CompletedCheckoutIntent::state
+
+        def state=: (
+          CheckoutIntents::Models::CheckoutIntent::CompletedCheckoutIntent::state _
+        ) -> CheckoutIntents::Models::CheckoutIntent::CompletedCheckoutIntent::state
+
+        def initialize: (
+          offer: CheckoutIntents::Offer,
+          order_id: String?,
+          payment_method: CheckoutIntents::Models::payment_method,
+          state: CheckoutIntents::Models::CheckoutIntent::CompletedCheckoutIntent::state
+        ) -> void
+
+        def to_hash: -> {
+          offer: CheckoutIntents::Offer,
+          order_id: String?,
+          payment_method: CheckoutIntents::Models::payment_method,
+          state: CheckoutIntents::Models::CheckoutIntent::CompletedCheckoutIntent::state
+        }
+
+        type state = :completed
+
+        module State
+          extend CheckoutIntents::Internal::Type::Enum
+
+          COMPLETED: :completed
+
+          def self?.values: -> ::Array[CheckoutIntents::Models::CheckoutIntent::CompletedCheckoutIntent::state]
+        end
+      end
+
+      type failed_checkout_intent =
+        {
+          failure_reason: CheckoutIntents::CheckoutIntent::FailedCheckoutIntent::FailureReason,
+          state: CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent::state,
+          offer: CheckoutIntents::Offer,
+          payment_method: CheckoutIntents::Models::payment_method
+        }
+
+      class FailedCheckoutIntent < CheckoutIntents::Models::BaseCheckoutIntent
+        def failure_reason: -> CheckoutIntents::CheckoutIntent::FailedCheckoutIntent::FailureReason
+
+        def failure_reason=: (
+          CheckoutIntents::CheckoutIntent::FailedCheckoutIntent::FailureReason _
+        ) -> CheckoutIntents::CheckoutIntent::FailedCheckoutIntent::FailureReason
+
+        def state: -> CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent::state
+
+        def state=: (
+          CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent::state _
+        ) -> CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent::state
+
+        def offer: -> CheckoutIntents::Offer?
+
+        def offer=: (CheckoutIntents::Offer _) -> CheckoutIntents::Offer
+
+        def payment_method: -> CheckoutIntents::Models::payment_method?
+
+        def payment_method=: (
+          CheckoutIntents::Models::payment_method _
+        ) -> CheckoutIntents::Models::payment_method
+
+        def initialize: (
+          failure_reason: CheckoutIntents::CheckoutIntent::FailedCheckoutIntent::FailureReason,
+          state: CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent::state,
+          ?offer: CheckoutIntents::Offer,
+          ?payment_method: CheckoutIntents::Models::payment_method
+        ) -> void
+
+        def to_hash: -> {
+          failure_reason: CheckoutIntents::CheckoutIntent::FailedCheckoutIntent::FailureReason,
+          state: CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent::state,
+          offer: CheckoutIntents::Offer,
+          payment_method: CheckoutIntents::Models::payment_method
+        }
+
+        type failure_reason =
+          {
+            code: CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent::FailureReason::code,
+            message: String
+          }
+
+        class FailureReason < CheckoutIntents::Internal::Type::BaseModel
+          attr_accessor code: CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent::FailureReason::code
+
+          attr_accessor message: String
+
+          def initialize: (
+            code: CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent::FailureReason::code,
+            message: String
+          ) -> void
+
+          def to_hash: -> {
+            code: CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent::FailureReason::code,
+            message: String
+          }
+
+          type code =
+            :checkout_intent_expired
+            | :payment_failed
+            | :insufficient_stock
+            | :product_out_of_stock
+            | :offer_retrieval_failed
+            | :order_placement_failed
+            | :developer_not_found
+            | :missing_shipping_method
+            | :unsupported_currency
+            | :invalid_input
+            | :incorrect_cost_breakdown
+            | :unsupported_store_no_guest_checkout
+            | :workflow_invocation_failed
+            | :variant_selections_invalid
+            | :variant_selections_required
+            | :form_validation_error
+            | :captcha_blocked
+            | :bot_protection_blocked
+            | :constraint_total_price_exceeded
+            | :constraint_shipping_cost_exceeded
+            | :unknown
+
+          module Code
+            extend CheckoutIntents::Internal::Type::Enum
+
+            CHECKOUT_INTENT_EXPIRED: :checkout_intent_expired
+            PAYMENT_FAILED: :payment_failed
+            INSUFFICIENT_STOCK: :insufficient_stock
+            PRODUCT_OUT_OF_STOCK: :product_out_of_stock
+            OFFER_RETRIEVAL_FAILED: :offer_retrieval_failed
+            ORDER_PLACEMENT_FAILED: :order_placement_failed
+            DEVELOPER_NOT_FOUND: :developer_not_found
+            MISSING_SHIPPING_METHOD: :missing_shipping_method
+            UNSUPPORTED_CURRENCY: :unsupported_currency
+            INVALID_INPUT: :invalid_input
+            INCORRECT_COST_BREAKDOWN: :incorrect_cost_breakdown
+            UNSUPPORTED_STORE_NO_GUEST_CHECKOUT: :unsupported_store_no_guest_checkout
+            WORKFLOW_INVOCATION_FAILED: :workflow_invocation_failed
+            VARIANT_SELECTIONS_INVALID: :variant_selections_invalid
+            VARIANT_SELECTIONS_REQUIRED: :variant_selections_required
+            FORM_VALIDATION_ERROR: :form_validation_error
+            CAPTCHA_BLOCKED: :captcha_blocked
+            BOT_PROTECTION_BLOCKED: :bot_protection_blocked
+            CONSTRAINT_TOTAL_PRICE_EXCEEDED: :constraint_total_price_exceeded
+            CONSTRAINT_SHIPPING_COST_EXCEEDED: :constraint_shipping_cost_exceeded
+            UNKNOWN: :unknown
+
+            def self?.values: -> ::Array[CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent::FailureReason::code]
+          end
+        end
+
+        type state = :failed
+
+        module State
+          extend CheckoutIntents::Internal::Type::Enum
+
+          FAILED: :failed
+
+          def self?.values: -> ::Array[CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent::state]
+        end
+      end
+
+      def self?.variants: -> ::Array[CheckoutIntents::Models::checkout_intent]
+    end
+  end
+end

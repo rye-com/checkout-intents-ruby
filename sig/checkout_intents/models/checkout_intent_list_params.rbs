@@ -1,0 +1,77 @@
+module CheckoutIntents
+  module Models
+    type checkout_intent_list_params =
+      {
+        id: ::Array[String],
+        after: String,
+        before: String,
+        limit: Float,
+        state: ::Array[CheckoutIntents::Models::CheckoutIntentListParams::state]
+      }
+      & CheckoutIntents::Internal::Type::request_parameters
+
+    class CheckoutIntentListParams < CheckoutIntents::Internal::Type::BaseModel
+      extend CheckoutIntents::Internal::Type::RequestParameters::Converter
+      include CheckoutIntents::Internal::Type::RequestParameters
+
+      attr_reader id: ::Array[String]?
+
+      def id=: (::Array[String]) -> ::Array[String]
+
+      attr_reader after: String?
+
+      def after=: (String) -> String
+
+      attr_reader before: String?
+
+      def before=: (String) -> String
+
+      attr_reader limit: Float?
+
+      def limit=: (Float) -> Float
+
+      attr_reader state: ::Array[CheckoutIntents::Models::CheckoutIntentListParams::state]?
+
+      def state=: (
+        ::Array[CheckoutIntents::Models::CheckoutIntentListParams::state]
+      ) -> ::Array[CheckoutIntents::Models::CheckoutIntentListParams::state]
+
+      def initialize: (
+        ?id: ::Array[String],
+        ?after: String,
+        ?before: String,
+        ?limit: Float,
+        ?state: ::Array[CheckoutIntents::Models::CheckoutIntentListParams::state],
+        ?request_options: CheckoutIntents::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        id: ::Array[String],
+        after: String,
+        before: String,
+        limit: Float,
+        state: ::Array[CheckoutIntents::Models::CheckoutIntentListParams::state],
+        request_options: CheckoutIntents::RequestOptions
+      }
+
+      type state =
+        :retrieving_offer
+        | :awaiting_confirmation
+        | :placing_order
+        | :completed
+        | :failed
+
+      module State
+        extend CheckoutIntents::Internal::Type::Enum
+
+        RETRIEVING_OFFER: :retrieving_offer
+        AWAITING_CONFIRMATION: :awaiting_confirmation
+        PLACING_ORDER: :placing_order
+        COMPLETED: :completed
+        FAILED: :failed
+
+        def self?.values: -> ::Array[CheckoutIntents::Models::CheckoutIntentListParams::state]
+      end
+    end
+  end
+end

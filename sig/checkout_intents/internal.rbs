@@ -1,0 +1,10 @@
+module CheckoutIntents
+  module Internal
+    extend CheckoutIntents::Internal::Util::SorbetRuntimeSupport
+
+    type file_input =
+      Pathname | StringIO | IO | String | CheckoutIntents::FilePart
+
+    OMIT: Object
+  end
+end

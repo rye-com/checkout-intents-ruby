@@ -1,0 +1,15 @@
+module CheckoutIntents
+  module Models
+    type money = { amount_subunits: Float, currency_code: String }
+
+    class Money < CheckoutIntents::Internal::Type::BaseModel
+      attr_accessor amount_subunits: Float
+
+      attr_accessor currency_code: String
+
+      def initialize: (amount_subunits: Float, currency_code: String) -> void
+
+      def to_hash: -> { amount_subunits: Float, currency_code: String }
+    end
+  end
+end

@@ -1,0 +1,120 @@
+# frozen_string_literal: true
+
+module CheckoutIntents
+  module Models
+    module PaymentMethod
+      extend CheckoutIntents::Internal::Type::Union
+
+      variant -> { CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod }
+
+      variant -> { CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod }
+
+      variant -> { CheckoutIntents::PaymentMethod::NekudaPaymentMethod }
+
+      class StripeTokenPaymentMethod < CheckoutIntents::Internal::Type::BaseModel
+        # @!attribute stripe_token
+        #
+        #   @return [String]
+        required :stripe_token, String, api_name: :stripeToken
+
+        # @!attribute type
+        #
+        #   @return [Symbol, CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod::Type]
+        required :type, enum: -> { CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod::Type }
+
+        # @!method initialize(stripe_token:, type:)
+        #   @param stripe_token [String]
+        #   @param type [Symbol, CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod::Type]
+
+        # @see CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod#type
+        module Type
+          extend CheckoutIntents::Internal::Type::Enum
+
+          STRIPE_TOKEN = :stripe_token
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+      end
+
+      class BasisTheoryPaymentMethod < CheckoutIntents::Internal::Type::BaseModel
+        # @!attribute basis_theory_token
+        #
+        #   @return [String]
+        required :basis_theory_token, String, api_name: :basisTheoryToken
+
+        # @!attribute type
+        #
+        #   @return [Symbol, CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod::Type]
+        required :type, enum: -> { CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod::Type }
+
+        # @!method initialize(basis_theory_token:, type:)
+        #   @param basis_theory_token [String]
+        #   @param type [Symbol, CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod::Type]
+
+        # @see CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod#type
+        module Type
+          extend CheckoutIntents::Internal::Type::Enum
+
+          BASIS_THEORY_TOKEN = :basis_theory_token
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+      end
+
+      class NekudaPaymentMethod < CheckoutIntents::Internal::Type::BaseModel
+        # @!attribute nekuda_user_id
+        #
+        #   @return [String]
+        required :nekuda_user_id, String, api_name: :nekudaUserId
+
+        # @!attribute type
+        #
+        #   @return [Symbol, CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod::Type]
+        required :type, enum: -> { CheckoutIntents::PaymentMethod::NekudaPaymentMethod::Type }
+
+        # @!attribute nekuda_mandate_data
+        #   Construct a type with a set of properties K of type T
+        #
+        #   @return [Hash{Symbol=>String, Float}, nil]
+        optional :nekuda_mandate_data,
+                 -> {
+                   CheckoutIntents::Internal::Type::HashOf[union: CheckoutIntents::PaymentMethod::NekudaPaymentMethod::NekudaMandateData]
+                 },
+                 api_name: :nekudaMandateData
+
+        # @!method initialize(nekuda_user_id:, type:, nekuda_mandate_data: nil)
+        #   @param nekuda_user_id [String]
+        #
+        #   @param type [Symbol, CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod::Type]
+        #
+        #   @param nekuda_mandate_data [Hash{Symbol=>String, Float}] Construct a type with a set of properties K of type T
+
+        # @see CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod#type
+        module Type
+          extend CheckoutIntents::Internal::Type::Enum
+
+          NEKUDA_TOKEN = :nekuda_token
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+
+        module NekudaMandateData
+          extend CheckoutIntents::Internal::Type::Union
+
+          variant String
+
+          variant Float
+
+          # @!method self.variants
+          #   @return [Array(String, Float)]
+        end
+      end
+
+      # @!method self.variants
+      #   @return [Array(CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod)]
+    end
+  end
+end

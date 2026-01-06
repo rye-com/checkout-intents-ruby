@@ -1,0 +1,19 @@
+module CheckoutIntents
+  module Resources
+    class Betas
+      class CheckoutSessions
+        def create: (
+          product_url: String,
+          quantity: Float,
+          ?buyer: CheckoutIntents::Betas::CheckoutSessionCreateParams::Buyer,
+          ?constraints: CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints,
+          ?promo_codes: ::Array[String],
+          ?variant_selections: ::Array[CheckoutIntents::VariantSelection],
+          ?request_options: CheckoutIntents::request_opts
+        ) -> CheckoutIntents::CheckoutSession
+
+        def initialize: (client: CheckoutIntents::Client) -> void
+      end
+    end
+  end
+end

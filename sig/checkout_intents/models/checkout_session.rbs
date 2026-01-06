@@ -1,0 +1,13 @@
+module CheckoutIntents
+  module Models
+    type checkout_session = { url: String }
+
+    class CheckoutSession < CheckoutIntents::Internal::Type::BaseModel
+      attr_accessor url: String
+
+      def initialize: (url: String) -> void
+
+      def to_hash: -> { url: String }
+    end
+  end
+end

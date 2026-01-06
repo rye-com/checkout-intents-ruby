@@ -1,0 +1,12 @@
+module CheckoutIntents
+  module Resources
+    class Brands
+      def retrieve: (
+        String domain,
+        ?request_options: CheckoutIntents::request_opts
+      ) -> CheckoutIntents::Models::BrandRetrieveResponse
+
+      def initialize: (client: CheckoutIntents::Client) -> void
+    end
+  end
+end
