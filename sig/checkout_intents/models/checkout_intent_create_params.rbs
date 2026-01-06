@@ -1,0 +1,84 @@
+module CheckoutIntents
+  module Models
+    type checkout_intent_create_params =
+      {
+        buyer: CheckoutIntents::Buyer,
+        product_url: String,
+        quantity: Float,
+        constraints: CheckoutIntents::CheckoutIntentCreateParams::Constraints,
+        promo_codes: ::Array[String],
+        variant_selections: ::Array[CheckoutIntents::VariantSelection]
+      }
+      & CheckoutIntents::Internal::Type::request_parameters
+
+    class CheckoutIntentCreateParams < CheckoutIntents::Internal::Type::BaseModel
+      extend CheckoutIntents::Internal::Type::RequestParameters::Converter
+      include CheckoutIntents::Internal::Type::RequestParameters
+
+      attr_accessor buyer: CheckoutIntents::Buyer
+
+      attr_accessor product_url: String
+
+      attr_accessor quantity: Float
+
+      attr_reader constraints: CheckoutIntents::CheckoutIntentCreateParams::Constraints?
+
+      def constraints=: (
+        CheckoutIntents::CheckoutIntentCreateParams::Constraints
+      ) -> CheckoutIntents::CheckoutIntentCreateParams::Constraints
+
+      attr_reader promo_codes: ::Array[String]?
+
+      def promo_codes=: (::Array[String]) -> ::Array[String]
+
+      attr_reader variant_selections: ::Array[CheckoutIntents::VariantSelection]?
+
+      def variant_selections=: (
+        ::Array[CheckoutIntents::VariantSelection]
+      ) -> ::Array[CheckoutIntents::VariantSelection]
+
+      def initialize: (
+        buyer: CheckoutIntents::Buyer,
+        product_url: String,
+        quantity: Float,
+        ?constraints: CheckoutIntents::CheckoutIntentCreateParams::Constraints,
+        ?promo_codes: ::Array[String],
+        ?variant_selections: ::Array[CheckoutIntents::VariantSelection],
+        ?request_options: CheckoutIntents::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        buyer: CheckoutIntents::Buyer,
+        product_url: String,
+        quantity: Float,
+        constraints: CheckoutIntents::CheckoutIntentCreateParams::Constraints,
+        promo_codes: ::Array[String],
+        variant_selections: ::Array[CheckoutIntents::VariantSelection],
+        request_options: CheckoutIntents::RequestOptions
+      }
+
+      type constraints =
+        { max_shipping_price: Integer, max_total_price: Integer }
+
+      class Constraints < CheckoutIntents::Internal::Type::BaseModel
+        attr_reader max_shipping_price: Integer?
+
+        def max_shipping_price=: (Integer) -> Integer
+
+        attr_reader max_total_price: Integer?
+
+        def max_total_price=: (Integer) -> Integer
+
+        def initialize: (
+          ?max_shipping_price: Integer,
+          ?max_total_price: Integer
+        ) -> void
+
+        def to_hash: -> {
+          max_shipping_price: Integer,
+          max_total_price: Integer
+        }
+      end
+    end
+  end
+end

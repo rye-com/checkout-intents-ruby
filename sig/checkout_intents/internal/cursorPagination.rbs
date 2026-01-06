@@ -1,0 +1,48 @@
+module CheckoutIntents
+  module Internal
+    class CursorPagination[Elem]
+      include CheckoutIntents::Internal::Type::BasePage[Elem]
+
+      attr_accessor data: ::Array[Elem]?
+
+      attr_accessor page_info: PageInfo
+
+      def inspect: -> String
+
+      type page_info =
+        {
+          end_cursor: String?,
+          has_next_page: bool,
+          has_previous_page: bool,
+          start_cursor: String?
+        }
+      class PageInfo < CheckoutIntents::Internal::Type::BaseModel
+        attr_accessor end_cursor: String?
+
+        attr_reader has_next_page: bool?
+
+        def has_next_page=: (bool) -> bool
+
+        attr_reader has_previous_page: bool?
+
+        def has_previous_page=: (bool) -> bool
+
+        attr_accessor start_cursor: String?
+
+        def initialize: (
+          ?end_cursor: String?,
+          ?has_next_page: bool,
+          ?has_previous_page: bool,
+          ?start_cursor: String?
+        ) -> void
+
+        def to_hash: -> {
+          end_cursor: String?,
+          has_next_page: bool,
+          has_previous_page: bool,
+          start_cursor: String?
+        }
+      end
+    end
+  end
+end

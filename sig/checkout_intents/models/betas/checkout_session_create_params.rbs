@@ -1,0 +1,172 @@
+module CheckoutIntents
+  module Models
+    module Betas
+      type checkout_session_create_params =
+        {
+          product_url: String,
+          quantity: Float,
+          buyer: CheckoutIntents::Betas::CheckoutSessionCreateParams::Buyer,
+          constraints: CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints,
+          promo_codes: ::Array[String],
+          variant_selections: ::Array[CheckoutIntents::VariantSelection]
+        }
+        & CheckoutIntents::Internal::Type::request_parameters
+
+      class CheckoutSessionCreateParams < CheckoutIntents::Internal::Type::BaseModel
+        extend CheckoutIntents::Internal::Type::RequestParameters::Converter
+        include CheckoutIntents::Internal::Type::RequestParameters
+
+        attr_accessor product_url: String
+
+        attr_accessor quantity: Float
+
+        attr_reader buyer: CheckoutIntents::Betas::CheckoutSessionCreateParams::Buyer?
+
+        def buyer=: (
+          CheckoutIntents::Betas::CheckoutSessionCreateParams::Buyer
+        ) -> CheckoutIntents::Betas::CheckoutSessionCreateParams::Buyer
+
+        attr_reader constraints: CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints?
+
+        def constraints=: (
+          CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints
+        ) -> CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints
+
+        attr_reader promo_codes: ::Array[String]?
+
+        def promo_codes=: (::Array[String]) -> ::Array[String]
+
+        attr_reader variant_selections: ::Array[CheckoutIntents::VariantSelection]?
+
+        def variant_selections=: (
+          ::Array[CheckoutIntents::VariantSelection]
+        ) -> ::Array[CheckoutIntents::VariantSelection]
+
+        def initialize: (
+          product_url: String,
+          quantity: Float,
+          ?buyer: CheckoutIntents::Betas::CheckoutSessionCreateParams::Buyer,
+          ?constraints: CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints,
+          ?promo_codes: ::Array[String],
+          ?variant_selections: ::Array[CheckoutIntents::VariantSelection],
+          ?request_options: CheckoutIntents::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          product_url: String,
+          quantity: Float,
+          buyer: CheckoutIntents::Betas::CheckoutSessionCreateParams::Buyer,
+          constraints: CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints,
+          promo_codes: ::Array[String],
+          variant_selections: ::Array[CheckoutIntents::VariantSelection],
+          request_options: CheckoutIntents::RequestOptions
+        }
+
+        type buyer =
+          {
+            :address1 => String,
+            :address2 => String,
+            city: String,
+            country: String,
+            email: String,
+            first_name: String,
+            last_name: String,
+            phone: String,
+            postal_code: String,
+            province: String
+          }
+
+        class Buyer < CheckoutIntents::Internal::Type::BaseModel
+          attr_reader address1: String?
+
+          def address1=: (String) -> String
+
+          attr_reader address2: String?
+
+          def address2=: (String) -> String
+
+          attr_reader city: String?
+
+          def city=: (String) -> String
+
+          attr_reader country: String?
+
+          def country=: (String) -> String
+
+          attr_reader email: String?
+
+          def email=: (String) -> String
+
+          attr_reader first_name: String?
+
+          def first_name=: (String) -> String
+
+          attr_reader last_name: String?
+
+          def last_name=: (String) -> String
+
+          attr_reader phone: String?
+
+          def phone=: (String) -> String
+
+          attr_reader postal_code: String?
+
+          def postal_code=: (String) -> String
+
+          attr_reader province: String?
+
+          def province=: (String) -> String
+
+          def initialize: (
+            ?address1: String,
+            ?address2: String,
+            ?city: String,
+            ?country: String,
+            ?email: String,
+            ?first_name: String,
+            ?last_name: String,
+            ?phone: String,
+            ?postal_code: String,
+            ?province: String
+          ) -> void
+
+          def to_hash: -> {
+            :address1 => String,
+            :address2 => String,
+            city: String,
+            country: String,
+            email: String,
+            first_name: String,
+            last_name: String,
+            phone: String,
+            postal_code: String,
+            province: String
+          }
+        end
+
+        type constraints =
+          { max_shipping_price: Integer, max_total_price: Integer }
+
+        class Constraints < CheckoutIntents::Internal::Type::BaseModel
+          attr_reader max_shipping_price: Integer?
+
+          def max_shipping_price=: (Integer) -> Integer
+
+          attr_reader max_total_price: Integer?
+
+          def max_total_price=: (Integer) -> Integer
+
+          def initialize: (
+            ?max_shipping_price: Integer,
+            ?max_total_price: Integer
+          ) -> void
+
+          def to_hash: -> {
+            max_shipping_price: Integer,
+            max_total_price: Integer
+          }
+        end
+      end
+    end
+  end
+end

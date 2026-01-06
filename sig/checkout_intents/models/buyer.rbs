@@ -1,0 +1,67 @@
+module CheckoutIntents
+  module Models
+    type buyer =
+      {
+        :address1 => String,
+        city: String,
+        country: String,
+        email: String,
+        first_name: String,
+        last_name: String,
+        phone: String,
+        postal_code: String,
+        province: String,
+        :address2 => String
+      }
+
+    class Buyer < CheckoutIntents::Internal::Type::BaseModel
+      attr_accessor address1: String
+
+      attr_accessor city: String
+
+      attr_accessor country: String
+
+      attr_accessor email: String
+
+      attr_accessor first_name: String
+
+      attr_accessor last_name: String
+
+      attr_accessor phone: String
+
+      attr_accessor postal_code: String
+
+      attr_accessor province: String
+
+      attr_reader address2: String?
+
+      def address2=: (String) -> String
+
+      def initialize: (
+        address1: String,
+        city: String,
+        country: String,
+        email: String,
+        first_name: String,
+        last_name: String,
+        phone: String,
+        postal_code: String,
+        province: String,
+        ?address2: String
+      ) -> void
+
+      def to_hash: -> {
+        :address1 => String,
+        city: String,
+        country: String,
+        email: String,
+        first_name: String,
+        last_name: String,
+        phone: String,
+        postal_code: String,
+        province: String,
+        :address2 => String
+      }
+    end
+  end
+end

@@ -1,0 +1,127 @@
+module CheckoutIntents
+  module Models
+    type payment_method =
+      CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod
+      | CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod
+      | CheckoutIntents::PaymentMethod::NekudaPaymentMethod
+
+    module PaymentMethod
+      extend CheckoutIntents::Internal::Type::Union
+
+      type stripe_token_payment_method =
+        {
+          stripe_token: String,
+          type: CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod::type_
+        }
+
+      class StripeTokenPaymentMethod < CheckoutIntents::Internal::Type::BaseModel
+        attr_accessor stripe_token: String
+
+        attr_accessor type: CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod::type_
+
+        def initialize: (
+          stripe_token: String,
+          type: CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod::type_
+        ) -> void
+
+        def to_hash: -> {
+          stripe_token: String,
+          type: CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod::type_
+        }
+
+        type type_ = :stripe_token
+
+        module Type
+          extend CheckoutIntents::Internal::Type::Enum
+
+          STRIPE_TOKEN: :stripe_token
+
+          def self?.values: -> ::Array[CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod::type_]
+        end
+      end
+
+      type basis_theory_payment_method =
+        {
+          basis_theory_token: String,
+          type: CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod::type_
+        }
+
+      class BasisTheoryPaymentMethod < CheckoutIntents::Internal::Type::BaseModel
+        attr_accessor basis_theory_token: String
+
+        attr_accessor type: CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod::type_
+
+        def initialize: (
+          basis_theory_token: String,
+          type: CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod::type_
+        ) -> void
+
+        def to_hash: -> {
+          basis_theory_token: String,
+          type: CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod::type_
+        }
+
+        type type_ = :basis_theory_token
+
+        module Type
+          extend CheckoutIntents::Internal::Type::Enum
+
+          BASIS_THEORY_TOKEN: :basis_theory_token
+
+          def self?.values: -> ::Array[CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod::type_]
+        end
+      end
+
+      type nekuda_payment_method =
+        {
+          nekuda_user_id: String,
+          type: CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod::type_,
+          nekuda_mandate_data: ::Hash[Symbol, CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod::nekuda_mandate_data]
+        }
+
+      class NekudaPaymentMethod < CheckoutIntents::Internal::Type::BaseModel
+        attr_accessor nekuda_user_id: String
+
+        attr_accessor type: CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod::type_
+
+        attr_reader nekuda_mandate_data: ::Hash[Symbol, CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod::nekuda_mandate_data]?
+
+        def nekuda_mandate_data=: (
+          ::Hash[Symbol, CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod::nekuda_mandate_data]
+        ) -> ::Hash[Symbol, CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod::nekuda_mandate_data]
+
+        def initialize: (
+          nekuda_user_id: String,
+          type: CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod::type_,
+          ?nekuda_mandate_data: ::Hash[Symbol, CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod::nekuda_mandate_data]
+        ) -> void
+
+        def to_hash: -> {
+          nekuda_user_id: String,
+          type: CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod::type_,
+          nekuda_mandate_data: ::Hash[Symbol, CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod::nekuda_mandate_data]
+        }
+
+        type type_ = :nekuda_token
+
+        module Type
+          extend CheckoutIntents::Internal::Type::Enum
+
+          NEKUDA_TOKEN: :nekuda_token
+
+          def self?.values: -> ::Array[CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod::type_]
+        end
+
+        type nekuda_mandate_data = String | Float
+
+        module NekudaMandateData
+          extend CheckoutIntents::Internal::Type::Union
+
+          def self?.variants: -> ::Array[CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod::nekuda_mandate_data]
+        end
+      end
+
+      def self?.variants: -> ::Array[CheckoutIntents::Models::payment_method]
+    end
+  end
+end

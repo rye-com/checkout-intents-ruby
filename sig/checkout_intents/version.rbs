@@ -1,0 +1,3 @@
+module CheckoutIntents
+  VERSION: String
+end

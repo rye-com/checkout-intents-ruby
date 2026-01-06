@@ -1,0 +1,24 @@
+module CheckoutIntents
+  module Models
+    type checkout_intent_add_payment_params =
+      { payment_method: CheckoutIntents::Models::payment_method }
+      & CheckoutIntents::Internal::Type::request_parameters
+
+    class CheckoutIntentAddPaymentParams < CheckoutIntents::Internal::Type::BaseModel
+      extend CheckoutIntents::Internal::Type::RequestParameters::Converter
+      include CheckoutIntents::Internal::Type::RequestParameters
+
+      attr_accessor payment_method: CheckoutIntents::Models::payment_method
+
+      def initialize: (
+        payment_method: CheckoutIntents::Models::payment_method,
+        ?request_options: CheckoutIntents::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        payment_method: CheckoutIntents::Models::payment_method,
+        request_options: CheckoutIntents::RequestOptions
+      }
+    end
+  end
+end

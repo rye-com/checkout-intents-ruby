@@ -1,0 +1,33 @@
+module CheckoutIntents
+  class BaseCheckoutIntent = CheckoutIntents::Models::BaseCheckoutIntent
+
+  module Betas = CheckoutIntents::Models::Betas
+
+  class BrandRetrieveParams = CheckoutIntents::Models::BrandRetrieveParams
+
+  class Buyer = CheckoutIntents::Models::Buyer
+
+  module CheckoutIntent = CheckoutIntents::Models::CheckoutIntent
+
+  class CheckoutIntentAddPaymentParams = CheckoutIntents::Models::CheckoutIntentAddPaymentParams
+
+  class CheckoutIntentConfirmParams = CheckoutIntents::Models::CheckoutIntentConfirmParams
+
+  class CheckoutIntentCreateParams = CheckoutIntents::Models::CheckoutIntentCreateParams
+
+  class CheckoutIntentListParams = CheckoutIntents::Models::CheckoutIntentListParams
+
+  class CheckoutIntentPurchaseParams = CheckoutIntents::Models::CheckoutIntentPurchaseParams
+
+  class CheckoutIntentRetrieveParams = CheckoutIntents::Models::CheckoutIntentRetrieveParams
+
+  class CheckoutSession = CheckoutIntents::Models::CheckoutSession
+
+  class Money = CheckoutIntents::Models::Money
+
+  class Offer = CheckoutIntents::Models::Offer
+
+  module PaymentMethod = CheckoutIntents::Models::PaymentMethod
+
+  class VariantSelection = CheckoutIntents::Models::VariantSelection
+end

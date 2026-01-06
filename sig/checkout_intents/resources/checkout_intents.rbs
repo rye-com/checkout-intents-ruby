@@ -1,0 +1,54 @@
+module CheckoutIntents
+  module Resources
+    class CheckoutIntents
+      def create: (
+        buyer: CheckoutIntents::Buyer,
+        product_url: String,
+        quantity: Float,
+        ?constraints: CheckoutIntents::CheckoutIntentCreateParams::Constraints,
+        ?promo_codes: ::Array[String],
+        ?variant_selections: ::Array[CheckoutIntents::VariantSelection],
+        ?request_options: CheckoutIntents::request_opts
+      ) -> CheckoutIntents::Models::checkout_intent
+
+      def retrieve: (
+        String id,
+        ?request_options: CheckoutIntents::request_opts
+      ) -> CheckoutIntents::Models::checkout_intent
+
+      def list: (
+        ?id: ::Array[String],
+        ?after: String,
+        ?before: String,
+        ?limit: Float,
+        ?state: ::Array[CheckoutIntents::Models::CheckoutIntentListParams::state],
+        ?request_options: CheckoutIntents::request_opts
+      ) -> CheckoutIntents::Internal::CursorPagination[CheckoutIntents::Models::checkout_intent]
+
+      def add_payment: (
+        String id,
+        payment_method: CheckoutIntents::Models::payment_method,
+        ?request_options: CheckoutIntents::request_opts
+      ) -> CheckoutIntents::Models::checkout_intent
+
+      def confirm: (
+        String id,
+        payment_method: CheckoutIntents::Models::payment_method,
+        ?request_options: CheckoutIntents::request_opts
+      ) -> CheckoutIntents::Models::checkout_intent
+
+      def purchase: (
+        buyer: CheckoutIntents::Buyer,
+        payment_method: CheckoutIntents::Models::payment_method,
+        product_url: String,
+        quantity: Float,
+        ?constraints: CheckoutIntents::CheckoutIntentPurchaseParams::Constraints,
+        ?promo_codes: ::Array[String],
+        ?variant_selections: ::Array[CheckoutIntents::VariantSelection],
+        ?request_options: CheckoutIntents::request_opts
+      ) -> CheckoutIntents::Models::checkout_intent
+
+      def initialize: (client: CheckoutIntents::Client) -> void
+    end
+  end
+end
