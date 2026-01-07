@@ -10,8 +10,8 @@ module CheckoutIntents
       sig do
         params(
           domain: String,
-          request_options: CheckoutIntents::RequestOptions::OrHash
-        ).returns(CheckoutIntents::Models::BrandRetrieveResponse)
+          request_options: ::CheckoutIntents::RequestOptions::OrHash
+        ).returns(::CheckoutIntents::Models::BrandRetrieveResponse)
       end
       def retrieve(
         # Represents a valid domain name string.
@@ -21,7 +21,7 @@ module CheckoutIntents
       end
 
       # @api private
-      sig { params(client: CheckoutIntents::Client).returns(T.attached_class) }
+      sig { params(client: ::CheckoutIntents::Client).returns(T.attached_class) }
       def self.new(client:)
       end
     end
