@@ -6,16 +6,16 @@ module CheckoutIntents
       # Create a checkout intent with the given request body.
       sig do
         params(
-          buyer: CheckoutIntents::Buyer::OrHash,
+          buyer: ::CheckoutIntents::Buyer::OrHash,
           product_url: String,
           quantity: Float,
           constraints:
-            CheckoutIntents::CheckoutIntentCreateParams::Constraints::OrHash,
+            ::CheckoutIntents::CheckoutIntentCreateParams::Constraints::OrHash,
           promo_codes: T::Array[String],
           variant_selections:
-            T::Array[CheckoutIntents::VariantSelection::OrHash],
-          request_options: CheckoutIntents::RequestOptions::OrHash
-        ).returns(CheckoutIntents::CheckoutIntent::Variants)
+            T::Array[::CheckoutIntents::VariantSelection::OrHash],
+          request_options: ::CheckoutIntents::RequestOptions::OrHash
+        ).returns(::CheckoutIntents::CheckoutIntent::Variants)
       end
       def create(
         buyer:,
@@ -34,8 +34,8 @@ module CheckoutIntents
       sig do
         params(
           id: String,
-          request_options: CheckoutIntents::RequestOptions::OrHash
-        ).returns(CheckoutIntents::CheckoutIntent::Variants)
+          request_options: ::CheckoutIntents::RequestOptions::OrHash
+        ).returns(::CheckoutIntents::CheckoutIntent::Variants)
       end
       def retrieve(
         # The id of the checkout intent to look up
@@ -56,12 +56,12 @@ module CheckoutIntents
           limit: Float,
           state:
             T::Array[
-              CheckoutIntents::CheckoutIntentListParams::State::OrSymbol
+              ::CheckoutIntents::CheckoutIntentListParams::State::OrSymbol
             ],
-          request_options: CheckoutIntents::RequestOptions::OrHash
+          request_options: ::CheckoutIntents::RequestOptions::OrHash
         ).returns(
-          CheckoutIntents::Internal::CursorPagination[
-            CheckoutIntents::CheckoutIntent::Variants
+          ::CheckoutIntents::Internal::CursorPagination[
+            ::CheckoutIntents::CheckoutIntent::Variants
           ]
         )
       end
@@ -81,12 +81,12 @@ module CheckoutIntents
           id: String,
           payment_method:
             T.any(
-              CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod::OrHash,
-              CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod::OrHash,
-              CheckoutIntents::PaymentMethod::NekudaPaymentMethod::OrHash
+              ::CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod::OrHash,
+              ::CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod::OrHash,
+              ::CheckoutIntents::PaymentMethod::NekudaPaymentMethod::OrHash
             ),
-          request_options: CheckoutIntents::RequestOptions::OrHash
-        ).returns(CheckoutIntents::CheckoutIntent::Variants)
+          request_options: ::CheckoutIntents::RequestOptions::OrHash
+        ).returns(::CheckoutIntents::CheckoutIntent::Variants)
       end
       def add_payment(
         # The id of the checkout intent to add payment details to
@@ -105,12 +105,12 @@ module CheckoutIntents
           id: String,
           payment_method:
             T.any(
-              CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod::OrHash,
-              CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod::OrHash,
-              CheckoutIntents::PaymentMethod::NekudaPaymentMethod::OrHash
+              ::CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod::OrHash,
+              ::CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod::OrHash,
+              ::CheckoutIntents::PaymentMethod::NekudaPaymentMethod::OrHash
             ),
-          request_options: CheckoutIntents::RequestOptions::OrHash
-        ).returns(CheckoutIntents::CheckoutIntent::Variants)
+          request_options: ::CheckoutIntents::RequestOptions::OrHash
+        ).returns(::CheckoutIntents::CheckoutIntent::Variants)
       end
       def confirm(
         # The id of the checkout intent to confirm
@@ -127,22 +127,22 @@ module CheckoutIntents
       # asynchronously. Poll the GET endpoint to check status.
       sig do
         params(
-          buyer: CheckoutIntents::Buyer::OrHash,
+          buyer: ::CheckoutIntents::Buyer::OrHash,
           payment_method:
             T.any(
-              CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod::OrHash,
-              CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod::OrHash,
-              CheckoutIntents::PaymentMethod::NekudaPaymentMethod::OrHash
+              ::CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod::OrHash,
+              ::CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod::OrHash,
+              ::CheckoutIntents::PaymentMethod::NekudaPaymentMethod::OrHash
             ),
           product_url: String,
           quantity: Float,
           constraints:
-            CheckoutIntents::CheckoutIntentPurchaseParams::Constraints::OrHash,
+            ::CheckoutIntents::CheckoutIntentPurchaseParams::Constraints::OrHash,
           promo_codes: T::Array[String],
           variant_selections:
-            T::Array[CheckoutIntents::VariantSelection::OrHash],
-          request_options: CheckoutIntents::RequestOptions::OrHash
-        ).returns(CheckoutIntents::CheckoutIntent::Variants)
+            T::Array[::CheckoutIntents::VariantSelection::OrHash],
+          request_options: ::CheckoutIntents::RequestOptions::OrHash
+        ).returns(::CheckoutIntents::CheckoutIntent::Variants)
       end
       def purchase(
         buyer:,
@@ -157,7 +157,7 @@ module CheckoutIntents
       end
 
       # @api private
-      sig { params(client: CheckoutIntents::Client).returns(T.attached_class) }
+      sig { params(client: ::CheckoutIntents::Client).returns(T.attached_class) }
       def self.new(client:)
       end
     end
