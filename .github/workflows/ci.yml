@@ -13,9 +13,36 @@ on:
       - 'stl-preview-base/**'
 
 jobs:
+  format:
+    timeout-minutes: 10
+    name: format
+    runs-on: ${{ github.repository == 'stainless-sdks/checkout-intents-ruby' && 'depot-ubuntu-24.04' || 'ubuntu-latest' }}
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.fork
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: false
+      - run: |-
+          bundle install
+
+      - name: Run formatters
+        run: ./scripts/format
+
+      - name: Commit formatting changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --staged --quiet || git commit -m "chore(internal): format and fix absolute references"
+          git push
+
   lint:
     timeout-minutes: 10
     name: lint
+    needs: format
     runs-on: ${{ github.repository == 'stainless-sdks/checkout-intents-ruby' && 'depot-ubuntu-24.04' || 'ubuntu-latest' }}
     if: github.event_name == 'push' || github.event.pull_request.head.repo.fork
 
@@ -27,12 +54,18 @@ jobs:
           bundler-cache: false
       - run: |-
           bundle install
+
+      # We need to pull to grab the latest commit from the prior `format` job
+      - name: Pull latest changes
+        run: git pull origin ${{ github.ref_name }}
 
       - name: Run lints
         run: ./scripts/lint
+
   test:
     timeout-minutes: 10
     name: test
+    needs: format
     runs-on: ${{ github.repository == 'stainless-sdks/checkout-intents-ruby' && 'depot-ubuntu-24.04' || 'ubuntu-latest' }}
     if: github.event_name == 'push' || github.event.pull_request.head.repo.fork
     steps:
@@ -43,6 +76,10 @@ jobs:
           bundler-cache: false
       - run: |-
           bundle install
+
+      # We need to pull to grab the latest commit from the prior `format` job
+      - name: Pull latest changes
+        run: git pull origin ${{ github.ref_name }}
 
       - name: Run tests
         run: ./scripts/test
