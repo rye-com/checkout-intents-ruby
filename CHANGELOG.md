@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.0.3 (2026-01-10)
+
+Full Changelog: [v0.0.2...v0.0.3](https://github.com/rye-com/checkout-intents-ruby/compare/v0.0.2...v0.0.3)
+
+### Chores
+
+* move `cgi` into dependencies for ruby 4 ([22aa560](https://github.com/rye-com/checkout-intents-ruby/commit/22aa56077ff7ab0224159e6efd87ad544b2e5396))
+
 ## 0.0.2 (2026-01-07)
 
 Full Changelog: [v0.0.1...v0.0.2](https://github.com/rye-com/checkout-intents-ruby/compare/v0.0.1...v0.0.2)
