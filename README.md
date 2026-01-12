@@ -81,6 +81,63 @@ if page.next_page?
 end
 ```
 
+### Polling Helpers
+
+This SDK includes helper methods for the asynchronous checkout flow. The recommended pattern follows Rye's two-phase checkout:
+
+```ruby
+# Phase 1: Create and wait for offer
+intent = checkout_intents.checkout_intents.create_and_poll(
+  buyer: {
+    address1: "123 Main St",
+    city: "New York",
+    country: "US",
+    email: "john.doe@example.com",
+    firstName: "John",
+    lastName: "Doe",
+    phone: "5555555555",
+    postalCode: "10001",
+    province: "NY"
+  },
+  product_url: "https://example.com/product",
+  quantity: 1
+)
+
+# Handle failure during offer retrieval
+if intent.state == CheckoutIntents::CheckoutIntent::FailedCheckoutIntent::State::FAILED
+  puts "Failed: #{intent.failure_reason.message}"
+else
+  # Review pricing with user
+  puts "Total: #{intent.offer.cost.total}"
+
+  # Phase 2: Confirm and wait for completion
+  completed = checkout_intents.checkout_intents.confirm_and_poll(
+    intent.id,
+    payment_method: { type: :stripe_token, stripeToken: "tok_visa" }
+  )
+
+  puts "Status: #{completed.state}"
+end
+```
+
+Available polling methods:
+
+- `create_and_poll` - Create and poll until offer is ready (awaiting_confirmation or failed)
+- `confirm_and_poll` - Confirm and poll until completion (completed or failed)
+- `poll_until_completed` - Poll until completed or failed
+- `poll_until_awaiting_confirmation` - Poll until offer is ready or failed
+
+All polling methods support customizable timeouts:
+
+```ruby
+# Configure polling behavior
+intent = checkout_intents.checkout_intents.poll_until_completed(
+  intent_id,
+  poll_interval: 5.0,  # Poll every 5 seconds (default)
+  max_attempts: 120    # Try up to 120 times, ~10 minutes (default)
+)
+```
+
 ### Handling errors
 
 When the library is unable to connect to the API, or if the API returns a non-success status code (i.e., 4xx or 5xx response), a subclass of `CheckoutIntents::Errors::APIError` will be thrown:
@@ -128,6 +185,28 @@ Error codes are as follows:
 | Other HTTP error | `APIStatusError`           |
 | Timeout          | `APITimeoutError`          |
 | Network error    | `APIConnectionError`       |
+| Polling timeout  | `PollTimeoutError`         |
+
+### Polling Timeout Errors
+
+When using polling helper methods, if the operation exceeds the configured `max_attempts`, a `PollTimeoutError` is raised with helpful context:
+
+```ruby
+begin
+  intent = checkout_intents.checkout_intents.poll_until_completed(
+    "intent_id",
+    poll_interval: 5.0,
+    max_attempts: 60
+  )
+rescue CheckoutIntents::Errors::PollTimeoutError => e
+  puts "Polling timed out for intent: #{e.intent_id}"
+  puts "Attempted #{e.attempts} times over #{e.attempts * e.poll_interval}s"
+
+  # You can retrieve the current state manually
+  current_intent = checkout_intents.checkout_intents.retrieve(e.intent_id)
+  puts "Current state: #{current_intent.state}"
+end
+```
 
 ### Retries
 
