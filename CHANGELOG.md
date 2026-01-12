@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.2.0 (2026-01-12)
+
+Full Changelog: [v0.1.0...v0.2.0](https://github.com/rye-com/checkout-intents-ruby/compare/v0.1.0...v0.2.0)
+
+### Features
+
+* **api:** convert polling helpers to flat keyword args ([0b0893e](https://github.com/rye-com/checkout-intents-ruby/commit/0b0893e255447c6ef35a81196c7481242f7eab8b))
+
+
+### Chores
+
+* **api:** coerce `quantity` to an `Integer` ([e32b3fc](https://github.com/rye-com/checkout-intents-ruby/commit/e32b3fc5848bfd455cba755cceddfd94f5d40da0))
+
 ## 0.1.0 (2026-01-12)
 
 Full Changelog: [v0.0.2...v0.1.0](https://github.com/rye-com/checkout-intents-ruby/compare/v0.0.2...v0.1.0)
