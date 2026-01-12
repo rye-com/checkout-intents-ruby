@@ -8,7 +8,7 @@ module CheckoutIntents
         params(
           buyer: ::CheckoutIntents::Buyer::OrHash,
           product_url: String,
-          quantity: Float,
+          quantity: Integer,
           constraints:
             ::CheckoutIntents::CheckoutIntentCreateParams::Constraints::OrHash,
           promo_codes: T::Array[String],
@@ -135,7 +135,7 @@ module CheckoutIntents
               ::CheckoutIntents::PaymentMethod::NekudaPaymentMethod::OrHash
             ),
           product_url: String,
-          quantity: Float,
+          quantity: Integer,
           constraints:
             ::CheckoutIntents::CheckoutIntentPurchaseParams::Constraints::OrHash,
           promo_codes: T::Array[String],
@@ -211,7 +211,7 @@ module CheckoutIntents
         params(
           buyer: ::CheckoutIntents::Buyer::OrHash,
           product_url: String,
-          quantity: Float,
+          quantity: Integer,
           constraints:
             ::CheckoutIntents::CheckoutIntentCreateParams::Constraints::OrHash,
           promo_codes: T::Array[String],

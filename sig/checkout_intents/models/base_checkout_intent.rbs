@@ -6,7 +6,7 @@ module CheckoutIntents
         buyer: CheckoutIntents::Buyer,
         created_at: Time,
         product_url: String,
-        quantity: Float,
+        quantity: Integer,
         constraints: CheckoutIntents::BaseCheckoutIntent::Constraints,
         promo_codes: ::Array[String],
         variant_selections: ::Array[CheckoutIntents::VariantSelection]
@@ -21,7 +21,7 @@ module CheckoutIntents
 
       attr_accessor product_url: String
 
-      attr_accessor quantity: Float
+      attr_accessor quantity: Integer
 
       attr_reader constraints: CheckoutIntents::BaseCheckoutIntent::Constraints?
 
@@ -44,7 +44,7 @@ module CheckoutIntents
         buyer: CheckoutIntents::Buyer,
         created_at: Time,
         product_url: String,
-        quantity: Float,
+        quantity: Integer,
         ?constraints: CheckoutIntents::BaseCheckoutIntent::Constraints,
         ?promo_codes: ::Array[String],
         ?variant_selections: ::Array[CheckoutIntents::VariantSelection]
@@ -55,7 +55,7 @@ module CheckoutIntents
         buyer: CheckoutIntents::Buyer,
         created_at: Time,
         product_url: String,
-        quantity: Float,
+        quantity: Integer,
         constraints: CheckoutIntents::BaseCheckoutIntent::Constraints,
         promo_codes: ::Array[String],
         variant_selections: ::Array[CheckoutIntents::VariantSelection]

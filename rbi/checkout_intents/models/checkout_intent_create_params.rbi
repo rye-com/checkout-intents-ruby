@@ -62,7 +62,7 @@ module CheckoutIntents
         params(
           buyer: CheckoutIntents::Buyer::OrHash,
           product_url: String,
-          quantity: Float,
+          quantity: Integer,
           constraints:
             CheckoutIntents::CheckoutIntentCreateParams::Constraints::OrHash,
           promo_codes: T::Array[String],
@@ -87,7 +87,7 @@ module CheckoutIntents
           {
             buyer: CheckoutIntents::Buyer,
             product_url: String,
-            quantity: Float,
+            quantity: Integer,
             constraints:
               CheckoutIntents::CheckoutIntentCreateParams::Constraints,
             promo_codes: T::Array[String],
