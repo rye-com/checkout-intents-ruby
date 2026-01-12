@@ -4,7 +4,7 @@ module CheckoutIntents
       type checkout_session_create_params =
         {
           product_url: String,
-          quantity: Float,
+          quantity: Integer,
           buyer: CheckoutIntents::Betas::CheckoutSessionCreateParams::Buyer,
           constraints: CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints,
           promo_codes: ::Array[String],
@@ -18,7 +18,7 @@ module CheckoutIntents
 
         attr_accessor product_url: String
 
-        attr_accessor quantity: Float
+        attr_accessor quantity: Integer
 
         attr_reader buyer: CheckoutIntents::Betas::CheckoutSessionCreateParams::Buyer?
 
@@ -44,7 +44,7 @@ module CheckoutIntents
 
         def initialize: (
           product_url: String,
-          quantity: Float,
+          quantity: Integer,
           ?buyer: CheckoutIntents::Betas::CheckoutSessionCreateParams::Buyer,
           ?constraints: CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints,
           ?promo_codes: ::Array[String],
@@ -54,7 +54,7 @@ module CheckoutIntents
 
         def to_hash: -> {
           product_url: String,
-          quantity: Float,
+          quantity: Integer,
           buyer: CheckoutIntents::Betas::CheckoutSessionCreateParams::Buyer,
           constraints: CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints,
           promo_codes: ::Array[String],

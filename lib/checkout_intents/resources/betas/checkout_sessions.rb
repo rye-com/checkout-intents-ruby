@@ -16,7 +16,7 @@ module CheckoutIntents
         #
         # @param product_url [String]
         #
-        # @param quantity [Float]
+        # @param quantity [Integer]
         #
         # @param buyer [::CheckoutIntents::Models::Betas::CheckoutSessionCreateParams::Buyer] Optional buyer information, used to pre-fill the checkout form with the buyer's
         #

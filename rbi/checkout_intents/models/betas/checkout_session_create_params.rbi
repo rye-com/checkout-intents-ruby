@@ -77,7 +77,7 @@ module CheckoutIntents
         sig do
           params(
             product_url: String,
-            quantity: Float,
+            quantity: Integer,
             buyer:
               CheckoutIntents::Betas::CheckoutSessionCreateParams::Buyer::OrHash,
             constraints:
@@ -105,7 +105,7 @@ module CheckoutIntents
           override.returns(
             {
               product_url: String,
-              quantity: Float,
+              quantity: Integer,
               buyer: CheckoutIntents::Betas::CheckoutSessionCreateParams::Buyer,
               constraints:
                 CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints,
