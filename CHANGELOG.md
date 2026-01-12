@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.1.0 (2026-01-12)
+
+Full Changelog: [v0.0.2...v0.1.0](https://github.com/rye-com/checkout-intents-ruby/compare/v0.0.2...v0.1.0)
+
+### Features
+
+* **api:** add polling helpers ([5209a5f](https://github.com/rye-com/checkout-intents-ruby/commit/5209a5fcb449acf6e4ab52e1711b5c95a5acfa63))
+* **api:** auto infer environment value ([d666fbb](https://github.com/rye-com/checkout-intents-ruby/commit/d666fbb211955c2c02c9fb5c88de0dea6240adf1))
+
+
+### Chores
+
+* **internal:** add request_with_headers method ([89dc817](https://github.com/rye-com/checkout-intents-ruby/commit/89dc817a36404e5231e65ab7f05ebe1e5766c61f))
+* move `cgi` into dependencies for ruby 4 ([7674f56](https://github.com/rye-com/checkout-intents-ruby/commit/7674f56727d3e5d940c110eb173d91148224c21b))
+
+
+### Documentation
+
+* **api:** polling helpers ([465f0a0](https://github.com/rye-com/checkout-intents-ruby/commit/465f0a06848b014fd4e3526ff5c2a01b68f3b7ec))
+
 ## 0.0.2 (2026-01-07)
 
 Full Changelog: [v0.0.1...v0.0.2](https://github.com/rye-com/checkout-intents-ruby/compare/v0.0.1...v0.0.2)
