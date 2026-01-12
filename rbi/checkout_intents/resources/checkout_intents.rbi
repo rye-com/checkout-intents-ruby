@@ -156,6 +156,98 @@ module CheckoutIntents
       )
       end
 
+      # Default polling interval in seconds
+      DEFAULT_POLL_INTERVAL = T.let(5.0, Float)
+
+      # Default maximum polling attempts
+      DEFAULT_MAX_ATTEMPTS = T.let(120, Integer)
+
+      # Poll a checkout intent until it reaches a completed state (completed or failed).
+      sig do
+        params(
+          id: String,
+          poll_interval: Float,
+          max_attempts: Integer,
+          request_options: ::CheckoutIntents::RequestOptions::OrHash
+        ).returns(
+          T.any(
+            ::CheckoutIntents::CheckoutIntent::CompletedCheckoutIntent,
+            ::CheckoutIntents::CheckoutIntent::FailedCheckoutIntent
+          )
+        )
+      end
+      def poll_until_completed(
+        id,
+        poll_interval: DEFAULT_POLL_INTERVAL,
+        max_attempts: DEFAULT_MAX_ATTEMPTS,
+        request_options: {}
+      )
+      end
+
+      # Poll a checkout intent until it's ready for confirmation (awaiting_confirmation or failed).
+      sig do
+        params(
+          id: String,
+          poll_interval: Float,
+          max_attempts: Integer,
+          request_options: ::CheckoutIntents::RequestOptions::OrHash
+        ).returns(
+          T.any(
+            ::CheckoutIntents::CheckoutIntent::AwaitingConfirmationCheckoutIntent,
+            ::CheckoutIntents::CheckoutIntent::FailedCheckoutIntent
+          )
+        )
+      end
+      def poll_until_awaiting_confirmation(
+        id,
+        poll_interval: DEFAULT_POLL_INTERVAL,
+        max_attempts: DEFAULT_MAX_ATTEMPTS,
+        request_options: {}
+      )
+      end
+
+      # Create a checkout intent and poll until it's ready for confirmation.
+      sig do
+        params(
+          params: T::Hash[Symbol, T.anything],
+          poll_interval: Float,
+          max_attempts: Integer
+        ).returns(
+          T.any(
+            ::CheckoutIntents::CheckoutIntent::AwaitingConfirmationCheckoutIntent,
+            ::CheckoutIntents::CheckoutIntent::FailedCheckoutIntent
+          )
+        )
+      end
+      def create_and_poll(
+        params,
+        poll_interval: DEFAULT_POLL_INTERVAL,
+        max_attempts: DEFAULT_MAX_ATTEMPTS
+      )
+      end
+
+      # Confirm a checkout intent and poll until it reaches a completed state.
+      sig do
+        params(
+          id: String,
+          params: T::Hash[Symbol, T.anything],
+          poll_interval: Float,
+          max_attempts: Integer
+        ).returns(
+          T.any(
+            ::CheckoutIntents::CheckoutIntent::CompletedCheckoutIntent,
+            ::CheckoutIntents::CheckoutIntent::FailedCheckoutIntent
+          )
+        )
+      end
+      def confirm_and_poll(
+        id,
+        params,
+        poll_interval: DEFAULT_POLL_INTERVAL,
+        max_attempts: DEFAULT_MAX_ATTEMPTS
+      )
+      end
+
       # @api private
       sig { params(client: ::CheckoutIntents::Client).returns(T.attached_class) }
       def self.new(client:)

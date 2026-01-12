@@ -224,5 +224,38 @@ module CheckoutIntents
     class InternalServerError < CheckoutIntents::Errors::APIStatusError
       HTTP_STATUS = (500..)
     end
+
+    class PollTimeoutError < CheckoutIntents::Errors::Error
+      # @return [String]
+      attr_reader :intent_id
+
+      # @return [Integer]
+      attr_reader :attempts
+
+      # @return [Float]
+      attr_reader :poll_interval
+
+      # @return [Integer]
+      attr_reader :max_attempts
+
+      # @api private
+      #
+      # @param intent_id [String]
+      # @param attempts [Integer]
+      # @param poll_interval [Float]
+      # @param max_attempts [Integer]
+      # @param message [String, nil]
+      def initialize(intent_id:, attempts:, poll_interval:, max_attempts:, message: nil)
+        @intent_id = intent_id
+        @attempts = attempts
+        @poll_interval = poll_interval
+        @max_attempts = max_attempts
+
+        message ||= "Polling timeout for checkout intent '#{intent_id}': " \
+                    "condition not met after #{attempts} attempts (#{(max_attempts * poll_interval).round(1)}s). " \
+                    "Consider increasing max_attempts or poll_interval."
+        super(message)
+      end
+    end
   end
 end

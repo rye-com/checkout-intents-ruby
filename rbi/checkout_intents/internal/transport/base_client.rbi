@@ -300,6 +300,18 @@ module CheckoutIntents
         end
 
         # @api private
+        #
+        # Like `request`, but returns both the parsed model and response headers.
+        # Used internally for polling helpers that need to inspect headers.
+        sig do
+          params(
+            req: CheckoutIntents::Internal::Transport::BaseClient::RequestComponents
+          ).returns({ data: T.anything, headers: T::Hash[String, String] })
+        end
+        def request_with_headers(req)
+        end
+
+        # @api private
         sig { returns(String) }
         def inspect
         end
