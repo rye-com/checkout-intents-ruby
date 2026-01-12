@@ -48,6 +48,40 @@ module CheckoutIntents
         ?request_options: CheckoutIntents::request_opts
       ) -> CheckoutIntents::Models::checkout_intent
 
+      def poll_until_completed: (
+        String id,
+        ?poll_interval: Float,
+        ?max_attempts: Integer,
+        ?request_options: CheckoutIntents::request_opts
+      ) -> (CheckoutIntents::CheckoutIntent::CompletedCheckoutIntent | CheckoutIntents::CheckoutIntent::FailedCheckoutIntent)
+
+      def poll_until_awaiting_confirmation: (
+        String id,
+        ?poll_interval: Float,
+        ?max_attempts: Integer,
+        ?request_options: CheckoutIntents::request_opts
+      ) -> (CheckoutIntents::CheckoutIntent::AwaitingConfirmationCheckoutIntent | CheckoutIntents::CheckoutIntent::FailedCheckoutIntent)
+
+      def create_and_poll: (
+        buyer: CheckoutIntents::Buyer,
+        product_url: String,
+        quantity: Float,
+        ?constraints: CheckoutIntents::CheckoutIntentCreateParams::Constraints,
+        ?promo_codes: ::Array[String],
+        ?variant_selections: ::Array[CheckoutIntents::VariantSelection],
+        ?poll_interval: Float,
+        ?max_attempts: Integer,
+        ?request_options: CheckoutIntents::request_opts
+      ) -> (CheckoutIntents::CheckoutIntent::AwaitingConfirmationCheckoutIntent | CheckoutIntents::CheckoutIntent::FailedCheckoutIntent)
+
+      def confirm_and_poll: (
+        String id,
+        payment_method: CheckoutIntents::Models::payment_method,
+        ?poll_interval: Float,
+        ?max_attempts: Integer,
+        ?request_options: CheckoutIntents::request_opts
+      ) -> (CheckoutIntents::CheckoutIntent::CompletedCheckoutIntent | CheckoutIntents::CheckoutIntent::FailedCheckoutIntent)
+
       def initialize: (client: CheckoutIntents::Client) -> void
     end
   end

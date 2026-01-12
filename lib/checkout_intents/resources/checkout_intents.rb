@@ -267,16 +267,30 @@ module CheckoutIntents
       #   )
       #   puts "Total: #{intent.offer.cost.total}"
       def create_and_poll(
-        params,
+        buyer:,
+        product_url:,
+        quantity:,
+        constraints: nil,
+        promo_codes: nil,
+        variant_selections: nil,
         poll_interval: DEFAULT_POLL_INTERVAL,
-        max_attempts: DEFAULT_MAX_ATTEMPTS
+        max_attempts: DEFAULT_MAX_ATTEMPTS,
+        request_options: {}
       )
-        intent = create(params)
+        intent = create(
+          buyer: buyer,
+          product_url: product_url,
+          quantity: quantity,
+          constraints: constraints,
+          promo_codes: promo_codes,
+          variant_selections: variant_selections,
+          request_options: request_options
+        )
         poll_until_awaiting_confirmation(
           intent.id,
           poll_interval: poll_interval,
           max_attempts: max_attempts,
-          request_options: params[:request_options] || {}
+          request_options: request_options
         )
       end
 
@@ -306,16 +320,17 @@ module CheckoutIntents
       #   end
       def confirm_and_poll(
         id,
-        params,
+        payment_method:,
         poll_interval: DEFAULT_POLL_INTERVAL,
-        max_attempts: DEFAULT_MAX_ATTEMPTS
+        max_attempts: DEFAULT_MAX_ATTEMPTS,
+        request_options: {}
       )
-        intent = confirm(id, params)
+        intent = confirm(id, payment_method: payment_method, request_options: request_options)
         poll_until_completed(
           intent.id,
           poll_interval: poll_interval,
           max_attempts: max_attempts,
-          request_options: params[:request_options] || {}
+          request_options: request_options
         )
       end
 
