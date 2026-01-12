@@ -1,0 +1,33 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# Fixes Ruby constant resolution by converting relative
+# CheckoutIntents:: references to absolute ::CheckoutIntents:: references.
+#
+# This is needed because the SDK module name (CheckoutIntents) collides
+# with the resource class name (CheckoutIntents::Resources::CheckoutIntents),
+# causing both Sorbet and Ruby runtime to fail to resolve constants.
+
+require "pathname"
+
+root = Pathname.new(__dir__).join("..")
+
+# Fix both .rb (runtime) and .rbi (type definitions) files in resources directories
+directories = [
+  root.join("lib", "checkout_intents", "resources"),
+  root.join("rbi", "checkout_intents", "resources")
+]
+
+directories.each do |dir|
+  Dir.glob(dir.join("**/*.{rb,rbi}")).each do |file|
+    content = File.read(file)
+    updated = content.gsub(/(?<!:)CheckoutIntents::/, "::CheckoutIntents::")
+
+    if content != updated
+      File.write(file, updated)
+      puts "Fixed: #{Pathname.new(file).relative_path_from(root)}"
+    end
+  end
+end
+
+puts "Done."
