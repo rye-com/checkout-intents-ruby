@@ -209,9 +209,17 @@ module CheckoutIntents
       # Create a checkout intent and poll until it's ready for confirmation.
       sig do
         params(
-          params: T::Hash[Symbol, T.anything],
+          buyer: ::CheckoutIntents::Buyer::OrHash,
+          product_url: String,
+          quantity: Float,
+          constraints:
+            ::CheckoutIntents::CheckoutIntentCreateParams::Constraints::OrHash,
+          promo_codes: T::Array[String],
+          variant_selections:
+            T::Array[::CheckoutIntents::VariantSelection::OrHash],
           poll_interval: Float,
-          max_attempts: Integer
+          max_attempts: Integer,
+          request_options: ::CheckoutIntents::RequestOptions::OrHash
         ).returns(
           T.any(
             ::CheckoutIntents::CheckoutIntent::AwaitingConfirmationCheckoutIntent,
@@ -220,9 +228,15 @@ module CheckoutIntents
         )
       end
       def create_and_poll(
-        params,
+        buyer:,
+        product_url:,
+        quantity:,
+        constraints: nil,
+        promo_codes: nil,
+        variant_selections: nil,
         poll_interval: DEFAULT_POLL_INTERVAL,
-        max_attempts: DEFAULT_MAX_ATTEMPTS
+        max_attempts: DEFAULT_MAX_ATTEMPTS,
+        request_options: {}
       )
       end
 
@@ -230,9 +244,15 @@ module CheckoutIntents
       sig do
         params(
           id: String,
-          params: T::Hash[Symbol, T.anything],
+          payment_method:
+            T.any(
+              ::CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod::OrHash,
+              ::CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod::OrHash,
+              ::CheckoutIntents::PaymentMethod::NekudaPaymentMethod::OrHash
+            ),
           poll_interval: Float,
-          max_attempts: Integer
+          max_attempts: Integer,
+          request_options: ::CheckoutIntents::RequestOptions::OrHash
         ).returns(
           T.any(
             ::CheckoutIntents::CheckoutIntent::CompletedCheckoutIntent,
@@ -242,9 +262,10 @@ module CheckoutIntents
       end
       def confirm_and_poll(
         id,
-        params,
+        payment_method:,
         poll_interval: DEFAULT_POLL_INTERVAL,
-        max_attempts: DEFAULT_MAX_ATTEMPTS
+        max_attempts: DEFAULT_MAX_ATTEMPTS,
+        request_options: {}
       )
       end
 

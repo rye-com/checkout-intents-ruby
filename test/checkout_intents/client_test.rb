@@ -769,21 +769,19 @@ class CheckoutIntentsTest < Minitest::Test
 
     client = CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key")
     result = client.checkout_intents.create_and_poll(
-      {
-        buyer: {
-          address1: "123 Main St",
-          city: "New York",
-          country: "US",
-          email: "test@example.com",
-          firstName: "John",
-          lastName: "Doe",
-          phone: "5555555555",
-          postalCode: "10001",
-          province: "NY"
-        },
-        product_url: "https://example.com/product",
-        quantity: 1
+      buyer: {
+        address1: "123 Main St",
+        city: "New York",
+        country: "US",
+        email: "test@example.com",
+        firstName: "John",
+        lastName: "Doe",
+        phone: "5555555555",
+        postalCode: "10001",
+        province: "NY"
       },
+      product_url: "https://example.com/product",
+      quantity: 1,
       poll_interval: 0.01
     )
 
@@ -824,7 +822,7 @@ class CheckoutIntentsTest < Minitest::Test
     client = CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key")
     result = client.checkout_intents.confirm_and_poll(
       "ci_123",
-      {payment_method: {type: :stripe_token, stripeToken: "tok_test"}},
+      payment_method: {type: :stripe_token, stripeToken: "tok_test"},
       poll_interval: 0.01
     )
 
