@@ -29,7 +29,7 @@ class CheckoutIntentsTest < Minitest::Test
 
   def test_raises_on_unknown_environment
     e = assert_raises(ArgumentError) do
-      CheckoutIntents::Client.new(environment: "wrong")
+      CheckoutIntents::Client.new(api_key: "test-key", environment: "wrong")
     end
     assert_match(/environment must be one of/, e.message)
   end
@@ -519,5 +519,104 @@ class CheckoutIntentsTest < Minitest::Test
       headers = req.headers.transform_keys(&:downcase).fetch_values("accept", "content-type")
       headers.each { refute_empty(_1) }
     end
+  end
+
+  # Environment auto-inference tests
+
+  def test_auto_infers_staging_from_api_key
+    client = CheckoutIntents::Client.new(api_key: "RYE/staging-abc123def456")
+    assert_equal("https://staging.api.rye.com/", client.base_url.to_s)
+  end
+
+  def test_auto_infers_production_from_api_key
+    client = CheckoutIntents::Client.new(api_key: "RYE/production-xyz789ghi012")
+    assert_equal("https://api.rye.com/", client.base_url.to_s)
+  end
+
+  def test_explicit_environment_matches_staging_api_key
+    client = CheckoutIntents::Client.new(
+      api_key: "RYE/staging-abc123def456",
+      environment: :staging
+    )
+    assert_equal("https://staging.api.rye.com/", client.base_url.to_s)
+  end
+
+  def test_explicit_environment_matches_production_api_key
+    client = CheckoutIntents::Client.new(
+      api_key: "RYE/production-xyz789ghi012",
+      environment: :production
+    )
+    assert_equal("https://api.rye.com/", client.base_url.to_s)
+  end
+
+  def test_raises_on_environment_mismatch_staging_key_production_env
+    e = assert_raises(ArgumentError) do
+      CheckoutIntents::Client.new(
+        api_key: "RYE/staging-abc123def456",
+        environment: :production
+      )
+    end
+    assert_match(/Environment mismatch/, e.message)
+    assert_match(/API key is for 'staging' environment/, e.message)
+    assert_match(/'environment' option is set to 'production'/, e.message)
+  end
+
+  def test_raises_on_environment_mismatch_production_key_staging_env
+    e = assert_raises(ArgumentError) do
+      CheckoutIntents::Client.new(
+        api_key: "RYE/production-xyz789ghi012",
+        environment: :staging
+      )
+    end
+    assert_match(/Environment mismatch/, e.message)
+    assert_match(/API key is for 'production' environment/, e.message)
+    assert_match(/'environment' option is set to 'staging'/, e.message)
+  end
+
+  def test_defaults_to_staging_for_malformed_api_key
+    client = CheckoutIntents::Client.new(api_key: "malformed-api-key")
+    assert_equal("https://staging.api.rye.com/", client.base_url.to_s)
+  end
+
+  def test_explicit_environment_with_malformed_api_key
+    client = CheckoutIntents::Client.new(
+      api_key: "malformed-api-key",
+      environment: :production
+    )
+    assert_equal("https://api.rye.com/", client.base_url.to_s)
+  end
+
+  def test_base_url_overrides_inferred_environment
+    client = CheckoutIntents::Client.new(
+      api_key: "RYE/staging-abc123def456",
+      base_url: "https://custom.api.example.com/"
+    )
+    assert_equal("https://custom.api.example.com/", client.base_url.to_s)
+  end
+
+  def test_empty_api_key_prefix_does_not_match
+    client = CheckoutIntents::Client.new(api_key: "RYE/-abc123")
+    # Falls back to default staging
+    assert_equal("https://staging.api.rye.com/", client.base_url.to_s)
+  end
+
+  def test_uppercase_environment_does_not_match
+    client = CheckoutIntents::Client.new(api_key: "RYE/STAGING-abc123")
+    # Falls back to default staging
+    assert_equal("https://staging.api.rye.com/", client.base_url.to_s)
+  end
+
+  def test_partial_match_does_not_work
+    client = CheckoutIntents::Client.new(api_key: "RYE/production")
+    # Falls back to default staging (no hyphen after environment)
+    assert_equal("https://staging.api.rye.com/", client.base_url.to_s)
+  end
+
+  def test_string_environment_option_works_with_matching_api_key
+    client = CheckoutIntents::Client.new(
+      api_key: "RYE/staging-abc123def456",
+      environment: "staging"
+    )
+    assert_equal("https://staging.api.rye.com/", client.base_url.to_s)
   end
 end
