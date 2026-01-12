@@ -31,6 +31,7 @@ class CheckoutIntentsTest < Minitest::Test
     e = assert_raises(ArgumentError) do
       CheckoutIntents::Client.new(api_key: "test-key", environment: "wrong")
     end
+
     assert_match(/environment must be one of/, e.message)
   end
 
@@ -38,6 +39,7 @@ class CheckoutIntentsTest < Minitest::Test
     e = assert_raises(ArgumentError) do
       CheckoutIntents::Client.new
     end
+
     assert_match(/is required/, e.message)
   end
 
@@ -70,8 +72,7 @@ class CheckoutIntentsTest < Minitest::Test
   def test_client_given_request_default_retry_attempts
     stub_request(:post, "http://localhost/api/v1/checkout-intents").to_return_json(status: 500, body: {})
 
-    checkout_intents =
-      CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 3)
+    checkout_intents = CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 3)
 
     assert_raises(CheckoutIntents::Errors::InternalServerError) do
       checkout_intents.checkout_intents.create(
@@ -124,8 +125,7 @@ class CheckoutIntentsTest < Minitest::Test
   def test_client_given_request_given_retry_attempts
     stub_request(:post, "http://localhost/api/v1/checkout-intents").to_return_json(status: 500, body: {})
 
-    checkout_intents =
-      CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 3)
+    checkout_intents = CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 3)
 
     assert_raises(CheckoutIntents::Errors::InternalServerError) do
       checkout_intents.checkout_intents.create(
@@ -156,8 +156,7 @@ class CheckoutIntentsTest < Minitest::Test
       body: {}
     )
 
-    checkout_intents =
-      CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 1)
+    checkout_intents = CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 1)
 
     assert_raises(CheckoutIntents::Errors::InternalServerError) do
       checkout_intents.checkout_intents.create(
@@ -188,8 +187,7 @@ class CheckoutIntentsTest < Minitest::Test
       body: {}
     )
 
-    checkout_intents =
-      CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 1)
+    checkout_intents = CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 1)
 
     assert_raises(CheckoutIntents::Errors::InternalServerError) do
       Thread.current.thread_variable_set(:time_now, Time.now)
@@ -222,8 +220,7 @@ class CheckoutIntentsTest < Minitest::Test
       body: {}
     )
 
-    checkout_intents =
-      CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 1)
+    checkout_intents = CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 1)
 
     assert_raises(CheckoutIntents::Errors::InternalServerError) do
       checkout_intents.checkout_intents.create(
@@ -556,6 +553,7 @@ class CheckoutIntentsTest < Minitest::Test
         environment: :production
       )
     end
+
     assert_match(/Environment mismatch/, e.message)
     assert_match(/API key is for 'staging' environment/, e.message)
     assert_match(/'environment' option is set to 'production'/, e.message)
@@ -568,6 +566,7 @@ class CheckoutIntentsTest < Minitest::Test
         environment: :staging
       )
     end
+
     assert_match(/Environment mismatch/, e.message)
     assert_match(/API key is for 'production' environment/, e.message)
     assert_match(/'environment' option is set to 'staging'/, e.message)
@@ -618,5 +617,336 @@ class CheckoutIntentsTest < Minitest::Test
       environment: "staging"
     )
     assert_equal("https://staging.api.rye.com/", client.base_url.to_s)
+  end
+
+  # Polling helper tests
+
+  def test_poll_until_completed_returns_on_completed
+    call_count = 0
+
+    stub_request(:get, "http://localhost/api/v1/checkout-intents/ci_123").to_return do
+      call_count += 1
+      state = call_count == 1 ? "placing_order" : "completed"
+      {
+        status: 200,
+        headers: {"Content-Type" => "application/json"},
+        body: {
+          id: "ci_123",
+          state: state,
+          buyer: mock_buyer,
+          createdAt: "2024-01-01T00:00:00Z",
+          productUrl: "https://example.com/product",
+          quantity: 1,
+          offer: mock_offer,
+          paymentMethod: {type: "stripe_token", stripeToken: "tok_test"}
+        }.to_json
+      }
+    end
+
+    client = CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key")
+    result = client.checkout_intents.poll_until_completed("ci_123", poll_interval: 0.01, max_attempts: 10)
+
+    assert_equal(:completed, result.state)
+    assert_equal(2, call_count)
+  end
+
+  def test_poll_until_completed_returns_on_failed
+    stub_request(:get, "http://localhost/api/v1/checkout-intents/ci_123").to_return_json(
+      status: 200,
+      body: {
+        id: "ci_123",
+        state: "failed",
+        failureReason: {code: "payment_failed", message: "Payment failed"},
+        buyer: mock_buyer,
+        createdAt: "2024-01-01T00:00:00Z",
+        productUrl: "https://example.com/product",
+        quantity: 1
+      }
+    )
+
+    client = CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key")
+    result = client.checkout_intents.poll_until_completed("ci_123", poll_interval: 0.01)
+
+    assert_equal(:failed, result.state)
+    assert_equal(:payment_failed, result.failure_reason.code)
+  end
+
+  def test_poll_until_completed_timeout
+    stub_request(:get, "http://localhost/api/v1/checkout-intents/ci_123").to_return_json(
+      status: 200,
+      body: {
+        id: "ci_123",
+        state: "placing_order",
+        buyer: mock_buyer,
+        createdAt: "2024-01-01T00:00:00Z",
+        productUrl: "https://example.com/product",
+        quantity: 1,
+        offer: mock_offer,
+        paymentMethod: {type: "stripe_token", stripeToken: "tok_test"}
+      }
+    )
+
+    client = CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key")
+
+    error = assert_raises(CheckoutIntents::Errors::PollTimeoutError) do
+      client.checkout_intents.poll_until_completed("ci_123", poll_interval: 0.01, max_attempts: 2)
+    end
+
+    assert_equal("ci_123", error.intent_id)
+    assert_equal(2, error.attempts)
+    assert_equal(0.01, error.poll_interval)
+    assert_equal(2, error.max_attempts)
+    assert_match(/Polling timeout/, error.message)
+    assert_match(/ci_123/, error.message)
+  end
+
+  def test_poll_until_awaiting_confirmation
+    stub_request(:get, "http://localhost/api/v1/checkout-intents/ci_123").to_return_json(
+      status: 200,
+      body: {
+        id: "ci_123",
+        state: "awaiting_confirmation",
+        buyer: mock_buyer,
+        createdAt: "2024-01-01T00:00:00Z",
+        productUrl: "https://example.com/product",
+        quantity: 1,
+        offer: mock_offer
+      }
+    )
+
+    client = CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key")
+    result = client.checkout_intents.poll_until_awaiting_confirmation("ci_123", poll_interval: 0.01)
+
+    assert_equal(:awaiting_confirmation, result.state)
+  end
+
+  def test_poll_until_awaiting_confirmation_returns_on_failed
+    stub_request(:get, "http://localhost/api/v1/checkout-intents/ci_123").to_return_json(
+      status: 200,
+      body: {
+        id: "ci_123",
+        state: "failed",
+        failureReason: {code: "offer_retrieval_failed", message: "Could not retrieve offer"},
+        buyer: mock_buyer,
+        createdAt: "2024-01-01T00:00:00Z",
+        productUrl: "https://example.com/product",
+        quantity: 1
+      }
+    )
+
+    client = CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key")
+    result = client.checkout_intents.poll_until_awaiting_confirmation("ci_123", poll_interval: 0.01)
+
+    assert_equal(:failed, result.state)
+    assert_equal(:offer_retrieval_failed, result.failure_reason.code)
+  end
+
+  def test_create_and_poll
+    stub_request(:post, "http://localhost/api/v1/checkout-intents").to_return_json(
+      status: 200,
+      body: {
+        id: "ci_123",
+        state: "retrieving_offer",
+        buyer: mock_buyer,
+        createdAt: "2024-01-01T00:00:00Z",
+        productUrl: "https://example.com/product",
+        quantity: 1
+      }
+    )
+
+    stub_request(:get, "http://localhost/api/v1/checkout-intents/ci_123").to_return_json(
+      status: 200,
+      body: {
+        id: "ci_123",
+        state: "awaiting_confirmation",
+        buyer: mock_buyer,
+        createdAt: "2024-01-01T00:00:00Z",
+        productUrl: "https://example.com/product",
+        quantity: 1,
+        offer: mock_offer
+      }
+    )
+
+    client = CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key")
+    result = client.checkout_intents.create_and_poll(
+      {
+        buyer: {
+          address1: "123 Main St",
+          city: "New York",
+          country: "US",
+          email: "test@example.com",
+          firstName: "John",
+          lastName: "Doe",
+          phone: "5555555555",
+          postalCode: "10001",
+          province: "NY"
+        },
+        product_url: "https://example.com/product",
+        quantity: 1
+      },
+      poll_interval: 0.01
+    )
+
+    assert_equal(:awaiting_confirmation, result.state)
+    assert_requested(:post, "http://localhost/api/v1/checkout-intents", times: 1)
+    assert_requested(:get, "http://localhost/api/v1/checkout-intents/ci_123", times: 1)
+  end
+
+  def test_confirm_and_poll
+    stub_request(:post, "http://localhost/api/v1/checkout-intents/ci_123/confirm").to_return_json(
+      status: 200,
+      body: {
+        id: "ci_123",
+        state: "placing_order",
+        buyer: mock_buyer,
+        createdAt: "2024-01-01T00:00:00Z",
+        productUrl: "https://example.com/product",
+        quantity: 1,
+        offer: mock_offer,
+        paymentMethod: {type: "stripe_token", stripeToken: "tok_test"}
+      }
+    )
+
+    stub_request(:get, "http://localhost/api/v1/checkout-intents/ci_123").to_return_json(
+      status: 200,
+      body: {
+        id: "ci_123",
+        state: "completed",
+        buyer: mock_buyer,
+        createdAt: "2024-01-01T00:00:00Z",
+        productUrl: "https://example.com/product",
+        quantity: 1,
+        offer: mock_offer,
+        paymentMethod: {type: "stripe_token", stripeToken: "tok_test"}
+      }
+    )
+
+    client = CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key")
+    result = client.checkout_intents.confirm_and_poll(
+      "ci_123",
+      {payment_method: {type: :stripe_token, stripeToken: "tok_test"}},
+      poll_interval: 0.01
+    )
+
+    assert_equal(:completed, result.state)
+    assert_requested(:post, "http://localhost/api/v1/checkout-intents/ci_123/confirm", times: 1)
+    assert_requested(:get, "http://localhost/api/v1/checkout-intents/ci_123", times: 1)
+  end
+
+  def test_poll_respects_retry_after_ms_header
+    call_count = 0
+
+    stub_request(:get, "http://localhost/api/v1/checkout-intents/ci_123").to_return do
+      call_count += 1
+      state = call_count == 1 ? "placing_order" : "completed"
+      {
+        status: 200,
+        headers: {
+          "Content-Type" => "application/json",
+          "retry-after-ms" => "1000"
+        },
+        body: {
+          id: "ci_123",
+          state: state,
+          buyer: mock_buyer,
+          createdAt: "2024-01-01T00:00:00Z",
+          productUrl: "https://example.com/product",
+          quantity: 1,
+          offer: mock_offer,
+          paymentMethod: {type: "stripe_token", stripeToken: "tok_test"}
+        }.to_json
+      }
+    end
+
+    client = CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key")
+    result = client.checkout_intents.poll_until_completed("ci_123", poll_interval: 0.1, max_attempts: 10)
+
+    assert_equal(:completed, result.state)
+    # Should have used the server-suggested interval (1 second = 1.0)
+    sleep_times = Thread.current.thread_variable_get(:mock_sleep)
+    assert_equal(1, sleep_times.length)
+    assert_equal(1.0, sleep_times.first)
+  end
+
+  def test_poll_sends_stainless_headers
+    stub_request(:get, "http://localhost/api/v1/checkout-intents/ci_123").to_return_json(
+      status: 200,
+      body: {
+        id: "ci_123",
+        state: "completed",
+        buyer: mock_buyer,
+        createdAt: "2024-01-01T00:00:00Z",
+        productUrl: "https://example.com/product",
+        quantity: 1,
+        offer: mock_offer,
+        paymentMethod: {type: "stripe_token", stripeToken: "tok_test"}
+      }
+    )
+
+    client = CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key")
+    client.checkout_intents.poll_until_completed("ci_123", poll_interval: 5.0)
+
+    assert_requested(:get, "http://localhost/api/v1/checkout-intents/ci_123") do |req|
+      headers = req.headers.transform_keys(&:downcase)
+      assert_equal("true", headers["x-stainless-poll-helper"])
+      assert_equal("5000", headers["x-stainless-custom-poll-interval"])
+    end
+  end
+
+  def test_poll_coerces_invalid_max_attempts
+    stub_request(:get, "http://localhost/api/v1/checkout-intents/ci_123").to_return_json(
+      status: 200,
+      body: {
+        id: "ci_123",
+        state: "completed",
+        buyer: mock_buyer,
+        createdAt: "2024-01-01T00:00:00Z",
+        productUrl: "https://example.com/product",
+        quantity: 1,
+        offer: mock_offer,
+        paymentMethod: {type: "stripe_token", stripeToken: "tok_test"}
+      }
+    )
+
+    client = CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key")
+
+    # Capture stderr to check for warning
+    original_stderr = $stderr
+    $stderr = StringIO.new
+
+    result = client.checkout_intents.poll_until_completed("ci_123", poll_interval: 0.01, max_attempts: 0)
+
+    warning_output = $stderr.string
+    $stderr = original_stderr
+
+    assert_equal(:completed, result.state)
+    assert_match(/Invalid max_attempts value: 0/, warning_output)
+    assert_requested(:get, "http://localhost/api/v1/checkout-intents/ci_123", times: 1)
+  end
+
+  private
+
+  def mock_buyer
+    {
+      address1: "123 Main St",
+      city: "New York",
+      country: "US",
+      email: "test@example.com",
+      firstName: "John",
+      lastName: "Doe",
+      phone: "5555555555",
+      postalCode: "10001",
+      province: "NY"
+    }
+  end
+
+  def mock_offer
+    {
+      cost: {
+        subtotal: {amountSubunits: 1000, currencyCode: "USD"},
+        total: {amountSubunits: 1100, currencyCode: "USD"}
+      },
+      shipping: {availableOptions: []}
+    }
   end
 end

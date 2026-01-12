@@ -201,5 +201,38 @@ module CheckoutIntents
     class InternalServerError < CheckoutIntents::Errors::APIStatusError
       HTTP_STATUS = T.let((500..), T::Range[Integer])
     end
+
+    class PollTimeoutError < CheckoutIntents::Errors::Error
+      sig { returns(String) }
+      attr_reader :intent_id
+
+      sig { returns(Integer) }
+      attr_reader :attempts
+
+      sig { returns(Float) }
+      attr_reader :poll_interval
+
+      sig { returns(Integer) }
+      attr_reader :max_attempts
+
+      # @api private
+      sig do
+        params(
+          intent_id: String,
+          attempts: Integer,
+          poll_interval: Float,
+          max_attempts: Integer,
+          message: T.nilable(String)
+        ).returns(T.attached_class)
+      end
+      def self.new(
+        intent_id:,
+        attempts:,
+        poll_interval:,
+        max_attempts:,
+        message: nil
+      )
+      end
+    end
   end
 end
