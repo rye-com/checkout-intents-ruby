@@ -520,6 +520,39 @@ module CheckoutIntents
 
         # @api private
         #
+        # Like `request`, but returns both the parsed model and response headers.
+        # Used internally for polling helpers that need to inspect headers.
+        #
+        # @param req [Hash{Symbol=>Object}]
+        #
+        # @raise [CheckoutIntents::Errors::APIError]
+        # @return [Hash{Symbol=>Object}] Hash with :data and :headers keys
+        def request_with_headers(req)
+          self.class.validate!(req)
+          model = req.fetch(:model) { CheckoutIntents::Internal::Type::Unknown }
+          opts = req[:options].to_h
+          unwrap = req[:unwrap]
+          CheckoutIntents::RequestOptions.validate!(opts)
+          request = build_request(req.except(:options), opts)
+
+          send_retry_header = request.fetch(:headers)["x-stainless-retry-count"] == "0"
+          _status, response, stream = send_request(
+            request,
+            redirect_count: 0,
+            retry_count: 0,
+            send_retry_header: send_retry_header
+          )
+
+          headers = CheckoutIntents::Internal::Util.normalized_headers(response.each_header.to_h)
+          decoded = CheckoutIntents::Internal::Util.decode_content(headers, stream: stream)
+          unwrapped = CheckoutIntents::Internal::Util.dig(decoded, unwrap)
+          data = CheckoutIntents::Internal::Type::Converter.coerce(model, unwrapped)
+
+          {data: data, headers: headers}
+        end
+
+        # @api private
+        #
         # @return [String]
         def inspect
           # rubocop:disable Layout/LineLength
