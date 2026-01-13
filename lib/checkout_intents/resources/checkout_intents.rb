@@ -277,15 +277,17 @@ module CheckoutIntents
         max_attempts: DEFAULT_MAX_ATTEMPTS,
         request_options: {}
       )
-        intent = create(
+        create_params = {
           buyer: buyer,
           product_url: product_url,
           quantity: quantity,
-          constraints: constraints,
-          promo_codes: promo_codes,
-          variant_selections: variant_selections,
           request_options: request_options
-        )
+        }
+        create_params[:constraints] = constraints if constraints
+        create_params[:promo_codes] = promo_codes if promo_codes
+        create_params[:variant_selections] = variant_selections if variant_selections
+
+        intent = create(create_params)
         poll_until_awaiting_confirmation(
           intent.id,
           poll_interval: poll_interval,
