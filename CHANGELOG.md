@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.1 (2026-01-13)
+
+Full Changelog: [v0.2.0...v0.2.1](https://github.com/rye-com/checkout-intents-ruby/compare/v0.2.0...v0.2.1)
+
+### Bug Fixes
+
+* **api:** handle optional args ([8ef7d2b](https://github.com/rye-com/checkout-intents-ruby/commit/8ef7d2b96781b484a96a4c6c7cb8fff1c52f5a05))
+
 ## 0.2.0 (2026-01-12)
 
 Full Changelog: [v0.1.0...v0.2.0](https://github.com/rye-com/checkout-intents-ruby/compare/v0.1.0...v0.2.0)
