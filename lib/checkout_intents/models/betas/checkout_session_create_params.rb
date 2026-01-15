@@ -15,8 +15,8 @@ module CheckoutIntents
 
         # @!attribute quantity
         #
-        #   @return [Float]
-        required :quantity, Float
+        #   @return [Integer]
+        required :quantity, Integer
 
         # @!attribute buyer
         #   Optional buyer information, used to pre-fill the checkout form with the buyer's
@@ -48,7 +48,7 @@ module CheckoutIntents
         #
         #   @param product_url [String]
         #
-        #   @param quantity [Float]
+        #   @param quantity [Integer]
         #
         #   @param buyer [CheckoutIntents::Models::Betas::CheckoutSessionCreateParams::Buyer] Optional buyer information, used to pre-fill the checkout form with the buyer's
         #

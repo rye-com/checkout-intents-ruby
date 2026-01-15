@@ -11,7 +11,7 @@ module CheckoutIntents
         sig do
           params(
             product_url: String,
-            quantity: Float,
+            quantity: Integer,
             buyer:
               CheckoutIntents::Betas::CheckoutSessionCreateParams::Buyer::OrHash,
             constraints:

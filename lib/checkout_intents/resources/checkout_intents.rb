@@ -9,7 +9,7 @@ module CheckoutIntents
       #
       # @param buyer [CheckoutIntents::Models::Buyer]
       # @param product_url [String]
-      # @param quantity [Float]
+      # @param quantity [Integer]
       # @param constraints [CheckoutIntents::Models::CheckoutIntentCreateParams::Constraints]
       # @param promo_codes [Array<String>]
       # @param variant_selections [Array<CheckoutIntents::Models::VariantSelection>]
@@ -142,7 +142,7 @@ module CheckoutIntents
       # @param buyer [CheckoutIntents::Models::Buyer]
       # @param payment_method [CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod]
       # @param product_url [String]
-      # @param quantity [Float]
+      # @param quantity [Integer]
       # @param constraints [CheckoutIntents::Models::CheckoutIntentPurchaseParams::Constraints]
       # @param promo_codes [Array<String>]
       # @param variant_selections [Array<CheckoutIntents::Models::VariantSelection>]

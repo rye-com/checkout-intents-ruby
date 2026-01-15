@@ -18,7 +18,7 @@ module CheckoutIntents
         sig { returns(String) }
         attr_accessor :product_url
 
-        sig { returns(Float) }
+        sig { returns(Integer) }
         attr_accessor :quantity
 
         # Optional buyer information, used to pre-fill the checkout form with the buyer's
@@ -77,7 +77,7 @@ module CheckoutIntents
         sig do
           params(
             product_url: String,
-            quantity: Float,
+            quantity: Integer,
             buyer:
               CheckoutIntents::Betas::CheckoutSessionCreateParams::Buyer::OrHash,
             constraints:
@@ -105,7 +105,7 @@ module CheckoutIntents
           override.returns(
             {
               product_url: String,
-              quantity: Float,
+              quantity: Integer,
               buyer: CheckoutIntents::Betas::CheckoutSessionCreateParams::Buyer,
               constraints:
                 CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints,

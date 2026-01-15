@@ -19,8 +19,8 @@ module CheckoutIntents
 
       # @!attribute quantity
       #
-      #   @return [Float]
-      required :quantity, Float
+      #   @return [Integer]
+      required :quantity, Integer
 
       # @!attribute constraints
       #
@@ -42,7 +42,7 @@ module CheckoutIntents
       # @!method initialize(buyer:, product_url:, quantity:, constraints: nil, promo_codes: nil, variant_selections: nil, request_options: {})
       #   @param buyer [CheckoutIntents::Models::Buyer]
       #   @param product_url [String]
-      #   @param quantity [Float]
+      #   @param quantity [Integer]
       #   @param constraints [CheckoutIntents::Models::CheckoutIntentCreateParams::Constraints]
       #   @param promo_codes [Array<String>]
       #   @param variant_selections [Array<CheckoutIntents::Models::VariantSelection>]

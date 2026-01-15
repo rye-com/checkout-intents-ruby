@@ -26,7 +26,7 @@ module CheckoutIntents
       sig { returns(String) }
       attr_accessor :product_url
 
-      sig { returns(Float) }
+      sig { returns(Integer) }
       attr_accessor :quantity
 
       sig do
@@ -64,7 +64,7 @@ module CheckoutIntents
           buyer: CheckoutIntents::Buyer::OrHash,
           created_at: Time,
           product_url: String,
-          quantity: Float,
+          quantity: Integer,
           constraints: CheckoutIntents::BaseCheckoutIntent::Constraints::OrHash,
           promo_codes: T::Array[String],
           variant_selections:
@@ -90,7 +90,7 @@ module CheckoutIntents
             buyer: CheckoutIntents::Buyer,
             created_at: Time,
             product_url: String,
-            quantity: Float,
+            quantity: Integer,
             constraints: CheckoutIntents::BaseCheckoutIntent::Constraints,
             promo_codes: T::Array[String],
             variant_selections: T::Array[CheckoutIntents::VariantSelection]

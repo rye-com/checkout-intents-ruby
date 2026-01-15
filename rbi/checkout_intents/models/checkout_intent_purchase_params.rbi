@@ -34,7 +34,7 @@ module CheckoutIntents
       sig { returns(String) }
       attr_accessor :product_url
 
-      sig { returns(Float) }
+      sig { returns(Integer) }
       attr_accessor :quantity
 
       sig do
@@ -79,7 +79,7 @@ module CheckoutIntents
               CheckoutIntents::PaymentMethod::NekudaPaymentMethod::OrHash
             ),
           product_url: String,
-          quantity: Float,
+          quantity: Integer,
           constraints:
             CheckoutIntents::CheckoutIntentPurchaseParams::Constraints::OrHash,
           promo_codes: T::Array[String],
@@ -111,7 +111,7 @@ module CheckoutIntents
                 CheckoutIntents::PaymentMethod::NekudaPaymentMethod
               ),
             product_url: String,
-            quantity: Float,
+            quantity: Integer,
             constraints:
               CheckoutIntents::CheckoutIntentPurchaseParams::Constraints,
             promo_codes: T::Array[String],
