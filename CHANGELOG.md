@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.2 (2026-01-15)
+
+Full Changelog: [v0.2.1...v0.2.2](https://github.com/rye-com/checkout-intents-ruby/compare/v0.2.1...v0.2.2)
+
+### Bug Fixes
+
+* **api:** correctly type quantity as integer ([a85ecbf](https://github.com/rye-com/checkout-intents-ruby/commit/a85ecbf160c0cc4b24dc62357aa5bf47e7f7932a))
+
 ## 0.2.1 (2026-01-13)
 
 Full Changelog: [v0.2.0...v0.2.1](https://github.com/rye-com/checkout-intents-ruby/compare/v0.2.0...v0.2.1)
