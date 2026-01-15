@@ -18,7 +18,7 @@ module CheckoutIntents
         sig { returns(String) }
         attr_accessor :product_url
 
-        sig { returns(Float) }
+        sig { returns(Integer) }
         attr_accessor :quantity
 
         # Optional buyer information, used to pre-fill the checkout form with the buyer's
