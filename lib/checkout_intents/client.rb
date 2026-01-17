@@ -77,6 +77,8 @@ module CheckoutIntents
     # @param initial_retry_delay [Float]
     #
     # @param max_retry_delay [Float]
+    #
+    # @param idempotency_header [String]
     def initialize(
       api_key: ENV["CHECKOUT_INTENTS_API_KEY"],
       environment: nil,
@@ -84,7 +86,8 @@ module CheckoutIntents
       max_retries: self.class::DEFAULT_MAX_RETRIES,
       timeout: self.class::DEFAULT_TIMEOUT_IN_SECONDS,
       initial_retry_delay: self.class::DEFAULT_INITIAL_RETRY_DELAY,
-      max_retry_delay: self.class::DEFAULT_MAX_RETRY_DELAY
+      max_retry_delay: self.class::DEFAULT_MAX_RETRY_DELAY,
+      idempotency_header: "Idempotency-Key"
     )
       if api_key.nil?
         raise ArgumentError.new("api_key is required, and can be set via environ: \"CHECKOUT_INTENTS_API_KEY\"")
@@ -118,7 +121,8 @@ module CheckoutIntents
         timeout: timeout,
         max_retries: max_retries,
         initial_retry_delay: initial_retry_delay,
-        max_retry_delay: max_retry_delay
+        max_retry_delay: max_retry_delay,
+        idempotency_header: idempotency_header
       )
 
       @checkout_intents = CheckoutIntents::Resources::CheckoutIntents.new(client: self)

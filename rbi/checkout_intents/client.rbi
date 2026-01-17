@@ -46,7 +46,8 @@ module CheckoutIntents
         max_retries: Integer,
         timeout: Float,
         initial_retry_delay: Float,
-        max_retry_delay: Float
+        max_retry_delay: Float,
+        idempotency_header: String
       ).returns(T.attached_class)
     end
     def self.new(
@@ -67,7 +68,8 @@ module CheckoutIntents
       max_retries: CheckoutIntents::Client::DEFAULT_MAX_RETRIES,
       timeout: CheckoutIntents::Client::DEFAULT_TIMEOUT_IN_SECONDS,
       initial_retry_delay: CheckoutIntents::Client::DEFAULT_INITIAL_RETRY_DELAY,
-      max_retry_delay: CheckoutIntents::Client::DEFAULT_MAX_RETRY_DELAY
+      max_retry_delay: CheckoutIntents::Client::DEFAULT_MAX_RETRY_DELAY,
+      idempotency_header: "Idempotency-Key"
     )
     end
   end

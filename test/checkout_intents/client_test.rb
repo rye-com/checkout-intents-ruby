@@ -491,6 +491,72 @@ class CheckoutIntentsTest < Minitest::Test
     end
   end
 
+  def test_client_default_idempotency_key_on_writes
+    stub_request(:post, "http://localhost/api/v1/checkout-intents").to_return_json(status: 500, body: {})
+
+    checkout_intents = CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key")
+
+    assert_raises(CheckoutIntents::Errors::InternalServerError) do
+      checkout_intents.checkout_intents.create(
+        buyer: {
+          address1: "123 Main St",
+          city: "New York",
+          country: "US",
+          email: "john.doe@example.com",
+          firstName: "John",
+          lastName: "Doe",
+          phone: "1234567890",
+          postalCode: "10001",
+          province: "NY"
+        },
+        product_url: "productUrl",
+        quantity: 1,
+        request_options: {max_retries: 1}
+      )
+    end
+
+    headers = []
+    assert_requested(:any, /./, times: 2) do
+      header = _1.headers.transform_keys(&:downcase).fetch("idempotency-key")
+      headers << header
+      refute_empty(header)
+    end
+
+    assert_equal(*headers)
+  end
+
+  def test_request_option_idempotency_key_on_writes
+    stub_request(:post, "http://localhost/api/v1/checkout-intents").to_return_json(status: 500, body: {})
+
+    checkout_intents = CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key")
+
+    assert_raises(CheckoutIntents::Errors::InternalServerError) do
+      checkout_intents.checkout_intents.create(
+        buyer: {
+          address1: "123 Main St",
+          city: "New York",
+          country: "US",
+          email: "john.doe@example.com",
+          firstName: "John",
+          lastName: "Doe",
+          phone: "1234567890",
+          postalCode: "10001",
+          province: "NY"
+        },
+        product_url: "productUrl",
+        quantity: 1,
+        request_options: {max_retries: 1, idempotency_key: "user-supplied-key"}
+      )
+    end
+
+    assert_requested(
+      :any,
+      /./,
+      headers: {"idempotency-key" => "user-supplied-key"},
+      times: 2
+    )
+  end
+
   def test_default_headers
     stub_request(:post, "http://localhost/api/v1/checkout-intents").to_return_json(status: 200, body: {})
 
