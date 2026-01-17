@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.3.0 (2026-01-17)
+
+Full Changelog: [v0.2.2...v0.3.0](https://github.com/rye-com/checkout-intents-ruby/compare/v0.2.2...v0.3.0)
+
+### Features
+
+* add support for idempotency for v2 api ([b94de41](https://github.com/rye-com/checkout-intents-ruby/commit/b94de413ad3cfd4a5a552d2719203f060414d228))
+
+
+### Chores
+
+* **internal:** update `actions/checkout` version ([00c3bfa](https://github.com/rye-com/checkout-intents-ruby/commit/00c3bfa75b4fd0d01e040070e37a4e72396ea230))
+
 ## 0.2.2 (2026-01-15)
 
 Full Changelog: [v0.2.1...v0.2.2](https://github.com/rye-com/checkout-intents-ruby/compare/v0.2.1...v0.2.2)

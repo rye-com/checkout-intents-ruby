@@ -11,7 +11,7 @@ GIT
 PATH
   remote: .
   specs:
-    checkout-intents (0.2.2)
+    checkout-intents (0.3.0)
       cgi
       connection_pool
 
