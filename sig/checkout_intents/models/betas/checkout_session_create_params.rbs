@@ -145,7 +145,11 @@ module CheckoutIntents
         end
 
         type constraints =
-          { max_shipping_price: Integer, max_total_price: Integer }
+          {
+            max_shipping_price: Integer,
+            max_total_price: Integer,
+            offer_retrieval_effort: CheckoutIntents::Models::Betas::CheckoutSessionCreateParams::Constraints::offer_retrieval_effort
+          }
 
         class Constraints < CheckoutIntents::Internal::Type::BaseModel
           attr_reader max_shipping_price: Integer?
@@ -156,15 +160,34 @@ module CheckoutIntents
 
           def max_total_price=: (Integer) -> Integer
 
+          attr_reader offer_retrieval_effort: CheckoutIntents::Models::Betas::CheckoutSessionCreateParams::Constraints::offer_retrieval_effort?
+
+          def offer_retrieval_effort=: (
+            CheckoutIntents::Models::Betas::CheckoutSessionCreateParams::Constraints::offer_retrieval_effort
+          ) -> CheckoutIntents::Models::Betas::CheckoutSessionCreateParams::Constraints::offer_retrieval_effort
+
           def initialize: (
             ?max_shipping_price: Integer,
-            ?max_total_price: Integer
+            ?max_total_price: Integer,
+            ?offer_retrieval_effort: CheckoutIntents::Models::Betas::CheckoutSessionCreateParams::Constraints::offer_retrieval_effort
           ) -> void
 
           def to_hash: -> {
             max_shipping_price: Integer,
-            max_total_price: Integer
+            max_total_price: Integer,
+            offer_retrieval_effort: CheckoutIntents::Models::Betas::CheckoutSessionCreateParams::Constraints::offer_retrieval_effort
           }
+
+          type offer_retrieval_effort = :max | :low
+
+          module OfferRetrievalEffort
+            extend CheckoutIntents::Internal::Type::Enum
+
+            MAX: :max
+            LOW: :low
+
+            def self?.values: -> ::Array[CheckoutIntents::Models::Betas::CheckoutSessionCreateParams::Constraints::offer_retrieval_effort]
+          end
         end
       end
     end
