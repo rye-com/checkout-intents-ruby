@@ -67,9 +67,48 @@ module CheckoutIntents
         #   @return [Integer, nil]
         optional :max_total_price, Integer, api_name: :maxTotalPrice
 
-        # @!method initialize(max_shipping_price: nil, max_total_price: nil)
+        # @!attribute offer_retrieval_effort
+        #   Controls how much effort the system should spend retrieving an offer.
+        #
+        #   - 'max': Full effort including AI agent fallback (slower, higher success rate)
+        #   - 'low': Fast API-only retrieval, fails if API unavailable (faster, lower
+        #     success rate)
+        #
+        #   Default: 'max'
+        #
+        #   @return [Symbol, CheckoutIntents::Models::BaseCheckoutIntent::Constraints::OfferRetrievalEffort, nil]
+        optional :offer_retrieval_effort,
+                 enum: -> { CheckoutIntents::BaseCheckoutIntent::Constraints::OfferRetrievalEffort },
+                 api_name: :offerRetrievalEffort
+
+        # @!method initialize(max_shipping_price: nil, max_total_price: nil, offer_retrieval_effort: nil)
+        #   Some parameter documentations has been truncated, see
+        #   {CheckoutIntents::Models::BaseCheckoutIntent::Constraints} for more details.
+        #
         #   @param max_shipping_price [Integer]
+        #
         #   @param max_total_price [Integer]
+        #
+        #   @param offer_retrieval_effort [Symbol, CheckoutIntents::Models::BaseCheckoutIntent::Constraints::OfferRetrievalEffort] Controls how much effort the system should spend retrieving an offer.
+
+        # Controls how much effort the system should spend retrieving an offer.
+        #
+        # - 'max': Full effort including AI agent fallback (slower, higher success rate)
+        # - 'low': Fast API-only retrieval, fails if API unavailable (faster, lower
+        #   success rate)
+        #
+        # Default: 'max'
+        #
+        # @see CheckoutIntents::Models::BaseCheckoutIntent::Constraints#offer_retrieval_effort
+        module OfferRetrievalEffort
+          extend CheckoutIntents::Internal::Type::Enum
+
+          MAX = :max
+          LOW = :low
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
       end
     end
   end

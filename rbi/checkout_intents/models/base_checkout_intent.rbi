@@ -121,20 +121,104 @@ module CheckoutIntents
         sig { params(max_total_price: Integer).void }
         attr_writer :max_total_price
 
+        # Controls how much effort the system should spend retrieving an offer.
+        #
+        # - 'max': Full effort including AI agent fallback (slower, higher success rate)
+        # - 'low': Fast API-only retrieval, fails if API unavailable (faster, lower
+        #   success rate)
+        #
+        # Default: 'max'
         sig do
-          params(max_shipping_price: Integer, max_total_price: Integer).returns(
-            T.attached_class
+          returns(
+            T.nilable(
+              CheckoutIntents::BaseCheckoutIntent::Constraints::OfferRetrievalEffort::TaggedSymbol
+            )
           )
         end
-        def self.new(max_shipping_price: nil, max_total_price: nil)
+        attr_reader :offer_retrieval_effort
+
+        sig do
+          params(
+            offer_retrieval_effort:
+              CheckoutIntents::BaseCheckoutIntent::Constraints::OfferRetrievalEffort::OrSymbol
+          ).void
+        end
+        attr_writer :offer_retrieval_effort
+
+        sig do
+          params(
+            max_shipping_price: Integer,
+            max_total_price: Integer,
+            offer_retrieval_effort:
+              CheckoutIntents::BaseCheckoutIntent::Constraints::OfferRetrievalEffort::OrSymbol
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          max_shipping_price: nil,
+          max_total_price: nil,
+          # Controls how much effort the system should spend retrieving an offer.
+          #
+          # - 'max': Full effort including AI agent fallback (slower, higher success rate)
+          # - 'low': Fast API-only retrieval, fails if API unavailable (faster, lower
+          #   success rate)
+          #
+          # Default: 'max'
+          offer_retrieval_effort: nil
+        )
         end
 
         sig do
           override.returns(
-            { max_shipping_price: Integer, max_total_price: Integer }
+            {
+              max_shipping_price: Integer,
+              max_total_price: Integer,
+              offer_retrieval_effort:
+                CheckoutIntents::BaseCheckoutIntent::Constraints::OfferRetrievalEffort::TaggedSymbol
+            }
           )
         end
         def to_hash
+        end
+
+        # Controls how much effort the system should spend retrieving an offer.
+        #
+        # - 'max': Full effort including AI agent fallback (slower, higher success rate)
+        # - 'low': Fast API-only retrieval, fails if API unavailable (faster, lower
+        #   success rate)
+        #
+        # Default: 'max'
+        module OfferRetrievalEffort
+          extend CheckoutIntents::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                CheckoutIntents::BaseCheckoutIntent::Constraints::OfferRetrievalEffort
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          MAX =
+            T.let(
+              :max,
+              CheckoutIntents::BaseCheckoutIntent::Constraints::OfferRetrievalEffort::TaggedSymbol
+            )
+          LOW =
+            T.let(
+              :low,
+              CheckoutIntents::BaseCheckoutIntent::Constraints::OfferRetrievalEffort::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                CheckoutIntents::BaseCheckoutIntent::Constraints::OfferRetrievalEffort::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
         end
       end
     end
