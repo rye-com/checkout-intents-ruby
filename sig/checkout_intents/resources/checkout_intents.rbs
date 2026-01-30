@@ -53,14 +53,16 @@ module CheckoutIntents
         ?poll_interval: Float,
         ?max_attempts: Integer,
         ?request_options: CheckoutIntents::request_opts
-      ) -> (CheckoutIntents::CheckoutIntent::CompletedCheckoutIntent | CheckoutIntents::CheckoutIntent::FailedCheckoutIntent)
+      ) -> (CheckoutIntents::CheckoutIntent::CompletedCheckoutIntent
+      | CheckoutIntents::CheckoutIntent::FailedCheckoutIntent)
 
       def poll_until_awaiting_confirmation: (
         String id,
         ?poll_interval: Float,
         ?max_attempts: Integer,
         ?request_options: CheckoutIntents::request_opts
-      ) -> (CheckoutIntents::CheckoutIntent::AwaitingConfirmationCheckoutIntent | CheckoutIntents::CheckoutIntent::FailedCheckoutIntent)
+      ) -> (CheckoutIntents::CheckoutIntent::AwaitingConfirmationCheckoutIntent
+      | CheckoutIntents::CheckoutIntent::FailedCheckoutIntent)
 
       def create_and_poll: (
         buyer: CheckoutIntents::Buyer,
@@ -72,7 +74,8 @@ module CheckoutIntents
         ?poll_interval: Float,
         ?max_attempts: Integer,
         ?request_options: CheckoutIntents::request_opts
-      ) -> (CheckoutIntents::CheckoutIntent::AwaitingConfirmationCheckoutIntent | CheckoutIntents::CheckoutIntent::FailedCheckoutIntent)
+      ) -> (CheckoutIntents::CheckoutIntent::AwaitingConfirmationCheckoutIntent
+      | CheckoutIntents::CheckoutIntent::FailedCheckoutIntent)
 
       def confirm_and_poll: (
         String id,
@@ -80,7 +83,8 @@ module CheckoutIntents
         ?poll_interval: Float,
         ?max_attempts: Integer,
         ?request_options: CheckoutIntents::request_opts
-      ) -> (CheckoutIntents::CheckoutIntent::CompletedCheckoutIntent | CheckoutIntents::CheckoutIntent::FailedCheckoutIntent)
+      ) -> (CheckoutIntents::CheckoutIntent::CompletedCheckoutIntent
+      | CheckoutIntents::CheckoutIntent::FailedCheckoutIntent)
 
       def initialize: (client: CheckoutIntents::Client) -> void
     end

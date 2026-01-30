@@ -305,7 +305,8 @@ module CheckoutIntents
         # Used internally for polling helpers that need to inspect headers.
         sig do
           params(
-            req: CheckoutIntents::Internal::Transport::BaseClient::RequestComponents
+            req:
+              CheckoutIntents::Internal::Transport::BaseClient::RequestComponents
           ).returns({ data: T.anything, headers: T::Hash[String, String] })
         end
         def request_with_headers(req)
