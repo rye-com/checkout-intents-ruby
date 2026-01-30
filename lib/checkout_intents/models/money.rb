@@ -5,8 +5,8 @@ module CheckoutIntents
     class Money < CheckoutIntents::Internal::Type::BaseModel
       # @!attribute amount_subunits
       #
-      #   @return [Integer]
-      required :amount_subunits, Integer, api_name: :amountSubunits
+      #   @return [Float]
+      required :amount_subunits, Float, api_name: :amountSubunits
 
       # @!attribute currency_code
       #
@@ -14,7 +14,7 @@ module CheckoutIntents
       required :currency_code, String, api_name: :currencyCode
 
       # @!method initialize(amount_subunits:, currency_code:)
-      #   @param amount_subunits [Integer]
+      #   @param amount_subunits [Float]
       #   @param currency_code [String]
     end
   end

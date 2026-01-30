@@ -8,14 +8,14 @@ module CheckoutIntents
           T.any(CheckoutIntents::Money, CheckoutIntents::Internal::AnyHash)
         end
 
-      sig { returns(Integer) }
+      sig { returns(Float) }
       attr_accessor :amount_subunits
 
       sig { returns(String) }
       attr_accessor :currency_code
 
       sig do
-        params(amount_subunits: Integer, currency_code: String).returns(
+        params(amount_subunits: Float, currency_code: String).returns(
           T.attached_class
         )
       end
@@ -23,7 +23,7 @@ module CheckoutIntents
       end
 
       sig do
-        override.returns({ amount_subunits: Integer, currency_code: String })
+        override.returns({ amount_subunits: Float, currency_code: String })
       end
       def to_hash
       end
