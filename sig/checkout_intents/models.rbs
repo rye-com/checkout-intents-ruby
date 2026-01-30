@@ -29,5 +29,13 @@ module CheckoutIntents
 
   module PaymentMethod = CheckoutIntents::Models::PaymentMethod
 
+  class Product = CheckoutIntents::Models::Product
+
+  module ProductAvailability = CheckoutIntents::Models::ProductAvailability
+
+  class ProductImage = CheckoutIntents::Models::ProductImage
+
+  class ProductLookupParams = CheckoutIntents::Models::ProductLookupParams
+
   class VariantSelection = CheckoutIntents::Models::VariantSelection
 end

@@ -1,0 +1,18 @@
+module CheckoutIntents
+  module Models
+    type product_availability =
+      :in_stock | :out_of_stock | :preorder | :backorder | :unknown
+
+    module ProductAvailability
+      extend CheckoutIntents::Internal::Type::Enum
+
+      IN_STOCK: :in_stock
+      OUT_OF_STOCK: :out_of_stock
+      PREORDER: :preorder
+      BACKORDER: :backorder
+      UNKNOWN: :unknown
+
+      def self?.values: -> ::Array[CheckoutIntents::Models::product_availability]
+    end
+  end
+end

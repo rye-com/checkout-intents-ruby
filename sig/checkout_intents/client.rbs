@@ -21,6 +21,8 @@ module CheckoutIntents
 
     attr_reader brands: CheckoutIntents::Resources::Brands
 
+    attr_reader products: CheckoutIntents::Resources::Products
+
     private def auth_headers: -> ::Hash[String, String]
 
     def initialize: (
