@@ -72,7 +72,11 @@ class CheckoutIntentsTest < Minitest::Test
   def test_client_given_request_default_retry_attempts
     stub_request(:post, "http://localhost/api/v1/checkout-intents").to_return_json(status: 500, body: {})
 
-    checkout_intents = CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 3)
+    checkout_intents = CheckoutIntents::Client.new(
+      base_url: "http://localhost",
+      api_key: "My API Key",
+      max_retries: 3
+    )
 
     assert_raises(CheckoutIntents::Errors::InternalServerError) do
       checkout_intents.checkout_intents.create(
@@ -125,7 +129,11 @@ class CheckoutIntentsTest < Minitest::Test
   def test_client_given_request_given_retry_attempts
     stub_request(:post, "http://localhost/api/v1/checkout-intents").to_return_json(status: 500, body: {})
 
-    checkout_intents = CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 3)
+    checkout_intents = CheckoutIntents::Client.new(
+      base_url: "http://localhost",
+      api_key: "My API Key",
+      max_retries: 3
+    )
 
     assert_raises(CheckoutIntents::Errors::InternalServerError) do
       checkout_intents.checkout_intents.create(
@@ -156,7 +164,11 @@ class CheckoutIntentsTest < Minitest::Test
       body: {}
     )
 
-    checkout_intents = CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 1)
+    checkout_intents = CheckoutIntents::Client.new(
+      base_url: "http://localhost",
+      api_key: "My API Key",
+      max_retries: 1
+    )
 
     assert_raises(CheckoutIntents::Errors::InternalServerError) do
       checkout_intents.checkout_intents.create(
@@ -187,7 +199,11 @@ class CheckoutIntentsTest < Minitest::Test
       body: {}
     )
 
-    checkout_intents = CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 1)
+    checkout_intents = CheckoutIntents::Client.new(
+      base_url: "http://localhost",
+      api_key: "My API Key",
+      max_retries: 1
+    )
 
     assert_raises(CheckoutIntents::Errors::InternalServerError) do
       Thread.current.thread_variable_set(:time_now, Time.now)
@@ -220,7 +236,11 @@ class CheckoutIntentsTest < Minitest::Test
       body: {}
     )
 
-    checkout_intents = CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 1)
+    checkout_intents = CheckoutIntents::Client.new(
+      base_url: "http://localhost",
+      api_key: "My API Key",
+      max_retries: 1
+    )
 
     assert_raises(CheckoutIntents::Errors::InternalServerError) do
       checkout_intents.checkout_intents.create(
