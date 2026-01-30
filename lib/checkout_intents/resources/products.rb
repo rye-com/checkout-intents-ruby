@@ -3,7 +3,7 @@
 module CheckoutIntents
   module Resources
     class Products
-      # Retrieve a product's information by URL.
+      # Lookup a product's information by URL.
       #
       # @overload lookup(url:, request_options: {})
       #
