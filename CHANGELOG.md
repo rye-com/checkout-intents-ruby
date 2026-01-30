@@ -1,5 +1,30 @@
 # Changelog
 
+## 0.3.0 (2026-01-30)
+
+Full Changelog: [v0.2.2...v0.3.0](https://github.com/rye-com/checkout-intents-ruby/compare/v0.2.2...v0.3.0)
+
+### Features
+
+* add support for idempotency for v2 api ([b94de41](https://github.com/rye-com/checkout-intents-ruby/commit/b94de413ad3cfd4a5a552d2719203f060414d228))
+* **api:** introduce lookup product data endpoint ([f4edc38](https://github.com/rye-com/checkout-intents-ruby/commit/f4edc38289d432cbc3f87497274c0798bd88b7ee))
+* **api:** introduce offerRetrievalEffort constraint ([0d38c14](https://github.com/rye-com/checkout-intents-ruby/commit/0d38c1491c570ae1c8164ed001eb803d600d8bf1))
+* Implement shipping profile -&gt; shipping option calculation ([eb0fa3a](https://github.com/rye-com/checkout-intents-ruby/commit/eb0fa3a0c180fbbc616032f02bb303a154d41cb0))
+
+
+### Bug Fixes
+
+* **internal:** transformer script to fix references ([8481675](https://github.com/rye-com/checkout-intents-ruby/commit/8481675e295bbfa698b9edb93af9d2c99cd840db))
+
+
+### Chores
+
+* **internal:** add format step in ci ([ad0d359](https://github.com/rye-com/checkout-intents-ruby/commit/ad0d3594d6b4f92df889e645434dbc5310802216))
+* **internal:** format and fix absolute references ([2509f6a](https://github.com/rye-com/checkout-intents-ruby/commit/2509f6af145d3b586fbbde14e94697975d15653c))
+* **internal:** format and fix absolute references ([09920e1](https://github.com/rye-com/checkout-intents-ruby/commit/09920e1eef0dc90eb8a0999d9fbcce0b0e12de72))
+* **internal:** rename `Product` type ([fdadda4](https://github.com/rye-com/checkout-intents-ruby/commit/fdadda4eefc867d5492376e23b25138c263c0811))
+* **internal:** update `actions/checkout` version ([00c3bfa](https://github.com/rye-com/checkout-intents-ruby/commit/00c3bfa75b4fd0d01e040070e37a4e72396ea230))
+
 ## 0.2.2 (2026-01-15)
 
 Full Changelog: [v0.2.1...v0.2.2](https://github.com/rye-com/checkout-intents-ruby/compare/v0.2.1...v0.2.2)
