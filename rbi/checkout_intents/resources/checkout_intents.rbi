@@ -270,7 +270,9 @@ module CheckoutIntents
       end
 
       # @api private
-      sig { params(client: ::CheckoutIntents::Client).returns(T.attached_class) }
+      sig do
+        params(client: ::CheckoutIntents::Client).returns(T.attached_class)
+      end
       def self.new(client:)
       end
     end
