@@ -343,6 +343,32 @@ params = CheckoutIntents::CheckoutIntentPurchaseParams.new(
 checkout_intents.checkout_intents.purchase(**params)
 ```
 
+### Enums
+
+Since this library does not depend on `sorbet-runtime`, it cannot provide [`T::Enum`](https://sorbet.org/docs/tenum) instances. Instead, we provide "tagged symbols" instead, which is always a primitive at runtime:
+
+```ruby
+# :in_stock
+puts(CheckoutIntents::ProductAvailability::IN_STOCK)
+
+# Revealed type: `T.all(CheckoutIntents::ProductAvailability, Symbol)`
+T.reveal_type(CheckoutIntents::ProductAvailability::IN_STOCK)
+```
+
+Enum parameters have a "relaxed" type, so you can either pass in enum constants or their literal value:
+
+```ruby
+CheckoutIntents::Product.new(
+  availability: CheckoutIntents::ProductAvailability::IN_STOCK,
+  # …
+)
+
+CheckoutIntents::Product.new(
+  availability: :in_stock,
+  # …
+)
+```
+
 ## Versioning
 
 This package follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions. As the library is in initial development and has a major version of `0`, APIs may change at any time.

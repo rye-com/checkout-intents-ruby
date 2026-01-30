@@ -15,6 +15,31 @@ module CheckoutIntents
       #
       # We can therefore convert string values to Symbols, but can't convert other
       # values safely.
+      #
+      # @example
+      #   # `product_availability` is a `CheckoutIntents::ProductAvailability`
+      #   case product_availability
+      #   when CheckoutIntents::ProductAvailability::IN_STOCK
+      #     # ...
+      #   when CheckoutIntents::ProductAvailability::OUT_OF_STOCK
+      #     # ...
+      #   when CheckoutIntents::ProductAvailability::PREORDER
+      #     # ...
+      #   else
+      #     puts(product_availability)
+      #   end
+      #
+      # @example
+      #   case product_availability
+      #   in :in_stock
+      #     # ...
+      #   in :out_of_stock
+      #     # ...
+      #   in :preorder
+      #     # ...
+      #   else
+      #     puts(product_availability)
+      #   end
       module Enum
         include CheckoutIntents::Internal::Type::Converter
         include CheckoutIntents::Internal::Util::SorbetRuntimeSupport
