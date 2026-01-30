@@ -1,0 +1,15 @@
+module CheckoutIntents
+  module Models
+    type product_image = { is_featured: bool, url: String }
+
+    class ProductImage < CheckoutIntents::Internal::Type::BaseModel
+      attr_accessor is_featured: bool
+
+      attr_accessor url: String
+
+      def initialize: (is_featured: bool, url: String) -> void
+
+      def to_hash: -> { is_featured: bool, url: String }
+    end
+  end
+end

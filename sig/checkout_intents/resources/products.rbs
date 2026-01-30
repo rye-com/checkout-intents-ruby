@@ -1,0 +1,12 @@
+module CheckoutIntents
+  module Resources
+    class Products
+      def lookup: (
+        url: String,
+        ?request_options: CheckoutIntents::request_opts
+      ) -> CheckoutIntents::Product
+
+      def initialize: (client: CheckoutIntents::Client) -> void
+    end
+  end
+end
