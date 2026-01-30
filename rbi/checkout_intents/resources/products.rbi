@@ -3,7 +3,7 @@
 module CheckoutIntents
   module Resources
     class Products
-      # Retrieve a product's information by URL.
+      # Lookup a product's information by URL.
       sig do
         params(
           url: String,
