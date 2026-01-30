@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.3.1 (2026-01-30)
+
+Full Changelog: [v0.3.0...v0.3.1](https://github.com/rye-com/checkout-intents-ruby/compare/v0.3.0...v0.3.1)
+
+### Chores
+
+* **docs:** rename "retrieve product" to "lookup product" ([5a82e7b](https://github.com/rye-com/checkout-intents-ruby/commit/5a82e7b749e629dc316b69a72efb918072c21f6e))
+
 ## 0.3.0 (2026-01-30)
 
 Full Changelog: [v0.2.2...v0.3.0](https://github.com/rye-com/checkout-intents-ruby/compare/v0.2.2...v0.3.0)
