@@ -10,7 +10,8 @@ module CheckoutIntents
           T.any(
             CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod,
             CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod,
-            CheckoutIntents::PaymentMethod::NekudaPaymentMethod
+            CheckoutIntents::PaymentMethod::NekudaPaymentMethod,
+            CheckoutIntents::PaymentMethod::DrawdownPaymentMethod
           )
         end
 
@@ -278,6 +279,72 @@ module CheckoutIntents
             )
           end
           def self.variants
+          end
+        end
+      end
+
+      class DrawdownPaymentMethod < CheckoutIntents::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              CheckoutIntents::PaymentMethod::DrawdownPaymentMethod,
+              CheckoutIntents::Internal::AnyHash
+            )
+          end
+
+        sig do
+          returns(
+            CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::Type::OrSymbol
+          )
+        end
+        attr_accessor :type
+
+        sig do
+          params(
+            type:
+              CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::Type::OrSymbol
+          ).returns(T.attached_class)
+        end
+        def self.new(type:)
+        end
+
+        sig do
+          override.returns(
+            {
+              type:
+                CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::Type::OrSymbol
+            }
+          )
+        end
+        def to_hash
+        end
+
+        module Type
+          extend CheckoutIntents::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::Type
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          DRAWDOWN =
+            T.let(
+              :drawdown,
+              CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::Type::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::Type::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
           end
         end
       end
