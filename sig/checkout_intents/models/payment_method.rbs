@@ -4,6 +4,7 @@ module CheckoutIntents
       CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod
       | CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod
       | CheckoutIntents::PaymentMethod::NekudaPaymentMethod
+      | CheckoutIntents::PaymentMethod::DrawdownPaymentMethod
 
     module PaymentMethod
       extend CheckoutIntents::Internal::Type::Union
@@ -118,6 +119,33 @@ module CheckoutIntents
           extend CheckoutIntents::Internal::Type::Union
 
           def self?.variants: -> ::Array[CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod::nekuda_mandate_data]
+        end
+      end
+
+      type drawdown_payment_method =
+        {
+          type: CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod::type_
+        }
+
+      class DrawdownPaymentMethod < CheckoutIntents::Internal::Type::BaseModel
+        attr_accessor type: CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod::type_
+
+        def initialize: (
+          type: CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod::type_
+        ) -> void
+
+        def to_hash: -> {
+          type: CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod::type_
+        }
+
+        type type_ = :drawdown
+
+        module Type
+          extend CheckoutIntents::Internal::Type::Enum
+
+          DRAWDOWN: :drawdown
+
+          def self?.values: -> ::Array[CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod::type_]
         end
       end
 

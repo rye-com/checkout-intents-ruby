@@ -19,7 +19,8 @@ module CheckoutIntents
           T.any(
             CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod,
             CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod,
-            CheckoutIntents::PaymentMethod::NekudaPaymentMethod
+            CheckoutIntents::PaymentMethod::NekudaPaymentMethod,
+            CheckoutIntents::PaymentMethod::DrawdownPaymentMethod
           )
         )
       end
@@ -31,7 +32,8 @@ module CheckoutIntents
             T.any(
               CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod::OrHash,
               CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod::OrHash,
-              CheckoutIntents::PaymentMethod::NekudaPaymentMethod::OrHash
+              CheckoutIntents::PaymentMethod::NekudaPaymentMethod::OrHash,
+              CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::OrHash
             ),
           request_options: CheckoutIntents::RequestOptions::OrHash
         ).returns(T.attached_class)
@@ -46,7 +48,8 @@ module CheckoutIntents
               T.any(
                 CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod,
                 CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod,
-                CheckoutIntents::PaymentMethod::NekudaPaymentMethod
+                CheckoutIntents::PaymentMethod::NekudaPaymentMethod,
+                CheckoutIntents::PaymentMethod::DrawdownPaymentMethod
               ),
             request_options: CheckoutIntents::RequestOptions
           }
