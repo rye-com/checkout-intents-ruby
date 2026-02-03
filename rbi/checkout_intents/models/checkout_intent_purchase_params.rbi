@@ -25,7 +25,8 @@ module CheckoutIntents
           T.any(
             CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod,
             CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod,
-            CheckoutIntents::PaymentMethod::NekudaPaymentMethod
+            CheckoutIntents::PaymentMethod::NekudaPaymentMethod,
+            CheckoutIntents::PaymentMethod::DrawdownPaymentMethod
           )
         )
       end
@@ -76,7 +77,8 @@ module CheckoutIntents
             T.any(
               CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod::OrHash,
               CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod::OrHash,
-              CheckoutIntents::PaymentMethod::NekudaPaymentMethod::OrHash
+              CheckoutIntents::PaymentMethod::NekudaPaymentMethod::OrHash,
+              CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::OrHash
             ),
           product_url: String,
           quantity: Integer,
@@ -108,7 +110,8 @@ module CheckoutIntents
               T.any(
                 CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod,
                 CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod,
-                CheckoutIntents::PaymentMethod::NekudaPaymentMethod
+                CheckoutIntents::PaymentMethod::NekudaPaymentMethod,
+                CheckoutIntents::PaymentMethod::DrawdownPaymentMethod
               ),
             product_url: String,
             quantity: Integer,

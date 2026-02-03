@@ -113,7 +113,8 @@ module CheckoutIntents
               T.any(
                 CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod::OrHash,
                 CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod::OrHash,
-                CheckoutIntents::PaymentMethod::NekudaPaymentMethod::OrHash
+                CheckoutIntents::PaymentMethod::NekudaPaymentMethod::OrHash,
+                CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::OrHash
               )
           ).void
         end
@@ -128,7 +129,8 @@ module CheckoutIntents
               T.any(
                 CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod::OrHash,
                 CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod::OrHash,
-                CheckoutIntents::PaymentMethod::NekudaPaymentMethod::OrHash
+                CheckoutIntents::PaymentMethod::NekudaPaymentMethod::OrHash,
+                CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::OrHash
               )
           ).returns(T.attached_class)
         end
@@ -210,7 +212,8 @@ module CheckoutIntents
               T.any(
                 CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod::OrHash,
                 CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod::OrHash,
-                CheckoutIntents::PaymentMethod::NekudaPaymentMethod::OrHash
+                CheckoutIntents::PaymentMethod::NekudaPaymentMethod::OrHash,
+                CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::OrHash
               ),
             state:
               CheckoutIntents::CheckoutIntent::PlacingOrderCheckoutIntent::State::OrSymbol
@@ -298,7 +301,8 @@ module CheckoutIntents
               T.any(
                 CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod::OrHash,
                 CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod::OrHash,
-                CheckoutIntents::PaymentMethod::NekudaPaymentMethod::OrHash
+                CheckoutIntents::PaymentMethod::NekudaPaymentMethod::OrHash,
+                CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::OrHash
               ),
             state:
               CheckoutIntents::CheckoutIntent::CompletedCheckoutIntent::State::OrSymbol
@@ -397,7 +401,8 @@ module CheckoutIntents
               T.any(
                 CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod::OrHash,
                 CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod::OrHash,
-                CheckoutIntents::PaymentMethod::NekudaPaymentMethod::OrHash
+                CheckoutIntents::PaymentMethod::NekudaPaymentMethod::OrHash,
+                CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::OrHash
               )
           ).void
         end
@@ -414,7 +419,8 @@ module CheckoutIntents
               T.any(
                 CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod::OrHash,
                 CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod::OrHash,
-                CheckoutIntents::PaymentMethod::NekudaPaymentMethod::OrHash
+                CheckoutIntents::PaymentMethod::NekudaPaymentMethod::OrHash,
+                CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::OrHash
               )
           ).returns(T.attached_class)
         end

@@ -83,7 +83,8 @@ module CheckoutIntents
             T.any(
               ::CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod::OrHash,
               ::CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod::OrHash,
-              ::CheckoutIntents::PaymentMethod::NekudaPaymentMethod::OrHash
+              ::CheckoutIntents::PaymentMethod::NekudaPaymentMethod::OrHash,
+              ::CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::OrHash
             ),
           request_options: ::CheckoutIntents::RequestOptions::OrHash
         ).returns(::CheckoutIntents::CheckoutIntent::Variants)
@@ -107,7 +108,8 @@ module CheckoutIntents
             T.any(
               ::CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod::OrHash,
               ::CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod::OrHash,
-              ::CheckoutIntents::PaymentMethod::NekudaPaymentMethod::OrHash
+              ::CheckoutIntents::PaymentMethod::NekudaPaymentMethod::OrHash,
+              ::CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::OrHash
             ),
           request_options: ::CheckoutIntents::RequestOptions::OrHash
         ).returns(::CheckoutIntents::CheckoutIntent::Variants)
@@ -132,7 +134,8 @@ module CheckoutIntents
             T.any(
               ::CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod::OrHash,
               ::CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod::OrHash,
-              ::CheckoutIntents::PaymentMethod::NekudaPaymentMethod::OrHash
+              ::CheckoutIntents::PaymentMethod::NekudaPaymentMethod::OrHash,
+              ::CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::OrHash
             ),
           product_url: String,
           quantity: Integer,

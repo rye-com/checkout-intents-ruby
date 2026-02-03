@@ -11,6 +11,8 @@ module CheckoutIntents
 
       variant -> { CheckoutIntents::PaymentMethod::NekudaPaymentMethod }
 
+      variant -> { CheckoutIntents::PaymentMethod::DrawdownPaymentMethod }
+
       class StripeTokenPaymentMethod < CheckoutIntents::Internal::Type::BaseModel
         # @!attribute stripe_token
         #
@@ -113,8 +115,28 @@ module CheckoutIntents
         end
       end
 
+      class DrawdownPaymentMethod < CheckoutIntents::Internal::Type::BaseModel
+        # @!attribute type
+        #
+        #   @return [Symbol, CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod::Type]
+        required :type, enum: -> { CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::Type }
+
+        # @!method initialize(type:)
+        #   @param type [Symbol, CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod::Type]
+
+        # @see CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod#type
+        module Type
+          extend CheckoutIntents::Internal::Type::Enum
+
+          DRAWDOWN = :drawdown
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+      end
+
       # @!method self.variants
-      #   @return [Array(CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod)]
+      #   @return [Array(CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod, CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod)]
     end
   end
 end
