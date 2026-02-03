@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.4.0 (2026-02-03)
+
+Full Changelog: [v0.3.1...v0.4.0](https://github.com/rye-com/checkout-intents-ruby/compare/v0.3.1...v0.4.0)
+
+### Features
+
+* Billing: Integrate drawdown payments in order flow ([fc96bce](https://github.com/rye-com/checkout-intents-ruby/commit/fc96bce1e2161b0e860d966a4c0dcd95088ae650))
+
+
+### Bug Fixes
+
+* **client:** always add content-length to post body, even when empty ([cf0a01b](https://github.com/rye-com/checkout-intents-ruby/commit/cf0a01b9aea9660921b37245e054d7d3c4bc6589))
+
 ## 0.3.1 (2026-01-30)
 
 Full Changelog: [v0.3.0...v0.3.1](https://github.com/rye-com/checkout-intents-ruby/compare/v0.3.0...v0.3.1)
