@@ -86,7 +86,7 @@ module CheckoutIntents
       #
       # @param id [String] The id of the checkout intent to add payment details to
       #
-      # @param payment_method [CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod]
+      # @param payment_method [CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod, CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod]
       #
       # @param request_options [CheckoutIntents::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -113,7 +113,7 @@ module CheckoutIntents
       #
       # @param id [String] The id of the checkout intent to confirm
       #
-      # @param payment_method [CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod]
+      # @param payment_method [CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod, CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod]
       #
       # @param request_options [CheckoutIntents::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -140,7 +140,7 @@ module CheckoutIntents
       # @overload purchase(buyer:, payment_method:, product_url:, quantity:, constraints: nil, promo_codes: nil, variant_selections: nil, request_options: {})
       #
       # @param buyer [CheckoutIntents::Models::Buyer]
-      # @param payment_method [CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod]
+      # @param payment_method [CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod, CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod]
       # @param product_url [String]
       # @param quantity [Integer]
       # @param constraints [CheckoutIntents::Models::CheckoutIntentPurchaseParams::Constraints]
