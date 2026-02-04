@@ -16,7 +16,6 @@ module CheckoutIntents
               CheckoutIntents::Betas::CheckoutSessionCreateParams::Buyer::OrHash,
             constraints:
               CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints::OrHash,
-            discover_promo_codes: T::Boolean,
             promo_codes: T::Array[String],
             variant_selections:
               T::Array[CheckoutIntents::VariantSelection::OrHash],
@@ -30,7 +29,6 @@ module CheckoutIntents
           # information.
           buyer: nil,
           constraints: nil,
-          discover_promo_codes: nil,
           promo_codes: nil,
           variant_selections: nil,
           request_options: {}
