@@ -3,9 +3,6 @@
 module CheckoutIntents
   module Resources
     class CheckoutIntents
-      # @return [CheckoutIntents::Resources::CheckoutIntents::Shipments]
-      attr_reader :shipments
-
       # Create a checkout intent with the given request body.
       #
       # @overload create(buyer:, product_url:, quantity:, constraints: nil, promo_codes: nil, variant_selections: nil, request_options: {})
@@ -170,7 +167,6 @@ module CheckoutIntents
       # @param client [CheckoutIntents::Client]
       def initialize(client:)
         @client = client
-        @shipments = CheckoutIntents::Resources::CheckoutIntents::Shipments.new(client: client)
       end
     end
   end
