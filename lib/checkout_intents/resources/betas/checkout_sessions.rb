@@ -12,7 +12,7 @@ module CheckoutIntents
         # Checkout sessions are hosted checkout forms your shoppers can use to complete
         # their purchases.
         #
-        # @overload create(product_url:, quantity:, buyer: nil, constraints: nil, promo_codes: nil, variant_selections: nil, request_options: {})
+        # @overload create(product_url:, quantity:, buyer: nil, constraints: nil, discover_promo_codes: nil, promo_codes: nil, variant_selections: nil, request_options: {})
         #
         # @param product_url [String]
         #
@@ -21,6 +21,8 @@ module CheckoutIntents
         # @param buyer [CheckoutIntents::Models::Betas::CheckoutSessionCreateParams::Buyer] Optional buyer information, used to pre-fill the checkout form with the buyer's
         #
         # @param constraints [CheckoutIntents::Models::Betas::CheckoutSessionCreateParams::Constraints]
+        #
+        # @param discover_promo_codes [Boolean]
         #
         # @param promo_codes [Array<String>]
         #
