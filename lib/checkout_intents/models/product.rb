@@ -36,6 +36,11 @@ module CheckoutIntents
       #   @return [Array<CheckoutIntents::Models::ProductImage>]
       required :images, -> { CheckoutIntents::Internal::Type::ArrayOf[CheckoutIntents::ProductImage] }
 
+      # @!attribute is_purchasable
+      #
+      #   @return [Boolean]
+      required :is_purchasable, CheckoutIntents::Internal::Type::Boolean, api_name: :isPurchasable
+
       # @!attribute name
       #
       #   @return [String]
@@ -56,7 +61,7 @@ module CheckoutIntents
       #   @return [String]
       required :url, String
 
-      # @!method initialize(id:, availability:, brand:, description:, images:, name:, price:, sku:, url:)
+      # @!method initialize(id:, availability:, brand:, description:, images:, is_purchasable:, name:, price:, sku:, url:)
       #   Some parameter documentations has been truncated, see
       #   {CheckoutIntents::Models::Product} for more details.
       #
@@ -69,6 +74,8 @@ module CheckoutIntents
       #   @param description [String, nil]
       #
       #   @param images [Array<CheckoutIntents::Models::ProductImage>]
+      #
+      #   @param is_purchasable [Boolean]
       #
       #   @param name [String]
       #
