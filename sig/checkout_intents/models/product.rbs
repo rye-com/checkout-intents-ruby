@@ -7,6 +7,7 @@ module CheckoutIntents
         brand: String?,
         description: String?,
         images: ::Array[CheckoutIntents::ProductImage],
+        is_purchasable: bool,
         name: String,
         price: CheckoutIntents::Money,
         sku: String?,
@@ -24,6 +25,8 @@ module CheckoutIntents
 
       attr_accessor images: ::Array[CheckoutIntents::ProductImage]
 
+      attr_accessor is_purchasable: bool
+
       attr_accessor name: String
 
       attr_accessor price: CheckoutIntents::Money
@@ -38,6 +41,7 @@ module CheckoutIntents
         brand: String?,
         description: String?,
         images: ::Array[CheckoutIntents::ProductImage],
+        is_purchasable: bool,
         name: String,
         price: CheckoutIntents::Money,
         sku: String?,
@@ -50,6 +54,7 @@ module CheckoutIntents
         brand: String?,
         description: String?,
         images: ::Array[CheckoutIntents::ProductImage],
+        is_purchasable: bool,
         name: String,
         price: CheckoutIntents::Money,
         sku: String?,
