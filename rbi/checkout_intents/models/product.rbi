@@ -30,6 +30,9 @@ module CheckoutIntents
       sig { returns(T::Array[CheckoutIntents::ProductImage]) }
       attr_accessor :images
 
+      sig { returns(T::Boolean) }
+      attr_accessor :is_purchasable
+
       sig { returns(String) }
       attr_accessor :name
 
@@ -52,6 +55,7 @@ module CheckoutIntents
           brand: T.nilable(String),
           description: T.nilable(String),
           images: T::Array[CheckoutIntents::ProductImage::OrHash],
+          is_purchasable: T::Boolean,
           name: String,
           price: CheckoutIntents::Money::OrHash,
           sku: T.nilable(String),
@@ -71,6 +75,7 @@ module CheckoutIntents
         brand:,
         description:,
         images:,
+        is_purchasable:,
         name:,
         price:,
         sku:,
@@ -86,6 +91,7 @@ module CheckoutIntents
             brand: T.nilable(String),
             description: T.nilable(String),
             images: T::Array[CheckoutIntents::ProductImage],
+            is_purchasable: T::Boolean,
             name: String,
             price: CheckoutIntents::Money,
             sku: T.nilable(String),

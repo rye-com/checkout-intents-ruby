@@ -19,6 +19,7 @@ class CheckoutIntents::Test::Resources::ProductsTest < CheckoutIntents::Test::Re
         brand: String | nil,
         description: String | nil,
         images: ^(CheckoutIntents::Internal::Type::ArrayOf[CheckoutIntents::ProductImage]),
+        is_purchasable: CheckoutIntents::Internal::Type::Boolean,
         name: String,
         price: CheckoutIntents::Money,
         sku: String | nil,
