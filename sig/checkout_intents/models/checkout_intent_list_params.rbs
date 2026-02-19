@@ -55,20 +55,20 @@ module CheckoutIntents
       }
 
       type state =
-        :retrieving_offer
+        :completed
+        | :failed
+        | :retrieving_offer
         | :awaiting_confirmation
         | :placing_order
-        | :completed
-        | :failed
 
       module State
         extend CheckoutIntents::Internal::Type::Enum
 
+        COMPLETED: :completed
+        FAILED: :failed
         RETRIEVING_OFFER: :retrieving_offer
         AWAITING_CONFIRMATION: :awaiting_confirmation
         PLACING_ORDER: :placing_order
-        COMPLETED: :completed
-        FAILED: :failed
 
         def self?.values: -> ::Array[CheckoutIntents::Models::CheckoutIntentListParams::state]
       end
