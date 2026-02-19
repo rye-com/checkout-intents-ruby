@@ -11,6 +11,8 @@ module CheckoutIntents
 
       variant -> { CheckoutIntents::PaymentMethod::NekudaPaymentMethod }
 
+      variant -> { CheckoutIntents::PaymentMethod::PravaPaymentMethod }
+
       variant -> { CheckoutIntents::PaymentMethod::DrawdownPaymentMethod }
 
       class StripeTokenPaymentMethod < CheckoutIntents::Internal::Type::BaseModel
@@ -115,6 +117,32 @@ module CheckoutIntents
         end
       end
 
+      class PravaPaymentMethod < CheckoutIntents::Internal::Type::BaseModel
+        # @!attribute prava_token
+        #
+        #   @return [String]
+        required :prava_token, String, api_name: :pravaToken
+
+        # @!attribute type
+        #
+        #   @return [Symbol, CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod::Type]
+        required :type, enum: -> { CheckoutIntents::PaymentMethod::PravaPaymentMethod::Type }
+
+        # @!method initialize(prava_token:, type:)
+        #   @param prava_token [String]
+        #   @param type [Symbol, CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod::Type]
+
+        # @see CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod#type
+        module Type
+          extend CheckoutIntents::Internal::Type::Enum
+
+          PRAVA_TOKEN = :prava_token
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+      end
+
       class DrawdownPaymentMethod < CheckoutIntents::Internal::Type::BaseModel
         # @!attribute type
         #
@@ -136,7 +164,7 @@ module CheckoutIntents
       end
 
       # @!method self.variants
-      #   @return [Array(CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod, CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod)]
+      #   @return [Array(CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod, CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod, CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod)]
     end
   end
 end
