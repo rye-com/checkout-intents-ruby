@@ -11,6 +11,8 @@ module CheckoutIntents
 
       variant -> { ::CheckoutIntents::PaymentMethod::NekudaPaymentMethod }
 
+      variant -> { CheckoutIntents::PaymentMethod::PravaPaymentMethod }
+
       variant -> { ::CheckoutIntents::PaymentMethod::PravaPaymentMethod }
 
       variant -> { ::CheckoutIntents::PaymentMethod::DrawdownPaymentMethod }
@@ -114,6 +116,32 @@ module CheckoutIntents
 
           # @!method self.variants
           #   @return [Array(String, Float)]
+        end
+      end
+
+      class PravaPaymentMethod < CheckoutIntents::Internal::Type::BaseModel
+        # @!attribute prava_token
+        #
+        #   @return [String]
+        required :prava_token, String, api_name: :pravaToken
+
+        # @!attribute type
+        #
+        #   @return [Symbol, CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod::Type]
+        required :type, enum: -> { CheckoutIntents::PaymentMethod::PravaPaymentMethod::Type }
+
+        # @!method initialize(prava_token:, type:)
+        #   @param prava_token [String]
+        #   @param type [Symbol, CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod::Type]
+
+        # @see CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod#type
+        module Type
+          extend CheckoutIntents::Internal::Type::Enum
+
+          PRAVA_TOKEN = :prava_token
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
       end
 
