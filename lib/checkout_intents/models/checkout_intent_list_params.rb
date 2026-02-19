@@ -44,11 +44,11 @@ module CheckoutIntents
       module State
         extend CheckoutIntents::Internal::Type::Enum
 
-        COMPLETED = :completed
-        FAILED = :failed
         RETRIEVING_OFFER = :retrieving_offer
         AWAITING_CONFIRMATION = :awaiting_confirmation
         PLACING_ORDER = :placing_order
+        COMPLETED = :completed
+        FAILED = :failed
 
         # @!method self.values
         #   @return [Array<Symbol>]

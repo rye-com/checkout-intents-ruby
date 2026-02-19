@@ -105,16 +105,6 @@ module CheckoutIntents
           end
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-        COMPLETED =
-          T.let(
-            :completed,
-            CheckoutIntents::CheckoutIntentListParams::State::TaggedSymbol
-          )
-        FAILED =
-          T.let(
-            :failed,
-            CheckoutIntents::CheckoutIntentListParams::State::TaggedSymbol
-          )
         RETRIEVING_OFFER =
           T.let(
             :retrieving_offer,
@@ -128,6 +118,16 @@ module CheckoutIntents
         PLACING_ORDER =
           T.let(
             :placing_order,
+            CheckoutIntents::CheckoutIntentListParams::State::TaggedSymbol
+          )
+        COMPLETED =
+          T.let(
+            :completed,
+            CheckoutIntents::CheckoutIntentListParams::State::TaggedSymbol
+          )
+        FAILED =
+          T.let(
+            :failed,
             CheckoutIntents::CheckoutIntentListParams::State::TaggedSymbol
           )
 
