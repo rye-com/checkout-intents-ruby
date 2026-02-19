@@ -114,7 +114,6 @@ module CheckoutIntents
                 CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod::OrHash,
                 CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod::OrHash,
                 CheckoutIntents::PaymentMethod::NekudaPaymentMethod::OrHash,
-                CheckoutIntents::PaymentMethod::PravaPaymentMethod::OrHash,
                 CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::OrHash
               )
           ).void
@@ -131,7 +130,6 @@ module CheckoutIntents
                 CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod::OrHash,
                 CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod::OrHash,
                 CheckoutIntents::PaymentMethod::NekudaPaymentMethod::OrHash,
-                CheckoutIntents::PaymentMethod::PravaPaymentMethod::OrHash,
                 CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::OrHash
               )
           ).returns(T.attached_class)
@@ -215,7 +213,6 @@ module CheckoutIntents
                 CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod::OrHash,
                 CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod::OrHash,
                 CheckoutIntents::PaymentMethod::NekudaPaymentMethod::OrHash,
-                CheckoutIntents::PaymentMethod::PravaPaymentMethod::OrHash,
                 CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::OrHash
               ),
             state:
@@ -305,7 +302,6 @@ module CheckoutIntents
                 CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod::OrHash,
                 CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod::OrHash,
                 CheckoutIntents::PaymentMethod::NekudaPaymentMethod::OrHash,
-                CheckoutIntents::PaymentMethod::PravaPaymentMethod::OrHash,
                 CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::OrHash
               ),
             state:
@@ -406,7 +402,6 @@ module CheckoutIntents
                 CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod::OrHash,
                 CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod::OrHash,
                 CheckoutIntents::PaymentMethod::NekudaPaymentMethod::OrHash,
-                CheckoutIntents::PaymentMethod::PravaPaymentMethod::OrHash,
                 CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::OrHash
               )
           ).void
@@ -425,7 +420,6 @@ module CheckoutIntents
                 CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod::OrHash,
                 CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod::OrHash,
                 CheckoutIntents::PaymentMethod::NekudaPaymentMethod::OrHash,
-                CheckoutIntents::PaymentMethod::PravaPaymentMethod::OrHash,
                 CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::OrHash
               )
           ).returns(T.attached_class)
