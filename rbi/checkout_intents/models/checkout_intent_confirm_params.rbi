@@ -20,6 +20,7 @@ module CheckoutIntents
             CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod,
             CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod,
             CheckoutIntents::PaymentMethod::NekudaPaymentMethod,
+            CheckoutIntents::PaymentMethod::PravaPaymentMethod,
             CheckoutIntents::PaymentMethod::DrawdownPaymentMethod
           )
         )
@@ -33,6 +34,7 @@ module CheckoutIntents
               CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod::OrHash,
               CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod::OrHash,
               CheckoutIntents::PaymentMethod::NekudaPaymentMethod::OrHash,
+              CheckoutIntents::PaymentMethod::PravaPaymentMethod::OrHash,
               CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::OrHash
             ),
           request_options: CheckoutIntents::RequestOptions::OrHash
@@ -49,6 +51,7 @@ module CheckoutIntents
                 CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod,
                 CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod,
                 CheckoutIntents::PaymentMethod::NekudaPaymentMethod,
+                CheckoutIntents::PaymentMethod::PravaPaymentMethod,
                 CheckoutIntents::PaymentMethod::DrawdownPaymentMethod
               ),
             request_options: CheckoutIntents::RequestOptions

@@ -4,6 +4,7 @@ module CheckoutIntents
       CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod
       | CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod
       | CheckoutIntents::PaymentMethod::NekudaPaymentMethod
+      | CheckoutIntents::PaymentMethod::PravaPaymentMethod
       | CheckoutIntents::PaymentMethod::DrawdownPaymentMethod
 
     module PaymentMethod
@@ -119,6 +120,38 @@ module CheckoutIntents
           extend CheckoutIntents::Internal::Type::Union
 
           def self?.variants: -> ::Array[CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod::nekuda_mandate_data]
+        end
+      end
+
+      type prava_payment_method =
+        {
+          prava_token: String,
+          type: CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod::type_
+        }
+
+      class PravaPaymentMethod < CheckoutIntents::Internal::Type::BaseModel
+        attr_accessor prava_token: String
+
+        attr_accessor type: CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod::type_
+
+        def initialize: (
+          prava_token: String,
+          type: CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod::type_
+        ) -> void
+
+        def to_hash: -> {
+          prava_token: String,
+          type: CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod::type_
+        }
+
+        type type_ = :prava_token
+
+        module Type
+          extend CheckoutIntents::Internal::Type::Enum
+
+          PRAVA_TOKEN: :prava_token
+
+          def self?.values: -> ::Array[CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod::type_]
         end
       end
 

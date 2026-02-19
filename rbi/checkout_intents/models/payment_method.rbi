@@ -11,6 +11,7 @@ module CheckoutIntents
             CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod,
             CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod,
             CheckoutIntents::PaymentMethod::NekudaPaymentMethod,
+            CheckoutIntents::PaymentMethod::PravaPaymentMethod,
             CheckoutIntents::PaymentMethod::DrawdownPaymentMethod
           )
         end
@@ -279,6 +280,77 @@ module CheckoutIntents
             )
           end
           def self.variants
+          end
+        end
+      end
+
+      class PravaPaymentMethod < CheckoutIntents::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              CheckoutIntents::PaymentMethod::PravaPaymentMethod,
+              CheckoutIntents::Internal::AnyHash
+            )
+          end
+
+        sig { returns(String) }
+        attr_accessor :prava_token
+
+        sig do
+          returns(
+            CheckoutIntents::PaymentMethod::PravaPaymentMethod::Type::OrSymbol
+          )
+        end
+        attr_accessor :type
+
+        sig do
+          params(
+            prava_token: String,
+            type:
+              CheckoutIntents::PaymentMethod::PravaPaymentMethod::Type::OrSymbol
+          ).returns(T.attached_class)
+        end
+        def self.new(prava_token:, type:)
+        end
+
+        sig do
+          override.returns(
+            {
+              prava_token: String,
+              type:
+                CheckoutIntents::PaymentMethod::PravaPaymentMethod::Type::OrSymbol
+            }
+          )
+        end
+        def to_hash
+        end
+
+        module Type
+          extend CheckoutIntents::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                CheckoutIntents::PaymentMethod::PravaPaymentMethod::Type
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          PRAVA_TOKEN =
+            T.let(
+              :prava_token,
+              CheckoutIntents::PaymentMethod::PravaPaymentMethod::Type::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                CheckoutIntents::PaymentMethod::PravaPaymentMethod::Type::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
           end
         end
       end
