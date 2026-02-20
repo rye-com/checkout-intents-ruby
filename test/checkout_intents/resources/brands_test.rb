@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class CheckoutIntents::Test::Resources::BrandsTest < CheckoutIntents::Test::ResourceTest
   def test_retrieve
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @checkout_intents.brands.retrieve("shop.aloyoga.com")
 

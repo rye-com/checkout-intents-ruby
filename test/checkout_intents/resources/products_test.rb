@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class CheckoutIntents::Test::Resources::ProductsTest < CheckoutIntents::Test::ResourceTest
   def test_lookup_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @checkout_intents.products.lookup(url: "url")
 
