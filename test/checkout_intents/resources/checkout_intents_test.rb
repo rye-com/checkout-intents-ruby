@@ -4,7 +4,7 @@ require_relative "../test_helper"
 
 class CheckoutIntents::Test::Resources::CheckoutIntentsTest < CheckoutIntents::Test::ResourceTest
   def test_create_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @checkout_intents.checkout_intents.create(
@@ -39,7 +39,7 @@ class CheckoutIntents::Test::Resources::CheckoutIntentsTest < CheckoutIntents::T
   end
 
   def test_retrieve
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @checkout_intents.checkout_intents.retrieve("id")
 
@@ -59,7 +59,7 @@ class CheckoutIntents::Test::Resources::CheckoutIntentsTest < CheckoutIntents::T
   end
 
   def test_list
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @checkout_intents.checkout_intents.list
 
@@ -86,7 +86,7 @@ class CheckoutIntents::Test::Resources::CheckoutIntentsTest < CheckoutIntents::T
   end
 
   def test_add_payment_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @checkout_intents.checkout_intents.add_payment(
@@ -110,7 +110,7 @@ class CheckoutIntents::Test::Resources::CheckoutIntentsTest < CheckoutIntents::T
   end
 
   def test_confirm_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @checkout_intents.checkout_intents.confirm(
@@ -134,7 +134,7 @@ class CheckoutIntents::Test::Resources::CheckoutIntentsTest < CheckoutIntents::T
   end
 
   def test_purchase_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response =
       @checkout_intents.checkout_intents.purchase(
