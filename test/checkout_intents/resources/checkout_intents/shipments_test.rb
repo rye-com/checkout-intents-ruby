@@ -4,7 +4,7 @@ require_relative "../../test_helper"
 
 class CheckoutIntents::Test::Resources::CheckoutIntents::ShipmentsTest < CheckoutIntents::Test::ResourceTest
   def test_list
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @checkout_intents.checkout_intents.shipments.list("id")
 

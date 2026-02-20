@@ -4,7 +4,7 @@ require_relative "../../test_helper"
 
 class CheckoutIntents::Test::Resources::Betas::CheckoutSessionsTest < CheckoutIntents::Test::ResourceTest
   def test_create_required_params
-    skip("Prism tests are disabled")
+    skip("Mock server tests are disabled")
 
     response = @checkout_intents.betas.checkout_sessions.create(product_url: "productUrl", quantity: 1)
 
