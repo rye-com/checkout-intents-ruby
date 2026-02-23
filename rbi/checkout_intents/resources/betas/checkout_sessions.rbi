@@ -17,6 +17,8 @@ module CheckoutIntents
             constraints:
               ::CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints::OrHash,
             discover_promo_codes: T::Boolean,
+            layout:
+              CheckoutIntents::Betas::CheckoutSessionCreateParams::Layout::OrSymbol,
             promo_codes: T::Array[String],
             variant_selections:
               T::Array[::CheckoutIntents::VariantSelection::OrHash],
@@ -31,6 +33,9 @@ module CheckoutIntents
           buyer: nil,
           constraints: nil,
           discover_promo_codes: nil,
+          # Optional layout for the checkout UI (e.g. "wizard"). Defaults to the standard
+          # layout.
+          layout: nil,
           promo_codes: nil,
           variant_selections: nil,
           request_options: {}
