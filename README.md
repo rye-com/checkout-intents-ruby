@@ -427,25 +427,23 @@ checkout_intents.checkout_intents.purchase(**params)
 Since this library does not depend on `sorbet-runtime`, it cannot provide [`T::Enum`](https://sorbet.org/docs/tenum) instances. Instead, we provide "tagged symbols" instead, which is always a primitive at runtime:
 
 ```ruby
-# :default
-puts(CheckoutIntents::Betas::CheckoutSessionCreateParams::Layout::DEFAULT)
+# :in_stock
+puts(CheckoutIntents::ProductAvailability::IN_STOCK)
 
-# Revealed type: `T.all(CheckoutIntents::Betas::CheckoutSessionCreateParams::Layout, Symbol)`
-T.reveal_type(CheckoutIntents::Betas::CheckoutSessionCreateParams::Layout::DEFAULT)
+# Revealed type: `T.all(CheckoutIntents::ProductAvailability, Symbol)`
+T.reveal_type(CheckoutIntents::ProductAvailability::IN_STOCK)
 ```
 
 Enum parameters have a "relaxed" type, so you can either pass in enum constants or their literal value:
 
 ```ruby
-# Using the enum constants preserves the tagged type information:
-checkout_intents.betas.checkout_sessions.create(
-  layout: CheckoutIntents::Betas::CheckoutSessionCreateParams::Layout::DEFAULT,
+CheckoutIntents::Product.new(
+  availability: CheckoutIntents::ProductAvailability::IN_STOCK,
   # …
 )
 
-# Literal values are also permissible:
-checkout_intents.betas.checkout_sessions.create(
-  layout: :default,
+CheckoutIntents::Product.new(
+  availability: :in_stock,
   # …
 )
 ```
