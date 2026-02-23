@@ -27,6 +27,9 @@ module CheckoutIntents
     # @return [CheckoutIntents::Resources::CheckoutIntents]
     attr_reader :checkout_intents
 
+    # @return [CheckoutIntents::Resources::Shipments]
+    attr_reader :shipments
+
     # @return [CheckoutIntents::Resources::Betas]
     attr_reader :betas
 
@@ -100,6 +103,7 @@ module CheckoutIntents
       )
 
       @checkout_intents = CheckoutIntents::Resources::CheckoutIntents.new(client: self)
+      @shipments = CheckoutIntents::Resources::Shipments.new(client: self)
       @betas = CheckoutIntents::Resources::Betas.new(client: self)
       @brands = CheckoutIntents::Resources::Brands.new(client: self)
       @products = CheckoutIntents::Resources::Products.new(client: self)
