@@ -64,8 +64,6 @@ module CheckoutIntents
 
   CheckoutIntentRetrieveParams = CheckoutIntents::Models::CheckoutIntentRetrieveParams
 
-  CheckoutIntents = CheckoutIntents::Models::CheckoutIntents
-
   CheckoutSession = CheckoutIntents::Models::CheckoutSession
 
   Money = CheckoutIntents::Models::Money
@@ -81,12 +79,6 @@ module CheckoutIntents
   ProductImage = CheckoutIntents::Models::ProductImage
 
   ProductLookupParams = CheckoutIntents::Models::ProductLookupParams
-
-  Shipment = CheckoutIntents::Models::Shipment
-
-  ShipmentListParams = CheckoutIntents::Models::ShipmentListParams
-
-  ShipmentRetrieveParams = CheckoutIntents::Models::ShipmentRetrieveParams
 
   VariantSelection = CheckoutIntents::Models::VariantSelection
 end
