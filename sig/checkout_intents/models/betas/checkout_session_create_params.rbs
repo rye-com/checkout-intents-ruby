@@ -8,7 +8,6 @@ module CheckoutIntents
           buyer: CheckoutIntents::Betas::CheckoutSessionCreateParams::Buyer,
           constraints: CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints,
           discover_promo_codes: bool,
-          layout: CheckoutIntents::Models::Betas::CheckoutSessionCreateParams::layout,
           promo_codes: ::Array[String],
           variant_selections: ::Array[CheckoutIntents::VariantSelection]
         }
@@ -38,12 +37,6 @@ module CheckoutIntents
 
         def discover_promo_codes=: (bool) -> bool
 
-        attr_reader layout: CheckoutIntents::Models::Betas::CheckoutSessionCreateParams::layout?
-
-        def layout=: (
-          CheckoutIntents::Models::Betas::CheckoutSessionCreateParams::layout
-        ) -> CheckoutIntents::Models::Betas::CheckoutSessionCreateParams::layout
-
         attr_reader promo_codes: ::Array[String]?
 
         def promo_codes=: (::Array[String]) -> ::Array[String]
@@ -60,7 +53,6 @@ module CheckoutIntents
           ?buyer: CheckoutIntents::Betas::CheckoutSessionCreateParams::Buyer,
           ?constraints: CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints,
           ?discover_promo_codes: bool,
-          ?layout: CheckoutIntents::Models::Betas::CheckoutSessionCreateParams::layout,
           ?promo_codes: ::Array[String],
           ?variant_selections: ::Array[CheckoutIntents::VariantSelection],
           ?request_options: CheckoutIntents::request_opts
@@ -72,7 +64,6 @@ module CheckoutIntents
           buyer: CheckoutIntents::Betas::CheckoutSessionCreateParams::Buyer,
           constraints: CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints,
           discover_promo_codes: bool,
-          layout: CheckoutIntents::Models::Betas::CheckoutSessionCreateParams::layout,
           promo_codes: ::Array[String],
           variant_selections: ::Array[CheckoutIntents::VariantSelection],
           request_options: CheckoutIntents::RequestOptions
@@ -204,17 +195,6 @@ module CheckoutIntents
 
             def self?.values: -> ::Array[CheckoutIntents::Models::Betas::CheckoutSessionCreateParams::Constraints::offer_retrieval_effort]
           end
-        end
-
-        type layout = :default | :wizard
-
-        module Layout
-          extend CheckoutIntents::Internal::Type::Enum
-
-          DEFAULT: :default
-          WIZARD: :wizard
-
-          def self?.values: -> ::Array[CheckoutIntents::Models::Betas::CheckoutSessionCreateParams::layout]
         end
       end
     end

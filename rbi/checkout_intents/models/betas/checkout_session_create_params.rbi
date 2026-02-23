@@ -63,25 +63,6 @@ module CheckoutIntents
         sig { params(discover_promo_codes: T::Boolean).void }
         attr_writer :discover_promo_codes
 
-        # Optional layout for the checkout UI (e.g. "wizard"). Defaults to the standard
-        # layout.
-        sig do
-          returns(
-            T.nilable(
-              CheckoutIntents::Betas::CheckoutSessionCreateParams::Layout::OrSymbol
-            )
-          )
-        end
-        attr_reader :layout
-
-        sig do
-          params(
-            layout:
-              CheckoutIntents::Betas::CheckoutSessionCreateParams::Layout::OrSymbol
-          ).void
-        end
-        attr_writer :layout
-
         sig { returns(T.nilable(T::Array[String])) }
         attr_reader :promo_codes
 
@@ -108,8 +89,6 @@ module CheckoutIntents
             constraints:
               CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints::OrHash,
             discover_promo_codes: T::Boolean,
-            layout:
-              CheckoutIntents::Betas::CheckoutSessionCreateParams::Layout::OrSymbol,
             promo_codes: T::Array[String],
             variant_selections:
               T::Array[CheckoutIntents::VariantSelection::OrHash],
@@ -124,9 +103,6 @@ module CheckoutIntents
           buyer: nil,
           constraints: nil,
           discover_promo_codes: nil,
-          # Optional layout for the checkout UI (e.g. "wizard"). Defaults to the standard
-          # layout.
-          layout: nil,
           promo_codes: nil,
           variant_selections: nil,
           request_options: {}
@@ -142,8 +118,6 @@ module CheckoutIntents
               constraints:
                 CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints,
               discover_promo_codes: T::Boolean,
-              layout:
-                CheckoutIntents::Betas::CheckoutSessionCreateParams::Layout::OrSymbol,
               promo_codes: T::Array[String],
               variant_selections: T::Array[CheckoutIntents::VariantSelection],
               request_options: CheckoutIntents::RequestOptions
@@ -391,42 +365,6 @@ module CheckoutIntents
             end
             def self.values
             end
-          end
-        end
-
-        # Optional layout for the checkout UI (e.g. "wizard"). Defaults to the standard
-        # layout.
-        module Layout
-          extend CheckoutIntents::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(
-                Symbol,
-                CheckoutIntents::Betas::CheckoutSessionCreateParams::Layout
-              )
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          DEFAULT =
-            T.let(
-              :default,
-              CheckoutIntents::Betas::CheckoutSessionCreateParams::Layout::TaggedSymbol
-            )
-          WIZARD =
-            T.let(
-              :wizard,
-              CheckoutIntents::Betas::CheckoutSessionCreateParams::Layout::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[
-                CheckoutIntents::Betas::CheckoutSessionCreateParams::Layout::TaggedSymbol
-              ]
-            )
-          end
-          def self.values
           end
         end
       end
