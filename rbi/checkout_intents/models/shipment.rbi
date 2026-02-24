@@ -345,7 +345,9 @@ module CheckoutIntents
         end
         attr_accessor :status
 
-        sig { returns(::CheckoutIntents::Shipment::DeliveredShipment::Tracking) }
+        sig do
+          returns(::CheckoutIntents::Shipment::DeliveredShipment::Tracking)
+        end
         attr_reader :tracking
 
         sig do
@@ -412,7 +414,8 @@ module CheckoutIntents
               shipped_at: Time,
               status:
                 ::CheckoutIntents::Shipment::DeliveredShipment::Status::TaggedSymbol,
-              tracking: ::CheckoutIntents::Shipment::DeliveredShipment::Tracking,
+              tracking:
+                ::CheckoutIntents::Shipment::DeliveredShipment::Tracking,
               tracking_events:
                 T::Array[
                   ::CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent
