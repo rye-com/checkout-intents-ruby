@@ -2,47 +2,47 @@ module CheckoutIntents
   module Internal
     module Type
       class BaseModel
-        extend CheckoutIntents::Internal::Type::Converter
-        extend CheckoutIntents::Internal::Util::SorbetRuntimeSupport
+        extend ::CheckoutIntents::Internal::Type::Converter
+        extend ::CheckoutIntents::Internal::Util::SorbetRuntimeSupport
 
         type known_field =
           { mode: (:coerce | :dump)?, required: bool, nilable: bool }
 
         def self.inherited: (self child) -> void
 
-        def self.known_fields: -> ::Hash[Symbol, (CheckoutIntents::Internal::Type::BaseModel::known_field
-        & { type_fn: (^-> CheckoutIntents::Internal::Type::Converter::input) })]
+        def self.known_fields: -> ::Hash[Symbol, (::CheckoutIntents::Internal::Type::BaseModel::known_field
+        & { type_fn: (^-> ::CheckoutIntents::Internal::Type::Converter::input) })]
 
-        def self.fields: -> ::Hash[Symbol, (CheckoutIntents::Internal::Type::BaseModel::known_field
-        & { type: CheckoutIntents::Internal::Type::Converter::input })]
+        def self.fields: -> ::Hash[Symbol, (::CheckoutIntents::Internal::Type::BaseModel::known_field
+        & { type: ::CheckoutIntents::Internal::Type::Converter::input })]
 
         private def self.add_field: (
           Symbol name_sym,
           required: bool,
           type_info: {
             const: (nil | bool | Integer | Float | Symbol)?,
-            enum: ^-> CheckoutIntents::Internal::Type::Converter::input?,
-            union: ^-> CheckoutIntents::Internal::Type::Converter::input?,
+            enum: ^-> ::CheckoutIntents::Internal::Type::Converter::input?,
+            union: ^-> ::CheckoutIntents::Internal::Type::Converter::input?,
             api_name: Symbol
           }
-          | ^-> CheckoutIntents::Internal::Type::Converter::input
-          | CheckoutIntents::Internal::Type::Converter::input,
+          | ^-> ::CheckoutIntents::Internal::Type::Converter::input
+          | ::CheckoutIntents::Internal::Type::Converter::input,
           spec: ::Hash[Symbol, top]
         ) -> void
 
         def self.required: (
           Symbol name_sym,
           ::Hash[Symbol, top]
-          | ^-> CheckoutIntents::Internal::Type::Converter::input
-          | CheckoutIntents::Internal::Type::Converter::input type_info,
+          | ^-> ::CheckoutIntents::Internal::Type::Converter::input
+          | ::CheckoutIntents::Internal::Type::Converter::input type_info,
           ?::Hash[Symbol, top] spec
         ) -> void
 
         def self.optional: (
           Symbol name_sym,
           ::Hash[Symbol, top]
-          | ^-> CheckoutIntents::Internal::Type::Converter::input
-          | CheckoutIntents::Internal::Type::Converter::input type_info,
+          | ^-> ::CheckoutIntents::Internal::Type::Converter::input
+          | ::CheckoutIntents::Internal::Type::Converter::input type_info,
           ?::Hash[Symbol, top] spec
         ) -> void
 
@@ -59,21 +59,21 @@ module CheckoutIntents
         def hash: -> Integer
 
         def self.coerce: (
-          CheckoutIntents::Internal::Type::BaseModel
+          ::CheckoutIntents::Internal::Type::BaseModel
           | ::Hash[top, top]
           | top value,
-          state: CheckoutIntents::Internal::Type::Converter::coerce_state
+          state: ::CheckoutIntents::Internal::Type::Converter::coerce_state
         ) -> (instance | top)
 
         def self.dump: (
           instance | top value,
-          state: CheckoutIntents::Internal::Type::Converter::dump_state
+          state: ::CheckoutIntents::Internal::Type::Converter::dump_state
         ) -> (::Hash[top, top] | top)
 
         def self.to_sorbet_type: -> top
 
         def self.recursively_to_h: (
-          CheckoutIntents::Internal::Type::BaseModel model,
+          ::CheckoutIntents::Internal::Type::BaseModel model,
           convert: bool
         ) -> ::Hash[Symbol, top]
 

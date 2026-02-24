@@ -10,7 +10,7 @@ module CheckoutIntents
     # - `backorder`: Product is temporarily out of stock but can be ordered
     # - `unknown`: Availability could not be determined
     module ProductAvailability
-      extend CheckoutIntents::Internal::Type::Enum
+      extend ::CheckoutIntents::Internal::Type::Enum
 
       IN_STOCK = :in_stock
       OUT_OF_STOCK = :out_of_stock

@@ -6,15 +6,15 @@ module CheckoutIntents
   #
   # When making a request, you can pass an actual {RequestOptions} instance, or
   # simply pass a Hash with symbol keys matching the attributes on this class.
-  class RequestOptions < CheckoutIntents::Internal::Type::BaseModel
+  class RequestOptions < ::CheckoutIntents::Internal::Type::BaseModel
     # @api private
     #
-    # @param opts [CheckoutIntents::RequestOptions, Hash{Symbol=>Object}]
+    # @param opts [::CheckoutIntents::RequestOptions, Hash{Symbol=>Object}]
     #
     # @raise [ArgumentError]
     def self.validate!(opts)
       case opts
-      in CheckoutIntents::RequestOptions | Hash
+      in ::CheckoutIntents::RequestOptions | Hash
         opts.to_h.each_key do |k|
           unless fields.include?(k)
             raise ArgumentError.new("Request `opts` keys must be one of #{fields.keys}, got #{k.inspect}")
@@ -38,21 +38,21 @@ module CheckoutIntents
     #
     #   @return [Hash{String=>Array<String>, String, nil}, nil]
     optional :extra_query,
-             CheckoutIntents::Internal::Type::HashOf[CheckoutIntents::Internal::Type::ArrayOf[String]]
+             ::CheckoutIntents::Internal::Type::HashOf[::CheckoutIntents::Internal::Type::ArrayOf[String]]
 
     # @!attribute extra_headers
     #   Extra headers to send with the request. These are `.merged`’d into any
     #   `extra_headers` given at the client level.
     #
     #   @return [Hash{String=>String, nil}, nil]
-    optional :extra_headers, CheckoutIntents::Internal::Type::HashOf[String, nil?: true]
+    optional :extra_headers, ::CheckoutIntents::Internal::Type::HashOf[String, nil?: true]
 
     # @!attribute extra_body
     #   Extra data to send with the request. These are deep merged into any data
     #   generated as part of the normal request.
     #
     #   @return [Object, nil]
-    optional :extra_body, CheckoutIntents::Internal::Type::HashOf[CheckoutIntents::Internal::Type::Unknown]
+    optional :extra_body, ::CheckoutIntents::Internal::Type::HashOf[::CheckoutIntents::Internal::Type::Unknown]
 
     # @!attribute max_retries
     #   Maximum number of retries to attempt after a failed initial request.
@@ -72,7 +72,7 @@ module CheckoutIntents
     #   @param values [Hash{Symbol=>Object}]
 
     define_sorbet_constant!(:OrHash) do
-      T.type_alias { T.any(CheckoutIntents::RequestOptions, CheckoutIntents::Internal::AnyHash) }
+      T.type_alias { T.any(::CheckoutIntents::RequestOptions, ::CheckoutIntents::Internal::AnyHash) }
     end
   end
 end

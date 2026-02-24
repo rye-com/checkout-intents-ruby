@@ -1,7 +1,7 @@
 module CheckoutIntents
   module Internal
     class CursorPagination[Elem]
-      include CheckoutIntents::Internal::Type::BasePage[Elem]
+      include ::CheckoutIntents::Internal::Type::BasePage[Elem]
 
       attr_accessor data: ::Array[Elem]?
 
@@ -16,7 +16,7 @@ module CheckoutIntents
           has_previous_page: bool,
           start_cursor: String?
         }
-      class PageInfo < CheckoutIntents::Internal::Type::BaseModel
+      class PageInfo < ::CheckoutIntents::Internal::Type::BaseModel
         attr_accessor end_cursor: String?
 
         attr_reader has_next_page: bool?

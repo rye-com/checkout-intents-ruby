@@ -2,7 +2,7 @@ module CheckoutIntents
   module Internal
     module Transport
       class PooledNetRequester
-        extend CheckoutIntents::Internal::Util::SorbetRuntimeSupport
+        extend ::CheckoutIntents::Internal::Util::SorbetRuntimeSupport
 
         type request =
           {
@@ -25,7 +25,7 @@ module CheckoutIntents
         def self.calibrate_socket_timeout: (top conn, Float deadline) -> void
 
         def self.build_request: (
-          CheckoutIntents::Internal::Transport::PooledNetRequester::request request
+          ::CheckoutIntents::Internal::Transport::PooledNetRequester::request request
         ) {
           (String arg0) -> void
         } -> [top, (^-> void)]
@@ -38,7 +38,7 @@ module CheckoutIntents
         } -> void
 
         def execute: (
-          CheckoutIntents::Internal::Transport::PooledNetRequester::request request
+          ::CheckoutIntents::Internal::Transport::PooledNetRequester::request request
         ) -> [Integer, top, Enumerable[String]]
 
         def initialize: (?size: Integer) -> void

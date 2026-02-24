@@ -2,15 +2,15 @@
 
 module CheckoutIntents
   module Models
-    # @see CheckoutIntents::Resources::CheckoutIntents#list
-    class CheckoutIntentListParams < CheckoutIntents::Internal::Type::BaseModel
-      extend CheckoutIntents::Internal::Type::RequestParameters::Converter
-      include CheckoutIntents::Internal::Type::RequestParameters
+    # @see ::CheckoutIntents::Resources::CheckoutIntents#list
+    class CheckoutIntentListParams < ::CheckoutIntents::Internal::Type::BaseModel
+      extend ::CheckoutIntents::Internal::Type::RequestParameters::Converter
+      include ::CheckoutIntents::Internal::Type::RequestParameters
 
       # @!attribute id
       #
       #   @return [Array<String>, nil]
-      optional :id, CheckoutIntents::Internal::Type::ArrayOf[String]
+      optional :id, ::CheckoutIntents::Internal::Type::ArrayOf[String]
 
       # @!attribute after
       #
@@ -29,20 +29,20 @@ module CheckoutIntents
 
       # @!attribute state
       #
-      #   @return [Array<Symbol, CheckoutIntents::Models::CheckoutIntentListParams::State>, nil]
+      #   @return [Array<Symbol, ::CheckoutIntents::Models::CheckoutIntentListParams::State>, nil]
       optional :state,
-               -> { CheckoutIntents::Internal::Type::ArrayOf[enum: CheckoutIntents::CheckoutIntentListParams::State] }
+               -> { ::CheckoutIntents::Internal::Type::ArrayOf[enum: ::CheckoutIntents::CheckoutIntentListParams::State] }
 
       # @!method initialize(id: nil, after: nil, before: nil, limit: nil, state: nil, request_options: {})
       #   @param id [Array<String>]
       #   @param after [String]
       #   @param before [String]
       #   @param limit [Float]
-      #   @param state [Array<Symbol, CheckoutIntents::Models::CheckoutIntentListParams::State>]
-      #   @param request_options [CheckoutIntents::RequestOptions, Hash{Symbol=>Object}]
+      #   @param state [Array<Symbol, ::CheckoutIntents::Models::CheckoutIntentListParams::State>]
+      #   @param request_options [::CheckoutIntents::RequestOptions, Hash{Symbol=>Object}]
 
       module State
-        extend CheckoutIntents::Internal::Type::Enum
+        extend ::CheckoutIntents::Internal::Type::Enum
 
         COMPLETED = :completed
         FAILED = :failed

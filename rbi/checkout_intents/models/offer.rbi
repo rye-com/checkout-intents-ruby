@@ -2,22 +2,22 @@
 
 module CheckoutIntents
   module Models
-    class Offer < CheckoutIntents::Internal::Type::BaseModel
+    class Offer < ::CheckoutIntents::Internal::Type::BaseModel
       OrHash =
         T.type_alias do
-          T.any(CheckoutIntents::Offer, CheckoutIntents::Internal::AnyHash)
+          T.any(::CheckoutIntents::Offer, ::CheckoutIntents::Internal::AnyHash)
         end
 
-      sig { returns(CheckoutIntents::Offer::Cost) }
+      sig { returns(::CheckoutIntents::Offer::Cost) }
       attr_reader :cost
 
-      sig { params(cost: CheckoutIntents::Offer::Cost::OrHash).void }
+      sig { params(cost: ::CheckoutIntents::Offer::Cost::OrHash).void }
       attr_writer :cost
 
-      sig { returns(CheckoutIntents::Offer::Shipping) }
+      sig { returns(::CheckoutIntents::Offer::Shipping) }
       attr_reader :shipping
 
-      sig { params(shipping: CheckoutIntents::Offer::Shipping::OrHash).void }
+      sig { params(shipping: ::CheckoutIntents::Offer::Shipping::OrHash).void }
       attr_writer :shipping
 
       sig { returns(T.nilable(T::Array[String])) }
@@ -28,8 +28,8 @@ module CheckoutIntents
 
       sig do
         params(
-          cost: CheckoutIntents::Offer::Cost::OrHash,
-          shipping: CheckoutIntents::Offer::Shipping::OrHash,
+          cost: ::CheckoutIntents::Offer::Cost::OrHash,
+          shipping: ::CheckoutIntents::Offer::Shipping::OrHash,
           applied_promo_codes: T::Array[String]
         ).returns(T.attached_class)
       end
@@ -39,8 +39,8 @@ module CheckoutIntents
       sig do
         override.returns(
           {
-            cost: CheckoutIntents::Offer::Cost,
-            shipping: CheckoutIntents::Offer::Shipping,
+            cost: ::CheckoutIntents::Offer::Cost,
+            shipping: ::CheckoutIntents::Offer::Shipping,
             applied_promo_codes: T::Array[String]
           }
         )
@@ -48,59 +48,59 @@ module CheckoutIntents
       def to_hash
       end
 
-      class Cost < CheckoutIntents::Internal::Type::BaseModel
+      class Cost < ::CheckoutIntents::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
             T.any(
-              CheckoutIntents::Offer::Cost,
-              CheckoutIntents::Internal::AnyHash
+              ::CheckoutIntents::Offer::Cost,
+              ::CheckoutIntents::Internal::AnyHash
             )
           end
 
-        sig { returns(CheckoutIntents::Money) }
+        sig { returns(::CheckoutIntents::Money) }
         attr_reader :subtotal
 
-        sig { params(subtotal: CheckoutIntents::Money::OrHash).void }
+        sig { params(subtotal: ::CheckoutIntents::Money::OrHash).void }
         attr_writer :subtotal
 
-        sig { returns(CheckoutIntents::Money) }
+        sig { returns(::CheckoutIntents::Money) }
         attr_reader :total
 
-        sig { params(total: CheckoutIntents::Money::OrHash).void }
+        sig { params(total: ::CheckoutIntents::Money::OrHash).void }
         attr_writer :total
 
-        sig { returns(T.nilable(CheckoutIntents::Money)) }
+        sig { returns(T.nilable(::CheckoutIntents::Money)) }
         attr_reader :discount
 
-        sig { params(discount: CheckoutIntents::Money::OrHash).void }
+        sig { params(discount: ::CheckoutIntents::Money::OrHash).void }
         attr_writer :discount
 
-        sig { returns(T.nilable(CheckoutIntents::Money)) }
+        sig { returns(T.nilable(::CheckoutIntents::Money)) }
         attr_reader :shipping
 
-        sig { params(shipping: CheckoutIntents::Money::OrHash).void }
+        sig { params(shipping: ::CheckoutIntents::Money::OrHash).void }
         attr_writer :shipping
 
-        sig { returns(T.nilable(CheckoutIntents::Money)) }
+        sig { returns(T.nilable(::CheckoutIntents::Money)) }
         attr_reader :surcharge
 
-        sig { params(surcharge: CheckoutIntents::Money::OrHash).void }
+        sig { params(surcharge: ::CheckoutIntents::Money::OrHash).void }
         attr_writer :surcharge
 
-        sig { returns(T.nilable(CheckoutIntents::Money)) }
+        sig { returns(T.nilable(::CheckoutIntents::Money)) }
         attr_reader :tax
 
-        sig { params(tax: CheckoutIntents::Money::OrHash).void }
+        sig { params(tax: ::CheckoutIntents::Money::OrHash).void }
         attr_writer :tax
 
         sig do
           params(
-            subtotal: CheckoutIntents::Money::OrHash,
-            total: CheckoutIntents::Money::OrHash,
-            discount: CheckoutIntents::Money::OrHash,
-            shipping: CheckoutIntents::Money::OrHash,
-            surcharge: CheckoutIntents::Money::OrHash,
-            tax: CheckoutIntents::Money::OrHash
+            subtotal: ::CheckoutIntents::Money::OrHash,
+            total: ::CheckoutIntents::Money::OrHash,
+            discount: ::CheckoutIntents::Money::OrHash,
+            shipping: ::CheckoutIntents::Money::OrHash,
+            surcharge: ::CheckoutIntents::Money::OrHash,
+            tax: ::CheckoutIntents::Money::OrHash
           ).returns(T.attached_class)
         end
         def self.new(
@@ -116,12 +116,12 @@ module CheckoutIntents
         sig do
           override.returns(
             {
-              subtotal: CheckoutIntents::Money,
-              total: CheckoutIntents::Money,
-              discount: CheckoutIntents::Money,
-              shipping: CheckoutIntents::Money,
-              surcharge: CheckoutIntents::Money,
-              tax: CheckoutIntents::Money
+              subtotal: ::CheckoutIntents::Money,
+              total: ::CheckoutIntents::Money,
+              discount: ::CheckoutIntents::Money,
+              shipping: ::CheckoutIntents::Money,
+              surcharge: ::CheckoutIntents::Money,
+              tax: ::CheckoutIntents::Money
             }
           )
         end
@@ -129,17 +129,17 @@ module CheckoutIntents
         end
       end
 
-      class Shipping < CheckoutIntents::Internal::Type::BaseModel
+      class Shipping < ::CheckoutIntents::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
             T.any(
-              CheckoutIntents::Offer::Shipping,
-              CheckoutIntents::Internal::AnyHash
+              ::CheckoutIntents::Offer::Shipping,
+              ::CheckoutIntents::Internal::AnyHash
             )
           end
 
         sig do
-          returns(T::Array[CheckoutIntents::Offer::Shipping::AvailableOption])
+          returns(T::Array[::CheckoutIntents::Offer::Shipping::AvailableOption])
         end
         attr_accessor :available_options
 
@@ -153,7 +153,7 @@ module CheckoutIntents
           params(
             available_options:
               T::Array[
-                CheckoutIntents::Offer::Shipping::AvailableOption::OrHash
+                ::CheckoutIntents::Offer::Shipping::AvailableOption::OrHash
               ],
             selected_option_id: String
           ).returns(T.attached_class)
@@ -165,7 +165,7 @@ module CheckoutIntents
           override.returns(
             {
               available_options:
-                T::Array[CheckoutIntents::Offer::Shipping::AvailableOption],
+                T::Array[::CheckoutIntents::Offer::Shipping::AvailableOption],
               selected_option_id: String
             }
           )
@@ -173,35 +173,35 @@ module CheckoutIntents
         def to_hash
         end
 
-        class AvailableOption < CheckoutIntents::Internal::Type::BaseModel
+        class AvailableOption < ::CheckoutIntents::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                CheckoutIntents::Offer::Shipping::AvailableOption,
-                CheckoutIntents::Internal::AnyHash
+                ::CheckoutIntents::Offer::Shipping::AvailableOption,
+                ::CheckoutIntents::Internal::AnyHash
               )
             end
 
           sig { returns(String) }
           attr_accessor :id
 
-          sig { returns(CheckoutIntents::Money) }
+          sig { returns(::CheckoutIntents::Money) }
           attr_reader :cost
 
-          sig { params(cost: CheckoutIntents::Money::OrHash).void }
+          sig { params(cost: ::CheckoutIntents::Money::OrHash).void }
           attr_writer :cost
 
-          sig { returns(T.nilable(CheckoutIntents::Money)) }
+          sig { returns(T.nilable(::CheckoutIntents::Money)) }
           attr_reader :discount
 
-          sig { params(discount: CheckoutIntents::Money::OrHash).void }
+          sig { params(discount: ::CheckoutIntents::Money::OrHash).void }
           attr_writer :discount
 
           sig do
             params(
               id: String,
-              cost: CheckoutIntents::Money::OrHash,
-              discount: CheckoutIntents::Money::OrHash
+              cost: ::CheckoutIntents::Money::OrHash,
+              discount: ::CheckoutIntents::Money::OrHash
             ).returns(T.attached_class)
           end
           def self.new(id:, cost:, discount: nil)
@@ -211,8 +211,8 @@ module CheckoutIntents
             override.returns(
               {
                 id: String,
-                cost: CheckoutIntents::Money,
-                discount: CheckoutIntents::Money
+                cost: ::CheckoutIntents::Money,
+                discount: ::CheckoutIntents::Money
               }
             )
           end

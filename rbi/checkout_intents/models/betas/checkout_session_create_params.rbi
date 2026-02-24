@@ -3,15 +3,15 @@
 module CheckoutIntents
   module Models
     module Betas
-      class CheckoutSessionCreateParams < CheckoutIntents::Internal::Type::BaseModel
-        extend CheckoutIntents::Internal::Type::RequestParameters::Converter
-        include CheckoutIntents::Internal::Type::RequestParameters
+      class CheckoutSessionCreateParams < ::CheckoutIntents::Internal::Type::BaseModel
+        extend ::CheckoutIntents::Internal::Type::RequestParameters::Converter
+        include ::CheckoutIntents::Internal::Type::RequestParameters
 
         OrHash =
           T.type_alias do
             T.any(
-              CheckoutIntents::Betas::CheckoutSessionCreateParams,
-              CheckoutIntents::Internal::AnyHash
+              ::CheckoutIntents::Betas::CheckoutSessionCreateParams,
+              ::CheckoutIntents::Internal::AnyHash
             )
           end
 
@@ -26,7 +26,7 @@ module CheckoutIntents
         sig do
           returns(
             T.nilable(
-              CheckoutIntents::Betas::CheckoutSessionCreateParams::Buyer
+              ::CheckoutIntents::Betas::CheckoutSessionCreateParams::Buyer
             )
           )
         end
@@ -35,7 +35,7 @@ module CheckoutIntents
         sig do
           params(
             buyer:
-              CheckoutIntents::Betas::CheckoutSessionCreateParams::Buyer::OrHash
+              ::CheckoutIntents::Betas::CheckoutSessionCreateParams::Buyer::OrHash
           ).void
         end
         attr_writer :buyer
@@ -43,7 +43,7 @@ module CheckoutIntents
         sig do
           returns(
             T.nilable(
-              CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints
+              ::CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints
             )
           )
         end
@@ -52,7 +52,7 @@ module CheckoutIntents
         sig do
           params(
             constraints:
-              CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints::OrHash
+              ::CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints::OrHash
           ).void
         end
         attr_writer :constraints
@@ -69,13 +69,13 @@ module CheckoutIntents
         sig { params(promo_codes: T::Array[String]).void }
         attr_writer :promo_codes
 
-        sig { returns(T.nilable(T::Array[CheckoutIntents::VariantSelection])) }
+        sig { returns(T.nilable(T::Array[::CheckoutIntents::VariantSelection])) }
         attr_reader :variant_selections
 
         sig do
           params(
             variant_selections:
-              T::Array[CheckoutIntents::VariantSelection::OrHash]
+              T::Array[::CheckoutIntents::VariantSelection::OrHash]
           ).void
         end
         attr_writer :variant_selections
@@ -85,14 +85,14 @@ module CheckoutIntents
             product_url: String,
             quantity: Integer,
             buyer:
-              CheckoutIntents::Betas::CheckoutSessionCreateParams::Buyer::OrHash,
+              ::CheckoutIntents::Betas::CheckoutSessionCreateParams::Buyer::OrHash,
             constraints:
-              CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints::OrHash,
+              ::CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints::OrHash,
             discover_promo_codes: T::Boolean,
             promo_codes: T::Array[String],
             variant_selections:
-              T::Array[CheckoutIntents::VariantSelection::OrHash],
-            request_options: CheckoutIntents::RequestOptions::OrHash
+              T::Array[::CheckoutIntents::VariantSelection::OrHash],
+            request_options: ::CheckoutIntents::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
         def self.new(
@@ -114,25 +114,25 @@ module CheckoutIntents
             {
               product_url: String,
               quantity: Integer,
-              buyer: CheckoutIntents::Betas::CheckoutSessionCreateParams::Buyer,
+              buyer: ::CheckoutIntents::Betas::CheckoutSessionCreateParams::Buyer,
               constraints:
-                CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints,
+                ::CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints,
               discover_promo_codes: T::Boolean,
               promo_codes: T::Array[String],
-              variant_selections: T::Array[CheckoutIntents::VariantSelection],
-              request_options: CheckoutIntents::RequestOptions
+              variant_selections: T::Array[::CheckoutIntents::VariantSelection],
+              request_options: ::CheckoutIntents::RequestOptions
             }
           )
         end
         def to_hash
         end
 
-        class Buyer < CheckoutIntents::Internal::Type::BaseModel
+        class Buyer < ::CheckoutIntents::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                CheckoutIntents::Betas::CheckoutSessionCreateParams::Buyer,
-                CheckoutIntents::Internal::AnyHash
+                ::CheckoutIntents::Betas::CheckoutSessionCreateParams::Buyer,
+                ::CheckoutIntents::Internal::AnyHash
               )
             end
 
@@ -246,12 +246,12 @@ module CheckoutIntents
           end
         end
 
-        class Constraints < CheckoutIntents::Internal::Type::BaseModel
+        class Constraints < ::CheckoutIntents::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
               T.any(
-                CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints,
-                CheckoutIntents::Internal::AnyHash
+                ::CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints,
+                ::CheckoutIntents::Internal::AnyHash
               )
             end
 
@@ -277,7 +277,7 @@ module CheckoutIntents
           sig do
             returns(
               T.nilable(
-                CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints::OfferRetrievalEffort::OrSymbol
+                ::CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints::OfferRetrievalEffort::OrSymbol
               )
             )
           end
@@ -286,7 +286,7 @@ module CheckoutIntents
           sig do
             params(
               offer_retrieval_effort:
-                CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints::OfferRetrievalEffort::OrSymbol
+                ::CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints::OfferRetrievalEffort::OrSymbol
             ).void
           end
           attr_writer :offer_retrieval_effort
@@ -296,7 +296,7 @@ module CheckoutIntents
               max_shipping_price: Integer,
               max_total_price: Integer,
               offer_retrieval_effort:
-                CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints::OfferRetrievalEffort::OrSymbol
+                ::CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints::OfferRetrievalEffort::OrSymbol
             ).returns(T.attached_class)
           end
           def self.new(
@@ -319,7 +319,7 @@ module CheckoutIntents
                 max_shipping_price: Integer,
                 max_total_price: Integer,
                 offer_retrieval_effort:
-                  CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints::OfferRetrievalEffort::OrSymbol
+                  ::CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints::OfferRetrievalEffort::OrSymbol
               }
             )
           end
@@ -334,13 +334,13 @@ module CheckoutIntents
           #
           # Default: 'max'
           module OfferRetrievalEffort
-            extend CheckoutIntents::Internal::Type::Enum
+            extend ::CheckoutIntents::Internal::Type::Enum
 
             TaggedSymbol =
               T.type_alias do
                 T.all(
                   Symbol,
-                  CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints::OfferRetrievalEffort
+                  ::CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints::OfferRetrievalEffort
                 )
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -348,18 +348,18 @@ module CheckoutIntents
             MAX =
               T.let(
                 :max,
-                CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints::OfferRetrievalEffort::TaggedSymbol
+                ::CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints::OfferRetrievalEffort::TaggedSymbol
               )
             LOW =
               T.let(
                 :low,
-                CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints::OfferRetrievalEffort::TaggedSymbol
+                ::CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints::OfferRetrievalEffort::TaggedSymbol
               )
 
             sig do
               override.returns(
                 T::Array[
-                  CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints::OfferRetrievalEffort::TaggedSymbol
+                  ::CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints::OfferRetrievalEffort::TaggedSymbol
                 ]
               )
             end

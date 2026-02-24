@@ -7,7 +7,7 @@ module CheckoutIntents
       #
       # @abstract
       class BaseClient
-        extend CheckoutIntents::Internal::Util::SorbetRuntimeSupport
+        extend ::CheckoutIntents::Internal::Util::SorbetRuntimeSupport
 
         # from whatwg fetch spec
         MAX_REDIRECTS = 20
@@ -15,10 +15,10 @@ module CheckoutIntents
         # rubocop:disable Style/MutableConstant
         PLATFORM_HEADERS =
           {
-            "x-stainless-arch" => CheckoutIntents::Internal::Util.arch,
+            "x-stainless-arch" => ::CheckoutIntents::Internal::Util.arch,
             "x-stainless-lang" => "ruby",
-            "x-stainless-os" => CheckoutIntents::Internal::Util.os,
-            "x-stainless-package-version" => CheckoutIntents::VERSION,
+            "x-stainless-os" => ::CheckoutIntents::Internal::Util.os,
+            "x-stainless-package-version" => ::CheckoutIntents::VERSION,
             "x-stainless-runtime" => ::RUBY_ENGINE,
             "x-stainless-runtime-version" => ::RUBY_ENGINE_VERSION
           }
@@ -51,7 +51,7 @@ module CheckoutIntents
           #
           # @return [Boolean]
           def should_retry?(status, headers:)
-            coerced = CheckoutIntents::Internal::Util.coerce_boolean(headers["x-should-retry"])
+            coerced = ::CheckoutIntents::Internal::Util.coerce_boolean(headers["x-should-retry"])
             case [coerced, status]
             in [true | false, _]
               coerced
@@ -95,7 +95,7 @@ module CheckoutIntents
                 URI.join(url, response_headers["location"])
               rescue ArgumentError
                 message = "Server responded with status #{status} but no valid location header."
-                raise CheckoutIntents::Errors::APIConnectionError.new(
+                raise ::CheckoutIntents::Errors::APIConnectionError.new(
                   url: url,
                   response: response_headers,
                   message: message
@@ -107,7 +107,7 @@ module CheckoutIntents
             case [url.scheme, location.scheme]
             in ["https", "http"]
               message = "Tried to redirect to a insecure URL"
-              raise CheckoutIntents::Errors::APIConnectionError.new(
+              raise ::CheckoutIntents::Errors::APIConnectionError.new(
                 url: url,
                 response: response_headers,
                 message: message
@@ -130,7 +130,7 @@ module CheckoutIntents
             end
 
             # from undici
-            if CheckoutIntents::Internal::Util.uri_origin(url) != CheckoutIntents::Internal::Util.uri_origin(location)
+            if ::CheckoutIntents::Internal::Util.uri_origin(url) != ::CheckoutIntents::Internal::Util.uri_origin(location)
               drop = %w[authorization cookie host proxy-authorization]
               request = {**request, headers: request.fetch(:headers).except(*drop)}
             end
@@ -140,14 +140,14 @@ module CheckoutIntents
 
           # @api private
           #
-          # @param status [Integer, CheckoutIntents::Errors::APIConnectionError]
+          # @param status [Integer, ::CheckoutIntents::Errors::APIConnectionError]
           # @param stream [Enumerable<String>, nil]
           def reap_connection!(status, stream:)
             case status
             in (..199) | (300..499)
               stream&.each { next }
-            in CheckoutIntents::Errors::APIConnectionError | (500..)
-              CheckoutIntents::Internal::Util.close_fused!(stream)
+            in ::CheckoutIntents::Errors::APIConnectionError | (500..)
+              ::CheckoutIntents::Internal::Util.close_fused!(stream)
             else
             end
           end
@@ -175,7 +175,7 @@ module CheckoutIntents
         attr_reader :idempotency_header
 
         # @api private
-        # @return [CheckoutIntents::Internal::Transport::PooledNetRequester]
+        # @return [::CheckoutIntents::Internal::Transport::PooledNetRequester]
         attr_reader :requester
 
         # @api private
@@ -196,8 +196,8 @@ module CheckoutIntents
           headers: {},
           idempotency_header: nil
         )
-          @requester = CheckoutIntents::Internal::Transport::PooledNetRequester.new
-          @headers = CheckoutIntents::Internal::Util.normalized_headers(
+          @requester = ::CheckoutIntents::Internal::Transport::PooledNetRequester.new
+          @headers = ::CheckoutIntents::Internal::Util.normalized_headers(
             self.class::PLATFORM_HEADERS,
             {
               "accept" => "application/json",
@@ -206,8 +206,8 @@ module CheckoutIntents
             },
             headers
           )
-          @base_url_components = CheckoutIntents::Internal::Util.parse_uri(base_url)
-          @base_url = CheckoutIntents::Internal::Util.unparse_uri(@base_url_components)
+          @base_url_components = ::CheckoutIntents::Internal::Util.parse_uri(base_url)
+          @base_url = ::CheckoutIntents::Internal::Util.unparse_uri(@base_url_components)
           @idempotency_header = idempotency_header&.to_s&.downcase
           @timeout = timeout
           @max_retries = max_retries
@@ -223,7 +223,7 @@ module CheckoutIntents
         # @api private
         #
         # @return [String]
-        private def user_agent = "#{self.class.name}/Ruby #{CheckoutIntents::VERSION}"
+        private def user_agent = "#{self.class.name}/Ruby #{::CheckoutIntents::VERSION}"
 
         # @api private
         #
@@ -246,11 +246,11 @@ module CheckoutIntents
         #
         #   @option req [Symbol, Integer, Array<Symbol, Integer>, Proc, nil] :unwrap
         #
-        #   @option req [Class<CheckoutIntents::Internal::Type::BasePage>, nil] :page
+        #   @option req [Class<::CheckoutIntents::Internal::Type::BasePage>, nil] :page
         #
-        #   @option req [Class<CheckoutIntents::Internal::Type::BaseStream>, nil] :stream
+        #   @option req [Class<::CheckoutIntents::Internal::Type::BaseStream>, nil] :stream
         #
-        #   @option req [CheckoutIntents::Internal::Type::Converter, Class, nil] :model
+        #   @option req [::CheckoutIntents::Internal::Type::Converter, Class, nil] :model
         #
         # @param opts [Hash{Symbol=>Object}] .
         #
@@ -270,11 +270,11 @@ module CheckoutIntents
         private def build_request(req, opts)
           method, uninterpolated_path = req.fetch_values(:method, :path)
 
-          path = CheckoutIntents::Internal::Util.interpolate_path(uninterpolated_path)
+          path = ::CheckoutIntents::Internal::Util.interpolate_path(uninterpolated_path)
 
-          query = CheckoutIntents::Internal::Util.deep_merge(req[:query].to_h, opts[:extra_query].to_h)
+          query = ::CheckoutIntents::Internal::Util.deep_merge(req[:query].to_h, opts[:extra_query].to_h)
 
-          headers = CheckoutIntents::Internal::Util.normalized_headers(
+          headers = ::CheckoutIntents::Internal::Util.normalized_headers(
             @headers,
             auth_headers,
             req[:headers].to_h,
@@ -303,14 +303,14 @@ module CheckoutIntents
             in :get | :head | :options | :trace
               nil
             else
-              CheckoutIntents::Internal::Util.deep_merge(*[req[:body], opts[:extra_body]].compact)
+              ::CheckoutIntents::Internal::Util.deep_merge(*[req[:body], opts[:extra_body]].compact)
             end
 
-          url = CheckoutIntents::Internal::Util.join_parsed_uri(
+          url = ::CheckoutIntents::Internal::Util.join_parsed_uri(
             @base_url_components,
             {**req, path: path, query: query}
           )
-          headers, encoded = CheckoutIntents::Internal::Util.encode_content(headers, body)
+          headers, encoded = ::CheckoutIntents::Internal::Util.encode_content(headers, body)
           {
             method: method,
             url: url,
@@ -369,11 +369,11 @@ module CheckoutIntents
         #
         # @param send_retry_header [Boolean]
         #
-        # @raise [CheckoutIntents::Errors::APIError]
+        # @raise [::CheckoutIntents::Errors::APIError]
         # @return [Array(Integer, Net::HTTPResponse, Enumerable<String>)]
         def send_request(request, redirect_count:, retry_count:, send_retry_header:)
           url, headers, max_retries, timeout = request.fetch_values(:url, :headers, :max_retries, :timeout)
-          input = {**request.except(:timeout), deadline: CheckoutIntents::Internal::Util.monotonic_secs + timeout}
+          input = {**request.except(:timeout), deadline: ::CheckoutIntents::Internal::Util.monotonic_secs + timeout}
 
           if send_retry_header
             headers["x-stainless-retry-count"] = retry_count.to_s
@@ -381,10 +381,10 @@ module CheckoutIntents
 
           begin
             status, response, stream = @requester.execute(input)
-          rescue CheckoutIntents::Errors::APIConnectionError => e
+          rescue ::CheckoutIntents::Errors::APIConnectionError => e
             status = e
           end
-          headers = CheckoutIntents::Internal::Util.normalized_headers(response&.each_header&.to_h)
+          headers = ::CheckoutIntents::Internal::Util.normalized_headers(response&.each_header&.to_h)
 
           case status
           in ..299
@@ -393,7 +393,7 @@ module CheckoutIntents
             self.class.reap_connection!(status, stream: stream)
 
             message = "Failed to complete the request within #{self.class::MAX_REDIRECTS} redirects."
-            raise CheckoutIntents::Errors::APIConnectionError.new(
+            raise ::CheckoutIntents::Errors::APIConnectionError.new(
               url: url,
               response: response,
               message: message
@@ -408,16 +408,16 @@ module CheckoutIntents
               retry_count: retry_count,
               send_retry_header: send_retry_header
             )
-          in CheckoutIntents::Errors::APIConnectionError if retry_count >= max_retries
+          in ::CheckoutIntents::Errors::APIConnectionError if retry_count >= max_retries
             raise status
           in (400..) if retry_count >= max_retries || !self.class.should_retry?(status, headers: headers)
             decoded = Kernel.then do
-              CheckoutIntents::Internal::Util.decode_content(headers, stream: stream, suppress_error: true)
+              ::CheckoutIntents::Internal::Util.decode_content(headers, stream: stream, suppress_error: true)
             ensure
               self.class.reap_connection!(status, stream: stream)
             end
 
-            raise CheckoutIntents::Errors::APIStatusError.for(
+            raise ::CheckoutIntents::Errors::APIStatusError.for(
               url: url,
               status: status,
               headers: headers,
@@ -425,7 +425,7 @@ module CheckoutIntents
               request: nil,
               response: response
             )
-          in (400..) | CheckoutIntents::Errors::APIConnectionError
+          in (400..) | ::CheckoutIntents::Errors::APIConnectionError
             self.class.reap_connection!(status, stream: stream)
 
             delay = retry_delay(response || {}, retry_count: retry_count)
@@ -443,7 +443,7 @@ module CheckoutIntents
         # Execute the request specified by `req`. This is the method that all resource
         # methods call into.
         #
-        # @overload request(method, path, query: {}, headers: {}, body: nil, unwrap: nil, page: nil, stream: nil, model: CheckoutIntents::Internal::Type::Unknown, options: {})
+        # @overload request(method, path, query: {}, headers: {}, body: nil, unwrap: nil, page: nil, stream: nil, model: ::CheckoutIntents::Internal::Type::Unknown, options: {})
         #
         # @param method [Symbol]
         #
@@ -457,13 +457,13 @@ module CheckoutIntents
         #
         # @param unwrap [Symbol, Integer, Array<Symbol, Integer>, Proc, nil]
         #
-        # @param page [Class<CheckoutIntents::Internal::Type::BasePage>, nil]
+        # @param page [Class<::CheckoutIntents::Internal::Type::BasePage>, nil]
         #
-        # @param stream [Class<CheckoutIntents::Internal::Type::BaseStream>, nil]
+        # @param stream [Class<::CheckoutIntents::Internal::Type::BaseStream>, nil]
         #
-        # @param model [CheckoutIntents::Internal::Type::Converter, Class, nil]
+        # @param model [::CheckoutIntents::Internal::Type::Converter, Class, nil]
         #
-        # @param options [CheckoutIntents::RequestOptions, Hash{Symbol=>Object}, nil] .
+        # @param options [::CheckoutIntents::RequestOptions, Hash{Symbol=>Object}, nil] .
         #
         #   @option options [String, nil] :idempotency_key
         #
@@ -477,14 +477,14 @@ module CheckoutIntents
         #
         #   @option options [Float, nil] :timeout
         #
-        # @raise [CheckoutIntents::Errors::APIError]
+        # @raise [::CheckoutIntents::Errors::APIError]
         # @return [Object]
         def request(req)
           self.class.validate!(req)
-          model = req.fetch(:model) { CheckoutIntents::Internal::Type::Unknown }
+          model = req.fetch(:model) { ::CheckoutIntents::Internal::Type::Unknown }
           opts = req[:options].to_h
           unwrap = req[:unwrap]
-          CheckoutIntents::RequestOptions.validate!(opts)
+          ::CheckoutIntents::RequestOptions.validate!(opts)
           request = build_request(req.except(:options), opts)
           url = request.fetch(:url)
 
@@ -497,8 +497,8 @@ module CheckoutIntents
             send_retry_header: send_retry_header
           )
 
-          headers = CheckoutIntents::Internal::Util.normalized_headers(response.each_header.to_h)
-          decoded = CheckoutIntents::Internal::Util.decode_content(headers, stream: stream)
+          headers = ::CheckoutIntents::Internal::Util.normalized_headers(response.each_header.to_h)
+          decoded = ::CheckoutIntents::Internal::Util.decode_content(headers, stream: stream)
           case req
           in {stream: Class => st}
             st.new(
@@ -513,8 +513,8 @@ module CheckoutIntents
           in {page: Class => page}
             page.new(client: self, req: req, headers: headers, page_data: decoded)
           else
-            unwrapped = CheckoutIntents::Internal::Util.dig(decoded, unwrap)
-            CheckoutIntents::Internal::Type::Converter.coerce(model, unwrapped)
+            unwrapped = ::CheckoutIntents::Internal::Util.dig(decoded, unwrap)
+            ::CheckoutIntents::Internal::Type::Converter.coerce(model, unwrapped)
           end
         end
 
@@ -525,14 +525,14 @@ module CheckoutIntents
         #
         # @param req [Hash{Symbol=>Object}]
         #
-        # @raise [CheckoutIntents::Errors::APIError]
+        # @raise [::CheckoutIntents::Errors::APIError]
         # @return [Hash{Symbol=>Object}] Hash with :data and :headers keys
         def request_with_headers(req)
           self.class.validate!(req)
-          model = req.fetch(:model) { CheckoutIntents::Internal::Type::Unknown }
+          model = req.fetch(:model) { ::CheckoutIntents::Internal::Type::Unknown }
           opts = req[:options].to_h
           unwrap = req[:unwrap]
-          CheckoutIntents::RequestOptions.validate!(opts)
+          ::CheckoutIntents::RequestOptions.validate!(opts)
           request = build_request(req.except(:options), opts)
 
           send_retry_header = request.fetch(:headers)["x-stainless-retry-count"] == "0"
@@ -543,10 +543,10 @@ module CheckoutIntents
             send_retry_header: send_retry_header
           )
 
-          headers = CheckoutIntents::Internal::Util.normalized_headers(response.each_header.to_h)
-          decoded = CheckoutIntents::Internal::Util.decode_content(headers, stream: stream)
-          unwrapped = CheckoutIntents::Internal::Util.dig(decoded, unwrap)
-          data = CheckoutIntents::Internal::Type::Converter.coerce(model, unwrapped)
+          headers = ::CheckoutIntents::Internal::Util.normalized_headers(response.each_header.to_h)
+          decoded = ::CheckoutIntents::Internal::Util.decode_content(headers, stream: stream)
+          unwrapped = ::CheckoutIntents::Internal::Util.dig(decoded, unwrap)
+          data = ::CheckoutIntents::Internal::Type::Converter.coerce(model, unwrapped)
 
           {data: data, headers: headers}
         end
@@ -585,10 +585,10 @@ module CheckoutIntents
                   T.proc.params(arg0: T.anything).returns(T.anything)
                 )
               ),
-              page: T.nilable(T::Class[CheckoutIntents::Internal::Type::BasePage[CheckoutIntents::Internal::Type::BaseModel]]),
+              page: T.nilable(T::Class[::CheckoutIntents::Internal::Type::BasePage[::CheckoutIntents::Internal::Type::BaseModel]]),
               stream: T.nilable(T::Class[T.anything]),
-              model: T.nilable(CheckoutIntents::Internal::Type::Converter::Input),
-              options: T.nilable(CheckoutIntents::RequestOptions::OrHash)
+              model: T.nilable(::CheckoutIntents::Internal::Type::Converter::Input),
+              options: T.nilable(::CheckoutIntents::RequestOptions::OrHash)
             }
           end
         end

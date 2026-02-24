@@ -2,10 +2,10 @@
 
 module CheckoutIntents
   module Models
-    class Money < CheckoutIntents::Internal::Type::BaseModel
+    class Money < ::CheckoutIntents::Internal::Type::BaseModel
       OrHash =
         T.type_alias do
-          T.any(CheckoutIntents::Money, CheckoutIntents::Internal::AnyHash)
+          T.any(::CheckoutIntents::Money, ::CheckoutIntents::Internal::AnyHash)
         end
 
       sig { returns(Integer) }

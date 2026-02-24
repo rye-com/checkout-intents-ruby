@@ -6,20 +6,20 @@ module CheckoutIntents
       # @api private
       #
       # @example
-      #   # `checkout_intent` is a `CheckoutIntents::CheckoutIntent`
+      #   # `checkout_intent` is a `::CheckoutIntents::CheckoutIntent`
       #   case checkout_intent
-      #   when CheckoutIntents::CheckoutIntent::RetrievingOfferCheckoutIntent
+      #   when ::CheckoutIntents::CheckoutIntent::RetrievingOfferCheckoutIntent
       #     # ...
-      #   when CheckoutIntents::CheckoutIntent::AwaitingConfirmationCheckoutIntent
+      #   when ::CheckoutIntents::CheckoutIntent::AwaitingConfirmationCheckoutIntent
       #     # ...
-      #   when CheckoutIntents::CheckoutIntent::PlacingOrderCheckoutIntent
+      #   when ::CheckoutIntents::CheckoutIntent::PlacingOrderCheckoutIntent
       #     # ...
       #   else
       #     puts(checkout_intent)
       #   end
       module Union
-        include CheckoutIntents::Internal::Type::Converter
-        include CheckoutIntents::Internal::Util::SorbetRuntimeSupport
+        include ::CheckoutIntents::Internal::Type::Converter
+        include ::CheckoutIntents::Internal::Util::SorbetRuntimeSupport
 
         # @api private
         #
@@ -52,9 +52,9 @@ module CheckoutIntents
 
         # @api private
         #
-        # @param key [Symbol, Hash{Symbol=>Object}, Proc, CheckoutIntents::Internal::Type::Converter, Class]
+        # @param key [Symbol, Hash{Symbol=>Object}, Proc, ::CheckoutIntents::Internal::Type::Converter, Class]
         #
-        # @param spec [Hash{Symbol=>Object}, Proc, CheckoutIntents::Internal::Type::Converter, Class] .
+        # @param spec [Hash{Symbol=>Object}, Proc, ::CheckoutIntents::Internal::Type::Converter, Class] .
         #
         #   @option spec [NilClass, TrueClass, FalseClass, Integer, Float, Symbol] :const
         #
@@ -64,13 +64,13 @@ module CheckoutIntents
         #
         #   @option spec [Boolean] :"nil?"
         private def variant(key, spec = nil)
-          meta = CheckoutIntents::Internal::Type::Converter.meta_info(nil, spec)
+          meta = ::CheckoutIntents::Internal::Type::Converter.meta_info(nil, spec)
           variant_info =
             case key
             in Symbol
-              [key, CheckoutIntents::Internal::Type::Converter.type_info(spec), meta]
-            in Proc | CheckoutIntents::Internal::Type::Converter | Class | Hash
-              [nil, CheckoutIntents::Internal::Type::Converter.type_info(key), meta]
+              [key, ::CheckoutIntents::Internal::Type::Converter.type_info(spec), meta]
+            in Proc | ::CheckoutIntents::Internal::Type::Converter | Class | Hash
+              [nil, ::CheckoutIntents::Internal::Type::Converter.type_info(key), meta]
             end
 
           known_variants << variant_info
@@ -80,17 +80,17 @@ module CheckoutIntents
         #
         # @param value [Object]
         #
-        # @return [CheckoutIntents::Internal::Type::Converter, Class, nil]
+        # @return [::CheckoutIntents::Internal::Type::Converter, Class, nil]
         private def resolve_variant(value)
           case [@discriminator, value]
-          in [_, CheckoutIntents::Internal::Type::BaseModel]
+          in [_, ::CheckoutIntents::Internal::Type::BaseModel]
             value.class
           in [Symbol, Hash]
             key = value.fetch(@discriminator) do
-              value.fetch(@discriminator.to_s, CheckoutIntents::Internal::OMIT)
+              value.fetch(@discriminator.to_s, ::CheckoutIntents::Internal::OMIT)
             end
 
-            return nil if key == CheckoutIntents::Internal::OMIT
+            return nil if key == ::CheckoutIntents::Internal::OMIT
 
             key = key.to_sym if key.is_a?(String)
             _, found = known_variants.find { |k,| k == key }
@@ -120,7 +120,7 @@ module CheckoutIntents
         #
         # @return [Boolean]
         def ==(other)
-          CheckoutIntents::Internal::Type::Union === other && other.derefed_variants == derefed_variants
+          ::CheckoutIntents::Internal::Type::Union === other && other.derefed_variants == derefed_variants
         end
 
         # @api public
@@ -152,7 +152,7 @@ module CheckoutIntents
         # @return [Object]
         def coerce(value, state:)
           if (target = resolve_variant(value))
-            return CheckoutIntents::Internal::Type::Converter.coerce(target, value, state: state)
+            return ::CheckoutIntents::Internal::Type::Converter.coerce(target, value, state: state)
           end
 
           strictness = state.fetch(:strictness)
@@ -164,7 +164,7 @@ module CheckoutIntents
             exact = state[:exactness] = {yes: 0, no: 0, maybe: 0}
             state[:branched] += 1
 
-            coerced = CheckoutIntents::Internal::Type::Converter.coerce(target, value, state: state)
+            coerced = ::CheckoutIntents::Internal::Type::Converter.coerce(target, value, state: state)
             yes, no, maybe = exact.values
             if (no + maybe).zero? || (!strictness && yes.positive?)
               exact.each { exactness[_1] += _2 }
@@ -200,13 +200,13 @@ module CheckoutIntents
         # @return [Object]
         def dump(value, state:)
           if (target = resolve_variant(value))
-            return CheckoutIntents::Internal::Type::Converter.dump(target, value, state: state)
+            return ::CheckoutIntents::Internal::Type::Converter.dump(target, value, state: state)
           end
 
           known_variants.each do
             target = _2.call
             if target === value
-              return CheckoutIntents::Internal::Type::Converter.dump(
+              return ::CheckoutIntents::Internal::Type::Converter.dump(
                 target,
                 value,
                 state: state
@@ -222,7 +222,7 @@ module CheckoutIntents
         # @return [Object]
         def to_sorbet_type
           types = variants.map do
-            CheckoutIntents::Internal::Util::SorbetRuntimeSupport.to_sorbet_type(_1)
+            ::CheckoutIntents::Internal::Util::SorbetRuntimeSupport.to_sorbet_type(_1)
           end.uniq
           case types
           in []
@@ -247,7 +247,7 @@ module CheckoutIntents
             return is_a?(Module) ? super() : self.class.name
           end
 
-          members = variants.map { CheckoutIntents::Internal::Type::Converter.inspect(_1, depth: depth.succ) }
+          members = variants.map { ::CheckoutIntents::Internal::Type::Converter.inspect(_1, depth: depth.succ) }
           prefix = is_a?(Module) ? name : self.class.name
 
           "#{prefix}[#{members.join(' | ')}]"

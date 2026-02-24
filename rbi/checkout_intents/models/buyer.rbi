@@ -2,10 +2,10 @@
 
 module CheckoutIntents
   module Models
-    class Buyer < CheckoutIntents::Internal::Type::BaseModel
+    class Buyer < ::CheckoutIntents::Internal::Type::BaseModel
       OrHash =
         T.type_alias do
-          T.any(CheckoutIntents::Buyer, CheckoutIntents::Internal::AnyHash)
+          T.any(::CheckoutIntents::Buyer, ::CheckoutIntents::Internal::AnyHash)
         end
 
       sig { returns(String) }

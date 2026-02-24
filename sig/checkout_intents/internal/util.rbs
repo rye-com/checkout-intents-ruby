@@ -1,7 +1,7 @@
 module CheckoutIntents
   module Internal
     module Util
-      extend CheckoutIntents::Internal::Util::SorbetRuntimeSupport
+      extend ::CheckoutIntents::Internal::Util::SorbetRuntimeSupport
 
       def self?.monotonic_secs: -> Float
 
@@ -66,15 +66,15 @@ module CheckoutIntents
 
       def self?.parse_uri: (
         URI::Generic | String url
-      ) -> CheckoutIntents::Internal::Util::parsed_uri
+      ) -> ::CheckoutIntents::Internal::Util::parsed_uri
 
       def self?.unparse_uri: (
-        CheckoutIntents::Internal::Util::parsed_uri parsed
+        ::CheckoutIntents::Internal::Util::parsed_uri parsed
       ) -> URI::Generic
 
       def self?.join_parsed_uri: (
-        CheckoutIntents::Internal::Util::parsed_uri lhs,
-        CheckoutIntents::Internal::Util::parsed_uri rhs
+        ::CheckoutIntents::Internal::Util::parsed_uri lhs,
+        ::CheckoutIntents::Internal::Util::parsed_uri rhs
       ) -> URI::Generic
 
       def self?.normalized_headers: (
@@ -160,7 +160,7 @@ module CheckoutIntents
 
       def self?.decode_sse: (
         Enumerable[String] lines
-      ) -> Enumerable[CheckoutIntents::Internal::Util::server_sent_event]
+      ) -> Enumerable[::CheckoutIntents::Internal::Util::server_sent_event]
 
       module SorbetRuntimeSupport
         class MissingSorbetRuntimeError < ::RuntimeError
@@ -177,7 +177,7 @@ module CheckoutIntents
         def to_sorbet_type: -> top
 
         def self.to_sorbet_type: (
-          CheckoutIntents::Internal::Util::SorbetRuntimeSupport | top `type`
+          ::CheckoutIntents::Internal::Util::SorbetRuntimeSupport | top `type`
         ) -> top
       end
     end

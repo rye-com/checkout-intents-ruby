@@ -2,8 +2,8 @@
 
 module CheckoutIntents
   module Models
-    # @see CheckoutIntents::Resources::Products#lookup
-    class Product < CheckoutIntents::Internal::Type::BaseModel
+    # @see ::CheckoutIntents::Resources::Products#lookup
+    class Product < ::CheckoutIntents::Internal::Type::BaseModel
       # @!attribute id
       #
       #   @return [String]
@@ -18,8 +18,8 @@ module CheckoutIntents
       #   - `backorder`: Product is temporarily out of stock but can be ordered
       #   - `unknown`: Availability could not be determined
       #
-      #   @return [Symbol, CheckoutIntents::Models::ProductAvailability]
-      required :availability, enum: -> { CheckoutIntents::ProductAvailability }
+      #   @return [Symbol, ::CheckoutIntents::Models::ProductAvailability]
+      required :availability, enum: -> { ::CheckoutIntents::ProductAvailability }
 
       # @!attribute brand
       #
@@ -33,13 +33,13 @@ module CheckoutIntents
 
       # @!attribute images
       #
-      #   @return [Array<CheckoutIntents::Models::ProductImage>]
-      required :images, -> { CheckoutIntents::Internal::Type::ArrayOf[CheckoutIntents::ProductImage] }
+      #   @return [Array<::CheckoutIntents::Models::ProductImage>]
+      required :images, -> { ::CheckoutIntents::Internal::Type::ArrayOf[::CheckoutIntents::ProductImage] }
 
       # @!attribute is_purchasable
       #
       #   @return [Boolean]
-      required :is_purchasable, CheckoutIntents::Internal::Type::Boolean, api_name: :isPurchasable
+      required :is_purchasable, ::CheckoutIntents::Internal::Type::Boolean, api_name: :isPurchasable
 
       # @!attribute name
       #
@@ -48,8 +48,8 @@ module CheckoutIntents
 
       # @!attribute price
       #
-      #   @return [CheckoutIntents::Models::Money]
-      required :price, -> { CheckoutIntents::Money }
+      #   @return [::CheckoutIntents::Models::Money]
+      required :price, -> { ::CheckoutIntents::Money }
 
       # @!attribute sku
       #
@@ -63,23 +63,23 @@ module CheckoutIntents
 
       # @!method initialize(id:, availability:, brand:, description:, images:, is_purchasable:, name:, price:, sku:, url:)
       #   Some parameter documentations has been truncated, see
-      #   {CheckoutIntents::Models::Product} for more details.
+      #   {::CheckoutIntents::Models::Product} for more details.
       #
       #   @param id [String]
       #
-      #   @param availability [Symbol, CheckoutIntents::Models::ProductAvailability] The availability status of a product.
+      #   @param availability [Symbol, ::CheckoutIntents::Models::ProductAvailability] The availability status of a product.
       #
       #   @param brand [String, nil]
       #
       #   @param description [String, nil]
       #
-      #   @param images [Array<CheckoutIntents::Models::ProductImage>]
+      #   @param images [Array<::CheckoutIntents::Models::ProductImage>]
       #
       #   @param is_purchasable [Boolean]
       #
       #   @param name [String]
       #
-      #   @param price [CheckoutIntents::Models::Money]
+      #   @param price [::CheckoutIntents::Models::Money]
       #
       #   @param sku [String, nil]
       #

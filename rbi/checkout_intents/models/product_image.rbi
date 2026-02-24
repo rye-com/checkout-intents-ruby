@@ -2,12 +2,12 @@
 
 module CheckoutIntents
   module Models
-    class ProductImage < CheckoutIntents::Internal::Type::BaseModel
+    class ProductImage < ::CheckoutIntents::Internal::Type::BaseModel
       OrHash =
         T.type_alias do
           T.any(
-            CheckoutIntents::ProductImage,
-            CheckoutIntents::Internal::AnyHash
+            ::CheckoutIntents::ProductImage,
+            ::CheckoutIntents::Internal::AnyHash
           )
         end
 

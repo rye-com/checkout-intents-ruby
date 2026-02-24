@@ -2,10 +2,10 @@
 
 module CheckoutIntents
   module Models
-    class Product < CheckoutIntents::Internal::Type::BaseModel
+    class Product < ::CheckoutIntents::Internal::Type::BaseModel
       OrHash =
         T.type_alias do
-          T.any(CheckoutIntents::Product, CheckoutIntents::Internal::AnyHash)
+          T.any(::CheckoutIntents::Product, ::CheckoutIntents::Internal::AnyHash)
         end
 
       sig { returns(String) }
@@ -18,7 +18,7 @@ module CheckoutIntents
       # - `preorder`: Product is available for pre-order before release
       # - `backorder`: Product is temporarily out of stock but can be ordered
       # - `unknown`: Availability could not be determined
-      sig { returns(CheckoutIntents::ProductAvailability::TaggedSymbol) }
+      sig { returns(::CheckoutIntents::ProductAvailability::TaggedSymbol) }
       attr_accessor :availability
 
       sig { returns(T.nilable(String)) }
@@ -27,7 +27,7 @@ module CheckoutIntents
       sig { returns(T.nilable(String)) }
       attr_accessor :description
 
-      sig { returns(T::Array[CheckoutIntents::ProductImage]) }
+      sig { returns(T::Array[::CheckoutIntents::ProductImage]) }
       attr_accessor :images
 
       sig { returns(T::Boolean) }
@@ -36,10 +36,10 @@ module CheckoutIntents
       sig { returns(String) }
       attr_accessor :name
 
-      sig { returns(CheckoutIntents::Money) }
+      sig { returns(::CheckoutIntents::Money) }
       attr_reader :price
 
-      sig { params(price: CheckoutIntents::Money::OrHash).void }
+      sig { params(price: ::CheckoutIntents::Money::OrHash).void }
       attr_writer :price
 
       sig { returns(T.nilable(String)) }
@@ -51,13 +51,13 @@ module CheckoutIntents
       sig do
         params(
           id: String,
-          availability: CheckoutIntents::ProductAvailability::OrSymbol,
+          availability: ::CheckoutIntents::ProductAvailability::OrSymbol,
           brand: T.nilable(String),
           description: T.nilable(String),
-          images: T::Array[CheckoutIntents::ProductImage::OrHash],
+          images: T::Array[::CheckoutIntents::ProductImage::OrHash],
           is_purchasable: T::Boolean,
           name: String,
-          price: CheckoutIntents::Money::OrHash,
+          price: ::CheckoutIntents::Money::OrHash,
           sku: T.nilable(String),
           url: String
         ).returns(T.attached_class)
@@ -87,13 +87,13 @@ module CheckoutIntents
         override.returns(
           {
             id: String,
-            availability: CheckoutIntents::ProductAvailability::TaggedSymbol,
+            availability: ::CheckoutIntents::ProductAvailability::TaggedSymbol,
             brand: T.nilable(String),
             description: T.nilable(String),
-            images: T::Array[CheckoutIntents::ProductImage],
+            images: T::Array[::CheckoutIntents::ProductImage],
             is_purchasable: T::Boolean,
             name: String,
-            price: CheckoutIntents::Money,
+            price: ::CheckoutIntents::Money,
             sku: T.nilable(String),
             url: String
           }

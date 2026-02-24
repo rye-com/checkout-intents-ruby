@@ -9,8 +9,8 @@ module CheckoutIntents
       #
       # Ruby has no Boolean class; this is something for models to refer to.
       class Boolean
-        extend CheckoutIntents::Internal::Type::Converter
-        extend CheckoutIntents::Internal::Util::SorbetRuntimeSupport
+        extend ::CheckoutIntents::Internal::Type::Converter
+        extend ::CheckoutIntents::Internal::Util::SorbetRuntimeSupport
 
         private_class_method :new
 
@@ -26,7 +26,7 @@ module CheckoutIntents
         # @param other [Object]
         #
         # @return [Boolean]
-        def self.==(other) = other.is_a?(Class) && other <= CheckoutIntents::Internal::Type::Boolean
+        def self.==(other) = other.is_a?(Class) && other <= ::CheckoutIntents::Internal::Type::Boolean
 
         class << self
           # @api private

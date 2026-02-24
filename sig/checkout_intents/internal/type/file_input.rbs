@@ -2,7 +2,7 @@ module CheckoutIntents
   module Internal
     module Type
       class FileInput
-        extend CheckoutIntents::Internal::Type::Converter
+        extend ::CheckoutIntents::Internal::Type::Converter
 
         def self.===: (top other) -> bool
 
@@ -10,12 +10,12 @@ module CheckoutIntents
 
         def self.coerce: (
           StringIO | String | top value,
-          state: CheckoutIntents::Internal::Type::Converter::coerce_state
+          state: ::CheckoutIntents::Internal::Type::Converter::coerce_state
         ) -> (StringIO | top)
 
         def self.dump: (
           Pathname | StringIO | IO | String | top value,
-          state: CheckoutIntents::Internal::Type::Converter::dump_state
+          state: ::CheckoutIntents::Internal::Type::Converter::dump_state
         ) -> (Pathname | StringIO | IO | String | top)
 
         def self.to_sorbet_type: -> top
