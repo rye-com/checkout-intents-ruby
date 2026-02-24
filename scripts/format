@@ -9,3 +9,6 @@ bundle exec rake format "$@"
 
 echo "==> Fixing absolute references"
 ruby scripts/fix-absolute-references
+
+echo "==> Auto-correcting style issues"
+bundle exec rubocop -A --fail-level fatal lib/
