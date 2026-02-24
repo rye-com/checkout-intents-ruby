@@ -2,23 +2,23 @@
 
 module CheckoutIntents
   module Models
-    # @see CheckoutIntents::Resources::Shipments#retrieve
+    # @see ::CheckoutIntents::Resources::Shipments#retrieve
     module Shipment
-      extend CheckoutIntents::Internal::Type::Union
+      extend ::CheckoutIntents::Internal::Type::Union
 
-      variant -> { CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped }
+      variant -> { ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped }
 
-      variant -> { CheckoutIntents::Shipment::DeliveredShipment }
+      variant -> { ::CheckoutIntents::Shipment::DeliveredShipment }
 
-      variant -> { CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed }
+      variant -> { ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed }
 
-      variant -> { CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery }
+      variant -> { ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery }
 
-      variant -> { CheckoutIntents::Shipment::WithStatusBaseShipmentOrdered }
+      variant -> { ::CheckoutIntents::Shipment::WithStatusBaseShipmentOrdered }
 
-      variant -> { CheckoutIntents::Shipment::WithStatusBaseShipmentCanceled }
+      variant -> { ::CheckoutIntents::Shipment::WithStatusBaseShipmentCanceled }
 
-      class WithStatusBaseShipmentWithTrackingShipped < CheckoutIntents::Internal::Type::BaseModel
+      class WithStatusBaseShipmentWithTrackingShipped < ::CheckoutIntents::Internal::Type::BaseModel
         # @!attribute id
         #
         #   @return [String]
@@ -46,21 +46,21 @@ module CheckoutIntents
 
         # @!attribute status
         #
-        #   @return [Symbol, CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped::Status]
+        #   @return [Symbol, ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped::Status]
         required :status,
-                 enum: -> { CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::Status }
+                 enum: -> { ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::Status }
 
         # @!attribute tracking
         #
-        #   @return [CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped::Tracking]
-        required :tracking, -> { CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::Tracking }
+        #   @return [::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped::Tracking]
+        required :tracking, -> { ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::Tracking }
 
         # @!attribute tracking_events
         #
-        #   @return [Array<CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent>]
+        #   @return [Array<::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent>]
         required :tracking_events,
                  -> {
-                   CheckoutIntents::Internal::Type::ArrayOf[CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent]
+                   ::CheckoutIntents::Internal::Type::ArrayOf[::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent]
                  },
                  api_name: :trackingEvents
 
@@ -75,14 +75,14 @@ module CheckoutIntents
         #   @param created_at [Time]
         #   @param external_id [String]
         #   @param shipped_at [Time]
-        #   @param status [Symbol, CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped::Status]
-        #   @param tracking [CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped::Tracking]
-        #   @param tracking_events [Array<CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent>]
+        #   @param status [Symbol, ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped::Status]
+        #   @param tracking [::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped::Tracking]
+        #   @param tracking_events [Array<::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent>]
         #   @param updated_at [Time]
 
-        # @see CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped#status
+        # @see ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped#status
         module Status
-          extend CheckoutIntents::Internal::Type::Enum
+          extend ::CheckoutIntents::Internal::Type::Enum
 
           SHIPPED = :shipped
 
@@ -90,8 +90,8 @@ module CheckoutIntents
           #   @return [Array<Symbol>]
         end
 
-        # @see CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped#tracking
-        class Tracking < CheckoutIntents::Internal::Type::BaseModel
+        # @see ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped#tracking
+        class Tracking < ::CheckoutIntents::Internal::Type::BaseModel
           # @!attribute number
           #
           #   @return [String, nil]
@@ -119,7 +119,7 @@ module CheckoutIntents
           #   @param url [String, nil]
         end
 
-        class TrackingEvent < CheckoutIntents::Internal::Type::BaseModel
+        class TrackingEvent < ::CheckoutIntents::Internal::Type::BaseModel
           # @!attribute description
           #
           #   @return [String, nil]
@@ -137,18 +137,18 @@ module CheckoutIntents
 
           # @!attribute location
           #
-          #   @return [CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Location]
+          #   @return [::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Location]
           required :location,
-                   -> { CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Location }
+                   -> { ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Location }
 
           # @!method initialize(description:, display_date:, display_time:, location:)
           #   @param description [String, nil]
           #   @param display_date [String, nil]
           #   @param display_time [String, nil]
-          #   @param location [CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Location]
+          #   @param location [::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Location]
 
-          # @see CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent#location
-          class Location < CheckoutIntents::Internal::Type::BaseModel
+          # @see ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent#location
+          class Location < ::CheckoutIntents::Internal::Type::BaseModel
             # @!attribute city
             #
             #   @return [String, nil]
@@ -172,7 +172,7 @@ module CheckoutIntents
         end
       end
 
-      class DeliveredShipment < CheckoutIntents::Internal::Type::BaseModel
+      class DeliveredShipment < ::CheckoutIntents::Internal::Type::BaseModel
         # @!attribute id
         #
         #   @return [String]
@@ -205,20 +205,20 @@ module CheckoutIntents
 
         # @!attribute status
         #
-        #   @return [Symbol, CheckoutIntents::Models::Shipment::DeliveredShipment::Status]
-        required :status, enum: -> { CheckoutIntents::Shipment::DeliveredShipment::Status }
+        #   @return [Symbol, ::CheckoutIntents::Models::Shipment::DeliveredShipment::Status]
+        required :status, enum: -> { ::CheckoutIntents::Shipment::DeliveredShipment::Status }
 
         # @!attribute tracking
         #
-        #   @return [CheckoutIntents::Models::Shipment::DeliveredShipment::Tracking]
-        required :tracking, -> { CheckoutIntents::Shipment::DeliveredShipment::Tracking }
+        #   @return [::CheckoutIntents::Models::Shipment::DeliveredShipment::Tracking]
+        required :tracking, -> { ::CheckoutIntents::Shipment::DeliveredShipment::Tracking }
 
         # @!attribute tracking_events
         #
-        #   @return [Array<CheckoutIntents::Models::Shipment::DeliveredShipment::TrackingEvent>]
+        #   @return [Array<::CheckoutIntents::Models::Shipment::DeliveredShipment::TrackingEvent>]
         required :tracking_events,
                  -> {
-                   CheckoutIntents::Internal::Type::ArrayOf[CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent]
+                   ::CheckoutIntents::Internal::Type::ArrayOf[::CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent]
                  },
                  api_name: :trackingEvents
 
@@ -234,14 +234,14 @@ module CheckoutIntents
         #   @param delivered_at [Time]
         #   @param external_id [String]
         #   @param shipped_at [Time]
-        #   @param status [Symbol, CheckoutIntents::Models::Shipment::DeliveredShipment::Status]
-        #   @param tracking [CheckoutIntents::Models::Shipment::DeliveredShipment::Tracking]
-        #   @param tracking_events [Array<CheckoutIntents::Models::Shipment::DeliveredShipment::TrackingEvent>]
+        #   @param status [Symbol, ::CheckoutIntents::Models::Shipment::DeliveredShipment::Status]
+        #   @param tracking [::CheckoutIntents::Models::Shipment::DeliveredShipment::Tracking]
+        #   @param tracking_events [Array<::CheckoutIntents::Models::Shipment::DeliveredShipment::TrackingEvent>]
         #   @param updated_at [Time]
 
-        # @see CheckoutIntents::Models::Shipment::DeliveredShipment#status
+        # @see ::CheckoutIntents::Models::Shipment::DeliveredShipment#status
         module Status
-          extend CheckoutIntents::Internal::Type::Enum
+          extend ::CheckoutIntents::Internal::Type::Enum
 
           DELIVERED = :delivered
 
@@ -249,8 +249,8 @@ module CheckoutIntents
           #   @return [Array<Symbol>]
         end
 
-        # @see CheckoutIntents::Models::Shipment::DeliveredShipment#tracking
-        class Tracking < CheckoutIntents::Internal::Type::BaseModel
+        # @see ::CheckoutIntents::Models::Shipment::DeliveredShipment#tracking
+        class Tracking < ::CheckoutIntents::Internal::Type::BaseModel
           # @!attribute number
           #
           #   @return [String, nil]
@@ -278,7 +278,7 @@ module CheckoutIntents
           #   @param url [String, nil]
         end
 
-        class TrackingEvent < CheckoutIntents::Internal::Type::BaseModel
+        class TrackingEvent < ::CheckoutIntents::Internal::Type::BaseModel
           # @!attribute description
           #
           #   @return [String, nil]
@@ -296,17 +296,17 @@ module CheckoutIntents
 
           # @!attribute location
           #
-          #   @return [CheckoutIntents::Models::Shipment::DeliveredShipment::TrackingEvent::Location]
-          required :location, -> { CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Location }
+          #   @return [::CheckoutIntents::Models::Shipment::DeliveredShipment::TrackingEvent::Location]
+          required :location, -> { ::CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Location }
 
           # @!method initialize(description:, display_date:, display_time:, location:)
           #   @param description [String, nil]
           #   @param display_date [String, nil]
           #   @param display_time [String, nil]
-          #   @param location [CheckoutIntents::Models::Shipment::DeliveredShipment::TrackingEvent::Location]
+          #   @param location [::CheckoutIntents::Models::Shipment::DeliveredShipment::TrackingEvent::Location]
 
-          # @see CheckoutIntents::Models::Shipment::DeliveredShipment::TrackingEvent#location
-          class Location < CheckoutIntents::Internal::Type::BaseModel
+          # @see ::CheckoutIntents::Models::Shipment::DeliveredShipment::TrackingEvent#location
+          class Location < ::CheckoutIntents::Internal::Type::BaseModel
             # @!attribute city
             #
             #   @return [String, nil]
@@ -330,7 +330,7 @@ module CheckoutIntents
         end
       end
 
-      class WithStatusBaseShipmentWithTrackingDelayed < CheckoutIntents::Internal::Type::BaseModel
+      class WithStatusBaseShipmentWithTrackingDelayed < ::CheckoutIntents::Internal::Type::BaseModel
         # @!attribute id
         #
         #   @return [String]
@@ -358,21 +358,21 @@ module CheckoutIntents
 
         # @!attribute status
         #
-        #   @return [Symbol, CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed::Status]
+        #   @return [Symbol, ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed::Status]
         required :status,
-                 enum: -> { CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::Status }
+                 enum: -> { ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::Status }
 
         # @!attribute tracking
         #
-        #   @return [CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed::Tracking]
-        required :tracking, -> { CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::Tracking }
+        #   @return [::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed::Tracking]
+        required :tracking, -> { ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::Tracking }
 
         # @!attribute tracking_events
         #
-        #   @return [Array<CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent>]
+        #   @return [Array<::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent>]
         required :tracking_events,
                  -> {
-                   CheckoutIntents::Internal::Type::ArrayOf[CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent]
+                   ::CheckoutIntents::Internal::Type::ArrayOf[::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent]
                  },
                  api_name: :trackingEvents
 
@@ -387,14 +387,14 @@ module CheckoutIntents
         #   @param created_at [Time]
         #   @param external_id [String]
         #   @param shipped_at [Time]
-        #   @param status [Symbol, CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed::Status]
-        #   @param tracking [CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed::Tracking]
-        #   @param tracking_events [Array<CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent>]
+        #   @param status [Symbol, ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed::Status]
+        #   @param tracking [::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed::Tracking]
+        #   @param tracking_events [Array<::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent>]
         #   @param updated_at [Time]
 
-        # @see CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed#status
+        # @see ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed#status
         module Status
-          extend CheckoutIntents::Internal::Type::Enum
+          extend ::CheckoutIntents::Internal::Type::Enum
 
           DELAYED = :delayed
 
@@ -402,8 +402,8 @@ module CheckoutIntents
           #   @return [Array<Symbol>]
         end
 
-        # @see CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed#tracking
-        class Tracking < CheckoutIntents::Internal::Type::BaseModel
+        # @see ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed#tracking
+        class Tracking < ::CheckoutIntents::Internal::Type::BaseModel
           # @!attribute number
           #
           #   @return [String, nil]
@@ -431,7 +431,7 @@ module CheckoutIntents
           #   @param url [String, nil]
         end
 
-        class TrackingEvent < CheckoutIntents::Internal::Type::BaseModel
+        class TrackingEvent < ::CheckoutIntents::Internal::Type::BaseModel
           # @!attribute description
           #
           #   @return [String, nil]
@@ -449,18 +449,18 @@ module CheckoutIntents
 
           # @!attribute location
           #
-          #   @return [CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Location]
+          #   @return [::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Location]
           required :location,
-                   -> { CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Location }
+                   -> { ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Location }
 
           # @!method initialize(description:, display_date:, display_time:, location:)
           #   @param description [String, nil]
           #   @param display_date [String, nil]
           #   @param display_time [String, nil]
-          #   @param location [CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Location]
+          #   @param location [::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Location]
 
-          # @see CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent#location
-          class Location < CheckoutIntents::Internal::Type::BaseModel
+          # @see ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent#location
+          class Location < ::CheckoutIntents::Internal::Type::BaseModel
             # @!attribute city
             #
             #   @return [String, nil]
@@ -484,7 +484,7 @@ module CheckoutIntents
         end
       end
 
-      class WithStatusBaseShipmentWithTrackingOutForDelivery < CheckoutIntents::Internal::Type::BaseModel
+      class WithStatusBaseShipmentWithTrackingOutForDelivery < ::CheckoutIntents::Internal::Type::BaseModel
         # @!attribute id
         #
         #   @return [String]
@@ -512,22 +512,22 @@ module CheckoutIntents
 
         # @!attribute status
         #
-        #   @return [Symbol, CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::Status]
+        #   @return [Symbol, ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::Status]
         required :status,
-                 enum: -> { CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::Status }
+                 enum: -> { ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::Status }
 
         # @!attribute tracking
         #
-        #   @return [CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::Tracking]
+        #   @return [::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::Tracking]
         required :tracking,
-                 -> { CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::Tracking }
+                 -> { ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::Tracking }
 
         # @!attribute tracking_events
         #
-        #   @return [Array<CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent>]
+        #   @return [Array<::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent>]
         required :tracking_events,
                  -> {
-                   CheckoutIntents::Internal::Type::ArrayOf[CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent]
+                   ::CheckoutIntents::Internal::Type::ArrayOf[::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent]
                  },
                  api_name: :trackingEvents
 
@@ -542,14 +542,14 @@ module CheckoutIntents
         #   @param created_at [Time]
         #   @param external_id [String]
         #   @param shipped_at [Time]
-        #   @param status [Symbol, CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::Status]
-        #   @param tracking [CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::Tracking]
-        #   @param tracking_events [Array<CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent>]
+        #   @param status [Symbol, ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::Status]
+        #   @param tracking [::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::Tracking]
+        #   @param tracking_events [Array<::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent>]
         #   @param updated_at [Time]
 
-        # @see CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery#status
+        # @see ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery#status
         module Status
-          extend CheckoutIntents::Internal::Type::Enum
+          extend ::CheckoutIntents::Internal::Type::Enum
 
           OUT_FOR_DELIVERY = :out_for_delivery
 
@@ -557,8 +557,8 @@ module CheckoutIntents
           #   @return [Array<Symbol>]
         end
 
-        # @see CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery#tracking
-        class Tracking < CheckoutIntents::Internal::Type::BaseModel
+        # @see ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery#tracking
+        class Tracking < ::CheckoutIntents::Internal::Type::BaseModel
           # @!attribute number
           #
           #   @return [String, nil]
@@ -586,7 +586,7 @@ module CheckoutIntents
           #   @param url [String, nil]
         end
 
-        class TrackingEvent < CheckoutIntents::Internal::Type::BaseModel
+        class TrackingEvent < ::CheckoutIntents::Internal::Type::BaseModel
           # @!attribute description
           #
           #   @return [String, nil]
@@ -604,18 +604,18 @@ module CheckoutIntents
 
           # @!attribute location
           #
-          #   @return [CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Location]
+          #   @return [::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Location]
           required :location,
-                   -> { CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Location }
+                   -> { ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Location }
 
           # @!method initialize(description:, display_date:, display_time:, location:)
           #   @param description [String, nil]
           #   @param display_date [String, nil]
           #   @param display_time [String, nil]
-          #   @param location [CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Location]
+          #   @param location [::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Location]
 
-          # @see CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent#location
-          class Location < CheckoutIntents::Internal::Type::BaseModel
+          # @see ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent#location
+          class Location < ::CheckoutIntents::Internal::Type::BaseModel
             # @!attribute city
             #
             #   @return [String, nil]
@@ -639,7 +639,7 @@ module CheckoutIntents
         end
       end
 
-      class WithStatusBaseShipmentOrdered < CheckoutIntents::Internal::Type::BaseModel
+      class WithStatusBaseShipmentOrdered < ::CheckoutIntents::Internal::Type::BaseModel
         # @!attribute id
         #
         #   @return [String]
@@ -657,8 +657,8 @@ module CheckoutIntents
 
         # @!attribute status
         #
-        #   @return [Symbol, CheckoutIntents::Models::Shipment::WithStatusBaseShipmentOrdered::Status]
-        required :status, enum: -> { CheckoutIntents::Shipment::WithStatusBaseShipmentOrdered::Status }
+        #   @return [Symbol, ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentOrdered::Status]
+        required :status, enum: -> { ::CheckoutIntents::Shipment::WithStatusBaseShipmentOrdered::Status }
 
         # @!attribute updated_at
         #
@@ -669,12 +669,12 @@ module CheckoutIntents
         #   @param id [String]
         #   @param checkout_intent_id [String]
         #   @param created_at [Time]
-        #   @param status [Symbol, CheckoutIntents::Models::Shipment::WithStatusBaseShipmentOrdered::Status]
+        #   @param status [Symbol, ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentOrdered::Status]
         #   @param updated_at [Time]
 
-        # @see CheckoutIntents::Models::Shipment::WithStatusBaseShipmentOrdered#status
+        # @see ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentOrdered#status
         module Status
-          extend CheckoutIntents::Internal::Type::Enum
+          extend ::CheckoutIntents::Internal::Type::Enum
 
           ORDERED = :ordered
 
@@ -683,7 +683,7 @@ module CheckoutIntents
         end
       end
 
-      class WithStatusBaseShipmentCanceled < CheckoutIntents::Internal::Type::BaseModel
+      class WithStatusBaseShipmentCanceled < ::CheckoutIntents::Internal::Type::BaseModel
         # @!attribute id
         #
         #   @return [String]
@@ -701,8 +701,8 @@ module CheckoutIntents
 
         # @!attribute status
         #
-        #   @return [Symbol, CheckoutIntents::Models::Shipment::WithStatusBaseShipmentCanceled::Status]
-        required :status, enum: -> { CheckoutIntents::Shipment::WithStatusBaseShipmentCanceled::Status }
+        #   @return [Symbol, ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentCanceled::Status]
+        required :status, enum: -> { ::CheckoutIntents::Shipment::WithStatusBaseShipmentCanceled::Status }
 
         # @!attribute updated_at
         #
@@ -713,12 +713,12 @@ module CheckoutIntents
         #   @param id [String]
         #   @param checkout_intent_id [String]
         #   @param created_at [Time]
-        #   @param status [Symbol, CheckoutIntents::Models::Shipment::WithStatusBaseShipmentCanceled::Status]
+        #   @param status [Symbol, ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentCanceled::Status]
         #   @param updated_at [Time]
 
-        # @see CheckoutIntents::Models::Shipment::WithStatusBaseShipmentCanceled#status
+        # @see ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentCanceled#status
         module Status
-          extend CheckoutIntents::Internal::Type::Enum
+          extend ::CheckoutIntents::Internal::Type::Enum
 
           CANCELED = :canceled
 
@@ -728,7 +728,7 @@ module CheckoutIntents
       end
 
       # @!method self.variants
-      #   @return [Array(CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped, CheckoutIntents::Models::Shipment::DeliveredShipment, CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed, CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery, CheckoutIntents::Models::Shipment::WithStatusBaseShipmentOrdered, CheckoutIntents::Models::Shipment::WithStatusBaseShipmentCanceled)]
+      #   @return [Array(::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped, ::CheckoutIntents::Models::Shipment::DeliveredShipment, ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed, ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery, ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentOrdered, ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentCanceled)]
     end
   end
 end

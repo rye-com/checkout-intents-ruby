@@ -3,7 +3,7 @@
 module CheckoutIntents
   module Resources
     class CheckoutIntents
-      # @return [CheckoutIntents::Resources::CheckoutIntents::Shipments]
+      # @return [::CheckoutIntents::Resources::CheckoutIntents::Shipments]
       attr_reader :shipments
 
       # Create a checkout intent with the given request body.
@@ -343,7 +343,7 @@ module CheckoutIntents
       # @param client [::CheckoutIntents::Client]
       def initialize(client:)
         @client = client
-        @shipments = CheckoutIntents::Resources::CheckoutIntents::Shipments.new(client: client)
+        @shipments = ::CheckoutIntents::Resources::CheckoutIntents::Shipments.new(client: client)
       end
     end
   end

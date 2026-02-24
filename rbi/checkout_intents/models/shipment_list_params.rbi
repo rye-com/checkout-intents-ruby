@@ -2,15 +2,15 @@
 
 module CheckoutIntents
   module Models
-    class ShipmentListParams < CheckoutIntents::Internal::Type::BaseModel
-      extend CheckoutIntents::Internal::Type::RequestParameters::Converter
-      include CheckoutIntents::Internal::Type::RequestParameters
+    class ShipmentListParams < ::CheckoutIntents::Internal::Type::BaseModel
+      extend ::CheckoutIntents::Internal::Type::RequestParameters::Converter
+      include ::CheckoutIntents::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
           T.any(
-            CheckoutIntents::ShipmentListParams,
-            CheckoutIntents::Internal::AnyHash
+            ::CheckoutIntents::ShipmentListParams,
+            ::CheckoutIntents::Internal::AnyHash
           )
         end
 
@@ -41,7 +41,7 @@ module CheckoutIntents
       sig do
         returns(
           T.nilable(
-            T::Array[CheckoutIntents::ShipmentListParams::Status::OrSymbol]
+            T::Array[::CheckoutIntents::ShipmentListParams::Status::OrSymbol]
           )
         )
       end
@@ -50,7 +50,7 @@ module CheckoutIntents
       sig do
         params(
           status:
-            T::Array[CheckoutIntents::ShipmentListParams::Status::OrSymbol]
+            T::Array[::CheckoutIntents::ShipmentListParams::Status::OrSymbol]
         ).void
       end
       attr_writer :status
@@ -62,8 +62,8 @@ module CheckoutIntents
           ids: T::Array[String],
           limit: Float,
           status:
-            T::Array[CheckoutIntents::ShipmentListParams::Status::OrSymbol],
-          request_options: CheckoutIntents::RequestOptions::OrHash
+            T::Array[::CheckoutIntents::ShipmentListParams::Status::OrSymbol],
+          request_options: ::CheckoutIntents::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
@@ -84,8 +84,8 @@ module CheckoutIntents
             ids: T::Array[String],
             limit: Float,
             status:
-              T::Array[CheckoutIntents::ShipmentListParams::Status::OrSymbol],
-            request_options: CheckoutIntents::RequestOptions
+              T::Array[::CheckoutIntents::ShipmentListParams::Status::OrSymbol],
+            request_options: ::CheckoutIntents::RequestOptions
           }
         )
       end
@@ -93,48 +93,48 @@ module CheckoutIntents
       end
 
       module Status
-        extend CheckoutIntents::Internal::Type::Enum
+        extend ::CheckoutIntents::Internal::Type::Enum
 
         TaggedSymbol =
           T.type_alias do
-            T.all(Symbol, CheckoutIntents::ShipmentListParams::Status)
+            T.all(Symbol, ::CheckoutIntents::ShipmentListParams::Status)
           end
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         OUT_FOR_DELIVERY =
           T.let(
             :out_for_delivery,
-            CheckoutIntents::ShipmentListParams::Status::TaggedSymbol
+            ::CheckoutIntents::ShipmentListParams::Status::TaggedSymbol
           )
         DELIVERED =
           T.let(
             :delivered,
-            CheckoutIntents::ShipmentListParams::Status::TaggedSymbol
+            ::CheckoutIntents::ShipmentListParams::Status::TaggedSymbol
           )
         SHIPPED =
           T.let(
             :shipped,
-            CheckoutIntents::ShipmentListParams::Status::TaggedSymbol
+            ::CheckoutIntents::ShipmentListParams::Status::TaggedSymbol
           )
         CANCELED =
           T.let(
             :canceled,
-            CheckoutIntents::ShipmentListParams::Status::TaggedSymbol
+            ::CheckoutIntents::ShipmentListParams::Status::TaggedSymbol
           )
         DELAYED =
           T.let(
             :delayed,
-            CheckoutIntents::ShipmentListParams::Status::TaggedSymbol
+            ::CheckoutIntents::ShipmentListParams::Status::TaggedSymbol
           )
         ORDERED =
           T.let(
             :ordered,
-            CheckoutIntents::ShipmentListParams::Status::TaggedSymbol
+            ::CheckoutIntents::ShipmentListParams::Status::TaggedSymbol
           )
 
         sig do
           override.returns(
-            T::Array[CheckoutIntents::ShipmentListParams::Status::TaggedSymbol]
+            T::Array[::CheckoutIntents::ShipmentListParams::Status::TaggedSymbol]
           )
         end
         def self.values

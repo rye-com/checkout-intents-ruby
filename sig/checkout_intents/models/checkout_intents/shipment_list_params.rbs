@@ -25,7 +25,7 @@ module CheckoutIntents
           ?after: String,
           ?before: String,
           ?limit: Float,
-          ?request_options: CheckoutIntents::request_opts
+          ?request_options: ::CheckoutIntents::request_opts
         ) -> void
 
         def to_hash: -> {
