@@ -5,6 +5,9 @@ module CheckoutIntents
     module Resources
       module Betas
       end
+
+      module CheckoutIntents
+      end
     end
   end
 end

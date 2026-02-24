@@ -7,6 +7,7 @@ module CheckoutIntents
           quantity: Integer,
           ?buyer: CheckoutIntents::Betas::CheckoutSessionCreateParams::Buyer,
           ?constraints: CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints,
+          ?discover_promo_codes: bool,
           ?promo_codes: ::Array[String],
           ?variant_selections: ::Array[CheckoutIntents::VariantSelection],
           ?request_options: CheckoutIntents::request_opts
