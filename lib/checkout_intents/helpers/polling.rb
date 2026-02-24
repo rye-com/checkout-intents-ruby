@@ -23,16 +23,16 @@ module CheckoutIntents
 
       # Poll a checkout intent until the given condition is met.
       #
-      # @param client [CheckoutIntents::Client] The API client instance
+      # @param client [::CheckoutIntents::Client] The API client instance
       # @param id [String] The checkout intent ID to poll
       # @param condition [Proc] A callable that receives the intent and returns true when polling should stop
       # @param poll_interval [Float] Seconds between polling attempts
       # @param max_attempts [Integer] Maximum number of polling attempts
       # @param request_options [Hash{Symbol=>Object}, nil] Additional request options
       #
-      # @return [CheckoutIntents::Models::CheckoutIntent]
+      # @return [::CheckoutIntents::Models::CheckoutIntent]
       #
-      # @raise [CheckoutIntents::Errors::PollTimeoutError] If max attempts reached without the condition being met
+      # @raise [::CheckoutIntents::Errors::PollTimeoutError] If max attempts reached without the condition being met
       def poll_until(client, id, condition, poll_interval:, max_attempts:, request_options:)
         if max_attempts < 1
           warn(
