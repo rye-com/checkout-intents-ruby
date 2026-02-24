@@ -69,7 +69,9 @@ module CheckoutIntents
         sig { params(promo_codes: T::Array[String]).void }
         attr_writer :promo_codes
 
-        sig { returns(T.nilable(T::Array[::CheckoutIntents::VariantSelection])) }
+        sig do
+          returns(T.nilable(T::Array[::CheckoutIntents::VariantSelection]))
+        end
         attr_reader :variant_selections
 
         sig do
@@ -114,7 +116,8 @@ module CheckoutIntents
             {
               product_url: String,
               quantity: Integer,
-              buyer: ::CheckoutIntents::Betas::CheckoutSessionCreateParams::Buyer,
+              buyer:
+                ::CheckoutIntents::Betas::CheckoutSessionCreateParams::Buyer,
               constraints:
                 ::CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints,
               discover_promo_codes: T::Boolean,

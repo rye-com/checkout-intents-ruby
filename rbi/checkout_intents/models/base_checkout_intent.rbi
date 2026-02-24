@@ -36,7 +36,8 @@ module CheckoutIntents
 
       sig do
         params(
-          constraints: ::CheckoutIntents::BaseCheckoutIntent::Constraints::OrHash
+          constraints:
+            ::CheckoutIntents::BaseCheckoutIntent::Constraints::OrHash
         ).void
       end
       attr_writer :constraints
@@ -71,7 +72,8 @@ module CheckoutIntents
           created_at: Time,
           product_url: String,
           quantity: Integer,
-          constraints: ::CheckoutIntents::BaseCheckoutIntent::Constraints::OrHash,
+          constraints:
+            ::CheckoutIntents::BaseCheckoutIntent::Constraints::OrHash,
           discover_promo_codes: T::Boolean,
           promo_codes: T::Array[String],
           variant_selections:

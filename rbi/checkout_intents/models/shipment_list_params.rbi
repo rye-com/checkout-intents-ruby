@@ -134,7 +134,9 @@ module CheckoutIntents
 
         sig do
           override.returns(
-            T::Array[::CheckoutIntents::ShipmentListParams::Status::TaggedSymbol]
+            T::Array[
+              ::CheckoutIntents::ShipmentListParams::Status::TaggedSymbol
+            ]
           )
         end
         def self.values

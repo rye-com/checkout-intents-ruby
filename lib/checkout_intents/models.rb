@@ -33,9 +33,9 @@ module CheckoutIntents
   end
 
   ::CheckoutIntents::Internal::Util.walk_namespaces(::CheckoutIntents::Models)
-                                 .lazy
-                                 .grep(::CheckoutIntents::Internal::Type::Union)
-                                 .each do |mod|
+                                   .lazy
+                                   .grep(::CheckoutIntents::Internal::Type::Union)
+                                   .each do |mod|
     const = :Variants
     next if mod.sorbet_constant_defined?(const)
 

@@ -30,7 +30,9 @@ module CheckoutIntents
       # @!attribute discover_promo_codes
       #
       #   @return [Boolean, nil]
-      optional :discover_promo_codes, ::CheckoutIntents::Internal::Type::Boolean, api_name: :discoverPromoCodes
+      optional :discover_promo_codes,
+               ::CheckoutIntents::Internal::Type::Boolean,
+               api_name: :discoverPromoCodes
 
       # @!attribute promo_codes
       #
@@ -76,7 +78,9 @@ module CheckoutIntents
         #
         #   @return [Symbol, ::CheckoutIntents::Models::CheckoutIntentCreateParams::Constraints::OfferRetrievalEffort, nil]
         optional :offer_retrieval_effort,
-                 enum: -> { ::CheckoutIntents::CheckoutIntentCreateParams::Constraints::OfferRetrievalEffort },
+                 enum: -> {
+                   ::CheckoutIntents::CheckoutIntentCreateParams::Constraints::OfferRetrievalEffort
+                 },
                  api_name: :offerRetrievalEffort
 
         # @!method initialize(max_shipping_price: nil, max_total_price: nil, offer_retrieval_effort: nil)

@@ -1,7 +1,10 @@
 module CheckoutIntents
   module Models
     type variant_selection =
-      { label: String, value: ::CheckoutIntents::Models::VariantSelection::value }
+      {
+        label: String,
+        value: ::CheckoutIntents::Models::VariantSelection::value
+      }
 
     class VariantSelection < ::CheckoutIntents::Internal::Type::BaseModel
       attr_accessor label: String

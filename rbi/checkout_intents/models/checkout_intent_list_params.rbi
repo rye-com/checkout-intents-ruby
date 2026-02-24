@@ -41,7 +41,9 @@ module CheckoutIntents
       sig do
         returns(
           T.nilable(
-            T::Array[::CheckoutIntents::CheckoutIntentListParams::State::OrSymbol]
+            T::Array[
+              ::CheckoutIntents::CheckoutIntentListParams::State::OrSymbol
+            ]
           )
         )
       end
@@ -50,7 +52,9 @@ module CheckoutIntents
       sig do
         params(
           state:
-            T::Array[::CheckoutIntents::CheckoutIntentListParams::State::OrSymbol]
+            T::Array[
+              ::CheckoutIntents::CheckoutIntentListParams::State::OrSymbol
+            ]
         ).void
       end
       attr_writer :state
