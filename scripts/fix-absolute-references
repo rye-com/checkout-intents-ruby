@@ -5,21 +5,23 @@
 # CheckoutIntents:: references to absolute ::CheckoutIntents:: references.
 #
 # This is needed because the SDK module name (CheckoutIntents) collides
-# with the resource class name (CheckoutIntents::Resources::CheckoutIntents),
+# with the resource class name (CheckoutIntents::Resources::CheckoutIntents)
+# and the nested model namespace (CheckoutIntents::Models::CheckoutIntents),
 # causing both Sorbet and Ruby runtime to fail to resolve constants.
 
 require "pathname"
 
 root = Pathname.new(__dir__).join("..")
 
-# Fix both .rb (runtime) and .rbi (type definitions) files in resources directories
+# Fix .rb, .rbi, and .rbs files across all SDK directories
 directories = [
-  root.join("lib", "checkout_intents", "resources"),
-  root.join("rbi", "checkout_intents", "resources")
+  root.join("lib", "checkout_intents"),
+  root.join("rbi", "checkout_intents"),
+  root.join("sig", "checkout_intents")
 ]
 
 directories.each do |dir|
-  Dir.glob(dir.join("**/*.{rb,rbi}")).each do |file|
+  Dir.glob(dir.join("**/*.{rb,rbi,rbs}")).each do |file|
     content = File.read(file)
     updated = content.gsub(/(?<!:)CheckoutIntents::/, "::CheckoutIntents::")
 
