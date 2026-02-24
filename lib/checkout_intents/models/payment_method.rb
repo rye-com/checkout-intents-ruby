@@ -11,7 +11,7 @@ module CheckoutIntents
 
       variant -> { ::CheckoutIntents::PaymentMethod::NekudaPaymentMethod }
 
-      variant -> { CheckoutIntents::PaymentMethod::PravaPaymentMethod }
+      variant -> { ::CheckoutIntents::PaymentMethod::PravaPaymentMethod }
 
       variant -> { ::CheckoutIntents::PaymentMethod::PravaPaymentMethod }
 
@@ -119,7 +119,7 @@ module CheckoutIntents
         end
       end
 
-      class PravaPaymentMethod < CheckoutIntents::Internal::Type::BaseModel
+      class PravaPaymentMethod < ::CheckoutIntents::Internal::Type::BaseModel
         # @!attribute prava_token
         #
         #   @return [String]
@@ -127,16 +127,16 @@ module CheckoutIntents
 
         # @!attribute type
         #
-        #   @return [Symbol, CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod::Type]
-        required :type, enum: -> { CheckoutIntents::PaymentMethod::PravaPaymentMethod::Type }
+        #   @return [Symbol, ::CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod::Type]
+        required :type, enum: -> { ::CheckoutIntents::PaymentMethod::PravaPaymentMethod::Type }
 
         # @!method initialize(prava_token:, type:)
         #   @param prava_token [String]
-        #   @param type [Symbol, CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod::Type]
+        #   @param type [Symbol, ::CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod::Type]
 
-        # @see CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod#type
+        # @see ::CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod#type
         module Type
-          extend CheckoutIntents::Internal::Type::Enum
+          extend ::CheckoutIntents::Internal::Type::Enum
 
           PRAVA_TOKEN = :prava_token
 
