@@ -169,12 +169,6 @@ module CheckoutIntents
       )
       end
 
-      # Default polling interval in seconds
-      DEFAULT_POLL_INTERVAL = T.let(5.0, Float)
-
-      # Default maximum polling attempts
-      DEFAULT_MAX_ATTEMPTS = T.let(120, Integer)
-
       # Poll a checkout intent until it reaches a completed state (completed or failed).
       sig do
         params(
@@ -191,8 +185,8 @@ module CheckoutIntents
       end
       def poll_until_completed(
         id,
-        poll_interval: DEFAULT_POLL_INTERVAL,
-        max_attempts: DEFAULT_MAX_ATTEMPTS,
+        poll_interval: ::CheckoutIntents::Helpers::Polling::DEFAULT_POLL_INTERVAL,
+        max_attempts: ::CheckoutIntents::Helpers::Polling::DEFAULT_MAX_ATTEMPTS,
         request_options: {}
       )
       end
@@ -213,8 +207,8 @@ module CheckoutIntents
       end
       def poll_until_awaiting_confirmation(
         id,
-        poll_interval: DEFAULT_POLL_INTERVAL,
-        max_attempts: DEFAULT_MAX_ATTEMPTS,
+        poll_interval: ::CheckoutIntents::Helpers::Polling::DEFAULT_POLL_INTERVAL,
+        max_attempts: ::CheckoutIntents::Helpers::Polling::DEFAULT_MAX_ATTEMPTS,
         request_options: {}
       )
       end
@@ -247,8 +241,8 @@ module CheckoutIntents
         constraints: nil,
         promo_codes: nil,
         variant_selections: nil,
-        poll_interval: DEFAULT_POLL_INTERVAL,
-        max_attempts: DEFAULT_MAX_ATTEMPTS,
+        poll_interval: ::CheckoutIntents::Helpers::Polling::DEFAULT_POLL_INTERVAL,
+        max_attempts: ::CheckoutIntents::Helpers::Polling::DEFAULT_MAX_ATTEMPTS,
         request_options: {}
       )
       end
@@ -276,8 +270,8 @@ module CheckoutIntents
       def confirm_and_poll(
         id,
         payment_method:,
-        poll_interval: DEFAULT_POLL_INTERVAL,
-        max_attempts: DEFAULT_MAX_ATTEMPTS,
+        poll_interval: ::CheckoutIntents::Helpers::Polling::DEFAULT_POLL_INTERVAL,
+        max_attempts: ::CheckoutIntents::Helpers::Polling::DEFAULT_MAX_ATTEMPTS,
         request_options: {}
       )
       end

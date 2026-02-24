@@ -6,11 +6,6 @@ module CheckoutIntents
       # @return [::CheckoutIntents::Resources::CheckoutIntents::Shipments]
       attr_reader :shipments
 
-      # Default polling interval in seconds
-      DEFAULT_POLL_INTERVAL = 5.0
-
-      # Default maximum polling attempts
-      DEFAULT_MAX_ATTEMPTS = 120
       # Create a checkout intent with the given request body.
       #
       # @overload create(buyer:, product_url:, quantity:, constraints: nil, discover_promo_codes: nil, promo_codes: nil, variant_selections: nil, request_options: {})
@@ -192,13 +187,14 @@ module CheckoutIntents
       #   end
       def poll_until_completed(
         id,
-        poll_interval: DEFAULT_POLL_INTERVAL,
-        max_attempts: DEFAULT_MAX_ATTEMPTS,
+        poll_interval: Helpers::Polling::DEFAULT_POLL_INTERVAL,
+        max_attempts: Helpers::Polling::DEFAULT_MAX_ATTEMPTS,
         request_options: {}
       )
-        poll_until(
+        Helpers::Polling.poll_until(
+          @client,
           id,
-          ->(intent) { [:completed, :failed].include?(intent.state) },
+          Helpers::Polling::COMPLETED,
           poll_interval: poll_interval,
           max_attempts: max_attempts,
           request_options: request_options
@@ -229,13 +225,14 @@ module CheckoutIntents
       #   end
       def poll_until_awaiting_confirmation(
         id,
-        poll_interval: DEFAULT_POLL_INTERVAL,
-        max_attempts: DEFAULT_MAX_ATTEMPTS,
+        poll_interval: Helpers::Polling::DEFAULT_POLL_INTERVAL,
+        max_attempts: Helpers::Polling::DEFAULT_MAX_ATTEMPTS,
         request_options: {}
       )
-        poll_until(
+        Helpers::Polling.poll_until(
+          @client,
           id,
-          ->(intent) { [:awaiting_confirmation, :failed].include?(intent.state) },
+          Helpers::Polling::AWAITING_CONFIRMATION,
           poll_interval: poll_interval,
           max_attempts: max_attempts,
           request_options: request_options
@@ -278,8 +275,8 @@ module CheckoutIntents
         constraints: nil,
         promo_codes: nil,
         variant_selections: nil,
-        poll_interval: DEFAULT_POLL_INTERVAL,
-        max_attempts: DEFAULT_MAX_ATTEMPTS,
+        poll_interval: Helpers::Polling::DEFAULT_POLL_INTERVAL,
+        max_attempts: Helpers::Polling::DEFAULT_MAX_ATTEMPTS,
         request_options: {}
       )
         create_params = {
@@ -328,8 +325,8 @@ module CheckoutIntents
       def confirm_and_poll(
         id,
         payment_method:,
-        poll_interval: DEFAULT_POLL_INTERVAL,
-        max_attempts: DEFAULT_MAX_ATTEMPTS,
+        poll_interval: Helpers::Polling::DEFAULT_POLL_INTERVAL,
+        max_attempts: Helpers::Polling::DEFAULT_MAX_ATTEMPTS,
         request_options: {}
       )
         intent = confirm(id, payment_method: payment_method, request_options: request_options)
@@ -347,71 +344,6 @@ module CheckoutIntents
       def initialize(client:)
         @client = client
         @shipments = ::CheckoutIntents::Resources::CheckoutIntents::Shipments.new(client: client)
-      end
-
-      private
-
-      # Core polling implementation.
-      #
-      # @param id [String] The checkout intent ID
-      # @param condition [Proc] Returns true when polling should stop
-      # @param poll_interval [Float] Seconds between polls
-      # @param max_attempts [Integer] Maximum attempts
-      # @param request_options [Hash] Additional request options
-      #
-      # @return [::CheckoutIntents::Models::CheckoutIntent]
-      def poll_until(id, condition, poll_interval:, max_attempts:, request_options:)
-        if max_attempts < 1
-          warn(
-            "[Checkout Intents SDK] Invalid max_attempts value: #{max_attempts}. " \
-            "max_attempts must be >= 1. Defaulting to 1."
-          )
-          max_attempts = 1
-        end
-
-        attempts = 0
-        poll_headers = {
-          "x-stainless-poll-helper" => "true",
-          "x-stainless-custom-poll-interval" => (poll_interval * 1000).to_i.to_s
-        }
-
-        merged_options = (request_options || {}).merge(
-          extra_headers: ((request_options || {})[:extra_headers] || {}).merge(poll_headers)
-        )
-
-        while attempts < max_attempts
-          result = @client.request_with_headers(
-            method: :get,
-            path: ["api/v1/checkout-intents/%1$s", id],
-            model: ::CheckoutIntents::CheckoutIntent,
-            options: merged_options
-          )
-
-          intent = result[:data]
-          headers = result[:headers]
-
-          return intent if condition.call(intent)
-
-          attempts += 1
-
-          if attempts >= max_attempts
-            raise ::CheckoutIntents::Errors::PollTimeoutError.new(
-              intent_id: id,
-              attempts: attempts,
-              poll_interval: poll_interval,
-              max_attempts: max_attempts
-            )
-          end
-
-          # Check for server-suggested polling interval
-          sleep_interval = poll_interval
-          if (header_interval = headers["retry-after-ms"])
-            header_interval_ms = Integer(header_interval, exception: false)
-            sleep_interval = header_interval_ms / 1000.0 if header_interval_ms
-          end
-
-          sleep(sleep_interval)
-        end
       end
     end
   end
