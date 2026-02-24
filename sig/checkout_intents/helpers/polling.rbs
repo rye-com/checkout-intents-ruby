@@ -7,7 +7,9 @@ module CheckoutIntents
 
       COMPLETED: ^(::CheckoutIntents::Models::checkout_intent) -> bool
 
-      AWAITING_CONFIRMATION: ^(::CheckoutIntents::Models::checkout_intent) -> bool
+      AWAITING_CONFIRMATION: ^(
+        ::CheckoutIntents::Models::checkout_intent
+      ) -> bool
 
       def self.poll_until: (
         ::CheckoutIntents::Client client,
