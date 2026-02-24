@@ -17,8 +17,6 @@ module CheckoutIntents
 
     attr_reader checkout_intents: CheckoutIntents::Resources::CheckoutIntents
 
-    attr_reader shipments: CheckoutIntents::Resources::Shipments
-
     attr_reader betas: CheckoutIntents::Resources::Betas
 
     attr_reader brands: CheckoutIntents::Resources::Brands

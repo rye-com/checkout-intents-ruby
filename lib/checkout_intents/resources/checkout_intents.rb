@@ -3,9 +3,6 @@
 module CheckoutIntents
   module Resources
     class CheckoutIntents
-      # @return [::CheckoutIntents::Resources::CheckoutIntents::Shipments]
-      attr_reader :shipments
-
       # Default polling interval in seconds
       DEFAULT_POLL_INTERVAL = 5.0
 
@@ -344,7 +341,6 @@ module CheckoutIntents
       # @param client [::CheckoutIntents::Client]
       def initialize(client:)
         @client = client
-        @shipments = ::CheckoutIntents::Resources::CheckoutIntents::Shipments.new(client: client)
       end
 
       private
