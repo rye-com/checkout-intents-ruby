@@ -5,18 +5,18 @@ module CheckoutIntents
 
       DEFAULT_MAX_ATTEMPTS: Integer
 
-      COMPLETED: ^(CheckoutIntents::Models::checkout_intent) -> bool
+      COMPLETED: ^(::CheckoutIntents::Models::checkout_intent) -> bool
 
-      AWAITING_CONFIRMATION: ^(CheckoutIntents::Models::checkout_intent) -> bool
+      AWAITING_CONFIRMATION: ^(::CheckoutIntents::Models::checkout_intent) -> bool
 
       def self.poll_until: (
-        CheckoutIntents::Client client,
+        ::CheckoutIntents::Client client,
         String id,
-        ^(CheckoutIntents::Models::checkout_intent) -> bool condition,
+        ^(::CheckoutIntents::Models::checkout_intent) -> bool condition,
         poll_interval: Float,
         max_attempts: Integer,
-        request_options: CheckoutIntents::request_opts
-      ) -> CheckoutIntents::Models::checkout_intent
+        request_options: ::CheckoutIntents::request_opts
+      ) -> ::CheckoutIntents::Models::checkout_intent
     end
   end
 end
