@@ -7,7 +7,6 @@ module CheckoutIntents
         product_url: String,
         quantity: Integer,
         constraints: CheckoutIntents::CheckoutIntentPurchaseParams::Constraints,
-        discover_promo_codes: bool,
         promo_codes: ::Array[String],
         variant_selections: ::Array[CheckoutIntents::VariantSelection]
       }
@@ -31,10 +30,6 @@ module CheckoutIntents
         CheckoutIntents::CheckoutIntentPurchaseParams::Constraints
       ) -> CheckoutIntents::CheckoutIntentPurchaseParams::Constraints
 
-      attr_reader discover_promo_codes: bool?
-
-      def discover_promo_codes=: (bool) -> bool
-
       attr_reader promo_codes: ::Array[String]?
 
       def promo_codes=: (::Array[String]) -> ::Array[String]
@@ -51,7 +46,6 @@ module CheckoutIntents
         product_url: String,
         quantity: Integer,
         ?constraints: CheckoutIntents::CheckoutIntentPurchaseParams::Constraints,
-        ?discover_promo_codes: bool,
         ?promo_codes: ::Array[String],
         ?variant_selections: ::Array[CheckoutIntents::VariantSelection],
         ?request_options: CheckoutIntents::request_opts
@@ -63,7 +57,6 @@ module CheckoutIntents
         product_url: String,
         quantity: Integer,
         constraints: CheckoutIntents::CheckoutIntentPurchaseParams::Constraints,
-        discover_promo_codes: bool,
         promo_codes: ::Array[String],
         variant_selections: ::Array[CheckoutIntents::VariantSelection],
         request_options: CheckoutIntents::RequestOptions
