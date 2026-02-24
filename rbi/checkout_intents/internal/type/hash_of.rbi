@@ -7,8 +7,8 @@ module CheckoutIntents
       #
       # Hash of items of a given type.
       class HashOf
-        include CheckoutIntents::Internal::Type::Converter
-        include CheckoutIntents::Internal::Util::SorbetRuntimeSupport
+        include ::CheckoutIntents::Internal::Type::Converter
+        include ::CheckoutIntents::Internal::Util::SorbetRuntimeSupport
 
         abstract!
 
@@ -18,13 +18,13 @@ module CheckoutIntents
           params(
             type_info:
               T.any(
-                CheckoutIntents::Internal::AnyHash,
+                ::CheckoutIntents::Internal::AnyHash,
                 T.proc.returns(
-                  CheckoutIntents::Internal::Type::Converter::Input
+                  ::CheckoutIntents::Internal::Type::Converter::Input
                 ),
-                CheckoutIntents::Internal::Type::Converter::Input
+                ::CheckoutIntents::Internal::Type::Converter::Input
               ),
-            spec: CheckoutIntents::Internal::AnyHash
+            spec: ::CheckoutIntents::Internal::AnyHash
           ).returns(T.attached_class)
         end
         def self.[](type_info, spec = {})
@@ -47,9 +47,9 @@ module CheckoutIntents
           override
             .params(
               value: T.any(T::Hash[T.anything, T.anything], T.anything),
-              state: CheckoutIntents::Internal::Type::Converter::CoerceState
+              state: ::CheckoutIntents::Internal::Type::Converter::CoerceState
             )
-            .returns(T.any(CheckoutIntents::Internal::AnyHash, T.anything))
+            .returns(T.any(::CheckoutIntents::Internal::AnyHash, T.anything))
         end
         def coerce(value, state:)
         end
@@ -59,9 +59,9 @@ module CheckoutIntents
           override
             .params(
               value: T.any(T::Hash[T.anything, T.anything], T.anything),
-              state: CheckoutIntents::Internal::Type::Converter::DumpState
+              state: ::CheckoutIntents::Internal::Type::Converter::DumpState
             )
-            .returns(T.any(CheckoutIntents::Internal::AnyHash, T.anything))
+            .returns(T.any(::CheckoutIntents::Internal::AnyHash, T.anything))
         end
         def dump(value, state:)
         end
@@ -86,13 +86,13 @@ module CheckoutIntents
           params(
             type_info:
               T.any(
-                CheckoutIntents::Internal::AnyHash,
+                ::CheckoutIntents::Internal::AnyHash,
                 T.proc.returns(
-                  CheckoutIntents::Internal::Type::Converter::Input
+                  ::CheckoutIntents::Internal::Type::Converter::Input
                 ),
-                CheckoutIntents::Internal::Type::Converter::Input
+                ::CheckoutIntents::Internal::Type::Converter::Input
               ),
-            spec: CheckoutIntents::Internal::AnyHash
+            spec: ::CheckoutIntents::Internal::AnyHash
           ).void
         end
         def initialize(type_info, spec = {})

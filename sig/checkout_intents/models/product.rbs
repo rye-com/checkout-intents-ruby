@@ -3,33 +3,33 @@ module CheckoutIntents
     type product =
       {
         id: String,
-        availability: CheckoutIntents::Models::product_availability,
+        availability: ::CheckoutIntents::Models::product_availability,
         brand: String?,
         description: String?,
-        images: ::Array[CheckoutIntents::ProductImage],
+        images: ::Array[::CheckoutIntents::ProductImage],
         is_purchasable: bool,
         name: String,
-        price: CheckoutIntents::Money,
+        price: ::CheckoutIntents::Money,
         sku: String?,
         url: String
       }
 
-    class Product < CheckoutIntents::Internal::Type::BaseModel
+    class Product < ::CheckoutIntents::Internal::Type::BaseModel
       attr_accessor id: String
 
-      attr_accessor availability: CheckoutIntents::Models::product_availability
+      attr_accessor availability: ::CheckoutIntents::Models::product_availability
 
       attr_accessor brand: String?
 
       attr_accessor description: String?
 
-      attr_accessor images: ::Array[CheckoutIntents::ProductImage]
+      attr_accessor images: ::Array[::CheckoutIntents::ProductImage]
 
       attr_accessor is_purchasable: bool
 
       attr_accessor name: String
 
-      attr_accessor price: CheckoutIntents::Money
+      attr_accessor price: ::CheckoutIntents::Money
 
       attr_accessor sku: String?
 
@@ -37,26 +37,26 @@ module CheckoutIntents
 
       def initialize: (
         id: String,
-        availability: CheckoutIntents::Models::product_availability,
+        availability: ::CheckoutIntents::Models::product_availability,
         brand: String?,
         description: String?,
-        images: ::Array[CheckoutIntents::ProductImage],
+        images: ::Array[::CheckoutIntents::ProductImage],
         is_purchasable: bool,
         name: String,
-        price: CheckoutIntents::Money,
+        price: ::CheckoutIntents::Money,
         sku: String?,
         url: String
       ) -> void
 
       def to_hash: -> {
         id: String,
-        availability: CheckoutIntents::Models::product_availability,
+        availability: ::CheckoutIntents::Models::product_availability,
         brand: String?,
         description: String?,
-        images: ::Array[CheckoutIntents::ProductImage],
+        images: ::Array[::CheckoutIntents::ProductImage],
         is_purchasable: bool,
         name: String,
-        price: CheckoutIntents::Money,
+        price: ::CheckoutIntents::Money,
         sku: String?,
         url: String
       }

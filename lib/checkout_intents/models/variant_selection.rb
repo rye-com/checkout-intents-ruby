@@ -2,7 +2,7 @@
 
 module CheckoutIntents
   module Models
-    class VariantSelection < CheckoutIntents::Internal::Type::BaseModel
+    class VariantSelection < ::CheckoutIntents::Internal::Type::BaseModel
       # @!attribute label
       #
       #   @return [String]
@@ -11,15 +11,15 @@ module CheckoutIntents
       # @!attribute value
       #
       #   @return [String, Float]
-      required :value, union: -> { CheckoutIntents::VariantSelection::Value }
+      required :value, union: -> { ::CheckoutIntents::VariantSelection::Value }
 
       # @!method initialize(label:, value:)
       #   @param label [String]
       #   @param value [String, Float]
 
-      # @see CheckoutIntents::Models::VariantSelection#value
+      # @see ::CheckoutIntents::Models::VariantSelection#value
       module Value
-        extend CheckoutIntents::Internal::Type::Union
+        extend ::CheckoutIntents::Internal::Type::Union
 
         variant String
 

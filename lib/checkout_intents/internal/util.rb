@@ -157,7 +157,7 @@ module CheckoutIntents
           in Hash | nil => coerced
             coerced
           else
-            message = "Expected a #{Hash} or #{CheckoutIntents::Internal::Type::BaseModel}, got #{data.inspect}"
+            message = "Expected a #{Hash} or #{::CheckoutIntents::Internal::Type::BaseModel}, got #{data.inspect}"
             raise ArgumentError.new(message)
           end
         end
@@ -396,7 +396,7 @@ module CheckoutIntents
         def close
           case @stream
           in Enumerator
-            CheckoutIntents::Internal::Util.close_fused!(@stream)
+            ::CheckoutIntents::Internal::Util.close_fused!(@stream)
           in IO if close?
             @stream.close
           else
@@ -500,7 +500,7 @@ module CheckoutIntents
           content_line = "Content-Type: %s\r\n\r\n"
 
           case val
-          in CheckoutIntents::FilePart
+          in ::CheckoutIntents::FilePart
             return write_multipart_content(
               y,
               val: val.content,
@@ -545,7 +545,7 @@ module CheckoutIntents
           end
 
           case val
-          in CheckoutIntents::FilePart unless val.filename.nil?
+          in ::CheckoutIntents::FilePart unless val.filename.nil?
             filename = ERB::Util.url_encode(val.filename)
             y << "; filename=\"#{filename}\""
           in Pathname | IO
@@ -604,11 +604,11 @@ module CheckoutIntents
           # rubocop:disable Layout/LineLength
           content_type = headers["content-type"]
           case [content_type, body]
-          in [CheckoutIntents::Internal::Util::JSON_CONTENT, Hash | Array | -> { primitive?(_1) }]
+          in [::CheckoutIntents::Internal::Util::JSON_CONTENT, Hash | Array | -> { primitive?(_1) }]
             [headers, JSON.generate(body)]
-          in [CheckoutIntents::Internal::Util::JSONL_CONTENT, Enumerable] unless CheckoutIntents::Internal::Type::FileInput === body
+          in [::CheckoutIntents::Internal::Util::JSONL_CONTENT, Enumerable] unless ::CheckoutIntents::Internal::Type::FileInput === body
             [headers, body.lazy.map { JSON.generate(_1) }]
-          in [%r{^multipart/form-data}, Hash | CheckoutIntents::Internal::Type::FileInput]
+          in [%r{^multipart/form-data}, Hash | ::CheckoutIntents::Internal::Type::FileInput]
             boundary, strio = encode_multipart_streaming(body)
             headers = {**headers, "content-type" => "#{content_type}; boundary=#{boundary}"}
             [headers, strio]
@@ -616,7 +616,7 @@ module CheckoutIntents
             [headers, body.to_s]
           in [_, StringIO]
             [headers, body.string]
-          in [_, CheckoutIntents::FilePart]
+          in [_, ::CheckoutIntents::FilePart]
             [headers, body.content]
           else
             [headers, body]
@@ -656,7 +656,7 @@ module CheckoutIntents
         # @return [Object]
         def decode_content(headers, stream:, suppress_error: false)
           case (content_type = headers["content-type"])
-          in CheckoutIntents::Internal::Util::JSON_CONTENT
+          in ::CheckoutIntents::Internal::Util::JSON_CONTENT
             return nil if (json = stream.to_a.join).empty?
 
             begin
@@ -665,7 +665,7 @@ module CheckoutIntents
               raise e unless suppress_error
               json
             end
-          in CheckoutIntents::Internal::Util::JSONL_CONTENT
+          in ::CheckoutIntents::Internal::Util::JSONL_CONTENT
             lines = decode_lines(stream)
             chain_fused(lines) do |y|
               lines.each do
@@ -873,12 +873,12 @@ module CheckoutIntents
         class << self
           # @api private
           #
-          # @param type [CheckoutIntents::Internal::Util::SorbetRuntimeSupport, Object]
+          # @param type [::CheckoutIntents::Internal::Util::SorbetRuntimeSupport, Object]
           #
           # @return [Object]
           def to_sorbet_type(type)
             case type
-            in CheckoutIntents::Internal::Util::SorbetRuntimeSupport
+            in ::CheckoutIntents::Internal::Util::SorbetRuntimeSupport
               type.to_sorbet_type
             in Class | Module
               type
@@ -891,7 +891,7 @@ module CheckoutIntents
         end
       end
 
-      extend CheckoutIntents::Internal::Util::SorbetRuntimeSupport
+      extend ::CheckoutIntents::Internal::Util::SorbetRuntimeSupport
 
       define_sorbet_constant!(:ParsedUri) do
         T.type_alias do

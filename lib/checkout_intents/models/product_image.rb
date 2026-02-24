@@ -2,11 +2,11 @@
 
 module CheckoutIntents
   module Models
-    class ProductImage < CheckoutIntents::Internal::Type::BaseModel
+    class ProductImage < ::CheckoutIntents::Internal::Type::BaseModel
       # @!attribute is_featured
       #
       #   @return [Boolean]
-      required :is_featured, CheckoutIntents::Internal::Type::Boolean, api_name: :isFeatured
+      required :is_featured, ::CheckoutIntents::Internal::Type::Boolean, api_name: :isFeatured
 
       # @!attribute url
       #

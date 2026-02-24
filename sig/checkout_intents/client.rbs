@@ -1,5 +1,5 @@
 module CheckoutIntents
-  class Client < CheckoutIntents::Internal::Transport::BaseClient
+  class Client < ::CheckoutIntents::Internal::Transport::BaseClient
     DEFAULT_MAX_RETRIES: 2
 
     DEFAULT_TIMEOUT_IN_SECONDS: Float
@@ -15,15 +15,15 @@ module CheckoutIntents
 
     attr_reader api_key: String
 
-    attr_reader checkout_intents: CheckoutIntents::Resources::CheckoutIntents
+    attr_reader checkout_intents: ::CheckoutIntents::Resources::CheckoutIntents
 
-    attr_reader shipments: CheckoutIntents::Resources::Shipments
+    attr_reader shipments: ::CheckoutIntents::Resources::Shipments
 
-    attr_reader betas: CheckoutIntents::Resources::Betas
+    attr_reader betas: ::CheckoutIntents::Resources::Betas
 
-    attr_reader brands: CheckoutIntents::Resources::Brands
+    attr_reader brands: ::CheckoutIntents::Resources::Brands
 
-    attr_reader products: CheckoutIntents::Resources::Products
+    attr_reader products: ::CheckoutIntents::Resources::Products
 
     private def auth_headers: -> ::Hash[String, String]
 

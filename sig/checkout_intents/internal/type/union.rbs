@@ -2,10 +2,10 @@ module CheckoutIntents
   module Internal
     module Type
       module Union
-        include CheckoutIntents::Internal::Type::Converter
-        include CheckoutIntents::Internal::Util::SorbetRuntimeSupport
+        include ::CheckoutIntents::Internal::Type::Converter
+        include ::CheckoutIntents::Internal::Util::SorbetRuntimeSupport
 
-        private def self.known_variants: -> ::Array[[Symbol?, (^-> CheckoutIntents::Internal::Type::Converter::input), ::Hash[Symbol, top]]]
+        private def self.known_variants: -> ::Array[[Symbol?, (^-> ::CheckoutIntents::Internal::Type::Converter::input), ::Hash[Symbol, top]]]
 
         def self.derefed_variants: -> ::Array[[Symbol?, top, ::Hash[Symbol, top]]]
 
@@ -16,16 +16,16 @@ module CheckoutIntents
         private def self.variant: (
           Symbol
           | ::Hash[Symbol, top]
-          | ^-> CheckoutIntents::Internal::Type::Converter::input
-          | CheckoutIntents::Internal::Type::Converter::input key,
+          | ^-> ::CheckoutIntents::Internal::Type::Converter::input
+          | ::CheckoutIntents::Internal::Type::Converter::input key,
           ?::Hash[Symbol, top]
-          | ^-> CheckoutIntents::Internal::Type::Converter::input
-          | CheckoutIntents::Internal::Type::Converter::input spec
+          | ^-> ::CheckoutIntents::Internal::Type::Converter::input
+          | ::CheckoutIntents::Internal::Type::Converter::input spec
         ) -> void
 
         private def self.resolve_variant: (
           top value
-        ) -> CheckoutIntents::Internal::Type::Converter::input?
+        ) -> ::CheckoutIntents::Internal::Type::Converter::input?
 
         def ===: (top other) -> bool
 
@@ -35,12 +35,12 @@ module CheckoutIntents
 
         def coerce: (
           top value,
-          state: CheckoutIntents::Internal::Type::Converter::coerce_state
+          state: ::CheckoutIntents::Internal::Type::Converter::coerce_state
         ) -> top
 
         def dump: (
           top value,
-          state: CheckoutIntents::Internal::Type::Converter::dump_state
+          state: ::CheckoutIntents::Internal::Type::Converter::dump_state
         ) -> top
 
         def to_sorbet_type: -> top

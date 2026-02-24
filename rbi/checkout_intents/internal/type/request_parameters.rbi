@@ -6,11 +6,13 @@ module CheckoutIntents
       # @api private
       module RequestParameters
         # Options to specify HTTP behaviour for this request.
-        sig { returns(CheckoutIntents::RequestOptions) }
+        sig { returns(::CheckoutIntents::RequestOptions) }
         attr_reader :request_options
 
         sig do
-          params(request_options: CheckoutIntents::RequestOptions::OrHash).void
+          params(
+            request_options: ::CheckoutIntents::RequestOptions::OrHash
+          ).void
         end
         attr_writer :request_options
 
@@ -19,7 +21,7 @@ module CheckoutIntents
           # @api private
           sig do
             params(params: T.anything).returns(
-              [T.anything, CheckoutIntents::Internal::AnyHash]
+              [T.anything, ::CheckoutIntents::Internal::AnyHash]
             )
           end
           def dump_request(params)

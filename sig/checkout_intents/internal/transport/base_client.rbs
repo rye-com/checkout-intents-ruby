@@ -2,7 +2,7 @@ module CheckoutIntents
   module Internal
     module Transport
       class BaseClient
-        extend CheckoutIntents::Internal::Util::SorbetRuntimeSupport
+        extend ::CheckoutIntents::Internal::Util::SorbetRuntimeSupport
 
         type request_components =
           {
@@ -19,8 +19,8 @@ module CheckoutIntents
             | (^(top arg0) -> top))?,
             page: Class?,
             stream: Class?,
-            model: CheckoutIntents::Internal::Type::Converter::input?,
-            options: CheckoutIntents::request_opts?
+            model: ::CheckoutIntents::Internal::Type::Converter::input?,
+            options: ::CheckoutIntents::request_opts?
           }
         type request_input =
           {
@@ -37,7 +37,7 @@ module CheckoutIntents
         PLATFORM_HEADERS: ::Hash[String, String]
 
         def self.validate!: (
-          CheckoutIntents::Internal::Transport::BaseClient::request_components req
+          ::CheckoutIntents::Internal::Transport::BaseClient::request_components req
         ) -> void
 
         def self.should_retry?: (
@@ -46,13 +46,13 @@ module CheckoutIntents
         ) -> bool
 
         def self.follow_redirect: (
-          CheckoutIntents::Internal::Transport::BaseClient::request_input request,
+          ::CheckoutIntents::Internal::Transport::BaseClient::request_input request,
           status: Integer,
           response_headers: ::Hash[String, String]
-        ) -> CheckoutIntents::Internal::Transport::BaseClient::request_input
+        ) -> ::CheckoutIntents::Internal::Transport::BaseClient::request_input
 
         def self.reap_connection!: (
-          Integer | CheckoutIntents::Errors::APIConnectionError status,
+          Integer | ::CheckoutIntents::Errors::APIConnectionError status,
           stream: Enumerable[String]?
         ) -> void
 
@@ -71,7 +71,7 @@ module CheckoutIntents
         attr_reader idempotency_header: String?
 
         # @api private
-        attr_reader requester: CheckoutIntents::Internal::Transport::PooledNetRequester
+        attr_reader requester: ::CheckoutIntents::Internal::Transport::PooledNetRequester
 
         def initialize: (
           base_url: String,
@@ -92,9 +92,9 @@ module CheckoutIntents
         private def generate_idempotency_key: -> String
 
         private def build_request: (
-          CheckoutIntents::Internal::Transport::BaseClient::request_components req,
-          CheckoutIntents::request_options opts
-        ) -> CheckoutIntents::Internal::Transport::BaseClient::request_input
+          ::CheckoutIntents::Internal::Transport::BaseClient::request_components req,
+          ::CheckoutIntents::request_options opts
+        ) -> ::CheckoutIntents::Internal::Transport::BaseClient::request_input
 
         private def retry_delay: (
           ::Hash[String, String] headers,
@@ -102,7 +102,7 @@ module CheckoutIntents
         ) -> Float
 
         def send_request: (
-          CheckoutIntents::Internal::Transport::BaseClient::request_input request,
+          ::CheckoutIntents::Internal::Transport::BaseClient::request_input request,
           redirect_count: Integer,
           retry_count: Integer,
           send_retry_header: bool
@@ -122,8 +122,8 @@ module CheckoutIntents
           | (^(top arg0) -> top))?,
           ?page: Class?,
           ?stream: Class?,
-          ?model: CheckoutIntents::Internal::Type::Converter::input?,
-          ?options: CheckoutIntents::request_opts?
+          ?model: ::CheckoutIntents::Internal::Type::Converter::input?,
+          ?options: ::CheckoutIntents::request_opts?
         ) -> top
 
         def inspect: -> String

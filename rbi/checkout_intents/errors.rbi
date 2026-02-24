@@ -7,7 +7,7 @@ module CheckoutIntents
       attr_accessor :cause
     end
 
-    class ConversionError < CheckoutIntents::Errors::Error
+    class ConversionError < ::CheckoutIntents::Errors::Error
       sig { returns(T.nilable(StandardError)) }
       def cause
       end
@@ -26,7 +26,7 @@ module CheckoutIntents
       end
     end
 
-    class APIError < CheckoutIntents::Errors::Error
+    class APIError < ::CheckoutIntents::Errors::Error
       sig { returns(URI::Generic) }
       attr_accessor :url
 
@@ -63,7 +63,7 @@ module CheckoutIntents
       end
     end
 
-    class APIConnectionError < CheckoutIntents::Errors::APIError
+    class APIConnectionError < ::CheckoutIntents::Errors::APIError
       sig { returns(NilClass) }
       attr_accessor :status
 
@@ -94,7 +94,7 @@ module CheckoutIntents
       end
     end
 
-    class APITimeoutError < CheckoutIntents::Errors::APIConnectionError
+    class APITimeoutError < ::CheckoutIntents::Errors::APIConnectionError
       # @api private
       sig do
         params(
@@ -119,7 +119,7 @@ module CheckoutIntents
       end
     end
 
-    class APIStatusError < CheckoutIntents::Errors::APIError
+    class APIStatusError < ::CheckoutIntents::Errors::APIError
       # @api private
       sig do
         params(
@@ -170,39 +170,39 @@ module CheckoutIntents
       end
     end
 
-    class BadRequestError < CheckoutIntents::Errors::APIStatusError
+    class BadRequestError < ::CheckoutIntents::Errors::APIStatusError
       HTTP_STATUS = 400
     end
 
-    class AuthenticationError < CheckoutIntents::Errors::APIStatusError
+    class AuthenticationError < ::CheckoutIntents::Errors::APIStatusError
       HTTP_STATUS = 401
     end
 
-    class PermissionDeniedError < CheckoutIntents::Errors::APIStatusError
+    class PermissionDeniedError < ::CheckoutIntents::Errors::APIStatusError
       HTTP_STATUS = 403
     end
 
-    class NotFoundError < CheckoutIntents::Errors::APIStatusError
+    class NotFoundError < ::CheckoutIntents::Errors::APIStatusError
       HTTP_STATUS = 404
     end
 
-    class ConflictError < CheckoutIntents::Errors::APIStatusError
+    class ConflictError < ::CheckoutIntents::Errors::APIStatusError
       HTTP_STATUS = 409
     end
 
-    class UnprocessableEntityError < CheckoutIntents::Errors::APIStatusError
+    class UnprocessableEntityError < ::CheckoutIntents::Errors::APIStatusError
       HTTP_STATUS = 422
     end
 
-    class RateLimitError < CheckoutIntents::Errors::APIStatusError
+    class RateLimitError < ::CheckoutIntents::Errors::APIStatusError
       HTTP_STATUS = 429
     end
 
-    class InternalServerError < CheckoutIntents::Errors::APIStatusError
+    class InternalServerError < ::CheckoutIntents::Errors::APIStatusError
       HTTP_STATUS = T.let((500..), T::Range[Integer])
     end
 
-    class PollTimeoutError < CheckoutIntents::Errors::Error
+    class PollTimeoutError < ::CheckoutIntents::Errors::Error
       sig { returns(String) }
       attr_reader :intent_id
 

@@ -1,56 +1,56 @@
 # typed: strong
 
 module CheckoutIntents
-  BaseCheckoutIntent = CheckoutIntents::Models::BaseCheckoutIntent
+  BaseCheckoutIntent = ::CheckoutIntents::Models::BaseCheckoutIntent
 
-  Betas = CheckoutIntents::Models::Betas
+  Betas = ::CheckoutIntents::Models::Betas
 
-  BrandRetrieveParams = CheckoutIntents::Models::BrandRetrieveParams
+  BrandRetrieveParams = ::CheckoutIntents::Models::BrandRetrieveParams
 
-  Buyer = CheckoutIntents::Models::Buyer
+  Buyer = ::CheckoutIntents::Models::Buyer
 
-  CheckoutIntent = CheckoutIntents::Models::CheckoutIntent
+  CheckoutIntent = ::CheckoutIntents::Models::CheckoutIntent
 
   CheckoutIntentAddPaymentParams =
-    CheckoutIntents::Models::CheckoutIntentAddPaymentParams
+    ::CheckoutIntents::Models::CheckoutIntentAddPaymentParams
 
   CheckoutIntentConfirmParams =
-    CheckoutIntents::Models::CheckoutIntentConfirmParams
+    ::CheckoutIntents::Models::CheckoutIntentConfirmParams
 
   CheckoutIntentCreateParams =
-    CheckoutIntents::Models::CheckoutIntentCreateParams
+    ::CheckoutIntents::Models::CheckoutIntentCreateParams
 
-  CheckoutIntentListParams = CheckoutIntents::Models::CheckoutIntentListParams
+  CheckoutIntentListParams = ::CheckoutIntents::Models::CheckoutIntentListParams
 
   CheckoutIntentPurchaseParams =
-    CheckoutIntents::Models::CheckoutIntentPurchaseParams
+    ::CheckoutIntents::Models::CheckoutIntentPurchaseParams
 
   CheckoutIntentRetrieveParams =
-    CheckoutIntents::Models::CheckoutIntentRetrieveParams
+    ::CheckoutIntents::Models::CheckoutIntentRetrieveParams
 
-  CheckoutIntents = CheckoutIntents::Models::CheckoutIntents
+  CheckoutIntents = ::CheckoutIntents::Models::CheckoutIntents
 
-  CheckoutSession = CheckoutIntents::Models::CheckoutSession
+  CheckoutSession = ::CheckoutIntents::Models::CheckoutSession
 
-  Money = CheckoutIntents::Models::Money
+  Money = ::CheckoutIntents::Models::Money
 
-  Offer = CheckoutIntents::Models::Offer
+  Offer = ::CheckoutIntents::Models::Offer
 
-  PaymentMethod = CheckoutIntents::Models::PaymentMethod
+  PaymentMethod = ::CheckoutIntents::Models::PaymentMethod
 
-  Product = CheckoutIntents::Models::Product
+  Product = ::CheckoutIntents::Models::Product
 
-  ProductAvailability = CheckoutIntents::Models::ProductAvailability
+  ProductAvailability = ::CheckoutIntents::Models::ProductAvailability
 
-  ProductImage = CheckoutIntents::Models::ProductImage
+  ProductImage = ::CheckoutIntents::Models::ProductImage
 
-  ProductLookupParams = CheckoutIntents::Models::ProductLookupParams
+  ProductLookupParams = ::CheckoutIntents::Models::ProductLookupParams
 
-  Shipment = CheckoutIntents::Models::Shipment
+  Shipment = ::CheckoutIntents::Models::Shipment
 
-  ShipmentListParams = CheckoutIntents::Models::ShipmentListParams
+  ShipmentListParams = ::CheckoutIntents::Models::ShipmentListParams
 
-  ShipmentRetrieveParams = CheckoutIntents::Models::ShipmentRetrieveParams
+  ShipmentRetrieveParams = ::CheckoutIntents::Models::ShipmentRetrieveParams
 
-  VariantSelection = CheckoutIntents::Models::VariantSelection
+  VariantSelection = ::CheckoutIntents::Models::VariantSelection
 end

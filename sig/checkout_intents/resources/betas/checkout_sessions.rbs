@@ -5,15 +5,15 @@ module CheckoutIntents
         def create: (
           product_url: String,
           quantity: Integer,
-          ?buyer: CheckoutIntents::Betas::CheckoutSessionCreateParams::Buyer,
-          ?constraints: CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints,
+          ?buyer: ::CheckoutIntents::Betas::CheckoutSessionCreateParams::Buyer,
+          ?constraints: ::CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints,
           ?discover_promo_codes: bool,
           ?promo_codes: ::Array[String],
-          ?variant_selections: ::Array[CheckoutIntents::VariantSelection],
-          ?request_options: CheckoutIntents::request_opts
-        ) -> CheckoutIntents::CheckoutSession
+          ?variant_selections: ::Array[::CheckoutIntents::VariantSelection],
+          ?request_options: ::CheckoutIntents::request_opts
+        ) -> ::CheckoutIntents::CheckoutSession
 
-        def initialize: (client: CheckoutIntents::Client) -> void
+        def initialize: (client: ::CheckoutIntents::Client) -> void
       end
     end
   end

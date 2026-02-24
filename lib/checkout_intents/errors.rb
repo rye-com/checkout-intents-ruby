@@ -8,7 +8,7 @@ module CheckoutIntents
       #   @return [StandardError, nil]
     end
 
-    class ConversionError < CheckoutIntents::Errors::Error
+    class ConversionError < ::CheckoutIntents::Errors::Error
       # @return [StandardError, nil]
       def cause = @cause.nil? ? super : @cause
 
@@ -33,7 +33,7 @@ module CheckoutIntents
       end
     end
 
-    class APIError < CheckoutIntents::Errors::Error
+    class APIError < ::CheckoutIntents::Errors::Error
       # @return [URI::Generic]
       attr_accessor :url
 
@@ -66,7 +66,7 @@ module CheckoutIntents
       end
     end
 
-    class APIConnectionError < CheckoutIntents::Errors::APIError
+    class APIConnectionError < ::CheckoutIntents::Errors::APIError
       # @!attribute status
       #
       #   @return [nil]
@@ -97,7 +97,7 @@ module CheckoutIntents
       end
     end
 
-    class APITimeoutError < CheckoutIntents::Errors::APIConnectionError
+    class APITimeoutError < ::CheckoutIntents::Errors::APIConnectionError
       # @api private
       #
       # @param url [URI::Generic]
@@ -120,7 +120,7 @@ module CheckoutIntents
       end
     end
 
-    class APIStatusError < CheckoutIntents::Errors::APIError
+    class APIStatusError < ::CheckoutIntents::Errors::APIError
       # @api private
       #
       # @param url [URI::Generic]
@@ -146,23 +146,23 @@ module CheckoutIntents
 
         case status
         in 400
-          CheckoutIntents::Errors::BadRequestError.new(**kwargs)
+          ::CheckoutIntents::Errors::BadRequestError.new(**kwargs)
         in 401
-          CheckoutIntents::Errors::AuthenticationError.new(**kwargs)
+          ::CheckoutIntents::Errors::AuthenticationError.new(**kwargs)
         in 403
-          CheckoutIntents::Errors::PermissionDeniedError.new(**kwargs)
+          ::CheckoutIntents::Errors::PermissionDeniedError.new(**kwargs)
         in 404
-          CheckoutIntents::Errors::NotFoundError.new(**kwargs)
+          ::CheckoutIntents::Errors::NotFoundError.new(**kwargs)
         in 409
-          CheckoutIntents::Errors::ConflictError.new(**kwargs)
+          ::CheckoutIntents::Errors::ConflictError.new(**kwargs)
         in 422
-          CheckoutIntents::Errors::UnprocessableEntityError.new(**kwargs)
+          ::CheckoutIntents::Errors::UnprocessableEntityError.new(**kwargs)
         in 429
-          CheckoutIntents::Errors::RateLimitError.new(**kwargs)
+          ::CheckoutIntents::Errors::RateLimitError.new(**kwargs)
         in (500..)
-          CheckoutIntents::Errors::InternalServerError.new(**kwargs)
+          ::CheckoutIntents::Errors::InternalServerError.new(**kwargs)
         else
-          CheckoutIntents::Errors::APIStatusError.new(**kwargs)
+          ::CheckoutIntents::Errors::APIStatusError.new(**kwargs)
         end
       end
 
@@ -193,39 +193,39 @@ module CheckoutIntents
       end
     end
 
-    class BadRequestError < CheckoutIntents::Errors::APIStatusError
+    class BadRequestError < ::CheckoutIntents::Errors::APIStatusError
       HTTP_STATUS = 400
     end
 
-    class AuthenticationError < CheckoutIntents::Errors::APIStatusError
+    class AuthenticationError < ::CheckoutIntents::Errors::APIStatusError
       HTTP_STATUS = 401
     end
 
-    class PermissionDeniedError < CheckoutIntents::Errors::APIStatusError
+    class PermissionDeniedError < ::CheckoutIntents::Errors::APIStatusError
       HTTP_STATUS = 403
     end
 
-    class NotFoundError < CheckoutIntents::Errors::APIStatusError
+    class NotFoundError < ::CheckoutIntents::Errors::APIStatusError
       HTTP_STATUS = 404
     end
 
-    class ConflictError < CheckoutIntents::Errors::APIStatusError
+    class ConflictError < ::CheckoutIntents::Errors::APIStatusError
       HTTP_STATUS = 409
     end
 
-    class UnprocessableEntityError < CheckoutIntents::Errors::APIStatusError
+    class UnprocessableEntityError < ::CheckoutIntents::Errors::APIStatusError
       HTTP_STATUS = 422
     end
 
-    class RateLimitError < CheckoutIntents::Errors::APIStatusError
+    class RateLimitError < ::CheckoutIntents::Errors::APIStatusError
       HTTP_STATUS = 429
     end
 
-    class InternalServerError < CheckoutIntents::Errors::APIStatusError
+    class InternalServerError < ::CheckoutIntents::Errors::APIStatusError
       HTTP_STATUS = (500..)
     end
 
-    class PollTimeoutError < CheckoutIntents::Errors::Error
+    class PollTimeoutError < ::CheckoutIntents::Errors::Error
       # @return [String]
       attr_reader :intent_id
 

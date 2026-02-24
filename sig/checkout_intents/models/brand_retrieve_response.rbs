@@ -3,40 +3,40 @@ module CheckoutIntents
     type brand_retrieve_response =
       {
         id: String,
-        marketplace: CheckoutIntents::Models::BrandRetrieveResponse::marketplace,
+        marketplace: ::CheckoutIntents::Models::BrandRetrieveResponse::marketplace,
         supported: bool
       }
 
-    class BrandRetrieveResponse < CheckoutIntents::Internal::Type::BaseModel
+    class BrandRetrieveResponse < ::CheckoutIntents::Internal::Type::BaseModel
       attr_accessor id: String
 
-      attr_accessor marketplace: CheckoutIntents::Models::BrandRetrieveResponse::marketplace
+      attr_accessor marketplace: ::CheckoutIntents::Models::BrandRetrieveResponse::marketplace
 
       attr_accessor supported: bool
 
       def initialize: (
         id: String,
-        marketplace: CheckoutIntents::Models::BrandRetrieveResponse::marketplace,
+        marketplace: ::CheckoutIntents::Models::BrandRetrieveResponse::marketplace,
         supported: bool
       ) -> void
 
       def to_hash: -> {
         id: String,
-        marketplace: CheckoutIntents::Models::BrandRetrieveResponse::marketplace,
+        marketplace: ::CheckoutIntents::Models::BrandRetrieveResponse::marketplace,
         supported: bool
       }
 
       type marketplace = :AMAZON | :SHOPIFY | :BESTBUY | :UNKNOWN
 
       module Marketplace
-        extend CheckoutIntents::Internal::Type::Enum
+        extend ::CheckoutIntents::Internal::Type::Enum
 
         AMAZON: :AMAZON
         SHOPIFY: :SHOPIFY
         BESTBUY: :BESTBUY
         UNKNOWN: :UNKNOWN
 
-        def self?.values: -> ::Array[CheckoutIntents::Models::BrandRetrieveResponse::marketplace]
+        def self?.values: -> ::Array[::CheckoutIntents::Models::BrandRetrieveResponse::marketplace]
       end
     end
   end

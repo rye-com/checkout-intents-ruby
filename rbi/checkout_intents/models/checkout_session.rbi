@@ -2,12 +2,12 @@
 
 module CheckoutIntents
   module Models
-    class CheckoutSession < CheckoutIntents::Internal::Type::BaseModel
+    class CheckoutSession < ::CheckoutIntents::Internal::Type::BaseModel
       OrHash =
         T.type_alias do
           T.any(
-            CheckoutIntents::CheckoutSession,
-            CheckoutIntents::Internal::AnyHash
+            ::CheckoutIntents::CheckoutSession,
+            ::CheckoutIntents::Internal::AnyHash
           )
         end
 

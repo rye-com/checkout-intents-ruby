@@ -14,7 +14,7 @@ module CheckoutIntents
     #     puts(checkout_intent)
     #   end
     class CursorPagination
-      include CheckoutIntents::Internal::Type::BasePage
+      include ::CheckoutIntents::Internal::Type::BasePage
 
       # @return [Array<generic<Elem>>, nil]
       attr_accessor :data
@@ -27,7 +27,7 @@ module CheckoutIntents
         !data.to_a.empty? && (!page_info&.start_cursor.to_s.empty? || !page_info&.end_cursor.to_s.empty?)
       end
 
-      # @raise [CheckoutIntents::HTTP::Error]
+      # @raise [::CheckoutIntents::HTTP::Error]
       # @return [self]
       def next_page
         unless next_page?
@@ -35,7 +35,7 @@ module CheckoutIntents
           raise RuntimeError.new(message)
         end
 
-        req = CheckoutIntents::Internal::Util.deep_merge(
+        req = ::CheckoutIntents::Internal::Util.deep_merge(
           @req,
           {query: page_info&.start_cursor.nil? ? {after: page_info&.end_cursor} : {before: page_info&.start_cursor}}
         )
@@ -61,7 +61,7 @@ module CheckoutIntents
 
       # @api private
       #
-      # @param client [CheckoutIntents::Internal::Transport::BaseClient]
+      # @param client [::CheckoutIntents::Internal::Transport::BaseClient]
       # @param req [Hash{Symbol=>Object}]
       # @param headers [Hash{String=>String}]
       # @param page_data [Hash{Symbol=>Object}]
@@ -70,14 +70,14 @@ module CheckoutIntents
 
         case page_data
         in {data: Array => data}
-          @data = data.map { CheckoutIntents::Internal::Type::Converter.coerce(@model, _1) }
+          @data = data.map { ::CheckoutIntents::Internal::Type::Converter.coerce(@model, _1) }
         else
         end
         case page_data
         in {pageInfo: Hash | nil => page_info}
           @page_info =
-            CheckoutIntents::Internal::Type::Converter.coerce(
-              CheckoutIntents::Internal::CursorPagination::PageInfo,
+            ::CheckoutIntents::Internal::Type::Converter.coerce(
+              ::CheckoutIntents::Internal::CursorPagination::PageInfo,
               page_info
             )
         else
@@ -88,12 +88,12 @@ module CheckoutIntents
       #
       # @return [String]
       def inspect
-        model = CheckoutIntents::Internal::Type::Converter.inspect(@model, depth: 1)
+        model = ::CheckoutIntents::Internal::Type::Converter.inspect(@model, depth: 1)
 
         "#<#{self.class}[#{model}]:0x#{object_id.to_s(16)}>"
       end
 
-      class PageInfo < CheckoutIntents::Internal::Type::BaseModel
+      class PageInfo < ::CheckoutIntents::Internal::Type::BaseModel
         # @!attribute end_cursor
         #
         #   @return [String, nil]
@@ -102,12 +102,12 @@ module CheckoutIntents
         # @!attribute has_next_page
         #
         #   @return [Boolean, nil]
-        optional :has_next_page, CheckoutIntents::Internal::Type::Boolean, api_name: :hasNextPage
+        optional :has_next_page, ::CheckoutIntents::Internal::Type::Boolean, api_name: :hasNextPage
 
         # @!attribute has_previous_page
         #
         #   @return [Boolean, nil]
-        optional :has_previous_page, CheckoutIntents::Internal::Type::Boolean, api_name: :hasPreviousPage
+        optional :has_previous_page, ::CheckoutIntents::Internal::Type::Boolean, api_name: :hasPreviousPage
 
         # @!attribute start_cursor
         #

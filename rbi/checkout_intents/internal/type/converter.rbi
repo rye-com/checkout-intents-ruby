@@ -5,12 +5,12 @@ module CheckoutIntents
     module Type
       # @api private
       module Converter
-        extend CheckoutIntents::Internal::Util::SorbetRuntimeSupport
+        extend ::CheckoutIntents::Internal::Util::SorbetRuntimeSupport
 
         Input =
           T.type_alias do
             T.any(
-              CheckoutIntents::Internal::Type::Converter,
+              ::CheckoutIntents::Internal::Type::Converter,
               T::Class[T.anything]
             )
           end
@@ -37,7 +37,7 @@ module CheckoutIntents
           overridable
             .params(
               value: T.anything,
-              state: CheckoutIntents::Internal::Type::Converter::CoerceState
+              state: ::CheckoutIntents::Internal::Type::Converter::CoerceState
             )
             .returns(T.anything)
         end
@@ -49,7 +49,7 @@ module CheckoutIntents
           overridable
             .params(
               value: T.anything,
-              state: CheckoutIntents::Internal::Type::Converter::DumpState
+              state: ::CheckoutIntents::Internal::Type::Converter::DumpState
             )
             .returns(T.anything)
         end
@@ -75,20 +75,20 @@ module CheckoutIntents
                     enum:
                       T.nilable(
                         T.proc.returns(
-                          CheckoutIntents::Internal::Type::Converter::Input
+                          ::CheckoutIntents::Internal::Type::Converter::Input
                         )
                       ),
                     union:
                       T.nilable(
                         T.proc.returns(
-                          CheckoutIntents::Internal::Type::Converter::Input
+                          ::CheckoutIntents::Internal::Type::Converter::Input
                         )
                       )
                   },
                   T.proc.returns(
-                    CheckoutIntents::Internal::Type::Converter::Input
+                    ::CheckoutIntents::Internal::Type::Converter::Input
                   ),
-                  CheckoutIntents::Internal::Type::Converter::Input
+                  ::CheckoutIntents::Internal::Type::Converter::Input
                 )
             ).returns(T.proc.returns(T.anything))
           end
@@ -108,20 +108,20 @@ module CheckoutIntents
                     enum:
                       T.nilable(
                         T.proc.returns(
-                          CheckoutIntents::Internal::Type::Converter::Input
+                          ::CheckoutIntents::Internal::Type::Converter::Input
                         )
                       ),
                     union:
                       T.nilable(
                         T.proc.returns(
-                          CheckoutIntents::Internal::Type::Converter::Input
+                          ::CheckoutIntents::Internal::Type::Converter::Input
                         )
                       )
                   },
                   T.proc.returns(
-                    CheckoutIntents::Internal::Type::Converter::Input
+                    ::CheckoutIntents::Internal::Type::Converter::Input
                   ),
-                  CheckoutIntents::Internal::Type::Converter::Input
+                  ::CheckoutIntents::Internal::Type::Converter::Input
                 ),
               spec:
                 T.any(
@@ -133,22 +133,22 @@ module CheckoutIntents
                     enum:
                       T.nilable(
                         T.proc.returns(
-                          CheckoutIntents::Internal::Type::Converter::Input
+                          ::CheckoutIntents::Internal::Type::Converter::Input
                         )
                       ),
                     union:
                       T.nilable(
                         T.proc.returns(
-                          CheckoutIntents::Internal::Type::Converter::Input
+                          ::CheckoutIntents::Internal::Type::Converter::Input
                         )
                       )
                   },
                   T.proc.returns(
-                    CheckoutIntents::Internal::Type::Converter::Input
+                    ::CheckoutIntents::Internal::Type::Converter::Input
                   ),
-                  CheckoutIntents::Internal::Type::Converter::Input
+                  ::CheckoutIntents::Internal::Type::Converter::Input
                 )
-            ).returns(CheckoutIntents::Internal::AnyHash)
+            ).returns(::CheckoutIntents::Internal::AnyHash)
           end
           def self.meta_info(type_info, spec)
           end
@@ -156,7 +156,7 @@ module CheckoutIntents
           # @api private
           sig do
             params(translate_names: T::Boolean).returns(
-              CheckoutIntents::Internal::Type::Converter::CoerceState
+              ::CheckoutIntents::Internal::Type::Converter::CoerceState
             )
           end
           def self.new_coerce_state(translate_names: true)
@@ -175,9 +175,9 @@ module CheckoutIntents
           # See https://docs.pydantic.dev/latest/concepts/unions/#smart-mode
           sig do
             params(
-              target: CheckoutIntents::Internal::Type::Converter::Input,
+              target: ::CheckoutIntents::Internal::Type::Converter::Input,
               value: T.anything,
-              state: CheckoutIntents::Internal::Type::Converter::CoerceState
+              state: ::CheckoutIntents::Internal::Type::Converter::CoerceState
             ).returns(T.anything)
           end
           def self.coerce(
@@ -199,16 +199,16 @@ module CheckoutIntents
             # - `no`: the value cannot be converted to the target type.
             #
             # See implementation below for more details.
-            state: CheckoutIntents::Internal::Type::Converter.new_coerce_state
+            state: ::CheckoutIntents::Internal::Type::Converter.new_coerce_state
           )
           end
 
           # @api private
           sig do
             params(
-              target: CheckoutIntents::Internal::Type::Converter::Input,
+              target: ::CheckoutIntents::Internal::Type::Converter::Input,
               value: T.anything,
-              state: CheckoutIntents::Internal::Type::Converter::DumpState
+              state: ::CheckoutIntents::Internal::Type::Converter::DumpState
             ).returns(T.anything)
           end
           def self.dump(target, value, state: { can_retry: true })

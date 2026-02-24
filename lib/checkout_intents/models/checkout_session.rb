@@ -2,7 +2,7 @@
 
 module CheckoutIntents
   module Models
-    class CheckoutSession < CheckoutIntents::Internal::Type::BaseModel
+    class CheckoutSession < ::CheckoutIntents::Internal::Type::BaseModel
       # @!attribute url
       #   URL to send your user to for checkout. This URL is valid for 4 hours.
       #

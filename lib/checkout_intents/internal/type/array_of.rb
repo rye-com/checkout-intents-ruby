@@ -11,14 +11,14 @@ module CheckoutIntents
       #
       # Array of items of a given type.
       class ArrayOf
-        include CheckoutIntents::Internal::Type::Converter
-        include CheckoutIntents::Internal::Util::SorbetRuntimeSupport
+        include ::CheckoutIntents::Internal::Type::Converter
+        include ::CheckoutIntents::Internal::Util::SorbetRuntimeSupport
 
         private_class_method :new
 
         # @overload [](type_info, spec = {})
         #
-        # @param type_info [Hash{Symbol=>Object}, Proc, CheckoutIntents::Internal::Type::Converter, Class]
+        # @param type_info [Hash{Symbol=>Object}, Proc, ::CheckoutIntents::Internal::Type::Converter, Class]
         #
         # @param spec [Hash{Symbol=>Object}] .
         #
@@ -47,7 +47,7 @@ module CheckoutIntents
         # @return [Boolean]
         def ==(other)
           # rubocop:disable Layout/LineLength
-          other.is_a?(CheckoutIntents::Internal::Type::ArrayOf) && other.nilable? == nilable? && other.item_type == item_type
+          other.is_a?(::CheckoutIntents::Internal::Type::ArrayOf) && other.nilable? == nilable? && other.item_type == item_type
           # rubocop:enable Layout/LineLength
         end
 
@@ -91,7 +91,7 @@ module CheckoutIntents
                 exactness[:yes] += 1
                 nil
               else
-                CheckoutIntents::Internal::Type::Converter.coerce(target, item, state: state)
+                ::CheckoutIntents::Internal::Type::Converter.coerce(target, item, state: state)
               end
             end
         end
@@ -109,7 +109,7 @@ module CheckoutIntents
           target = item_type
           if value.is_a?(Array)
             value.map do
-              CheckoutIntents::Internal::Type::Converter.dump(target, _1, state: state)
+              ::CheckoutIntents::Internal::Type::Converter.dump(target, _1, state: state)
             end
           else
             super
@@ -120,7 +120,7 @@ module CheckoutIntents
         #
         # @return [Object]
         def to_sorbet_type
-          T::Array[CheckoutIntents::Internal::Util::SorbetRuntimeSupport.to_sorbet_type(item_type)]
+          T::Array[::CheckoutIntents::Internal::Util::SorbetRuntimeSupport.to_sorbet_type(item_type)]
         end
 
         # @api private
@@ -135,7 +135,7 @@ module CheckoutIntents
 
         # @api private
         #
-        # @param type_info [Hash{Symbol=>Object}, Proc, CheckoutIntents::Internal::Type::Converter, Class]
+        # @param type_info [Hash{Symbol=>Object}, Proc, ::CheckoutIntents::Internal::Type::Converter, Class]
         #
         # @param spec [Hash{Symbol=>Object}] .
         #
@@ -147,8 +147,8 @@ module CheckoutIntents
         #
         #   @option spec [Boolean] :"nil?"
         def initialize(type_info, spec = {})
-          @item_type_fn = CheckoutIntents::Internal::Type::Converter.type_info(type_info || spec)
-          @meta = CheckoutIntents::Internal::Type::Converter.meta_info(type_info, spec)
+          @item_type_fn = ::CheckoutIntents::Internal::Type::Converter.type_info(type_info || spec)
+          @meta = ::CheckoutIntents::Internal::Type::Converter.meta_info(type_info, spec)
           @nilable = spec.fetch(:nil?, false)
         end
 
@@ -158,7 +158,7 @@ module CheckoutIntents
         #
         # @return [String]
         def inspect(depth: 0)
-          items = CheckoutIntents::Internal::Type::Converter.inspect(item_type, depth: depth.succ)
+          items = ::CheckoutIntents::Internal::Type::Converter.inspect(item_type, depth: depth.succ)
 
           "#{self.class}[#{[items, nilable? ? 'nil' : nil].compact.join(' | ')}]"
         end
