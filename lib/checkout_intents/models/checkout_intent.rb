@@ -206,7 +206,6 @@ module CheckoutIntents
             BOT_PROTECTION_BLOCKED = :bot_protection_blocked
             CONSTRAINT_TOTAL_PRICE_EXCEEDED = :constraint_total_price_exceeded
             CONSTRAINT_SHIPPING_COST_EXCEEDED = :constraint_shipping_cost_exceeded
-            PROMO_CODE_DISCOVERY_NOT_ENABLED = :promo_code_discovery_not_enabled
             UNKNOWN = :unknown
 
             # @!method self.values

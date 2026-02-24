@@ -30,13 +30,6 @@ module CheckoutIntents
         #   @return [CheckoutIntents::Models::Betas::CheckoutSessionCreateParams::Constraints, nil]
         optional :constraints, -> { CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints }
 
-        # @!attribute discover_promo_codes
-        #
-        #   @return [Boolean, nil]
-        optional :discover_promo_codes,
-                 CheckoutIntents::Internal::Type::Boolean,
-                 api_name: :discoverPromoCodes
-
         # @!attribute promo_codes
         #
         #   @return [Array<String>, nil]
@@ -49,7 +42,7 @@ module CheckoutIntents
                  -> { CheckoutIntents::Internal::Type::ArrayOf[CheckoutIntents::VariantSelection] },
                  api_name: :variantSelections
 
-        # @!method initialize(product_url:, quantity:, buyer: nil, constraints: nil, discover_promo_codes: nil, promo_codes: nil, variant_selections: nil, request_options: {})
+        # @!method initialize(product_url:, quantity:, buyer: nil, constraints: nil, promo_codes: nil, variant_selections: nil, request_options: {})
         #   Some parameter documentations has been truncated, see
         #   {CheckoutIntents::Models::Betas::CheckoutSessionCreateParams} for more details.
         #
@@ -60,8 +53,6 @@ module CheckoutIntents
         #   @param buyer [CheckoutIntents::Models::Betas::CheckoutSessionCreateParams::Buyer] Optional buyer information, used to pre-fill the checkout form with the buyer's
         #
         #   @param constraints [CheckoutIntents::Models::Betas::CheckoutSessionCreateParams::Constraints]
-        #
-        #   @param discover_promo_codes [Boolean]
         #
         #   @param promo_codes [Array<String>]
         #

@@ -601,11 +601,6 @@ module CheckoutIntents
                 :constraint_shipping_cost_exceeded,
                 CheckoutIntents::CheckoutIntent::FailedCheckoutIntent::FailureReason::Code::TaggedSymbol
               )
-            PROMO_CODE_DISCOVERY_NOT_ENABLED =
-              T.let(
-                :promo_code_discovery_not_enabled,
-                CheckoutIntents::CheckoutIntent::FailedCheckoutIntent::FailureReason::Code::TaggedSymbol
-              )
             UNKNOWN =
               T.let(
                 :unknown,

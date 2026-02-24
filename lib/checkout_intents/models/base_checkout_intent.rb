@@ -33,11 +33,6 @@ module CheckoutIntents
       #   @return [CheckoutIntents::Models::BaseCheckoutIntent::Constraints, nil]
       optional :constraints, -> { CheckoutIntents::BaseCheckoutIntent::Constraints }
 
-      # @!attribute discover_promo_codes
-      #
-      #   @return [Boolean, nil]
-      optional :discover_promo_codes, CheckoutIntents::Internal::Type::Boolean, api_name: :discoverPromoCodes
-
       # @!attribute promo_codes
       #
       #   @return [Array<String>, nil]
@@ -50,14 +45,13 @@ module CheckoutIntents
                -> { CheckoutIntents::Internal::Type::ArrayOf[CheckoutIntents::VariantSelection] },
                api_name: :variantSelections
 
-      # @!method initialize(id:, buyer:, created_at:, product_url:, quantity:, constraints: nil, discover_promo_codes: nil, promo_codes: nil, variant_selections: nil)
+      # @!method initialize(id:, buyer:, created_at:, product_url:, quantity:, constraints: nil, promo_codes: nil, variant_selections: nil)
       #   @param id [String]
       #   @param buyer [CheckoutIntents::Models::Buyer]
       #   @param created_at [Time]
       #   @param product_url [String]
       #   @param quantity [Integer]
       #   @param constraints [CheckoutIntents::Models::BaseCheckoutIntent::Constraints]
-      #   @param discover_promo_codes [Boolean]
       #   @param promo_codes [Array<String>]
       #   @param variant_selections [Array<CheckoutIntents::Models::VariantSelection>]
 
