@@ -98,6 +98,11 @@ module CheckoutIntents
       end
 
       class CompletedCheckoutIntent < ::CheckoutIntents::Models::BaseCheckoutIntent
+        # @!attribute estimated_delivery_date
+        #
+        #   @return [Time, nil]
+        required :estimated_delivery_date, Time, api_name: :estimatedDeliveryDate, nil?: true
+
         # @!attribute offer
         #
         #   @return [::CheckoutIntents::Models::Offer]
