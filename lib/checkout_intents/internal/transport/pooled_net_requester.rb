@@ -5,7 +5,7 @@ module CheckoutIntents
     module Transport
       # @api private
       class PooledNetRequester
-        extend CheckoutIntents::Internal::Util::SorbetRuntimeSupport
+        extend ::CheckoutIntents::Internal::Util::SorbetRuntimeSupport
 
         # from the golang stdlib
         # https://github.com/golang/go/blob/c8eced8580028328fde7c03cbfcb720ce15b2358/src/net/http/transport.go#L49
@@ -44,7 +44,7 @@ module CheckoutIntents
           # @param conn [Net::HTTP]
           # @param deadline [Float]
           def calibrate_socket_timeout(conn, deadline)
-            timeout = deadline - CheckoutIntents::Internal::Util.monotonic_secs
+            timeout = deadline - ::CheckoutIntents::Internal::Util.monotonic_secs
             conn.open_timeout = conn.read_timeout = conn.write_timeout = conn.continue_timeout = timeout
           end
 
@@ -78,13 +78,13 @@ module CheckoutIntents
               req["content-length"] ||= 0 unless req["transfer-encoding"]
             in String
               req["content-length"] ||= body.bytesize.to_s unless req["transfer-encoding"]
-              req.body_stream = CheckoutIntents::Internal::Util::ReadIOAdapter.new(body, &blk)
+              req.body_stream = ::CheckoutIntents::Internal::Util::ReadIOAdapter.new(body, &blk)
             in StringIO
               req["content-length"] ||= body.size.to_s unless req["transfer-encoding"]
-              req.body_stream = CheckoutIntents::Internal::Util::ReadIOAdapter.new(body, &blk)
+              req.body_stream = ::CheckoutIntents::Internal::Util::ReadIOAdapter.new(body, &blk)
             in Pathname | IO | Enumerator
               req["transfer-encoding"] ||= "chunked" unless req["content-length"]
-              req.body_stream = CheckoutIntents::Internal::Util::ReadIOAdapter.new(body, &blk)
+              req.body_stream = ::CheckoutIntents::Internal::Util::ReadIOAdapter.new(body, &blk)
             end
 
             [req, req.body_stream&.method(:close)]
@@ -100,8 +100,8 @@ module CheckoutIntents
         # @raise [Timeout::Error]
         # @yieldparam [Net::HTTP]
         private def with_pool(url, deadline:, &blk)
-          origin = CheckoutIntents::Internal::Util.uri_origin(url)
-          timeout = deadline - CheckoutIntents::Internal::Util.monotonic_secs
+          origin = ::CheckoutIntents::Internal::Util.uri_origin(url)
+          timeout = deadline - ::CheckoutIntents::Internal::Util.monotonic_secs
           pool =
             @mutex.synchronize do
               @pools[origin] ||= ConnectionPool.new(size: @size) do
@@ -177,14 +177,14 @@ module CheckoutIntents
               end
             end
           rescue Timeout::Error
-            raise CheckoutIntents::Errors::APITimeoutError.new(url: url, request: req)
+            raise ::CheckoutIntents::Errors::APITimeoutError.new(url: url, request: req)
           rescue StandardError
-            raise CheckoutIntents::Errors::APIConnectionError.new(url: url, request: req)
+            raise ::CheckoutIntents::Errors::APIConnectionError.new(url: url, request: req)
           end
           # rubocop:enable Metrics/BlockLength
 
           _, response = enum.next
-          body = CheckoutIntents::Internal::Util.fused_enum(enum, external: true) do
+          body = ::CheckoutIntents::Internal::Util.fused_enum(enum, external: true) do
             finished = true
             loop { enum.next }
           end

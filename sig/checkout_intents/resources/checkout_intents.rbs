@@ -1,96 +1,96 @@
 module CheckoutIntents
   module Resources
     class CheckoutIntents
-      attr_reader shipments: CheckoutIntents::Resources::CheckoutIntents::Shipments
+      attr_reader shipments: ::CheckoutIntents::Resources::CheckoutIntents::Shipments
 
       def create: (
-        buyer: CheckoutIntents::Buyer,
+        buyer: ::CheckoutIntents::Buyer,
         product_url: String,
         quantity: Integer,
-        ?constraints: CheckoutIntents::CheckoutIntentCreateParams::Constraints,
+        ?constraints: ::CheckoutIntents::CheckoutIntentCreateParams::Constraints,
         ?discover_promo_codes: bool,
         ?promo_codes: ::Array[String],
-        ?variant_selections: ::Array[CheckoutIntents::VariantSelection],
-        ?request_options: CheckoutIntents::request_opts
-      ) -> CheckoutIntents::Models::checkout_intent
+        ?variant_selections: ::Array[::CheckoutIntents::VariantSelection],
+        ?request_options: ::CheckoutIntents::request_opts
+      ) -> ::CheckoutIntents::Models::checkout_intent
 
       def retrieve: (
         String id,
-        ?request_options: CheckoutIntents::request_opts
-      ) -> CheckoutIntents::Models::checkout_intent
+        ?request_options: ::CheckoutIntents::request_opts
+      ) -> ::CheckoutIntents::Models::checkout_intent
 
       def list: (
         ?id: ::Array[String],
         ?after: String,
         ?before: String,
         ?limit: Float,
-        ?state: ::Array[CheckoutIntents::Models::CheckoutIntentListParams::state],
-        ?request_options: CheckoutIntents::request_opts
-      ) -> CheckoutIntents::Internal::CursorPagination[CheckoutIntents::Models::checkout_intent]
+        ?state: ::Array[::CheckoutIntents::Models::CheckoutIntentListParams::state],
+        ?request_options: ::CheckoutIntents::request_opts
+      ) -> ::CheckoutIntents::Internal::CursorPagination[::CheckoutIntents::Models::checkout_intent]
 
       def add_payment: (
         String id,
-        payment_method: CheckoutIntents::Models::payment_method,
-        ?request_options: CheckoutIntents::request_opts
-      ) -> CheckoutIntents::Models::checkout_intent
+        payment_method: ::CheckoutIntents::Models::payment_method,
+        ?request_options: ::CheckoutIntents::request_opts
+      ) -> ::CheckoutIntents::Models::checkout_intent
 
       def confirm: (
         String id,
-        payment_method: CheckoutIntents::Models::payment_method,
-        ?request_options: CheckoutIntents::request_opts
-      ) -> CheckoutIntents::Models::checkout_intent
+        payment_method: ::CheckoutIntents::Models::payment_method,
+        ?request_options: ::CheckoutIntents::request_opts
+      ) -> ::CheckoutIntents::Models::checkout_intent
 
       def purchase: (
-        buyer: CheckoutIntents::Buyer,
-        payment_method: CheckoutIntents::Models::payment_method,
+        buyer: ::CheckoutIntents::Buyer,
+        payment_method: ::CheckoutIntents::Models::payment_method,
         product_url: String,
         quantity: Integer,
-        ?constraints: CheckoutIntents::CheckoutIntentPurchaseParams::Constraints,
+        ?constraints: ::CheckoutIntents::CheckoutIntentPurchaseParams::Constraints,
         ?discover_promo_codes: bool,
         ?promo_codes: ::Array[String],
-        ?variant_selections: ::Array[CheckoutIntents::VariantSelection],
-        ?request_options: CheckoutIntents::request_opts
-      ) -> CheckoutIntents::Models::checkout_intent
+        ?variant_selections: ::Array[::CheckoutIntents::VariantSelection],
+        ?request_options: ::CheckoutIntents::request_opts
+      ) -> ::CheckoutIntents::Models::checkout_intent
 
       def poll_until_completed: (
         String id,
         ?poll_interval: Float,
         ?max_attempts: Integer,
-        ?request_options: CheckoutIntents::request_opts
-      ) -> (CheckoutIntents::CheckoutIntent::CompletedCheckoutIntent
-      | CheckoutIntents::CheckoutIntent::FailedCheckoutIntent)
+        ?request_options: ::CheckoutIntents::request_opts
+      ) -> (::CheckoutIntents::CheckoutIntent::CompletedCheckoutIntent
+      | ::CheckoutIntents::CheckoutIntent::FailedCheckoutIntent)
 
       def poll_until_awaiting_confirmation: (
         String id,
         ?poll_interval: Float,
         ?max_attempts: Integer,
-        ?request_options: CheckoutIntents::request_opts
-      ) -> (CheckoutIntents::CheckoutIntent::AwaitingConfirmationCheckoutIntent
-      | CheckoutIntents::CheckoutIntent::FailedCheckoutIntent)
+        ?request_options: ::CheckoutIntents::request_opts
+      ) -> (::CheckoutIntents::CheckoutIntent::AwaitingConfirmationCheckoutIntent
+      | ::CheckoutIntents::CheckoutIntent::FailedCheckoutIntent)
 
       def create_and_poll: (
-        buyer: CheckoutIntents::Buyer,
+        buyer: ::CheckoutIntents::Buyer,
         product_url: String,
         quantity: Integer,
-        ?constraints: CheckoutIntents::CheckoutIntentCreateParams::Constraints,
+        ?constraints: ::CheckoutIntents::CheckoutIntentCreateParams::Constraints,
         ?promo_codes: ::Array[String],
-        ?variant_selections: ::Array[CheckoutIntents::VariantSelection],
+        ?variant_selections: ::Array[::CheckoutIntents::VariantSelection],
         ?poll_interval: Float,
         ?max_attempts: Integer,
-        ?request_options: CheckoutIntents::request_opts
-      ) -> (CheckoutIntents::CheckoutIntent::AwaitingConfirmationCheckoutIntent
-      | CheckoutIntents::CheckoutIntent::FailedCheckoutIntent)
+        ?request_options: ::CheckoutIntents::request_opts
+      ) -> (::CheckoutIntents::CheckoutIntent::AwaitingConfirmationCheckoutIntent
+      | ::CheckoutIntents::CheckoutIntent::FailedCheckoutIntent)
 
       def confirm_and_poll: (
         String id,
-        payment_method: CheckoutIntents::Models::payment_method,
+        payment_method: ::CheckoutIntents::Models::payment_method,
         ?poll_interval: Float,
         ?max_attempts: Integer,
-        ?request_options: CheckoutIntents::request_opts
-      ) -> (CheckoutIntents::CheckoutIntent::CompletedCheckoutIntent
-      | CheckoutIntents::CheckoutIntent::FailedCheckoutIntent)
+        ?request_options: ::CheckoutIntents::request_opts
+      ) -> (::CheckoutIntents::CheckoutIntent::CompletedCheckoutIntent
+      | ::CheckoutIntents::CheckoutIntent::FailedCheckoutIntent)
 
-      def initialize: (client: CheckoutIntents::Client) -> void
+      def initialize: (client: ::CheckoutIntents::Client) -> void
     end
   end
 end

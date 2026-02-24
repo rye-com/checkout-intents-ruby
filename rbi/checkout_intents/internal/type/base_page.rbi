@@ -28,9 +28,9 @@ module CheckoutIntents
         # @api private
         sig do
           params(
-            client: CheckoutIntents::Internal::Transport::BaseClient,
+            client: ::CheckoutIntents::Internal::Transport::BaseClient,
             req:
-              CheckoutIntents::Internal::Transport::BaseClient::RequestComponents,
+              ::CheckoutIntents::Internal::Transport::BaseClient::RequestComponents,
             headers: T::Hash[String, String],
             page_data: T.anything
           ).void

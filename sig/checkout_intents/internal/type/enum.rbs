@@ -2,8 +2,8 @@ module CheckoutIntents
   module Internal
     module Type
       module Enum
-        include CheckoutIntents::Internal::Type::Converter
-        include CheckoutIntents::Internal::Util::SorbetRuntimeSupport
+        include ::CheckoutIntents::Internal::Type::Converter
+        include ::CheckoutIntents::Internal::Util::SorbetRuntimeSupport
 
         def self.values: -> ::Array[(nil | bool | Integer | Float | Symbol)]
 
@@ -15,12 +15,12 @@ module CheckoutIntents
 
         def coerce: (
           String | Symbol | top value,
-          state: CheckoutIntents::Internal::Type::Converter::coerce_state
+          state: ::CheckoutIntents::Internal::Type::Converter::coerce_state
         ) -> (Symbol | top)
 
         def dump: (
           Symbol | top value,
-          state: CheckoutIntents::Internal::Type::Converter::dump_state
+          state: ::CheckoutIntents::Internal::Type::Converter::dump_state
         ) -> (Symbol | top)
 
         def to_sorbet_type: -> top

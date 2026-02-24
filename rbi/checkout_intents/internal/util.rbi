@@ -4,7 +4,7 @@ module CheckoutIntents
   module Internal
     # @api private
     module Util
-      extend CheckoutIntents::Internal::Util::SorbetRuntimeSupport
+      extend ::CheckoutIntents::Internal::Util::SorbetRuntimeSupport
 
       # @api private
       sig { returns(Float) }
@@ -128,7 +128,7 @@ module CheckoutIntents
           params(
             data:
               T.any(
-                CheckoutIntents::Internal::AnyHash,
+                ::CheckoutIntents::Internal::AnyHash,
                 T::Array[T.anything],
                 T.anything
               ),
@@ -198,7 +198,7 @@ module CheckoutIntents
         # @api private
         sig do
           params(url: T.any(URI::Generic, String)).returns(
-            CheckoutIntents::Internal::Util::ParsedUri
+            ::CheckoutIntents::Internal::Util::ParsedUri
           )
         end
         def parse_uri(url)
@@ -206,7 +206,7 @@ module CheckoutIntents
 
         # @api private
         sig do
-          params(parsed: CheckoutIntents::Internal::Util::ParsedUri).returns(
+          params(parsed: ::CheckoutIntents::Internal::Util::ParsedUri).returns(
             URI::Generic
           )
         end
@@ -216,8 +216,8 @@ module CheckoutIntents
         # @api private
         sig do
           params(
-            lhs: CheckoutIntents::Internal::Util::ParsedUri,
-            rhs: CheckoutIntents::Internal::Util::ParsedUri
+            lhs: ::CheckoutIntents::Internal::Util::ParsedUri,
+            rhs: ::CheckoutIntents::Internal::Util::ParsedUri
           ).returns(URI::Generic)
         end
         def join_parsed_uri(lhs, rhs)
@@ -430,7 +430,7 @@ module CheckoutIntents
         # Assumes that `lines` has been decoded with `#decode_lines`.
         sig do
           params(lines: T::Enumerable[String]).returns(
-            T::Enumerable[CheckoutIntents::Internal::Util::ServerSentEvent]
+            T::Enumerable[::CheckoutIntents::Internal::Util::ServerSentEvent]
           )
         end
         def decode_sse(lines)
@@ -473,7 +473,7 @@ module CheckoutIntents
             params(
               type:
                 T.any(
-                  CheckoutIntents::Internal::Util::SorbetRuntimeSupport,
+                  ::CheckoutIntents::Internal::Util::SorbetRuntimeSupport,
                   T.anything
                 )
             ).returns(T.anything)

@@ -1,49 +1,49 @@
 module CheckoutIntents
-  class BaseCheckoutIntent = CheckoutIntents::Models::BaseCheckoutIntent
+  class BaseCheckoutIntent = ::CheckoutIntents::Models::BaseCheckoutIntent
 
-  module Betas = CheckoutIntents::Models::Betas
+  module Betas = ::CheckoutIntents::Models::Betas
 
-  class BrandRetrieveParams = CheckoutIntents::Models::BrandRetrieveParams
+  class BrandRetrieveParams = ::CheckoutIntents::Models::BrandRetrieveParams
 
-  class Buyer = CheckoutIntents::Models::Buyer
+  class Buyer = ::CheckoutIntents::Models::Buyer
 
-  module CheckoutIntent = CheckoutIntents::Models::CheckoutIntent
+  module CheckoutIntent = ::CheckoutIntents::Models::CheckoutIntent
 
-  class CheckoutIntentAddPaymentParams = CheckoutIntents::Models::CheckoutIntentAddPaymentParams
+  class CheckoutIntentAddPaymentParams = ::CheckoutIntents::Models::CheckoutIntentAddPaymentParams
 
-  class CheckoutIntentConfirmParams = CheckoutIntents::Models::CheckoutIntentConfirmParams
+  class CheckoutIntentConfirmParams = ::CheckoutIntents::Models::CheckoutIntentConfirmParams
 
-  class CheckoutIntentCreateParams = CheckoutIntents::Models::CheckoutIntentCreateParams
+  class CheckoutIntentCreateParams = ::CheckoutIntents::Models::CheckoutIntentCreateParams
 
-  class CheckoutIntentListParams = CheckoutIntents::Models::CheckoutIntentListParams
+  class CheckoutIntentListParams = ::CheckoutIntents::Models::CheckoutIntentListParams
 
-  class CheckoutIntentPurchaseParams = CheckoutIntents::Models::CheckoutIntentPurchaseParams
+  class CheckoutIntentPurchaseParams = ::CheckoutIntents::Models::CheckoutIntentPurchaseParams
 
-  class CheckoutIntentRetrieveParams = CheckoutIntents::Models::CheckoutIntentRetrieveParams
+  class CheckoutIntentRetrieveParams = ::CheckoutIntents::Models::CheckoutIntentRetrieveParams
 
-  module CheckoutIntents = CheckoutIntents::Models::CheckoutIntents
+  module CheckoutIntents = ::CheckoutIntents::Models::CheckoutIntents
 
-  class CheckoutSession = CheckoutIntents::Models::CheckoutSession
+  class CheckoutSession = ::CheckoutIntents::Models::CheckoutSession
 
-  class Money = CheckoutIntents::Models::Money
+  class Money = ::CheckoutIntents::Models::Money
 
-  class Offer = CheckoutIntents::Models::Offer
+  class Offer = ::CheckoutIntents::Models::Offer
 
-  module PaymentMethod = CheckoutIntents::Models::PaymentMethod
+  module PaymentMethod = ::CheckoutIntents::Models::PaymentMethod
 
-  class Product = CheckoutIntents::Models::Product
+  class Product = ::CheckoutIntents::Models::Product
 
-  module ProductAvailability = CheckoutIntents::Models::ProductAvailability
+  module ProductAvailability = ::CheckoutIntents::Models::ProductAvailability
 
-  class ProductImage = CheckoutIntents::Models::ProductImage
+  class ProductImage = ::CheckoutIntents::Models::ProductImage
 
-  class ProductLookupParams = CheckoutIntents::Models::ProductLookupParams
+  class ProductLookupParams = ::CheckoutIntents::Models::ProductLookupParams
 
-  module Shipment = CheckoutIntents::Models::Shipment
+  module Shipment = ::CheckoutIntents::Models::Shipment
 
-  class ShipmentListParams = CheckoutIntents::Models::ShipmentListParams
+  class ShipmentListParams = ::CheckoutIntents::Models::ShipmentListParams
 
-  class ShipmentRetrieveParams = CheckoutIntents::Models::ShipmentRetrieveParams
+  class ShipmentRetrieveParams = ::CheckoutIntents::Models::ShipmentRetrieveParams
 
-  class VariantSelection = CheckoutIntents::Models::VariantSelection
+  class VariantSelection = ::CheckoutIntents::Models::VariantSelection
 end

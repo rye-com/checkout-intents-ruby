@@ -5,7 +5,7 @@ module CheckoutIntents
     module Transport
       # @api private
       class BaseClient
-        extend CheckoutIntents::Internal::Util::SorbetRuntimeSupport
+        extend ::CheckoutIntents::Internal::Util::SorbetRuntimeSupport
 
         abstract!
 
@@ -44,15 +44,15 @@ module CheckoutIntents
               page:
                 T.nilable(
                   T::Class[
-                    CheckoutIntents::Internal::Type::BasePage[
-                      CheckoutIntents::Internal::Type::BaseModel
+                    ::CheckoutIntents::Internal::Type::BasePage[
+                      ::CheckoutIntents::Internal::Type::BaseModel
                     ]
                   ]
                 ),
               stream: T.nilable(T::Class[T.anything]),
               model:
-                T.nilable(CheckoutIntents::Internal::Type::Converter::Input),
-              options: T.nilable(CheckoutIntents::RequestOptions::OrHash)
+                T.nilable(::CheckoutIntents::Internal::Type::Converter::Input),
+              options: T.nilable(::CheckoutIntents::RequestOptions::OrHash)
             }
           end
 
@@ -78,7 +78,7 @@ module CheckoutIntents
           sig do
             params(
               req:
-                CheckoutIntents::Internal::Transport::BaseClient::RequestComponents
+                ::CheckoutIntents::Internal::Transport::BaseClient::RequestComponents
             ).void
           end
           def validate!(req)
@@ -97,11 +97,11 @@ module CheckoutIntents
           sig do
             params(
               request:
-                CheckoutIntents::Internal::Transport::BaseClient::RequestInput,
+                ::CheckoutIntents::Internal::Transport::BaseClient::RequestInput,
               status: Integer,
               response_headers: T::Hash[String, String]
             ).returns(
-              CheckoutIntents::Internal::Transport::BaseClient::RequestInput
+              ::CheckoutIntents::Internal::Transport::BaseClient::RequestInput
             )
           end
           def follow_redirect(request, status:, response_headers:)
@@ -111,7 +111,7 @@ module CheckoutIntents
           sig do
             params(
               status:
-                T.any(Integer, CheckoutIntents::Errors::APIConnectionError),
+                T.any(Integer, ::CheckoutIntents::Errors::APIConnectionError),
               stream: T.nilable(T::Enumerable[String])
             ).void
           end
@@ -142,7 +142,7 @@ module CheckoutIntents
 
         # @api private
         sig do
-          returns(CheckoutIntents::Internal::Transport::PooledNetRequester)
+          returns(::CheckoutIntents::Internal::Transport::PooledNetRequester)
         end
         attr_reader :requester
 
@@ -199,11 +199,11 @@ module CheckoutIntents
           overridable
             .params(
               req:
-                CheckoutIntents::Internal::Transport::BaseClient::RequestComponents,
-              opts: CheckoutIntents::Internal::AnyHash
+                ::CheckoutIntents::Internal::Transport::BaseClient::RequestComponents,
+              opts: ::CheckoutIntents::Internal::AnyHash
             )
             .returns(
-              CheckoutIntents::Internal::Transport::BaseClient::RequestInput
+              ::CheckoutIntents::Internal::Transport::BaseClient::RequestInput
             )
         end
         private def build_request(req, opts)
@@ -223,7 +223,7 @@ module CheckoutIntents
         sig do
           params(
             request:
-              CheckoutIntents::Internal::Transport::BaseClient::RequestInput,
+              ::CheckoutIntents::Internal::Transport::BaseClient::RequestInput,
             redirect_count: Integer,
             retry_count: Integer,
             send_retry_header: T::Boolean
@@ -240,7 +240,7 @@ module CheckoutIntents
         # Execute the request specified by `req`. This is the method that all resource
         # methods call into.
         #
-        # @overload request(method, path, query: {}, headers: {}, body: nil, unwrap: nil, page: nil, stream: nil, model: CheckoutIntents::Internal::Type::Unknown, options: {})
+        # @overload request(method, path, query: {}, headers: {}, body: nil, unwrap: nil, page: nil, stream: nil, model: ::CheckoutIntents::Internal::Type::Unknown, options: {})
         sig do
           params(
             method: Symbol,
@@ -275,14 +275,14 @@ module CheckoutIntents
             page:
               T.nilable(
                 T::Class[
-                  CheckoutIntents::Internal::Type::BasePage[
-                    CheckoutIntents::Internal::Type::BaseModel
+                  ::CheckoutIntents::Internal::Type::BasePage[
+                    ::CheckoutIntents::Internal::Type::BaseModel
                   ]
                 ]
               ),
             stream: T.nilable(T::Class[T.anything]),
-            model: T.nilable(CheckoutIntents::Internal::Type::Converter::Input),
-            options: T.nilable(CheckoutIntents::RequestOptions::OrHash)
+            model: T.nilable(::CheckoutIntents::Internal::Type::Converter::Input),
+            options: T.nilable(::CheckoutIntents::RequestOptions::OrHash)
           ).returns(T.anything)
         end
         def request(
@@ -294,7 +294,7 @@ module CheckoutIntents
           unwrap: nil,
           page: nil,
           stream: nil,
-          model: CheckoutIntents::Internal::Type::Unknown,
+          model: ::CheckoutIntents::Internal::Type::Unknown,
           options: {}
         )
         end
@@ -306,7 +306,7 @@ module CheckoutIntents
         sig do
           params(
             req:
-              CheckoutIntents::Internal::Transport::BaseClient::RequestComponents
+              ::CheckoutIntents::Internal::Transport::BaseClient::RequestComponents
           ).returns({ data: T.anything, headers: T::Hash[String, String] })
         end
         def request_with_headers(req)

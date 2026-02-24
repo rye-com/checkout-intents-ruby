@@ -2,15 +2,15 @@
 
 module CheckoutIntents
   module Models
-    class CheckoutIntentListParams < CheckoutIntents::Internal::Type::BaseModel
-      extend CheckoutIntents::Internal::Type::RequestParameters::Converter
-      include CheckoutIntents::Internal::Type::RequestParameters
+    class CheckoutIntentListParams < ::CheckoutIntents::Internal::Type::BaseModel
+      extend ::CheckoutIntents::Internal::Type::RequestParameters::Converter
+      include ::CheckoutIntents::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
           T.any(
-            CheckoutIntents::CheckoutIntentListParams,
-            CheckoutIntents::Internal::AnyHash
+            ::CheckoutIntents::CheckoutIntentListParams,
+            ::CheckoutIntents::Internal::AnyHash
           )
         end
 
@@ -41,7 +41,7 @@ module CheckoutIntents
       sig do
         returns(
           T.nilable(
-            T::Array[CheckoutIntents::CheckoutIntentListParams::State::OrSymbol]
+            T::Array[::CheckoutIntents::CheckoutIntentListParams::State::OrSymbol]
           )
         )
       end
@@ -50,7 +50,7 @@ module CheckoutIntents
       sig do
         params(
           state:
-            T::Array[CheckoutIntents::CheckoutIntentListParams::State::OrSymbol]
+            T::Array[::CheckoutIntents::CheckoutIntentListParams::State::OrSymbol]
         ).void
       end
       attr_writer :state
@@ -63,9 +63,9 @@ module CheckoutIntents
           limit: Float,
           state:
             T::Array[
-              CheckoutIntents::CheckoutIntentListParams::State::OrSymbol
+              ::CheckoutIntents::CheckoutIntentListParams::State::OrSymbol
             ],
-          request_options: CheckoutIntents::RequestOptions::OrHash
+          request_options: ::CheckoutIntents::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
@@ -87,9 +87,9 @@ module CheckoutIntents
             limit: Float,
             state:
               T::Array[
-                CheckoutIntents::CheckoutIntentListParams::State::OrSymbol
+                ::CheckoutIntents::CheckoutIntentListParams::State::OrSymbol
               ],
-            request_options: CheckoutIntents::RequestOptions
+            request_options: ::CheckoutIntents::RequestOptions
           }
         )
       end
@@ -97,44 +97,44 @@ module CheckoutIntents
       end
 
       module State
-        extend CheckoutIntents::Internal::Type::Enum
+        extend ::CheckoutIntents::Internal::Type::Enum
 
         TaggedSymbol =
           T.type_alias do
-            T.all(Symbol, CheckoutIntents::CheckoutIntentListParams::State)
+            T.all(Symbol, ::CheckoutIntents::CheckoutIntentListParams::State)
           end
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
         COMPLETED =
           T.let(
             :completed,
-            CheckoutIntents::CheckoutIntentListParams::State::TaggedSymbol
+            ::CheckoutIntents::CheckoutIntentListParams::State::TaggedSymbol
           )
         FAILED =
           T.let(
             :failed,
-            CheckoutIntents::CheckoutIntentListParams::State::TaggedSymbol
+            ::CheckoutIntents::CheckoutIntentListParams::State::TaggedSymbol
           )
         RETRIEVING_OFFER =
           T.let(
             :retrieving_offer,
-            CheckoutIntents::CheckoutIntentListParams::State::TaggedSymbol
+            ::CheckoutIntents::CheckoutIntentListParams::State::TaggedSymbol
           )
         AWAITING_CONFIRMATION =
           T.let(
             :awaiting_confirmation,
-            CheckoutIntents::CheckoutIntentListParams::State::TaggedSymbol
+            ::CheckoutIntents::CheckoutIntentListParams::State::TaggedSymbol
           )
         PLACING_ORDER =
           T.let(
             :placing_order,
-            CheckoutIntents::CheckoutIntentListParams::State::TaggedSymbol
+            ::CheckoutIntents::CheckoutIntentListParams::State::TaggedSymbol
           )
 
         sig do
           override.returns(
             T::Array[
-              CheckoutIntents::CheckoutIntentListParams::State::TaggedSymbol
+              ::CheckoutIntents::CheckoutIntentListParams::State::TaggedSymbol
             ]
           )
         end

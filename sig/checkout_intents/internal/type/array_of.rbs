@@ -2,13 +2,13 @@ module CheckoutIntents
   module Internal
     module Type
       class ArrayOf[Elem]
-        include CheckoutIntents::Internal::Type::Converter
-        include CheckoutIntents::Internal::Util::SorbetRuntimeSupport
+        include ::CheckoutIntents::Internal::Type::Converter
+        include ::CheckoutIntents::Internal::Util::SorbetRuntimeSupport
 
         def self.[]: (
           ::Hash[Symbol, top]
-          | ^-> CheckoutIntents::Internal::Type::Converter::input
-          | CheckoutIntents::Internal::Type::Converter::input type_info,
+          | ^-> ::CheckoutIntents::Internal::Type::Converter::input
+          | ::CheckoutIntents::Internal::Type::Converter::input type_info,
           ?::Hash[Symbol, top] spec
         ) -> instance
 
@@ -20,12 +20,12 @@ module CheckoutIntents
 
         def coerce: (
           ::Array[top] | top value,
-          state: CheckoutIntents::Internal::Type::Converter::coerce_state
+          state: ::CheckoutIntents::Internal::Type::Converter::coerce_state
         ) -> (::Array[top] | top)
 
         def dump: (
           ::Array[top] | top value,
-          state: CheckoutIntents::Internal::Type::Converter::dump_state
+          state: ::CheckoutIntents::Internal::Type::Converter::dump_state
         ) -> (::Array[top] | top)
 
         def to_sorbet_type: -> top
@@ -36,8 +36,8 @@ module CheckoutIntents
 
         def initialize: (
           ::Hash[Symbol, top]
-          | ^-> CheckoutIntents::Internal::Type::Converter::input
-          | CheckoutIntents::Internal::Type::Converter::input type_info,
+          | ^-> ::CheckoutIntents::Internal::Type::Converter::input
+          | ::CheckoutIntents::Internal::Type::Converter::input type_info,
           ?::Hash[Symbol, top] spec
         ) -> void
 

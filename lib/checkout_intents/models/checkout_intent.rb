@@ -2,31 +2,31 @@
 
 module CheckoutIntents
   module Models
-    # @see CheckoutIntents::Resources::CheckoutIntents#create
+    # @see ::CheckoutIntents::Resources::CheckoutIntents#create
     module CheckoutIntent
-      extend CheckoutIntents::Internal::Type::Union
+      extend ::CheckoutIntents::Internal::Type::Union
 
-      variant -> { CheckoutIntents::CheckoutIntent::RetrievingOfferCheckoutIntent }
+      variant -> { ::CheckoutIntents::CheckoutIntent::RetrievingOfferCheckoutIntent }
 
-      variant -> { CheckoutIntents::CheckoutIntent::AwaitingConfirmationCheckoutIntent }
+      variant -> { ::CheckoutIntents::CheckoutIntent::AwaitingConfirmationCheckoutIntent }
 
-      variant -> { CheckoutIntents::CheckoutIntent::PlacingOrderCheckoutIntent }
+      variant -> { ::CheckoutIntents::CheckoutIntent::PlacingOrderCheckoutIntent }
 
-      variant -> { CheckoutIntents::CheckoutIntent::CompletedCheckoutIntent }
+      variant -> { ::CheckoutIntents::CheckoutIntent::CompletedCheckoutIntent }
 
-      variant -> { CheckoutIntents::CheckoutIntent::FailedCheckoutIntent }
+      variant -> { ::CheckoutIntents::CheckoutIntent::FailedCheckoutIntent }
 
-      class RetrievingOfferCheckoutIntent < CheckoutIntents::Models::BaseCheckoutIntent
+      class RetrievingOfferCheckoutIntent < ::CheckoutIntents::Models::BaseCheckoutIntent
         # @!attribute state
         #
-        #   @return [Symbol, CheckoutIntents::Models::CheckoutIntent::RetrievingOfferCheckoutIntent::State]
-        required :state, enum: -> { CheckoutIntents::CheckoutIntent::RetrievingOfferCheckoutIntent::State }
+        #   @return [Symbol, ::CheckoutIntents::Models::CheckoutIntent::RetrievingOfferCheckoutIntent::State]
+        required :state, enum: -> { ::CheckoutIntents::CheckoutIntent::RetrievingOfferCheckoutIntent::State }
 
         # @!method initialize(state:)
-        #   @param state [Symbol, CheckoutIntents::Models::CheckoutIntent::RetrievingOfferCheckoutIntent::State]
+        #   @param state [Symbol, ::CheckoutIntents::Models::CheckoutIntent::RetrievingOfferCheckoutIntent::State]
 
         module State
-          extend CheckoutIntents::Internal::Type::Enum
+          extend ::CheckoutIntents::Internal::Type::Enum
 
           RETRIEVING_OFFER = :retrieving_offer
 
@@ -35,29 +35,29 @@ module CheckoutIntents
         end
       end
 
-      class AwaitingConfirmationCheckoutIntent < CheckoutIntents::Models::BaseCheckoutIntent
+      class AwaitingConfirmationCheckoutIntent < ::CheckoutIntents::Models::BaseCheckoutIntent
         # @!attribute offer
         #
-        #   @return [CheckoutIntents::Models::Offer]
-        required :offer, -> { CheckoutIntents::Offer }
+        #   @return [::CheckoutIntents::Models::Offer]
+        required :offer, -> { ::CheckoutIntents::Offer }
 
         # @!attribute state
         #
-        #   @return [Symbol, CheckoutIntents::Models::CheckoutIntent::AwaitingConfirmationCheckoutIntent::State]
-        required :state, enum: -> { CheckoutIntents::CheckoutIntent::AwaitingConfirmationCheckoutIntent::State }
+        #   @return [Symbol, ::CheckoutIntents::Models::CheckoutIntent::AwaitingConfirmationCheckoutIntent::State]
+        required :state, enum: -> { ::CheckoutIntents::CheckoutIntent::AwaitingConfirmationCheckoutIntent::State }
 
         # @!attribute payment_method
         #
-        #   @return [CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod, CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod, CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod, nil]
-        optional :payment_method, union: -> { CheckoutIntents::PaymentMethod }, api_name: :paymentMethod
+        #   @return [::CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod, nil]
+        optional :payment_method, union: -> { ::CheckoutIntents::PaymentMethod }, api_name: :paymentMethod
 
         # @!method initialize(offer:, state:, payment_method: nil)
-        #   @param offer [CheckoutIntents::Models::Offer]
-        #   @param state [Symbol, CheckoutIntents::Models::CheckoutIntent::AwaitingConfirmationCheckoutIntent::State]
-        #   @param payment_method [CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod, CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod, CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod]
+        #   @param offer [::CheckoutIntents::Models::Offer]
+        #   @param state [Symbol, ::CheckoutIntents::Models::CheckoutIntent::AwaitingConfirmationCheckoutIntent::State]
+        #   @param payment_method [::CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod]
 
         module State
-          extend CheckoutIntents::Internal::Type::Enum
+          extend ::CheckoutIntents::Internal::Type::Enum
 
           AWAITING_CONFIRMATION = :awaiting_confirmation
 
@@ -66,29 +66,29 @@ module CheckoutIntents
         end
       end
 
-      class PlacingOrderCheckoutIntent < CheckoutIntents::Models::BaseCheckoutIntent
+      class PlacingOrderCheckoutIntent < ::CheckoutIntents::Models::BaseCheckoutIntent
         # @!attribute offer
         #
-        #   @return [CheckoutIntents::Models::Offer]
-        required :offer, -> { CheckoutIntents::Offer }
+        #   @return [::CheckoutIntents::Models::Offer]
+        required :offer, -> { ::CheckoutIntents::Offer }
 
         # @!attribute payment_method
         #
-        #   @return [CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod, CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod, CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod]
-        required :payment_method, union: -> { CheckoutIntents::PaymentMethod }, api_name: :paymentMethod
+        #   @return [::CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod]
+        required :payment_method, union: -> { ::CheckoutIntents::PaymentMethod }, api_name: :paymentMethod
 
         # @!attribute state
         #
-        #   @return [Symbol, CheckoutIntents::Models::CheckoutIntent::PlacingOrderCheckoutIntent::State]
-        required :state, enum: -> { CheckoutIntents::CheckoutIntent::PlacingOrderCheckoutIntent::State }
+        #   @return [Symbol, ::CheckoutIntents::Models::CheckoutIntent::PlacingOrderCheckoutIntent::State]
+        required :state, enum: -> { ::CheckoutIntents::CheckoutIntent::PlacingOrderCheckoutIntent::State }
 
         # @!method initialize(offer:, payment_method:, state:)
-        #   @param offer [CheckoutIntents::Models::Offer]
-        #   @param payment_method [CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod, CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod, CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod]
-        #   @param state [Symbol, CheckoutIntents::Models::CheckoutIntent::PlacingOrderCheckoutIntent::State]
+        #   @param offer [::CheckoutIntents::Models::Offer]
+        #   @param payment_method [::CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod]
+        #   @param state [Symbol, ::CheckoutIntents::Models::CheckoutIntent::PlacingOrderCheckoutIntent::State]
 
         module State
-          extend CheckoutIntents::Internal::Type::Enum
+          extend ::CheckoutIntents::Internal::Type::Enum
 
           PLACING_ORDER = :placing_order
 
@@ -97,11 +97,11 @@ module CheckoutIntents
         end
       end
 
-      class CompletedCheckoutIntent < CheckoutIntents::Models::BaseCheckoutIntent
+      class CompletedCheckoutIntent < ::CheckoutIntents::Models::BaseCheckoutIntent
         # @!attribute offer
         #
-        #   @return [CheckoutIntents::Models::Offer]
-        required :offer, -> { CheckoutIntents::Offer }
+        #   @return [::CheckoutIntents::Models::Offer]
+        required :offer, -> { ::CheckoutIntents::Offer }
 
         # @!attribute order_id
         #
@@ -110,22 +110,22 @@ module CheckoutIntents
 
         # @!attribute payment_method
         #
-        #   @return [CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod, CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod, CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod]
-        required :payment_method, union: -> { CheckoutIntents::PaymentMethod }, api_name: :paymentMethod
+        #   @return [::CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod]
+        required :payment_method, union: -> { ::CheckoutIntents::PaymentMethod }, api_name: :paymentMethod
 
         # @!attribute state
         #
-        #   @return [Symbol, CheckoutIntents::Models::CheckoutIntent::CompletedCheckoutIntent::State]
-        required :state, enum: -> { CheckoutIntents::CheckoutIntent::CompletedCheckoutIntent::State }
+        #   @return [Symbol, ::CheckoutIntents::Models::CheckoutIntent::CompletedCheckoutIntent::State]
+        required :state, enum: -> { ::CheckoutIntents::CheckoutIntent::CompletedCheckoutIntent::State }
 
         # @!method initialize(offer:, order_id:, payment_method:, state:)
-        #   @param offer [CheckoutIntents::Models::Offer]
+        #   @param offer [::CheckoutIntents::Models::Offer]
         #   @param order_id [String, nil]
-        #   @param payment_method [CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod, CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod, CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod]
-        #   @param state [Symbol, CheckoutIntents::Models::CheckoutIntent::CompletedCheckoutIntent::State]
+        #   @param payment_method [::CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod]
+        #   @param state [Symbol, ::CheckoutIntents::Models::CheckoutIntent::CompletedCheckoutIntent::State]
 
         module State
-          extend CheckoutIntents::Internal::Type::Enum
+          extend ::CheckoutIntents::Internal::Type::Enum
 
           COMPLETED = :completed
 
@@ -134,41 +134,41 @@ module CheckoutIntents
         end
       end
 
-      class FailedCheckoutIntent < CheckoutIntents::Models::BaseCheckoutIntent
+      class FailedCheckoutIntent < ::CheckoutIntents::Models::BaseCheckoutIntent
         # @!attribute failure_reason
         #
-        #   @return [CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent::FailureReason]
+        #   @return [::CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent::FailureReason]
         required :failure_reason,
-                 -> { CheckoutIntents::CheckoutIntent::FailedCheckoutIntent::FailureReason },
+                 -> { ::CheckoutIntents::CheckoutIntent::FailedCheckoutIntent::FailureReason },
                  api_name: :failureReason
 
         # @!attribute state
         #
-        #   @return [Symbol, CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent::State]
-        required :state, enum: -> { CheckoutIntents::CheckoutIntent::FailedCheckoutIntent::State }
+        #   @return [Symbol, ::CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent::State]
+        required :state, enum: -> { ::CheckoutIntents::CheckoutIntent::FailedCheckoutIntent::State }
 
         # @!attribute offer
         #
-        #   @return [CheckoutIntents::Models::Offer, nil]
-        optional :offer, -> { CheckoutIntents::Offer }
+        #   @return [::CheckoutIntents::Models::Offer, nil]
+        optional :offer, -> { ::CheckoutIntents::Offer }
 
         # @!attribute payment_method
         #
-        #   @return [CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod, CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod, CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod, nil]
-        optional :payment_method, union: -> { CheckoutIntents::PaymentMethod }, api_name: :paymentMethod
+        #   @return [::CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod, nil]
+        optional :payment_method, union: -> { ::CheckoutIntents::PaymentMethod }, api_name: :paymentMethod
 
         # @!method initialize(failure_reason:, state:, offer: nil, payment_method: nil)
-        #   @param failure_reason [CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent::FailureReason]
-        #   @param state [Symbol, CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent::State]
-        #   @param offer [CheckoutIntents::Models::Offer]
-        #   @param payment_method [CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod, CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod, CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod]
+        #   @param failure_reason [::CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent::FailureReason]
+        #   @param state [Symbol, ::CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent::State]
+        #   @param offer [::CheckoutIntents::Models::Offer]
+        #   @param payment_method [::CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod]
 
-        class FailureReason < CheckoutIntents::Internal::Type::BaseModel
+        class FailureReason < ::CheckoutIntents::Internal::Type::BaseModel
           # @!attribute code
           #   Type derived from runtime array - always in sync
           #
-          #   @return [Symbol, CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent::FailureReason::Code]
-          required :code, enum: -> { CheckoutIntents::CheckoutIntent::FailedCheckoutIntent::FailureReason::Code }
+          #   @return [Symbol, ::CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent::FailureReason::Code]
+          required :code, enum: -> { ::CheckoutIntents::CheckoutIntent::FailedCheckoutIntent::FailureReason::Code }
 
           # @!attribute message
           #
@@ -176,15 +176,15 @@ module CheckoutIntents
           required :message, String
 
           # @!method initialize(code:, message:)
-          #   @param code [Symbol, CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent::FailureReason::Code] Type derived from runtime array - always in sync
+          #   @param code [Symbol, ::CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent::FailureReason::Code] Type derived from runtime array - always in sync
           #
           #   @param message [String]
 
           # Type derived from runtime array - always in sync
           #
-          # @see CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent::FailureReason#code
+          # @see ::CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent::FailureReason#code
           module Code
-            extend CheckoutIntents::Internal::Type::Enum
+            extend ::CheckoutIntents::Internal::Type::Enum
 
             CHECKOUT_INTENT_EXPIRED = :checkout_intent_expired
             PAYMENT_FAILED = :payment_failed
@@ -215,7 +215,7 @@ module CheckoutIntents
         end
 
         module State
-          extend CheckoutIntents::Internal::Type::Enum
+          extend ::CheckoutIntents::Internal::Type::Enum
 
           FAILED = :failed
 
@@ -225,7 +225,7 @@ module CheckoutIntents
       end
 
       # @!method self.variants
-      #   @return [Array(CheckoutIntents::Models::CheckoutIntent::RetrievingOfferCheckoutIntent, CheckoutIntents::Models::CheckoutIntent::AwaitingConfirmationCheckoutIntent, CheckoutIntents::Models::CheckoutIntent::PlacingOrderCheckoutIntent, CheckoutIntents::Models::CheckoutIntent::CompletedCheckoutIntent, CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent)]
+      #   @return [Array(::CheckoutIntents::Models::CheckoutIntent::RetrievingOfferCheckoutIntent, ::CheckoutIntents::Models::CheckoutIntent::AwaitingConfirmationCheckoutIntent, ::CheckoutIntents::Models::CheckoutIntent::PlacingOrderCheckoutIntent, ::CheckoutIntents::Models::CheckoutIntent::CompletedCheckoutIntent, ::CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent)]
     end
   end
 end

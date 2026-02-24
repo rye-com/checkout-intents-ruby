@@ -1,257 +1,257 @@
 module CheckoutIntents
   module Models
     type checkout_intent =
-      CheckoutIntents::CheckoutIntent::RetrievingOfferCheckoutIntent
-      | CheckoutIntents::CheckoutIntent::AwaitingConfirmationCheckoutIntent
-      | CheckoutIntents::CheckoutIntent::PlacingOrderCheckoutIntent
-      | CheckoutIntents::CheckoutIntent::CompletedCheckoutIntent
-      | CheckoutIntents::CheckoutIntent::FailedCheckoutIntent
+      ::CheckoutIntents::CheckoutIntent::RetrievingOfferCheckoutIntent
+      | ::CheckoutIntents::CheckoutIntent::AwaitingConfirmationCheckoutIntent
+      | ::CheckoutIntents::CheckoutIntent::PlacingOrderCheckoutIntent
+      | ::CheckoutIntents::CheckoutIntent::CompletedCheckoutIntent
+      | ::CheckoutIntents::CheckoutIntent::FailedCheckoutIntent
 
     module CheckoutIntent
-      extend CheckoutIntents::Internal::Type::Union
+      extend ::CheckoutIntents::Internal::Type::Union
 
       type retrieving_offer_checkout_intent =
         {
-          state: CheckoutIntents::Models::CheckoutIntent::RetrievingOfferCheckoutIntent::state
+          state: ::CheckoutIntents::Models::CheckoutIntent::RetrievingOfferCheckoutIntent::state
         }
 
-      class RetrievingOfferCheckoutIntent < CheckoutIntents::Models::BaseCheckoutIntent
-        def state: -> CheckoutIntents::Models::CheckoutIntent::RetrievingOfferCheckoutIntent::state
+      class RetrievingOfferCheckoutIntent < ::CheckoutIntents::Models::BaseCheckoutIntent
+        def state: -> ::CheckoutIntents::Models::CheckoutIntent::RetrievingOfferCheckoutIntent::state
 
         def state=: (
-          CheckoutIntents::Models::CheckoutIntent::RetrievingOfferCheckoutIntent::state _
-        ) -> CheckoutIntents::Models::CheckoutIntent::RetrievingOfferCheckoutIntent::state
+          ::CheckoutIntents::Models::CheckoutIntent::RetrievingOfferCheckoutIntent::state _
+        ) -> ::CheckoutIntents::Models::CheckoutIntent::RetrievingOfferCheckoutIntent::state
 
         def initialize: (
-          state: CheckoutIntents::Models::CheckoutIntent::RetrievingOfferCheckoutIntent::state
+          state: ::CheckoutIntents::Models::CheckoutIntent::RetrievingOfferCheckoutIntent::state
         ) -> void
 
         def to_hash: -> {
-          state: CheckoutIntents::Models::CheckoutIntent::RetrievingOfferCheckoutIntent::state
+          state: ::CheckoutIntents::Models::CheckoutIntent::RetrievingOfferCheckoutIntent::state
         }
 
         type state = :retrieving_offer
 
         module State
-          extend CheckoutIntents::Internal::Type::Enum
+          extend ::CheckoutIntents::Internal::Type::Enum
 
           RETRIEVING_OFFER: :retrieving_offer
 
-          def self?.values: -> ::Array[CheckoutIntents::Models::CheckoutIntent::RetrievingOfferCheckoutIntent::state]
+          def self?.values: -> ::Array[::CheckoutIntents::Models::CheckoutIntent::RetrievingOfferCheckoutIntent::state]
         end
       end
 
       type awaiting_confirmation_checkout_intent =
         {
-          offer: CheckoutIntents::Offer,
-          state: CheckoutIntents::Models::CheckoutIntent::AwaitingConfirmationCheckoutIntent::state,
-          payment_method: CheckoutIntents::Models::payment_method
+          offer: ::CheckoutIntents::Offer,
+          state: ::CheckoutIntents::Models::CheckoutIntent::AwaitingConfirmationCheckoutIntent::state,
+          payment_method: ::CheckoutIntents::Models::payment_method
         }
 
-      class AwaitingConfirmationCheckoutIntent < CheckoutIntents::Models::BaseCheckoutIntent
-        def offer: -> CheckoutIntents::Offer
+      class AwaitingConfirmationCheckoutIntent < ::CheckoutIntents::Models::BaseCheckoutIntent
+        def offer: -> ::CheckoutIntents::Offer
 
-        def offer=: (CheckoutIntents::Offer _) -> CheckoutIntents::Offer
+        def offer=: (::CheckoutIntents::Offer _) -> ::CheckoutIntents::Offer
 
-        def state: -> CheckoutIntents::Models::CheckoutIntent::AwaitingConfirmationCheckoutIntent::state
+        def state: -> ::CheckoutIntents::Models::CheckoutIntent::AwaitingConfirmationCheckoutIntent::state
 
         def state=: (
-          CheckoutIntents::Models::CheckoutIntent::AwaitingConfirmationCheckoutIntent::state _
-        ) -> CheckoutIntents::Models::CheckoutIntent::AwaitingConfirmationCheckoutIntent::state
+          ::CheckoutIntents::Models::CheckoutIntent::AwaitingConfirmationCheckoutIntent::state _
+        ) -> ::CheckoutIntents::Models::CheckoutIntent::AwaitingConfirmationCheckoutIntent::state
 
-        def payment_method: -> CheckoutIntents::Models::payment_method?
+        def payment_method: -> ::CheckoutIntents::Models::payment_method?
 
         def payment_method=: (
-          CheckoutIntents::Models::payment_method _
-        ) -> CheckoutIntents::Models::payment_method
+          ::CheckoutIntents::Models::payment_method _
+        ) -> ::CheckoutIntents::Models::payment_method
 
         def initialize: (
-          offer: CheckoutIntents::Offer,
-          state: CheckoutIntents::Models::CheckoutIntent::AwaitingConfirmationCheckoutIntent::state,
-          ?payment_method: CheckoutIntents::Models::payment_method
+          offer: ::CheckoutIntents::Offer,
+          state: ::CheckoutIntents::Models::CheckoutIntent::AwaitingConfirmationCheckoutIntent::state,
+          ?payment_method: ::CheckoutIntents::Models::payment_method
         ) -> void
 
         def to_hash: -> {
-          offer: CheckoutIntents::Offer,
-          state: CheckoutIntents::Models::CheckoutIntent::AwaitingConfirmationCheckoutIntent::state,
-          payment_method: CheckoutIntents::Models::payment_method
+          offer: ::CheckoutIntents::Offer,
+          state: ::CheckoutIntents::Models::CheckoutIntent::AwaitingConfirmationCheckoutIntent::state,
+          payment_method: ::CheckoutIntents::Models::payment_method
         }
 
         type state = :awaiting_confirmation
 
         module State
-          extend CheckoutIntents::Internal::Type::Enum
+          extend ::CheckoutIntents::Internal::Type::Enum
 
           AWAITING_CONFIRMATION: :awaiting_confirmation
 
-          def self?.values: -> ::Array[CheckoutIntents::Models::CheckoutIntent::AwaitingConfirmationCheckoutIntent::state]
+          def self?.values: -> ::Array[::CheckoutIntents::Models::CheckoutIntent::AwaitingConfirmationCheckoutIntent::state]
         end
       end
 
       type placing_order_checkout_intent =
         {
-          offer: CheckoutIntents::Offer,
-          payment_method: CheckoutIntents::Models::payment_method,
-          state: CheckoutIntents::Models::CheckoutIntent::PlacingOrderCheckoutIntent::state
+          offer: ::CheckoutIntents::Offer,
+          payment_method: ::CheckoutIntents::Models::payment_method,
+          state: ::CheckoutIntents::Models::CheckoutIntent::PlacingOrderCheckoutIntent::state
         }
 
-      class PlacingOrderCheckoutIntent < CheckoutIntents::Models::BaseCheckoutIntent
-        def offer: -> CheckoutIntents::Offer
+      class PlacingOrderCheckoutIntent < ::CheckoutIntents::Models::BaseCheckoutIntent
+        def offer: -> ::CheckoutIntents::Offer
 
-        def offer=: (CheckoutIntents::Offer _) -> CheckoutIntents::Offer
+        def offer=: (::CheckoutIntents::Offer _) -> ::CheckoutIntents::Offer
 
-        def payment_method: -> CheckoutIntents::Models::payment_method
+        def payment_method: -> ::CheckoutIntents::Models::payment_method
 
         def payment_method=: (
-          CheckoutIntents::Models::payment_method _
-        ) -> CheckoutIntents::Models::payment_method
+          ::CheckoutIntents::Models::payment_method _
+        ) -> ::CheckoutIntents::Models::payment_method
 
-        def state: -> CheckoutIntents::Models::CheckoutIntent::PlacingOrderCheckoutIntent::state
+        def state: -> ::CheckoutIntents::Models::CheckoutIntent::PlacingOrderCheckoutIntent::state
 
         def state=: (
-          CheckoutIntents::Models::CheckoutIntent::PlacingOrderCheckoutIntent::state _
-        ) -> CheckoutIntents::Models::CheckoutIntent::PlacingOrderCheckoutIntent::state
+          ::CheckoutIntents::Models::CheckoutIntent::PlacingOrderCheckoutIntent::state _
+        ) -> ::CheckoutIntents::Models::CheckoutIntent::PlacingOrderCheckoutIntent::state
 
         def initialize: (
-          offer: CheckoutIntents::Offer,
-          payment_method: CheckoutIntents::Models::payment_method,
-          state: CheckoutIntents::Models::CheckoutIntent::PlacingOrderCheckoutIntent::state
+          offer: ::CheckoutIntents::Offer,
+          payment_method: ::CheckoutIntents::Models::payment_method,
+          state: ::CheckoutIntents::Models::CheckoutIntent::PlacingOrderCheckoutIntent::state
         ) -> void
 
         def to_hash: -> {
-          offer: CheckoutIntents::Offer,
-          payment_method: CheckoutIntents::Models::payment_method,
-          state: CheckoutIntents::Models::CheckoutIntent::PlacingOrderCheckoutIntent::state
+          offer: ::CheckoutIntents::Offer,
+          payment_method: ::CheckoutIntents::Models::payment_method,
+          state: ::CheckoutIntents::Models::CheckoutIntent::PlacingOrderCheckoutIntent::state
         }
 
         type state = :placing_order
 
         module State
-          extend CheckoutIntents::Internal::Type::Enum
+          extend ::CheckoutIntents::Internal::Type::Enum
 
           PLACING_ORDER: :placing_order
 
-          def self?.values: -> ::Array[CheckoutIntents::Models::CheckoutIntent::PlacingOrderCheckoutIntent::state]
+          def self?.values: -> ::Array[::CheckoutIntents::Models::CheckoutIntent::PlacingOrderCheckoutIntent::state]
         end
       end
 
       type completed_checkout_intent =
         {
-          offer: CheckoutIntents::Offer,
+          offer: ::CheckoutIntents::Offer,
           order_id: String?,
-          payment_method: CheckoutIntents::Models::payment_method,
-          state: CheckoutIntents::Models::CheckoutIntent::CompletedCheckoutIntent::state
+          payment_method: ::CheckoutIntents::Models::payment_method,
+          state: ::CheckoutIntents::Models::CheckoutIntent::CompletedCheckoutIntent::state
         }
 
-      class CompletedCheckoutIntent < CheckoutIntents::Models::BaseCheckoutIntent
-        def offer: -> CheckoutIntents::Offer
+      class CompletedCheckoutIntent < ::CheckoutIntents::Models::BaseCheckoutIntent
+        def offer: -> ::CheckoutIntents::Offer
 
-        def offer=: (CheckoutIntents::Offer _) -> CheckoutIntents::Offer
+        def offer=: (::CheckoutIntents::Offer _) -> ::CheckoutIntents::Offer
 
         def order_id: -> String?
 
         def order_id=: (String? _) -> String?
 
-        def payment_method: -> CheckoutIntents::Models::payment_method
+        def payment_method: -> ::CheckoutIntents::Models::payment_method
 
         def payment_method=: (
-          CheckoutIntents::Models::payment_method _
-        ) -> CheckoutIntents::Models::payment_method
+          ::CheckoutIntents::Models::payment_method _
+        ) -> ::CheckoutIntents::Models::payment_method
 
-        def state: -> CheckoutIntents::Models::CheckoutIntent::CompletedCheckoutIntent::state
+        def state: -> ::CheckoutIntents::Models::CheckoutIntent::CompletedCheckoutIntent::state
 
         def state=: (
-          CheckoutIntents::Models::CheckoutIntent::CompletedCheckoutIntent::state _
-        ) -> CheckoutIntents::Models::CheckoutIntent::CompletedCheckoutIntent::state
+          ::CheckoutIntents::Models::CheckoutIntent::CompletedCheckoutIntent::state _
+        ) -> ::CheckoutIntents::Models::CheckoutIntent::CompletedCheckoutIntent::state
 
         def initialize: (
-          offer: CheckoutIntents::Offer,
+          offer: ::CheckoutIntents::Offer,
           order_id: String?,
-          payment_method: CheckoutIntents::Models::payment_method,
-          state: CheckoutIntents::Models::CheckoutIntent::CompletedCheckoutIntent::state
+          payment_method: ::CheckoutIntents::Models::payment_method,
+          state: ::CheckoutIntents::Models::CheckoutIntent::CompletedCheckoutIntent::state
         ) -> void
 
         def to_hash: -> {
-          offer: CheckoutIntents::Offer,
+          offer: ::CheckoutIntents::Offer,
           order_id: String?,
-          payment_method: CheckoutIntents::Models::payment_method,
-          state: CheckoutIntents::Models::CheckoutIntent::CompletedCheckoutIntent::state
+          payment_method: ::CheckoutIntents::Models::payment_method,
+          state: ::CheckoutIntents::Models::CheckoutIntent::CompletedCheckoutIntent::state
         }
 
         type state = :completed
 
         module State
-          extend CheckoutIntents::Internal::Type::Enum
+          extend ::CheckoutIntents::Internal::Type::Enum
 
           COMPLETED: :completed
 
-          def self?.values: -> ::Array[CheckoutIntents::Models::CheckoutIntent::CompletedCheckoutIntent::state]
+          def self?.values: -> ::Array[::CheckoutIntents::Models::CheckoutIntent::CompletedCheckoutIntent::state]
         end
       end
 
       type failed_checkout_intent =
         {
-          failure_reason: CheckoutIntents::CheckoutIntent::FailedCheckoutIntent::FailureReason,
-          state: CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent::state,
-          offer: CheckoutIntents::Offer,
-          payment_method: CheckoutIntents::Models::payment_method
+          failure_reason: ::CheckoutIntents::CheckoutIntent::FailedCheckoutIntent::FailureReason,
+          state: ::CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent::state,
+          offer: ::CheckoutIntents::Offer,
+          payment_method: ::CheckoutIntents::Models::payment_method
         }
 
-      class FailedCheckoutIntent < CheckoutIntents::Models::BaseCheckoutIntent
-        def failure_reason: -> CheckoutIntents::CheckoutIntent::FailedCheckoutIntent::FailureReason
+      class FailedCheckoutIntent < ::CheckoutIntents::Models::BaseCheckoutIntent
+        def failure_reason: -> ::CheckoutIntents::CheckoutIntent::FailedCheckoutIntent::FailureReason
 
         def failure_reason=: (
-          CheckoutIntents::CheckoutIntent::FailedCheckoutIntent::FailureReason _
-        ) -> CheckoutIntents::CheckoutIntent::FailedCheckoutIntent::FailureReason
+          ::CheckoutIntents::CheckoutIntent::FailedCheckoutIntent::FailureReason _
+        ) -> ::CheckoutIntents::CheckoutIntent::FailedCheckoutIntent::FailureReason
 
-        def state: -> CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent::state
+        def state: -> ::CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent::state
 
         def state=: (
-          CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent::state _
-        ) -> CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent::state
+          ::CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent::state _
+        ) -> ::CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent::state
 
-        def offer: -> CheckoutIntents::Offer?
+        def offer: -> ::CheckoutIntents::Offer?
 
-        def offer=: (CheckoutIntents::Offer _) -> CheckoutIntents::Offer
+        def offer=: (::CheckoutIntents::Offer _) -> ::CheckoutIntents::Offer
 
-        def payment_method: -> CheckoutIntents::Models::payment_method?
+        def payment_method: -> ::CheckoutIntents::Models::payment_method?
 
         def payment_method=: (
-          CheckoutIntents::Models::payment_method _
-        ) -> CheckoutIntents::Models::payment_method
+          ::CheckoutIntents::Models::payment_method _
+        ) -> ::CheckoutIntents::Models::payment_method
 
         def initialize: (
-          failure_reason: CheckoutIntents::CheckoutIntent::FailedCheckoutIntent::FailureReason,
-          state: CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent::state,
-          ?offer: CheckoutIntents::Offer,
-          ?payment_method: CheckoutIntents::Models::payment_method
+          failure_reason: ::CheckoutIntents::CheckoutIntent::FailedCheckoutIntent::FailureReason,
+          state: ::CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent::state,
+          ?offer: ::CheckoutIntents::Offer,
+          ?payment_method: ::CheckoutIntents::Models::payment_method
         ) -> void
 
         def to_hash: -> {
-          failure_reason: CheckoutIntents::CheckoutIntent::FailedCheckoutIntent::FailureReason,
-          state: CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent::state,
-          offer: CheckoutIntents::Offer,
-          payment_method: CheckoutIntents::Models::payment_method
+          failure_reason: ::CheckoutIntents::CheckoutIntent::FailedCheckoutIntent::FailureReason,
+          state: ::CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent::state,
+          offer: ::CheckoutIntents::Offer,
+          payment_method: ::CheckoutIntents::Models::payment_method
         }
 
         type failure_reason =
           {
-            code: CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent::FailureReason::code,
+            code: ::CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent::FailureReason::code,
             message: String
           }
 
-        class FailureReason < CheckoutIntents::Internal::Type::BaseModel
-          attr_accessor code: CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent::FailureReason::code
+        class FailureReason < ::CheckoutIntents::Internal::Type::BaseModel
+          attr_accessor code: ::CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent::FailureReason::code
 
           attr_accessor message: String
 
           def initialize: (
-            code: CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent::FailureReason::code,
+            code: ::CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent::FailureReason::code,
             message: String
           ) -> void
 
           def to_hash: -> {
-            code: CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent::FailureReason::code,
+            code: ::CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent::FailureReason::code,
             message: String
           }
 
@@ -280,7 +280,7 @@ module CheckoutIntents
             | :unknown
 
           module Code
-            extend CheckoutIntents::Internal::Type::Enum
+            extend ::CheckoutIntents::Internal::Type::Enum
 
             CHECKOUT_INTENT_EXPIRED: :checkout_intent_expired
             PAYMENT_FAILED: :payment_failed
@@ -305,22 +305,22 @@ module CheckoutIntents
             PROMO_CODE_DISCOVERY_NOT_ENABLED: :promo_code_discovery_not_enabled
             UNKNOWN: :unknown
 
-            def self?.values: -> ::Array[CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent::FailureReason::code]
+            def self?.values: -> ::Array[::CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent::FailureReason::code]
           end
         end
 
         type state = :failed
 
         module State
-          extend CheckoutIntents::Internal::Type::Enum
+          extend ::CheckoutIntents::Internal::Type::Enum
 
           FAILED: :failed
 
-          def self?.values: -> ::Array[CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent::state]
+          def self?.values: -> ::Array[::CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent::state]
         end
       end
 
-      def self?.variants: -> ::Array[CheckoutIntents::Models::checkout_intent]
+      def self?.variants: -> ::Array[::CheckoutIntents::Models::checkout_intent]
     end
   end
 end

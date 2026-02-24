@@ -1,7 +1,7 @@
 # typed: strong
 
 module CheckoutIntents
-  class Client < CheckoutIntents::Internal::Transport::BaseClient
+  class Client < ::CheckoutIntents::Internal::Transport::BaseClient
     DEFAULT_MAX_RETRIES = 2
 
     DEFAULT_TIMEOUT_IN_SECONDS = T.let(60.0, Float)
@@ -23,19 +23,19 @@ module CheckoutIntents
     sig { returns(String) }
     attr_reader :api_key
 
-    sig { returns(CheckoutIntents::Resources::CheckoutIntents) }
+    sig { returns(::CheckoutIntents::Resources::CheckoutIntents) }
     attr_reader :checkout_intents
 
-    sig { returns(CheckoutIntents::Resources::Shipments) }
+    sig { returns(::CheckoutIntents::Resources::Shipments) }
     attr_reader :shipments
 
-    sig { returns(CheckoutIntents::Resources::Betas) }
+    sig { returns(::CheckoutIntents::Resources::Betas) }
     attr_reader :betas
 
-    sig { returns(CheckoutIntents::Resources::Brands) }
+    sig { returns(::CheckoutIntents::Resources::Brands) }
     attr_reader :brands
 
-    sig { returns(CheckoutIntents::Resources::Products) }
+    sig { returns(::CheckoutIntents::Resources::Products) }
     attr_reader :products
 
     # @api private
@@ -71,10 +71,10 @@ module CheckoutIntents
       # `"https://api.example.com/v2/"`. Defaults to `ENV["CHECKOUT_INTENTS_BASE_URL"]`
       base_url: ENV["CHECKOUT_INTENTS_BASE_URL"],
       # Max number of retries to attempt after a failed retryable request.
-      max_retries: CheckoutIntents::Client::DEFAULT_MAX_RETRIES,
-      timeout: CheckoutIntents::Client::DEFAULT_TIMEOUT_IN_SECONDS,
-      initial_retry_delay: CheckoutIntents::Client::DEFAULT_INITIAL_RETRY_DELAY,
-      max_retry_delay: CheckoutIntents::Client::DEFAULT_MAX_RETRY_DELAY,
+      max_retries: ::CheckoutIntents::Client::DEFAULT_MAX_RETRIES,
+      timeout: ::CheckoutIntents::Client::DEFAULT_TIMEOUT_IN_SECONDS,
+      initial_retry_delay: ::CheckoutIntents::Client::DEFAULT_INITIAL_RETRY_DELAY,
+      max_retry_delay: ::CheckoutIntents::Client::DEFAULT_MAX_RETRY_DELAY,
       idempotency_header: "Idempotency-Key"
     )
     end

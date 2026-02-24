@@ -2,20 +2,20 @@
 
 module CheckoutIntents
   module Models
-    # @see CheckoutIntents::Resources::CheckoutIntents#purchase
-    class CheckoutIntentPurchaseParams < CheckoutIntents::Internal::Type::BaseModel
-      extend CheckoutIntents::Internal::Type::RequestParameters::Converter
-      include CheckoutIntents::Internal::Type::RequestParameters
+    # @see ::CheckoutIntents::Resources::CheckoutIntents#purchase
+    class CheckoutIntentPurchaseParams < ::CheckoutIntents::Internal::Type::BaseModel
+      extend ::CheckoutIntents::Internal::Type::RequestParameters::Converter
+      include ::CheckoutIntents::Internal::Type::RequestParameters
 
       # @!attribute buyer
       #
-      #   @return [CheckoutIntents::Models::Buyer]
-      required :buyer, -> { CheckoutIntents::Buyer }
+      #   @return [::CheckoutIntents::Models::Buyer]
+      required :buyer, -> { ::CheckoutIntents::Buyer }
 
       # @!attribute payment_method
       #
-      #   @return [CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod, CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod, CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod]
-      required :payment_method, union: -> { CheckoutIntents::PaymentMethod }, api_name: :paymentMethod
+      #   @return [::CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod]
+      required :payment_method, union: -> { ::CheckoutIntents::PaymentMethod }, api_name: :paymentMethod
 
       # @!attribute product_url
       #
@@ -29,38 +29,38 @@ module CheckoutIntents
 
       # @!attribute constraints
       #
-      #   @return [CheckoutIntents::Models::CheckoutIntentPurchaseParams::Constraints, nil]
-      optional :constraints, -> { CheckoutIntents::CheckoutIntentPurchaseParams::Constraints }
+      #   @return [::CheckoutIntents::Models::CheckoutIntentPurchaseParams::Constraints, nil]
+      optional :constraints, -> { ::CheckoutIntents::CheckoutIntentPurchaseParams::Constraints }
 
       # @!attribute discover_promo_codes
       #
       #   @return [Boolean, nil]
-      optional :discover_promo_codes, CheckoutIntents::Internal::Type::Boolean, api_name: :discoverPromoCodes
+      optional :discover_promo_codes, ::CheckoutIntents::Internal::Type::Boolean, api_name: :discoverPromoCodes
 
       # @!attribute promo_codes
       #
       #   @return [Array<String>, nil]
-      optional :promo_codes, CheckoutIntents::Internal::Type::ArrayOf[String], api_name: :promoCodes
+      optional :promo_codes, ::CheckoutIntents::Internal::Type::ArrayOf[String], api_name: :promoCodes
 
       # @!attribute variant_selections
       #
-      #   @return [Array<CheckoutIntents::Models::VariantSelection>, nil]
+      #   @return [Array<::CheckoutIntents::Models::VariantSelection>, nil]
       optional :variant_selections,
-               -> { CheckoutIntents::Internal::Type::ArrayOf[CheckoutIntents::VariantSelection] },
+               -> { ::CheckoutIntents::Internal::Type::ArrayOf[::CheckoutIntents::VariantSelection] },
                api_name: :variantSelections
 
       # @!method initialize(buyer:, payment_method:, product_url:, quantity:, constraints: nil, discover_promo_codes: nil, promo_codes: nil, variant_selections: nil, request_options: {})
-      #   @param buyer [CheckoutIntents::Models::Buyer]
-      #   @param payment_method [CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod, CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod, CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod]
+      #   @param buyer [::CheckoutIntents::Models::Buyer]
+      #   @param payment_method [::CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod]
       #   @param product_url [String]
       #   @param quantity [Integer]
-      #   @param constraints [CheckoutIntents::Models::CheckoutIntentPurchaseParams::Constraints]
+      #   @param constraints [::CheckoutIntents::Models::CheckoutIntentPurchaseParams::Constraints]
       #   @param discover_promo_codes [Boolean]
       #   @param promo_codes [Array<String>]
-      #   @param variant_selections [Array<CheckoutIntents::Models::VariantSelection>]
-      #   @param request_options [CheckoutIntents::RequestOptions, Hash{Symbol=>Object}]
+      #   @param variant_selections [Array<::CheckoutIntents::Models::VariantSelection>]
+      #   @param request_options [::CheckoutIntents::RequestOptions, Hash{Symbol=>Object}]
 
-      class Constraints < CheckoutIntents::Internal::Type::BaseModel
+      class Constraints < ::CheckoutIntents::Internal::Type::BaseModel
         # @!attribute max_shipping_price
         #
         #   @return [Integer, nil]
@@ -80,23 +80,23 @@ module CheckoutIntents
         #
         #   Default: 'max'
         #
-        #   @return [Symbol, CheckoutIntents::Models::CheckoutIntentPurchaseParams::Constraints::OfferRetrievalEffort, nil]
+        #   @return [Symbol, ::CheckoutIntents::Models::CheckoutIntentPurchaseParams::Constraints::OfferRetrievalEffort, nil]
         optional :offer_retrieval_effort,
                  enum: -> {
-                   CheckoutIntents::CheckoutIntentPurchaseParams::Constraints::OfferRetrievalEffort
+                   ::CheckoutIntents::CheckoutIntentPurchaseParams::Constraints::OfferRetrievalEffort
                  },
                  api_name: :offerRetrievalEffort
 
         # @!method initialize(max_shipping_price: nil, max_total_price: nil, offer_retrieval_effort: nil)
         #   Some parameter documentations has been truncated, see
-        #   {CheckoutIntents::Models::CheckoutIntentPurchaseParams::Constraints} for more
+        #   {::CheckoutIntents::Models::CheckoutIntentPurchaseParams::Constraints} for more
         #   details.
         #
         #   @param max_shipping_price [Integer]
         #
         #   @param max_total_price [Integer]
         #
-        #   @param offer_retrieval_effort [Symbol, CheckoutIntents::Models::CheckoutIntentPurchaseParams::Constraints::OfferRetrievalEffort] Controls how much effort the system should spend retrieving an offer.
+        #   @param offer_retrieval_effort [Symbol, ::CheckoutIntents::Models::CheckoutIntentPurchaseParams::Constraints::OfferRetrievalEffort] Controls how much effort the system should spend retrieving an offer.
 
         # Controls how much effort the system should spend retrieving an offer.
         #
@@ -106,9 +106,9 @@ module CheckoutIntents
         #
         # Default: 'max'
         #
-        # @see CheckoutIntents::Models::CheckoutIntentPurchaseParams::Constraints#offer_retrieval_effort
+        # @see ::CheckoutIntents::Models::CheckoutIntentPurchaseParams::Constraints#offer_retrieval_effort
         module OfferRetrievalEffort
-          extend CheckoutIntents::Internal::Type::Enum
+          extend ::CheckoutIntents::Internal::Type::Enum
 
           MAX = :max
           LOW = :low

@@ -2,11 +2,11 @@
 
 module CheckoutIntents
   module Internal
-    extend CheckoutIntents::Internal::Util::SorbetRuntimeSupport
+    extend ::CheckoutIntents::Internal::Util::SorbetRuntimeSupport
 
     OMIT =
       Object.new.tap do
-        _1.define_singleton_method(:inspect) { "#<#{CheckoutIntents::Internal}::OMIT>" }
+        _1.define_singleton_method(:inspect) { "#<#{::CheckoutIntents::Internal}::OMIT>" }
       end
         .freeze
 
@@ -14,7 +14,7 @@ module CheckoutIntents
       T.type_alias { T::Hash[Symbol, T.anything] }
     end
     define_sorbet_constant!(:FileInput) do
-      T.type_alias { T.any(Pathname, StringIO, IO, String, CheckoutIntents::FilePart) }
+      T.type_alias { T.any(Pathname, StringIO, IO, String, ::CheckoutIntents::FilePart) }
     end
   end
 end

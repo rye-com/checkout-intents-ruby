@@ -1,15 +1,15 @@
 module CheckoutIntents
   module Models
     type checkout_intent_retrieve_params =
-      {  } & CheckoutIntents::Internal::Type::request_parameters
+      {  } & ::CheckoutIntents::Internal::Type::request_parameters
 
-    class CheckoutIntentRetrieveParams < CheckoutIntents::Internal::Type::BaseModel
-      extend CheckoutIntents::Internal::Type::RequestParameters::Converter
-      include CheckoutIntents::Internal::Type::RequestParameters
+    class CheckoutIntentRetrieveParams < ::CheckoutIntents::Internal::Type::BaseModel
+      extend ::CheckoutIntents::Internal::Type::RequestParameters::Converter
+      include ::CheckoutIntents::Internal::Type::RequestParameters
 
-      def initialize: (?request_options: CheckoutIntents::request_opts) -> void
+      def initialize: (?request_options: ::CheckoutIntents::request_opts) -> void
 
-      def to_hash: -> { request_options: CheckoutIntents::RequestOptions }
+      def to_hash: -> { request_options: ::CheckoutIntents::RequestOptions }
     end
   end
 end

@@ -2,15 +2,15 @@
 
 module CheckoutIntents
   [
-    CheckoutIntents::Internal::Type::BaseModel,
-    *CheckoutIntents::Internal::Type::BaseModel.subclasses
+    ::CheckoutIntents::Internal::Type::BaseModel,
+    *::CheckoutIntents::Internal::Type::BaseModel.subclasses
   ].each do |cls|
-    cls.define_sorbet_constant!(:OrHash) { T.type_alias { T.any(cls, CheckoutIntents::Internal::AnyHash) } }
+    cls.define_sorbet_constant!(:OrHash) { T.type_alias { T.any(cls, ::CheckoutIntents::Internal::AnyHash) } }
   end
 
-  CheckoutIntents::Internal::Util.walk_namespaces(CheckoutIntents::Models).each do |mod|
+  ::CheckoutIntents::Internal::Util.walk_namespaces(::CheckoutIntents::Models).each do |mod|
     case mod
-    in CheckoutIntents::Internal::Type::Enum | CheckoutIntents::Internal::Type::Union
+    in ::CheckoutIntents::Internal::Type::Enum | ::CheckoutIntents::Internal::Type::Union
       mod.constants.each do |name|
         case mod.const_get(name)
         in true | false
@@ -32,9 +32,9 @@ module CheckoutIntents
     end
   end
 
-  CheckoutIntents::Internal::Util.walk_namespaces(CheckoutIntents::Models)
+  ::CheckoutIntents::Internal::Util.walk_namespaces(::CheckoutIntents::Models)
                                  .lazy
-                                 .grep(CheckoutIntents::Internal::Type::Union)
+                                 .grep(::CheckoutIntents::Internal::Type::Union)
                                  .each do |mod|
     const = :Variants
     next if mod.sorbet_constant_defined?(const)
@@ -42,51 +42,51 @@ module CheckoutIntents
     mod.define_sorbet_constant!(const) { T.type_alias { mod.to_sorbet_type } }
   end
 
-  BaseCheckoutIntent = CheckoutIntents::Models::BaseCheckoutIntent
+  BaseCheckoutIntent = ::CheckoutIntents::Models::BaseCheckoutIntent
 
-  Betas = CheckoutIntents::Models::Betas
+  Betas = ::CheckoutIntents::Models::Betas
 
-  BrandRetrieveParams = CheckoutIntents::Models::BrandRetrieveParams
+  BrandRetrieveParams = ::CheckoutIntents::Models::BrandRetrieveParams
 
-  Buyer = CheckoutIntents::Models::Buyer
+  Buyer = ::CheckoutIntents::Models::Buyer
 
-  CheckoutIntent = CheckoutIntents::Models::CheckoutIntent
+  CheckoutIntent = ::CheckoutIntents::Models::CheckoutIntent
 
-  CheckoutIntentAddPaymentParams = CheckoutIntents::Models::CheckoutIntentAddPaymentParams
+  CheckoutIntentAddPaymentParams = ::CheckoutIntents::Models::CheckoutIntentAddPaymentParams
 
-  CheckoutIntentConfirmParams = CheckoutIntents::Models::CheckoutIntentConfirmParams
+  CheckoutIntentConfirmParams = ::CheckoutIntents::Models::CheckoutIntentConfirmParams
 
-  CheckoutIntentCreateParams = CheckoutIntents::Models::CheckoutIntentCreateParams
+  CheckoutIntentCreateParams = ::CheckoutIntents::Models::CheckoutIntentCreateParams
 
-  CheckoutIntentListParams = CheckoutIntents::Models::CheckoutIntentListParams
+  CheckoutIntentListParams = ::CheckoutIntents::Models::CheckoutIntentListParams
 
-  CheckoutIntentPurchaseParams = CheckoutIntents::Models::CheckoutIntentPurchaseParams
+  CheckoutIntentPurchaseParams = ::CheckoutIntents::Models::CheckoutIntentPurchaseParams
 
-  CheckoutIntentRetrieveParams = CheckoutIntents::Models::CheckoutIntentRetrieveParams
+  CheckoutIntentRetrieveParams = ::CheckoutIntents::Models::CheckoutIntentRetrieveParams
 
-  CheckoutIntents = CheckoutIntents::Models::CheckoutIntents
+  CheckoutIntents = ::CheckoutIntents::Models::CheckoutIntents
 
-  CheckoutSession = CheckoutIntents::Models::CheckoutSession
+  CheckoutSession = ::CheckoutIntents::Models::CheckoutSession
 
-  Money = CheckoutIntents::Models::Money
+  Money = ::CheckoutIntents::Models::Money
 
-  Offer = CheckoutIntents::Models::Offer
+  Offer = ::CheckoutIntents::Models::Offer
 
-  PaymentMethod = CheckoutIntents::Models::PaymentMethod
+  PaymentMethod = ::CheckoutIntents::Models::PaymentMethod
 
-  Product = CheckoutIntents::Models::Product
+  Product = ::CheckoutIntents::Models::Product
 
-  ProductAvailability = CheckoutIntents::Models::ProductAvailability
+  ProductAvailability = ::CheckoutIntents::Models::ProductAvailability
 
-  ProductImage = CheckoutIntents::Models::ProductImage
+  ProductImage = ::CheckoutIntents::Models::ProductImage
 
-  ProductLookupParams = CheckoutIntents::Models::ProductLookupParams
+  ProductLookupParams = ::CheckoutIntents::Models::ProductLookupParams
 
-  Shipment = CheckoutIntents::Models::Shipment
+  Shipment = ::CheckoutIntents::Models::Shipment
 
-  ShipmentListParams = CheckoutIntents::Models::ShipmentListParams
+  ShipmentListParams = ::CheckoutIntents::Models::ShipmentListParams
 
-  ShipmentRetrieveParams = CheckoutIntents::Models::ShipmentRetrieveParams
+  ShipmentRetrieveParams = ::CheckoutIntents::Models::ShipmentRetrieveParams
 
-  VariantSelection = CheckoutIntents::Models::VariantSelection
+  VariantSelection = ::CheckoutIntents::Models::VariantSelection
 end
