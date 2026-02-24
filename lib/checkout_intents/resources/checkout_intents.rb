@@ -13,12 +13,13 @@ module CheckoutIntents
       DEFAULT_MAX_ATTEMPTS = 120
       # Create a checkout intent with the given request body.
       #
-      # @overload create(buyer:, product_url:, quantity:, constraints: nil, promo_codes: nil, variant_selections: nil, request_options: {})
+      # @overload create(buyer:, product_url:, quantity:, constraints: nil, discover_promo_codes: nil, promo_codes: nil, variant_selections: nil, request_options: {})
       #
       # @param buyer [::CheckoutIntents::Models::Buyer]
       # @param product_url [String]
       # @param quantity [Integer]
       # @param constraints [::CheckoutIntents::Models::CheckoutIntentCreateParams::Constraints]
+      # @param discover_promo_codes [Boolean]
       # @param promo_codes [Array<String>]
       # @param variant_selections [Array<::CheckoutIntents::Models::VariantSelection>]
       # @param request_options [::CheckoutIntents::RequestOptions, Hash{Symbol=>Object}, nil]
@@ -145,13 +146,14 @@ module CheckoutIntents
       # The workflow handles offer retrieval, payment authorization, and order placement
       # asynchronously. Poll the GET endpoint to check status.
       #
-      # @overload purchase(buyer:, payment_method:, product_url:, quantity:, constraints: nil, promo_codes: nil, variant_selections: nil, request_options: {})
+      # @overload purchase(buyer:, payment_method:, product_url:, quantity:, constraints: nil, discover_promo_codes: nil, promo_codes: nil, variant_selections: nil, request_options: {})
       #
       # @param buyer [::CheckoutIntents::Models::Buyer]
       # @param payment_method [::CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod]
       # @param product_url [String]
       # @param quantity [Integer]
       # @param constraints [::CheckoutIntents::Models::CheckoutIntentPurchaseParams::Constraints]
+      # @param discover_promo_codes [Boolean]
       # @param promo_codes [Array<String>]
       # @param variant_selections [Array<::CheckoutIntents::Models::VariantSelection>]
       # @param request_options [::CheckoutIntents::RequestOptions, Hash{Symbol=>Object}, nil]

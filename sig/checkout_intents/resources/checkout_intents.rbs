@@ -8,6 +8,7 @@ module CheckoutIntents
         product_url: String,
         quantity: Integer,
         ?constraints: CheckoutIntents::CheckoutIntentCreateParams::Constraints,
+        ?discover_promo_codes: bool,
         ?promo_codes: ::Array[String],
         ?variant_selections: ::Array[CheckoutIntents::VariantSelection],
         ?request_options: CheckoutIntents::request_opts
@@ -45,6 +46,7 @@ module CheckoutIntents
         product_url: String,
         quantity: Integer,
         ?constraints: CheckoutIntents::CheckoutIntentPurchaseParams::Constraints,
+        ?discover_promo_codes: bool,
         ?promo_codes: ::Array[String],
         ?variant_selections: ::Array[CheckoutIntents::VariantSelection],
         ?request_options: CheckoutIntents::request_opts
