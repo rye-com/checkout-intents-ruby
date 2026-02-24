@@ -1,8 +1,6 @@
 module CheckoutIntents
   module Resources
     class CheckoutIntents
-      attr_reader shipments: ::CheckoutIntents::Resources::CheckoutIntents::Shipments
-
       def create: (
         buyer: ::CheckoutIntents::Buyer,
         product_url: String,
