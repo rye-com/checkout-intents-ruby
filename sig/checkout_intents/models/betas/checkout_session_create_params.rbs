@@ -7,6 +7,7 @@ module CheckoutIntents
           quantity: Integer,
           buyer: CheckoutIntents::Betas::CheckoutSessionCreateParams::Buyer,
           constraints: CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints,
+          discover_promo_codes: bool,
           promo_codes: ::Array[String],
           variant_selections: ::Array[CheckoutIntents::VariantSelection]
         }
@@ -32,6 +33,10 @@ module CheckoutIntents
           CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints
         ) -> CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints
 
+        attr_reader discover_promo_codes: bool?
+
+        def discover_promo_codes=: (bool) -> bool
+
         attr_reader promo_codes: ::Array[String]?
 
         def promo_codes=: (::Array[String]) -> ::Array[String]
@@ -47,6 +52,7 @@ module CheckoutIntents
           quantity: Integer,
           ?buyer: CheckoutIntents::Betas::CheckoutSessionCreateParams::Buyer,
           ?constraints: CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints,
+          ?discover_promo_codes: bool,
           ?promo_codes: ::Array[String],
           ?variant_selections: ::Array[CheckoutIntents::VariantSelection],
           ?request_options: CheckoutIntents::request_opts
@@ -57,6 +63,7 @@ module CheckoutIntents
           quantity: Integer,
           buyer: CheckoutIntents::Betas::CheckoutSessionCreateParams::Buyer,
           constraints: CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints,
+          discover_promo_codes: bool,
           promo_codes: ::Array[String],
           variant_selections: ::Array[CheckoutIntents::VariantSelection],
           request_options: CheckoutIntents::RequestOptions

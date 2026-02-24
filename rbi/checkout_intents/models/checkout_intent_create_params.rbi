@@ -41,6 +41,12 @@ module CheckoutIntents
       end
       attr_writer :constraints
 
+      sig { returns(T.nilable(T::Boolean)) }
+      attr_reader :discover_promo_codes
+
+      sig { params(discover_promo_codes: T::Boolean).void }
+      attr_writer :discover_promo_codes
+
       sig { returns(T.nilable(T::Array[String])) }
       attr_reader :promo_codes
 
@@ -65,6 +71,7 @@ module CheckoutIntents
           quantity: Integer,
           constraints:
             CheckoutIntents::CheckoutIntentCreateParams::Constraints::OrHash,
+          discover_promo_codes: T::Boolean,
           promo_codes: T::Array[String],
           variant_selections:
             T::Array[CheckoutIntents::VariantSelection::OrHash],
@@ -76,6 +83,7 @@ module CheckoutIntents
         product_url:,
         quantity:,
         constraints: nil,
+        discover_promo_codes: nil,
         promo_codes: nil,
         variant_selections: nil,
         request_options: {}
@@ -90,6 +98,7 @@ module CheckoutIntents
             quantity: Integer,
             constraints:
               CheckoutIntents::CheckoutIntentCreateParams::Constraints,
+            discover_promo_codes: T::Boolean,
             promo_codes: T::Array[String],
             variant_selections: T::Array[CheckoutIntents::VariantSelection],
             request_options: CheckoutIntents::RequestOptions

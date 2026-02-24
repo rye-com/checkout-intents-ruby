@@ -26,6 +26,9 @@ module CheckoutIntents
     sig { returns(CheckoutIntents::Resources::CheckoutIntents) }
     attr_reader :checkout_intents
 
+    sig { returns(CheckoutIntents::Resources::Shipments) }
+    attr_reader :shipments
+
     sig { returns(CheckoutIntents::Resources::Betas) }
     attr_reader :betas
 
