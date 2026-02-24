@@ -138,9 +138,11 @@ module CheckoutIntents
         # @!attribute failure_reason
         #
         #   @return [::CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent::FailureReason]
-        required :failure_reason,
-                 -> { ::CheckoutIntents::CheckoutIntent::FailedCheckoutIntent::FailureReason },
-                 api_name: :failureReason
+        required(
+          :failure_reason,
+          -> { ::CheckoutIntents::CheckoutIntent::FailedCheckoutIntent::FailureReason },
+          api_name: :failureReason
+        )
 
         # @!attribute state
         #
