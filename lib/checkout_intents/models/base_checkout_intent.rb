@@ -36,7 +36,9 @@ module CheckoutIntents
       # @!attribute discover_promo_codes
       #
       #   @return [Boolean, nil]
-      optional :discover_promo_codes, ::CheckoutIntents::Internal::Type::Boolean, api_name: :discoverPromoCodes
+      optional :discover_promo_codes,
+               ::CheckoutIntents::Internal::Type::Boolean,
+               api_name: :discoverPromoCodes
 
       # @!attribute promo_codes
       #

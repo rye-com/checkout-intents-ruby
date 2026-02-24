@@ -31,7 +31,9 @@ module CheckoutIntents
           #
           # Assumes superclass fields are totally defined before fields are accessed /
           # defined on subclasses.
-          sig { params(child: ::CheckoutIntents::Internal::Type::BaseModel).void }
+          sig do
+            params(child: ::CheckoutIntents::Internal::Type::BaseModel).void
+          end
           def inherited(child)
           end
 

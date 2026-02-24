@@ -281,7 +281,8 @@ module CheckoutIntents
                 ]
               ),
             stream: T.nilable(T::Class[T.anything]),
-            model: T.nilable(::CheckoutIntents::Internal::Type::Converter::Input),
+            model:
+              T.nilable(::CheckoutIntents::Internal::Type::Converter::Input),
             options: T.nilable(::CheckoutIntents::RequestOptions::OrHash)
           ).returns(T.anything)
         end

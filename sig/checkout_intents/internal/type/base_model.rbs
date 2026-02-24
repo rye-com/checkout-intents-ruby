@@ -11,7 +11,9 @@ module CheckoutIntents
         def self.inherited: (self child) -> void
 
         def self.known_fields: -> ::Hash[Symbol, (::CheckoutIntents::Internal::Type::BaseModel::known_field
-        & { type_fn: (^-> ::CheckoutIntents::Internal::Type::Converter::input) })]
+        & {
+          type_fn: (^-> ::CheckoutIntents::Internal::Type::Converter::input)
+        })]
 
         def self.fields: -> ::Hash[Symbol, (::CheckoutIntents::Internal::Type::BaseModel::known_field
         & { type: ::CheckoutIntents::Internal::Type::Converter::input })]

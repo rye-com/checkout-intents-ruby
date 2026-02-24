@@ -5,7 +5,10 @@ module CheckoutIntents
     class Product < ::CheckoutIntents::Internal::Type::BaseModel
       OrHash =
         T.type_alias do
-          T.any(::CheckoutIntents::Product, ::CheckoutIntents::Internal::AnyHash)
+          T.any(
+            ::CheckoutIntents::Product,
+            ::CheckoutIntents::Internal::AnyHash
+          )
         end
 
       sig { returns(String) }

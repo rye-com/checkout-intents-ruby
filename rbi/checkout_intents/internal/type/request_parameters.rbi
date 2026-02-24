@@ -10,7 +10,9 @@ module CheckoutIntents
         attr_reader :request_options
 
         sig do
-          params(request_options: ::CheckoutIntents::RequestOptions::OrHash).void
+          params(
+            request_options: ::CheckoutIntents::RequestOptions::OrHash
+          ).void
         end
         attr_writer :request_options
 

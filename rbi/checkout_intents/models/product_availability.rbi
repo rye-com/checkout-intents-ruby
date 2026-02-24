@@ -19,7 +19,10 @@ module CheckoutIntents
       IN_STOCK =
         T.let(:in_stock, ::CheckoutIntents::ProductAvailability::TaggedSymbol)
       OUT_OF_STOCK =
-        T.let(:out_of_stock, ::CheckoutIntents::ProductAvailability::TaggedSymbol)
+        T.let(
+          :out_of_stock,
+          ::CheckoutIntents::ProductAvailability::TaggedSymbol
+        )
       PREORDER =
         T.let(:preorder, ::CheckoutIntents::ProductAvailability::TaggedSymbol)
       BACKORDER =

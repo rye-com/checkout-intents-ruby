@@ -124,7 +124,9 @@ module CheckoutIntents
         #
         # @return [Object]
         def to_sorbet_type
-          types = values.map { ::CheckoutIntents::Internal::Util::SorbetRuntimeSupport.to_sorbet_type(_1) }.uniq
+          types = values.map do
+            ::CheckoutIntents::Internal::Util::SorbetRuntimeSupport.to_sorbet_type(_1)
+          end.uniq
           case types
           in []
             T.noreturn

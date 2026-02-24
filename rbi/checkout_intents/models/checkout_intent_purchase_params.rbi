@@ -41,7 +41,9 @@ module CheckoutIntents
 
       sig do
         returns(
-          T.nilable(::CheckoutIntents::CheckoutIntentPurchaseParams::Constraints)
+          T.nilable(
+            ::CheckoutIntents::CheckoutIntentPurchaseParams::Constraints
+          )
         )
       end
       attr_reader :constraints
