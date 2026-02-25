@@ -37,6 +37,13 @@ module CheckoutIntents
                  ::CheckoutIntents::Internal::Type::Boolean,
                  api_name: :discoverPromoCodes
 
+        # @!attribute layout
+        #   Optional layout for the checkout UI (e.g. "wizard"). Defaults to the standard
+        #   layout.
+        #
+        #   @return [Symbol, CheckoutIntents::Models::Betas::CheckoutSessionCreateParams::Layout, nil]
+        optional :layout, enum: -> { CheckoutIntents::Betas::CheckoutSessionCreateParams::Layout }
+
         # @!attribute promo_codes
         #
         #   @return [Array<String>, nil]
@@ -49,7 +56,7 @@ module CheckoutIntents
                  -> { ::CheckoutIntents::Internal::Type::ArrayOf[::CheckoutIntents::VariantSelection] },
                  api_name: :variantSelections
 
-        # @!method initialize(product_url:, quantity:, buyer: nil, constraints: nil, discover_promo_codes: nil, promo_codes: nil, variant_selections: nil, request_options: {})
+        # @!method initialize(product_url:, quantity:, buyer: nil, constraints: nil, discover_promo_codes: nil, layout: nil, promo_codes: nil, variant_selections: nil, request_options: {})
         #   Some parameter documentations has been truncated, see
         #   {::CheckoutIntents::Models::Betas::CheckoutSessionCreateParams} for more details.
         #
@@ -62,6 +69,8 @@ module CheckoutIntents
         #   @param constraints [::CheckoutIntents::Models::Betas::CheckoutSessionCreateParams::Constraints]
         #
         #   @param discover_promo_codes [Boolean]
+        #
+        #   @param layout [Symbol, CheckoutIntents::Models::Betas::CheckoutSessionCreateParams::Layout] Optional layout for the checkout UI (e.g. "wizard"). Defaults to the standard la
         #
         #   @param promo_codes [Array<String>]
         #
@@ -192,6 +201,18 @@ module CheckoutIntents
             # @!method self.values
             #   @return [Array<Symbol>]
           end
+        end
+
+        # Optional layout for the checkout UI (e.g. "wizard"). Defaults to the standard
+        # layout.
+        module Layout
+          extend CheckoutIntents::Internal::Type::Enum
+
+          DEFAULT = :default
+          WIZARD = :wizard
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
         end
       end
     end
