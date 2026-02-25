@@ -1,0 +1,44 @@
+module CheckoutIntents
+  module Models
+    type billing_list_transactions_response =
+      {
+        id: String,
+        amount: ::CheckoutIntents::Money,
+        created_at: Time,
+        description: String,
+        metadata: ::Hash[Symbol, String]
+      }
+
+    class BillingListTransactionsResponse < ::CheckoutIntents::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor amount: ::CheckoutIntents::Money
+
+      attr_accessor created_at: Time
+
+      attr_reader description: String?
+
+      def description=: (String) -> String
+
+      attr_reader metadata: ::Hash[Symbol, String]?
+
+      def metadata=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
+
+      def initialize: (
+        id: String,
+        amount: ::CheckoutIntents::Money,
+        created_at: Time,
+        ?description: String,
+        ?metadata: ::Hash[Symbol, String]
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        amount: ::CheckoutIntents::Money,
+        created_at: Time,
+        description: String,
+        metadata: ::Hash[Symbol, String]
+      }
+    end
+  end
+end

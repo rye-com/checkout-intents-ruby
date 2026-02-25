@@ -36,6 +36,9 @@ module CheckoutIntents
     # @return [::CheckoutIntents::Resources::Products]
     attr_reader :products
 
+    # @return [::CheckoutIntents::Resources::Billing]
+    attr_reader :billing
+
     # @api private
     #
     # @return [Hash{String=>String}]
@@ -132,6 +135,7 @@ module CheckoutIntents
       @betas = ::CheckoutIntents::Resources::Betas.new(client: self)
       @brands = ::CheckoutIntents::Resources::Brands.new(client: self)
       @products = ::CheckoutIntents::Resources::Products.new(client: self)
+      @billing = ::CheckoutIntents::Resources::Billing.new(client: self)
     end
   end
 end
