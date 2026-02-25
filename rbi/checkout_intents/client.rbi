@@ -35,6 +35,9 @@ module CheckoutIntents
     sig { returns(::CheckoutIntents::Resources::Products) }
     attr_reader :products
 
+    sig { returns(::CheckoutIntents::Resources::Billing) }
+    attr_reader :billing
+
     # @api private
     sig { override.returns(T::Hash[String, String]) }
     private def auth_headers
