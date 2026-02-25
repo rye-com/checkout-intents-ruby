@@ -18,7 +18,7 @@ module CheckoutIntents
               ::CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints::OrHash,
             discover_promo_codes: T::Boolean,
             layout:
-              CheckoutIntents::Betas::CheckoutSessionCreateParams::Layout::OrSymbol,
+              ::CheckoutIntents::Betas::CheckoutSessionCreateParams::Layout::OrSymbol,
             promo_codes: T::Array[String],
             variant_selections:
               T::Array[::CheckoutIntents::VariantSelection::OrHash],
