@@ -1,5 +1,61 @@
 # Changelog
 
+## 0.4.0 (2026-02-25)
+
+Full Changelog: [v0.3.1...v0.4.0](https://github.com/rye-com/checkout-intents-ruby/compare/v0.3.1...v0.4.0)
+
+### Features
+
+* add merchants API endpoint ([fe328c8](https://github.com/rye-com/checkout-intents-ruby/commit/fe328c8624e6918c8fc12116e94ac234c55809c7))
+* Add PaymentMethod support for Prava ([14403ec](https://github.com/rye-com/checkout-intents-ruby/commit/14403ec2d12b9cc0b158b1f13f57a4f2562425a5))
+* Add stainless updates ([fb15ca9](https://github.com/rye-com/checkout-intents-ruby/commit/fb15ca96cfa2cce055f4b5298337d153a27d01d7))
+* Billing: Add BillingReconciliationService for expired drawdown orders ([bfdf7c7](https://github.com/rye-com/checkout-intents-ruby/commit/bfdf7c7623d2f67ded81d7d4b42586c7761b9587))
+* Billing: Add BillingReconciliationService for expired drawdown orders ([4c5cc0c](https://github.com/rye-com/checkout-intents-ruby/commit/4c5cc0c21cf3fff1dd814f0980f391769f991903))
+* Billing: Envelope payment processing fields ([4883dbc](https://github.com/rye-com/checkout-intents-ruby/commit/4883dbce3f4f94f6f479b7e9c7590acc3f4f98fe))
+* Billing: Integrate drawdown payments in order flow ([fc96bce](https://github.com/rye-com/checkout-intents-ruby/commit/fc96bce1e2161b0e860d966a4c0dcd95088ae650))
+* Centralize Shopify domain resolution into ShopifyDomainResolver service ([667747d](https://github.com/rye-com/checkout-intents-ruby/commit/667747d078a9f4cb4f21610de3f8845792a107e9))
+* Enable searching checkoutIntent by order Id on dev console ([e4e1d60](https://github.com/rye-com/checkout-intents-ruby/commit/e4e1d60fcd31fe16a114657e0d88c5198ca31470))
+* integrate promo codes discovery to checkout intent flow ([0a853b4](https://github.com/rye-com/checkout-intents-ruby/commit/0a853b42afa15f3ebd965056fe939581d7d8d5b5))
+* Phase 3: Strategy Interface + Normalizer ([f7a8093](https://github.com/rye-com/checkout-intents-ruby/commit/f7a809350d9d2b47d3e33fa15c934423b3890769))
+* Remove `shipments` from our stainless config ([647f966](https://github.com/rye-com/checkout-intents-ruby/commit/647f966aa6283367a86bb6b1bb1016d0b7baa1b6))
+* Remove duplicate method from controller ([bdbda16](https://github.com/rye-com/checkout-intents-ruby/commit/bdbda16d7cd63db41d9253625d6a6a1ed8715acf))
+* Store estimated delivery date on completed checkout intent ([1114b43](https://github.com/rye-com/checkout-intents-ruby/commit/1114b4326c1a372f33d6cc17171db0192ed4d40c))
+* Store estimated delivery date on completed checkout intent ([cce80b5](https://github.com/rye-com/checkout-intents-ruby/commit/cce80b5171fba2b7573b5ce27bd328c4cbc9d194))
+* Unwrap `rd.bizrate.com` affiliate URLs ([9b31371](https://github.com/rye-com/checkout-intents-ruby/commit/9b3137194da902b632001a16756a6bd3df4a1770))
+* Unwrap `rd.bizrate.com` affiliate URLs ([5620d06](https://github.com/rye-com/checkout-intents-ruby/commit/5620d06a52adba2842dc67e9acb8c38574fcff24))
+* Update return states to better reflect return lifecycle ([7b2053f](https://github.com/rye-com/checkout-intents-ruby/commit/7b2053f24007e8f3d401b7a73b0c4ad1c7856191))
+* wire up wizard layout and pass layout type through JWT ([3b5be9b](https://github.com/rye-com/checkout-intents-ruby/commit/3b5be9bdba3d7e1c5f13530aae7348028928974b))
+
+
+### Bug Fixes
+
+* **client:** always add content-length to post body, even when empty ([cf0a01b](https://github.com/rye-com/checkout-intents-ruby/commit/cf0a01b9aea9660921b37245e054d7d3c4bc6589))
+* **client:** loosen json header parsing ([370e9f1](https://github.com/rye-com/checkout-intents-ruby/commit/370e9f183a4a01425a6ed55f1f587cec1ce0051b))
+* **internal:** auto-correct style issues on format ([0996321](https://github.com/rye-com/checkout-intents-ruby/commit/0996321f2b40af55bfa1f5f7c1440b536465e3ec))
+* **internal:** expand `fix-absolute-references` script ([bb4c3db](https://github.com/rye-com/checkout-intents-ruby/commit/bb4c3db1a0919f5196c6de982bc31568f1f95c02))
+
+
+### Chores
+
+* **docs:** remove www prefix ([94872c2](https://github.com/rye-com/checkout-intents-ruby/commit/94872c23c918df8535960a872609a82355b0a8f1))
+* **internal:** format and fix absolute references ([b804e1a](https://github.com/rye-com/checkout-intents-ruby/commit/b804e1a10bb5e0cde953dc9b459805dce71b4e30))
+* **internal:** format and fix absolute references ([398a39c](https://github.com/rye-com/checkout-intents-ruby/commit/398a39ccebcc0aa1e3d9dda3e596c3ba6cffe7db))
+* **internal:** format and fix absolute references ([cc55350](https://github.com/rye-com/checkout-intents-ruby/commit/cc55350f01e1e361ea686cf361078082b3fab927))
+* **internal:** format and fix absolute references ([a4ef09b](https://github.com/rye-com/checkout-intents-ruby/commit/a4ef09b368112fda02705a6203d5c5e7e4e2eaeb))
+* **internal:** format and fix absolute references ([a52c0ba](https://github.com/rye-com/checkout-intents-ruby/commit/a52c0ba29741ebcba333a77c353157ce57388fae))
+* **internal:** format and fix absolute references ([044f29e](https://github.com/rye-com/checkout-intents-ruby/commit/044f29e1e7c25ccfa25d1a43e0b730fe6964fc0b))
+* **internal:** format and fix absolute references ([9cca341](https://github.com/rye-com/checkout-intents-ruby/commit/9cca34174d75aee7798f4bbea375e5f6f4955c15))
+* **internal:** format and fix absolute references ([c7e748d](https://github.com/rye-com/checkout-intents-ruby/commit/c7e748d8a4114448c505310c30add13357800b12))
+* **internal:** format and fix absolute references ([37f8e6f](https://github.com/rye-com/checkout-intents-ruby/commit/37f8e6f6ce31b7e44b6a71aecb45682e061d888c))
+* **internal:** format and fix absolute references ([1d010c4](https://github.com/rye-com/checkout-intents-ruby/commit/1d010c4d9e2c3387efdde6d5a4019d94e7757607))
+* **internal:** format and fix absolute references ([2890fe0](https://github.com/rye-com/checkout-intents-ruby/commit/2890fe035123d6af0bb4f7de2252af919cdc285d))
+* **internal:** improvements ([9d65299](https://github.com/rye-com/checkout-intents-ruby/commit/9d652994c7618deb3479d73f5fc56c4ef0fa1878))
+* **internal:** improvements ([826f76c](https://github.com/rye-com/checkout-intents-ruby/commit/826f76c459e35ee6327f7c8910a7c399cef9e9f5))
+* **internal:** improvements ([b8d678f](https://github.com/rye-com/checkout-intents-ruby/commit/b8d678ffd041f631487709fea369fc2ac0184d6f))
+* **internal:** move polling helpers ([4e74c7f](https://github.com/rye-com/checkout-intents-ruby/commit/4e74c7fe0b32260c63980e9e9bbe2185966a0df2))
+* **internal:** remove mock server code ([43ad79f](https://github.com/rye-com/checkout-intents-ruby/commit/43ad79f58124c6f40fc9ae6a95a59f5404ea6a0f))
+* update mock server docs ([47ac5a6](https://github.com/rye-com/checkout-intents-ruby/commit/47ac5a65f13964ea4c0e764023fe2a802612657b))
+
 ## 0.3.1 (2026-01-30)
 
 Full Changelog: [v0.3.0...v0.3.1](https://github.com/rye-com/checkout-intents-ruby/compare/v0.3.0...v0.3.1)
