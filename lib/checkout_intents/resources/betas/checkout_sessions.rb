@@ -24,7 +24,7 @@ module CheckoutIntents
         #
         # @param discover_promo_codes [Boolean]
         #
-        # @param layout [Symbol, CheckoutIntents::Models::Betas::CheckoutSessionCreateParams::Layout] Optional layout for the checkout UI (e.g. "wizard"). Defaults to the standard la
+        # @param layout [Symbol, ::CheckoutIntents::Models::Betas::CheckoutSessionCreateParams::Layout] Optional layout for the checkout UI (e.g. "wizard"). Defaults to the standard la
         #
         # @param promo_codes [Array<String>]
         #

@@ -68,7 +68,7 @@ module CheckoutIntents
         sig do
           returns(
             T.nilable(
-              CheckoutIntents::Betas::CheckoutSessionCreateParams::Layout::OrSymbol
+              ::CheckoutIntents::Betas::CheckoutSessionCreateParams::Layout::OrSymbol
             )
           )
         end
@@ -77,7 +77,7 @@ module CheckoutIntents
         sig do
           params(
             layout:
-              CheckoutIntents::Betas::CheckoutSessionCreateParams::Layout::OrSymbol
+              ::CheckoutIntents::Betas::CheckoutSessionCreateParams::Layout::OrSymbol
           ).void
         end
         attr_writer :layout
@@ -111,7 +111,7 @@ module CheckoutIntents
               ::CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints::OrHash,
             discover_promo_codes: T::Boolean,
             layout:
-              CheckoutIntents::Betas::CheckoutSessionCreateParams::Layout::OrSymbol,
+              ::CheckoutIntents::Betas::CheckoutSessionCreateParams::Layout::OrSymbol,
             promo_codes: T::Array[String],
             variant_selections:
               T::Array[::CheckoutIntents::VariantSelection::OrHash],
@@ -146,7 +146,7 @@ module CheckoutIntents
                 ::CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints,
               discover_promo_codes: T::Boolean,
               layout:
-                CheckoutIntents::Betas::CheckoutSessionCreateParams::Layout::OrSymbol,
+                ::CheckoutIntents::Betas::CheckoutSessionCreateParams::Layout::OrSymbol,
               promo_codes: T::Array[String],
               variant_selections: T::Array[::CheckoutIntents::VariantSelection],
               request_options: ::CheckoutIntents::RequestOptions
@@ -400,13 +400,13 @@ module CheckoutIntents
         # Optional layout for the checkout UI (e.g. "wizard"). Defaults to the standard
         # layout.
         module Layout
-          extend CheckoutIntents::Internal::Type::Enum
+          extend ::CheckoutIntents::Internal::Type::Enum
 
           TaggedSymbol =
             T.type_alias do
               T.all(
                 Symbol,
-                CheckoutIntents::Betas::CheckoutSessionCreateParams::Layout
+                ::CheckoutIntents::Betas::CheckoutSessionCreateParams::Layout
               )
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -414,18 +414,18 @@ module CheckoutIntents
           DEFAULT =
             T.let(
               :default,
-              CheckoutIntents::Betas::CheckoutSessionCreateParams::Layout::TaggedSymbol
+              ::CheckoutIntents::Betas::CheckoutSessionCreateParams::Layout::TaggedSymbol
             )
           WIZARD =
             T.let(
               :wizard,
-              CheckoutIntents::Betas::CheckoutSessionCreateParams::Layout::TaggedSymbol
+              ::CheckoutIntents::Betas::CheckoutSessionCreateParams::Layout::TaggedSymbol
             )
 
           sig do
             override.returns(
               T::Array[
-                CheckoutIntents::Betas::CheckoutSessionCreateParams::Layout::TaggedSymbol
+                ::CheckoutIntents::Betas::CheckoutSessionCreateParams::Layout::TaggedSymbol
               ]
             )
           end

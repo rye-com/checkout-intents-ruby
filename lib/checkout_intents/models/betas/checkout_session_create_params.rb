@@ -41,8 +41,8 @@ module CheckoutIntents
         #   Optional layout for the checkout UI (e.g. "wizard"). Defaults to the standard
         #   layout.
         #
-        #   @return [Symbol, CheckoutIntents::Models::Betas::CheckoutSessionCreateParams::Layout, nil]
-        optional :layout, enum: -> { CheckoutIntents::Betas::CheckoutSessionCreateParams::Layout }
+        #   @return [Symbol, ::CheckoutIntents::Models::Betas::CheckoutSessionCreateParams::Layout, nil]
+        optional :layout, enum: -> { ::CheckoutIntents::Betas::CheckoutSessionCreateParams::Layout }
 
         # @!attribute promo_codes
         #
@@ -70,7 +70,7 @@ module CheckoutIntents
         #
         #   @param discover_promo_codes [Boolean]
         #
-        #   @param layout [Symbol, CheckoutIntents::Models::Betas::CheckoutSessionCreateParams::Layout] Optional layout for the checkout UI (e.g. "wizard"). Defaults to the standard la
+        #   @param layout [Symbol, ::CheckoutIntents::Models::Betas::CheckoutSessionCreateParams::Layout] Optional layout for the checkout UI (e.g. "wizard"). Defaults to the standard la
         #
         #   @param promo_codes [Array<String>]
         #
@@ -206,7 +206,7 @@ module CheckoutIntents
         # Optional layout for the checkout UI (e.g. "wizard"). Defaults to the standard
         # layout.
         module Layout
-          extend CheckoutIntents::Internal::Type::Enum
+          extend ::CheckoutIntents::Internal::Type::Enum
 
           DEFAULT = :default
           WIZARD = :wizard
