@@ -3,10 +3,6 @@ module CheckoutIntents
 
   module Betas = CheckoutIntents::Models::Betas
 
-  class BillingGetBalanceParams = CheckoutIntents::Models::BillingGetBalanceParams
-
-  class BillingListTransactionsParams = CheckoutIntents::Models::BillingListTransactionsParams
-
   class BrandRetrieveParams = CheckoutIntents::Models::BrandRetrieveParams
 
   class Buyer = CheckoutIntents::Models::Buyer
