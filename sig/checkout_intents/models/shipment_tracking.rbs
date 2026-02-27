@@ -1,0 +1,35 @@
+module CheckoutIntents
+  module Models
+    type shipment_tracking =
+      {
+        number: String?,
+        carrier_name: String?,
+        estimated_delivery_date: Time?,
+        url: String?
+      }
+
+    class ShipmentTracking < CheckoutIntents::Internal::Type::BaseModel
+      attr_accessor number: String?
+
+      attr_accessor carrier_name: String?
+
+      attr_accessor estimated_delivery_date: Time?
+
+      attr_accessor url: String?
+
+      def initialize: (
+        number: String?,
+        ?carrier_name: String?,
+        ?estimated_delivery_date: Time?,
+        ?url: String?
+      ) -> void
+
+      def to_hash: -> {
+        number: String?,
+        carrier_name: String?,
+        estimated_delivery_date: Time?,
+        url: String?
+      }
+    end
+  end
+end
