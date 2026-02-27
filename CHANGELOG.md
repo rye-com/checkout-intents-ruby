@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.5.0 (2026-02-27)
+
+Full Changelog: [v0.4.0...v0.5.0](https://github.com/rye-com/checkout-intents-ruby/compare/v0.4.0...v0.5.0)
+
+### Features
+
+* Add hidden billing API endpoints for drawdown balance and transactions ([1d0cf2f](https://github.com/rye-com/checkout-intents-ruby/commit/1d0cf2ff495f773989a0db5ba645897d1663fcbb))
+* proxy product images through Rye domain ([1c3a824](https://github.com/rye-com/checkout-intents-ruby/commit/1c3a82497f2ffd7deaf9b0df3ae6d9c6ebea796c))
+
+
+### Bug Fixes
+
+* **internal:** formatting ([48e805b](https://github.com/rye-com/checkout-intents-ruby/commit/48e805b256315431a15d0f37f4f1547c0ae8bcec))
+
+
+### Chores
+
+* **internal:** improvements ([bf4bc16](https://github.com/rye-com/checkout-intents-ruby/commit/bf4bc16e17bc6f52eca011604bc4fff648c96b0e))
+
 ## 0.4.0 (2026-02-25)
 
 Full Changelog: [v0.3.1...v0.4.0](https://github.com/rye-com/checkout-intents-ruby/compare/v0.3.1...v0.4.0)
