@@ -46,10 +46,6 @@ module CheckoutIntents
 
   Betas = ::CheckoutIntents::Models::Betas
 
-  BillingGetBalanceParams = CheckoutIntents::Models::BillingGetBalanceParams
-
-  BillingListTransactionsParams = CheckoutIntents::Models::BillingListTransactionsParams
-
   BillingGetBalanceParams = ::CheckoutIntents::Models::BillingGetBalanceParams
 
   BillingListTransactionsParams = ::CheckoutIntents::Models::BillingListTransactionsParams

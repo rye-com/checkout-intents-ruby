@@ -25,8 +25,6 @@ module CheckoutIntents
 
     attr_reader billing: ::CheckoutIntents::Resources::Billing
 
-    attr_reader billing: CheckoutIntents::Resources::Billing
-
     private def auth_headers: -> ::Hash[String, String]
 
     def initialize: (

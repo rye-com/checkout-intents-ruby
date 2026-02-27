@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 module CheckoutIntents
   module Models
     type billing_get_balance_params =
@@ -16,21 +15,3 @@ module CheckoutIntents
     end
   end
 end
-||||||| parent of 59fce0d (chore(internal): improvements)
-=======
-module CheckoutIntents
-  module Models
-    type billing_get_balance_params =
-      {  } & CheckoutIntents::Internal::Type::request_parameters
-
-    class BillingGetBalanceParams < CheckoutIntents::Internal::Type::BaseModel
-      extend CheckoutIntents::Internal::Type::RequestParameters::Converter
-      include CheckoutIntents::Internal::Type::RequestParameters
-
-      def initialize: (?request_options: CheckoutIntents::request_opts) -> void
-
-      def to_hash: -> { request_options: CheckoutIntents::RequestOptions }
-    end
-  end
-end
->>>>>>> 59fce0d (chore(internal): improvements)
