@@ -1,0 +1,21 @@
+module CheckoutIntents
+  module Resources
+    class Shipments
+      def retrieve: (
+        String id,
+        ?request_options: CheckoutIntents::request_opts
+      ) -> CheckoutIntents::Models::shipment
+
+      def list: (
+        ?after: String,
+        ?before: String,
+        ?ids: ::Array[String],
+        ?limit: Float,
+        ?status: ::Array[CheckoutIntents::Models::shipment_status],
+        ?request_options: CheckoutIntents::request_opts
+      ) -> CheckoutIntents::Internal::CursorPagination[CheckoutIntents::Models::shipment]
+
+      def initialize: (client: CheckoutIntents::Client) -> void
+    end
+  end
+end
