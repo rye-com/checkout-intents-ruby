@@ -39,6 +39,9 @@ module CheckoutIntents
     # @return [::CheckoutIntents::Resources::Billing]
     attr_reader :billing
 
+    # @return [CheckoutIntents::Resources::Billing]
+    attr_reader :billing
+
     # @api private
     #
     # @return [Hash{String=>String}]

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 module CheckoutIntents
   module Models
     type billing_list_transactions_params =
@@ -36,3 +37,44 @@ module CheckoutIntents
     end
   end
 end
+||||||| parent of 59fce0d (chore(internal): improvements)
+=======
+module CheckoutIntents
+  module Models
+    type billing_list_transactions_params =
+      { after: String, before: String, limit: Integer }
+      & CheckoutIntents::Internal::Type::request_parameters
+
+    class BillingListTransactionsParams < CheckoutIntents::Internal::Type::BaseModel
+      extend CheckoutIntents::Internal::Type::RequestParameters::Converter
+      include CheckoutIntents::Internal::Type::RequestParameters
+
+      attr_reader after: String?
+
+      def after=: (String) -> String
+
+      attr_reader before: String?
+
+      def before=: (String) -> String
+
+      attr_reader limit: Integer?
+
+      def limit=: (Integer) -> Integer
+
+      def initialize: (
+        ?after: String,
+        ?before: String,
+        ?limit: Integer,
+        ?request_options: CheckoutIntents::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        after: String,
+        before: String,
+        limit: Integer,
+        request_options: CheckoutIntents::RequestOptions
+      }
+    end
+  end
+end
+>>>>>>> 59fce0d (chore(internal): improvements)

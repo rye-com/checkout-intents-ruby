@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 module CheckoutIntents
   module Models
     type billing_get_balance_response = { balance: ::CheckoutIntents::Money }
@@ -11,3 +12,19 @@ module CheckoutIntents
     end
   end
 end
+||||||| parent of 59fce0d (chore(internal): improvements)
+=======
+module CheckoutIntents
+  module Models
+    type billing_get_balance_response = { balance: CheckoutIntents::Money }
+
+    class BillingGetBalanceResponse < CheckoutIntents::Internal::Type::BaseModel
+      attr_accessor balance: CheckoutIntents::Money
+
+      def initialize: (balance: CheckoutIntents::Money) -> void
+
+      def to_hash: -> { balance: CheckoutIntents::Money }
+    end
+  end
+end
+>>>>>>> 59fce0d (chore(internal): improvements)
