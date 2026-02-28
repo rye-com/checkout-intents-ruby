@@ -4,7 +4,7 @@ module CheckoutIntents
       {
         number: String?,
         carrier_name: String?,
-        estimated_delivery_date: Time?,
+        delivery_date: CheckoutIntents::ShipmentTracking::DeliveryDate?,
         url: String?
       }
 
@@ -13,23 +13,33 @@ module CheckoutIntents
 
       attr_accessor carrier_name: String?
 
-      attr_accessor estimated_delivery_date: Time?
+      attr_accessor delivery_date: CheckoutIntents::ShipmentTracking::DeliveryDate?
 
       attr_accessor url: String?
 
       def initialize: (
         number: String?,
         ?carrier_name: String?,
-        ?estimated_delivery_date: Time?,
+        ?delivery_date: CheckoutIntents::ShipmentTracking::DeliveryDate?,
         ?url: String?
       ) -> void
 
       def to_hash: -> {
         number: String?,
         carrier_name: String?,
-        estimated_delivery_date: Time?,
+        delivery_date: CheckoutIntents::ShipmentTracking::DeliveryDate?,
         url: String?
       }
+
+      type delivery_date = { estimated: Time }
+
+      class DeliveryDate < CheckoutIntents::Internal::Type::BaseModel
+        attr_accessor estimated: Time
+
+        def initialize: (estimated: Time) -> void
+
+        def to_hash: -> { estimated: Time }
+      end
     end
   end
 end

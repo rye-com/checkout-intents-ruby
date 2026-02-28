@@ -80,32 +80,27 @@ module CheckoutIntents
         type tracking_event =
           {
             description: String?,
-            display_date: String?,
-            display_time: String?,
-            location: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Location
+            location: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Location,
+            timestamp: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Timestamp?
           }
 
         class TrackingEvent < CheckoutIntents::Internal::Type::BaseModel
           attr_accessor description: String?
 
-          attr_accessor display_date: String?
-
-          attr_accessor display_time: String?
-
           attr_accessor location: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Location
+
+          attr_accessor timestamp: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Timestamp?
 
           def initialize: (
             description: String?,
-            display_date: String?,
-            display_time: String?,
-            location: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Location
+            location: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Location,
+            timestamp: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Timestamp?
           ) -> void
 
           def to_hash: -> {
             description: String?,
-            display_date: String?,
-            display_time: String?,
-            location: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Location
+            location: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Location,
+            timestamp: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Timestamp?
           }
 
           type location = { city: String?, country: String?, province: String? }
@@ -128,6 +123,18 @@ module CheckoutIntents
               country: String?,
               province: String?
             }
+          end
+
+          type timestamp = { local: String, utc: Time }
+
+          class Timestamp < CheckoutIntents::Internal::Type::BaseModel
+            attr_accessor local: String
+
+            attr_accessor utc: Time
+
+            def initialize: (local: String, utc: Time) -> void
+
+            def to_hash: -> { local: String, utc: Time }
           end
         end
       end
@@ -206,32 +213,27 @@ module CheckoutIntents
         type tracking_event =
           {
             description: String?,
-            display_date: String?,
-            display_time: String?,
-            location: CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Location
+            location: CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Location,
+            timestamp: CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Timestamp?
           }
 
         class TrackingEvent < CheckoutIntents::Internal::Type::BaseModel
           attr_accessor description: String?
 
-          attr_accessor display_date: String?
-
-          attr_accessor display_time: String?
-
           attr_accessor location: CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Location
+
+          attr_accessor timestamp: CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Timestamp?
 
           def initialize: (
             description: String?,
-            display_date: String?,
-            display_time: String?,
-            location: CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Location
+            location: CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Location,
+            timestamp: CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Timestamp?
           ) -> void
 
           def to_hash: -> {
             description: String?,
-            display_date: String?,
-            display_time: String?,
-            location: CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Location
+            location: CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Location,
+            timestamp: CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Timestamp?
           }
 
           type location = { city: String?, country: String?, province: String? }
@@ -254,6 +256,18 @@ module CheckoutIntents
               country: String?,
               province: String?
             }
+          end
+
+          type timestamp = { local: String, utc: Time }
+
+          class Timestamp < CheckoutIntents::Internal::Type::BaseModel
+            attr_accessor local: String
+
+            attr_accessor utc: Time
+
+            def initialize: (local: String, utc: Time) -> void
+
+            def to_hash: -> { local: String, utc: Time }
           end
         end
       end
@@ -327,32 +341,27 @@ module CheckoutIntents
         type tracking_event =
           {
             description: String?,
-            display_date: String?,
-            display_time: String?,
-            location: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Location
+            location: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Location,
+            timestamp: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Timestamp?
           }
 
         class TrackingEvent < CheckoutIntents::Internal::Type::BaseModel
           attr_accessor description: String?
 
-          attr_accessor display_date: String?
-
-          attr_accessor display_time: String?
-
           attr_accessor location: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Location
+
+          attr_accessor timestamp: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Timestamp?
 
           def initialize: (
             description: String?,
-            display_date: String?,
-            display_time: String?,
-            location: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Location
+            location: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Location,
+            timestamp: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Timestamp?
           ) -> void
 
           def to_hash: -> {
             description: String?,
-            display_date: String?,
-            display_time: String?,
-            location: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Location
+            location: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Location,
+            timestamp: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Timestamp?
           }
 
           type location = { city: String?, country: String?, province: String? }
@@ -375,6 +384,18 @@ module CheckoutIntents
               country: String?,
               province: String?
             }
+          end
+
+          type timestamp = { local: String, utc: Time }
+
+          class Timestamp < CheckoutIntents::Internal::Type::BaseModel
+            attr_accessor local: String
+
+            attr_accessor utc: Time
+
+            def initialize: (local: String, utc: Time) -> void
+
+            def to_hash: -> { local: String, utc: Time }
           end
         end
       end
@@ -448,32 +469,27 @@ module CheckoutIntents
         type tracking_event =
           {
             description: String?,
-            display_date: String?,
-            display_time: String?,
-            location: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Location
+            location: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Location,
+            timestamp: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Timestamp?
           }
 
         class TrackingEvent < CheckoutIntents::Internal::Type::BaseModel
           attr_accessor description: String?
 
-          attr_accessor display_date: String?
-
-          attr_accessor display_time: String?
-
           attr_accessor location: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Location
+
+          attr_accessor timestamp: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Timestamp?
 
           def initialize: (
             description: String?,
-            display_date: String?,
-            display_time: String?,
-            location: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Location
+            location: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Location,
+            timestamp: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Timestamp?
           ) -> void
 
           def to_hash: -> {
             description: String?,
-            display_date: String?,
-            display_time: String?,
-            location: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Location
+            location: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Location,
+            timestamp: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Timestamp?
           }
 
           type location = { city: String?, country: String?, province: String? }
@@ -496,6 +512,18 @@ module CheckoutIntents
               country: String?,
               province: String?
             }
+          end
+
+          type timestamp = { local: String, utc: Time }
+
+          class Timestamp < CheckoutIntents::Internal::Type::BaseModel
+            attr_accessor local: String
+
+            attr_accessor utc: Time
+
+            def initialize: (local: String, utc: Time) -> void
+
+            def to_hash: -> { local: String, utc: Time }
           end
         end
       end

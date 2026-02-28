@@ -35,6 +35,8 @@ module CheckoutIntents
         required :created_at, Time, api_name: :createdAt
 
         # @!attribute external_id
+        #   The external ID is provided by the marketplace and matches the shipment to their
+        #   system.
         #
         #   @return [String]
         required :external_id, String, api_name: :externalId
@@ -70,14 +72,26 @@ module CheckoutIntents
         required :updated_at, Time, api_name: :updatedAt
 
         # @!method initialize(id:, checkout_intent_id:, created_at:, external_id:, shipped_at:, status:, tracking:, tracking_events:, updated_at:)
+        #   Some parameter documentations has been truncated, see
+        #   {CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped}
+        #   for more details.
+        #
         #   @param id [String]
+        #
         #   @param checkout_intent_id [String]
+        #
         #   @param created_at [Time]
-        #   @param external_id [String]
+        #
+        #   @param external_id [String] The external ID is provided by the marketplace and matches the shipment to their
+        #
         #   @param shipped_at [Time]
+        #
         #   @param status [Symbol, CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped::Status]
+        #
         #   @param tracking [CheckoutIntents::Models::ShipmentTracking]
+        #
         #   @param tracking_events [Array<CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent>]
+        #
         #   @param updated_at [Time]
 
         # @see CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped#status
@@ -96,27 +110,25 @@ module CheckoutIntents
           #   @return [String, nil]
           required :description, String, nil?: true
 
-          # @!attribute display_date
-          #
-          #   @return [String, nil]
-          required :display_date, String, api_name: :displayDate, nil?: true
-
-          # @!attribute display_time
-          #
-          #   @return [String, nil]
-          required :display_time, String, api_name: :displayTime, nil?: true
-
           # @!attribute location
           #
           #   @return [CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Location]
           required :location,
                    -> { CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Location }
 
-          # @!method initialize(description:, display_date:, display_time:, location:)
+          # @!attribute timestamp
+          #
+          #   @return [CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Timestamp, nil]
+          required :timestamp,
+                   -> {
+                     CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Timestamp
+                   },
+                   nil?: true
+
+          # @!method initialize(description:, location:, timestamp:)
           #   @param description [String, nil]
-          #   @param display_date [String, nil]
-          #   @param display_time [String, nil]
           #   @param location [CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Location]
+          #   @param timestamp [CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Timestamp, nil]
 
           # @see CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent#location
           class Location < CheckoutIntents::Internal::Type::BaseModel
@@ -139,6 +151,26 @@ module CheckoutIntents
             #   @param city [String, nil]
             #   @param country [String, nil]
             #   @param province [String, nil]
+          end
+
+          # @see CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent#timestamp
+          class Timestamp < CheckoutIntents::Internal::Type::BaseModel
+            # @!attribute local
+            #   ISO 8601 string with timezone offset, e.g. "2025-02-05T17:02:00.000-05:00"
+            #
+            #   @return [String]
+            required :local, String
+
+            # @!attribute utc
+            #   UTC timestamp
+            #
+            #   @return [Time]
+            required :utc, Time
+
+            # @!method initialize(local:, utc:)
+            #   @param local [String] ISO 8601 string with timezone offset, e.g. "2025-02-05T17:02:00.000-05:00"
+            #
+            #   @param utc [Time] UTC timestamp
           end
         end
       end
@@ -165,6 +197,8 @@ module CheckoutIntents
         required :delivered_at, Time, api_name: :deliveredAt
 
         # @!attribute external_id
+        #   The external ID is provided by the marketplace and matches the shipment to their
+        #   system.
         #
         #   @return [String]
         required :external_id, String, api_name: :externalId
@@ -199,15 +233,27 @@ module CheckoutIntents
         required :updated_at, Time, api_name: :updatedAt
 
         # @!method initialize(id:, checkout_intent_id:, created_at:, delivered_at:, external_id:, shipped_at:, status:, tracking:, tracking_events:, updated_at:)
+        #   Some parameter documentations has been truncated, see
+        #   {CheckoutIntents::Models::Shipment::DeliveredShipment} for more details.
+        #
         #   @param id [String]
+        #
         #   @param checkout_intent_id [String]
+        #
         #   @param created_at [Time]
+        #
         #   @param delivered_at [Time]
-        #   @param external_id [String]
+        #
+        #   @param external_id [String] The external ID is provided by the marketplace and matches the shipment to their
+        #
         #   @param shipped_at [Time]
+        #
         #   @param status [Symbol, CheckoutIntents::Models::Shipment::DeliveredShipment::Status]
+        #
         #   @param tracking [CheckoutIntents::Models::ShipmentTracking]
+        #
         #   @param tracking_events [Array<CheckoutIntents::Models::Shipment::DeliveredShipment::TrackingEvent>]
+        #
         #   @param updated_at [Time]
 
         # @see CheckoutIntents::Models::Shipment::DeliveredShipment#status
@@ -226,26 +272,22 @@ module CheckoutIntents
           #   @return [String, nil]
           required :description, String, nil?: true
 
-          # @!attribute display_date
-          #
-          #   @return [String, nil]
-          required :display_date, String, api_name: :displayDate, nil?: true
-
-          # @!attribute display_time
-          #
-          #   @return [String, nil]
-          required :display_time, String, api_name: :displayTime, nil?: true
-
           # @!attribute location
           #
           #   @return [CheckoutIntents::Models::Shipment::DeliveredShipment::TrackingEvent::Location]
           required :location, -> { CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Location }
 
-          # @!method initialize(description:, display_date:, display_time:, location:)
+          # @!attribute timestamp
+          #
+          #   @return [CheckoutIntents::Models::Shipment::DeliveredShipment::TrackingEvent::Timestamp, nil]
+          required :timestamp,
+                   -> { CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Timestamp },
+                   nil?: true
+
+          # @!method initialize(description:, location:, timestamp:)
           #   @param description [String, nil]
-          #   @param display_date [String, nil]
-          #   @param display_time [String, nil]
           #   @param location [CheckoutIntents::Models::Shipment::DeliveredShipment::TrackingEvent::Location]
+          #   @param timestamp [CheckoutIntents::Models::Shipment::DeliveredShipment::TrackingEvent::Timestamp, nil]
 
           # @see CheckoutIntents::Models::Shipment::DeliveredShipment::TrackingEvent#location
           class Location < CheckoutIntents::Internal::Type::BaseModel
@@ -269,6 +311,26 @@ module CheckoutIntents
             #   @param country [String, nil]
             #   @param province [String, nil]
           end
+
+          # @see CheckoutIntents::Models::Shipment::DeliveredShipment::TrackingEvent#timestamp
+          class Timestamp < CheckoutIntents::Internal::Type::BaseModel
+            # @!attribute local
+            #   ISO 8601 string with timezone offset, e.g. "2025-02-05T17:02:00.000-05:00"
+            #
+            #   @return [String]
+            required :local, String
+
+            # @!attribute utc
+            #   UTC timestamp
+            #
+            #   @return [Time]
+            required :utc, Time
+
+            # @!method initialize(local:, utc:)
+            #   @param local [String] ISO 8601 string with timezone offset, e.g. "2025-02-05T17:02:00.000-05:00"
+            #
+            #   @param utc [Time] UTC timestamp
+          end
         end
       end
 
@@ -289,6 +351,8 @@ module CheckoutIntents
         required :created_at, Time, api_name: :createdAt
 
         # @!attribute external_id
+        #   The external ID is provided by the marketplace and matches the shipment to their
+        #   system.
         #
         #   @return [String]
         required :external_id, String, api_name: :externalId
@@ -324,14 +388,26 @@ module CheckoutIntents
         required :updated_at, Time, api_name: :updatedAt
 
         # @!method initialize(id:, checkout_intent_id:, created_at:, external_id:, shipped_at:, status:, tracking:, tracking_events:, updated_at:)
+        #   Some parameter documentations has been truncated, see
+        #   {CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed}
+        #   for more details.
+        #
         #   @param id [String]
+        #
         #   @param checkout_intent_id [String]
+        #
         #   @param created_at [Time]
-        #   @param external_id [String]
+        #
+        #   @param external_id [String] The external ID is provided by the marketplace and matches the shipment to their
+        #
         #   @param shipped_at [Time]
+        #
         #   @param status [Symbol, CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed::Status]
+        #
         #   @param tracking [CheckoutIntents::Models::ShipmentTracking]
+        #
         #   @param tracking_events [Array<CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent>]
+        #
         #   @param updated_at [Time]
 
         # @see CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed#status
@@ -350,27 +426,25 @@ module CheckoutIntents
           #   @return [String, nil]
           required :description, String, nil?: true
 
-          # @!attribute display_date
-          #
-          #   @return [String, nil]
-          required :display_date, String, api_name: :displayDate, nil?: true
-
-          # @!attribute display_time
-          #
-          #   @return [String, nil]
-          required :display_time, String, api_name: :displayTime, nil?: true
-
           # @!attribute location
           #
           #   @return [CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Location]
           required :location,
                    -> { CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Location }
 
-          # @!method initialize(description:, display_date:, display_time:, location:)
+          # @!attribute timestamp
+          #
+          #   @return [CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Timestamp, nil]
+          required :timestamp,
+                   -> {
+                     CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Timestamp
+                   },
+                   nil?: true
+
+          # @!method initialize(description:, location:, timestamp:)
           #   @param description [String, nil]
-          #   @param display_date [String, nil]
-          #   @param display_time [String, nil]
           #   @param location [CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Location]
+          #   @param timestamp [CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Timestamp, nil]
 
           # @see CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent#location
           class Location < CheckoutIntents::Internal::Type::BaseModel
@@ -394,6 +468,26 @@ module CheckoutIntents
             #   @param country [String, nil]
             #   @param province [String, nil]
           end
+
+          # @see CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent#timestamp
+          class Timestamp < CheckoutIntents::Internal::Type::BaseModel
+            # @!attribute local
+            #   ISO 8601 string with timezone offset, e.g. "2025-02-05T17:02:00.000-05:00"
+            #
+            #   @return [String]
+            required :local, String
+
+            # @!attribute utc
+            #   UTC timestamp
+            #
+            #   @return [Time]
+            required :utc, Time
+
+            # @!method initialize(local:, utc:)
+            #   @param local [String] ISO 8601 string with timezone offset, e.g. "2025-02-05T17:02:00.000-05:00"
+            #
+            #   @param utc [Time] UTC timestamp
+          end
         end
       end
 
@@ -414,6 +508,8 @@ module CheckoutIntents
         required :created_at, Time, api_name: :createdAt
 
         # @!attribute external_id
+        #   The external ID is provided by the marketplace and matches the shipment to their
+        #   system.
         #
         #   @return [String]
         required :external_id, String, api_name: :externalId
@@ -449,14 +545,26 @@ module CheckoutIntents
         required :updated_at, Time, api_name: :updatedAt
 
         # @!method initialize(id:, checkout_intent_id:, created_at:, external_id:, shipped_at:, status:, tracking:, tracking_events:, updated_at:)
+        #   Some parameter documentations has been truncated, see
+        #   {CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery}
+        #   for more details.
+        #
         #   @param id [String]
+        #
         #   @param checkout_intent_id [String]
+        #
         #   @param created_at [Time]
-        #   @param external_id [String]
+        #
+        #   @param external_id [String] The external ID is provided by the marketplace and matches the shipment to their
+        #
         #   @param shipped_at [Time]
+        #
         #   @param status [Symbol, CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::Status]
+        #
         #   @param tracking [CheckoutIntents::Models::ShipmentTracking]
+        #
         #   @param tracking_events [Array<CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent>]
+        #
         #   @param updated_at [Time]
 
         # @see CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery#status
@@ -475,27 +583,25 @@ module CheckoutIntents
           #   @return [String, nil]
           required :description, String, nil?: true
 
-          # @!attribute display_date
-          #
-          #   @return [String, nil]
-          required :display_date, String, api_name: :displayDate, nil?: true
-
-          # @!attribute display_time
-          #
-          #   @return [String, nil]
-          required :display_time, String, api_name: :displayTime, nil?: true
-
           # @!attribute location
           #
           #   @return [CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Location]
           required :location,
                    -> { CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Location }
 
-          # @!method initialize(description:, display_date:, display_time:, location:)
+          # @!attribute timestamp
+          #
+          #   @return [CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Timestamp, nil]
+          required :timestamp,
+                   -> {
+                     CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Timestamp
+                   },
+                   nil?: true
+
+          # @!method initialize(description:, location:, timestamp:)
           #   @param description [String, nil]
-          #   @param display_date [String, nil]
-          #   @param display_time [String, nil]
           #   @param location [CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Location]
+          #   @param timestamp [CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Timestamp, nil]
 
           # @see CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent#location
           class Location < CheckoutIntents::Internal::Type::BaseModel
@@ -518,6 +624,26 @@ module CheckoutIntents
             #   @param city [String, nil]
             #   @param country [String, nil]
             #   @param province [String, nil]
+          end
+
+          # @see CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent#timestamp
+          class Timestamp < CheckoutIntents::Internal::Type::BaseModel
+            # @!attribute local
+            #   ISO 8601 string with timezone offset, e.g. "2025-02-05T17:02:00.000-05:00"
+            #
+            #   @return [String]
+            required :local, String
+
+            # @!attribute utc
+            #   UTC timestamp
+            #
+            #   @return [Time]
+            required :utc, Time
+
+            # @!method initialize(local:, utc:)
+            #   @param local [String] ISO 8601 string with timezone offset, e.g. "2025-02-05T17:02:00.000-05:00"
+            #
+            #   @param utc [Time] UTC timestamp
           end
         end
       end

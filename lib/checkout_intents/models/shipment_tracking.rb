@@ -13,21 +13,35 @@ module CheckoutIntents
       #   @return [String, nil]
       optional :carrier_name, String, api_name: :carrierName, nil?: true
 
-      # @!attribute estimated_delivery_date
+      # @!attribute delivery_date
       #
-      #   @return [Time, nil]
-      optional :estimated_delivery_date, Time, api_name: :estimatedDeliveryDate, nil?: true
+      #   @return [CheckoutIntents::Models::ShipmentTracking::DeliveryDate, nil]
+      optional :delivery_date,
+               -> { CheckoutIntents::ShipmentTracking::DeliveryDate },
+               api_name: :deliveryDate,
+               nil?: true
 
       # @!attribute url
       #
       #   @return [String, nil]
       optional :url, String, nil?: true
 
-      # @!method initialize(number:, carrier_name: nil, estimated_delivery_date: nil, url: nil)
+      # @!method initialize(number:, carrier_name: nil, delivery_date: nil, url: nil)
       #   @param number [String, nil]
       #   @param carrier_name [String, nil]
-      #   @param estimated_delivery_date [Time, nil]
+      #   @param delivery_date [CheckoutIntents::Models::ShipmentTracking::DeliveryDate, nil]
       #   @param url [String, nil]
+
+      # @see CheckoutIntents::Models::ShipmentTracking#delivery_date
+      class DeliveryDate < CheckoutIntents::Internal::Type::BaseModel
+        # @!attribute estimated
+        #
+        #   @return [Time]
+        required :estimated, Time
+
+        # @!method initialize(estimated:)
+        #   @param estimated [Time]
+      end
     end
   end
 end
