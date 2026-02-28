@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.6.0 (2026-02-28)
+
+Full Changelog: [v0.5.0...v0.6.0](https://github.com/rye-com/checkout-intents-ruby/compare/v0.5.0...v0.6.0)
+
+### Features
+
+* Added new shipments endpoint for tracking Amazon orders ([df5feee](https://github.com/rye-com/checkout-intents-ruby/commit/df5feee5d104954650c7e9234066058d5b6eaa03))
+* Added new shipments endpoint for tracking Amazon orders ([bf2793e](https://github.com/rye-com/checkout-intents-ruby/commit/bf2793e4af8d171cc0d06cd2ce287322dc431327))
+
+
+### Bug Fixes
+
+* **internal:** formatting ([10a3965](https://github.com/rye-com/checkout-intents-ruby/commit/10a3965176768f5d49355a503cefb682c3abd8c4))
+* properly mock time in ruby ci tests ([4e1da16](https://github.com/rye-com/checkout-intents-ruby/commit/4e1da16802345fa29a8172938c9deca2adb388e6))
+
+
+### Chores
+
+* **internal:** format and fix absolute references ([e0a8160](https://github.com/rye-com/checkout-intents-ruby/commit/e0a816094249932edfd882f20323ce85dbabfe55))
+* **internal:** format and fix absolute references ([19b428e](https://github.com/rye-com/checkout-intents-ruby/commit/19b428e84f06b1d7d2d712850d440a50fac9237d))
+* **internal:** improvements ([63a81a1](https://github.com/rye-com/checkout-intents-ruby/commit/63a81a1d1a92de0ebf4da632363724040d7359fa))
+
 ## 0.5.0 (2026-02-27)
 
 Full Changelog: [v0.4.0...v0.5.0](https://github.com/rye-com/checkout-intents-ruby/compare/v0.4.0...v0.5.0)
