@@ -39,12 +39,16 @@ module CheckoutIntents
       attr_writer :limit
 
       sig do
-        returns(T.nilable(T::Array[::CheckoutIntents::ShipmentStatus::OrSymbol]))
+        returns(
+          T.nilable(T::Array[::CheckoutIntents::ShipmentStatus::OrSymbol])
+        )
       end
       attr_reader :status
 
       sig do
-        params(status: T::Array[::CheckoutIntents::ShipmentStatus::OrSymbol]).void
+        params(
+          status: T::Array[::CheckoutIntents::ShipmentStatus::OrSymbol]
+        ).void
       end
       attr_writer :status
 

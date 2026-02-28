@@ -10,11 +10,15 @@ module CheckoutIntents
       OrSymbol = T.type_alias { T.any(Symbol, String) }
 
       OUT_FOR_DELIVERY =
-        T.let(:out_for_delivery, ::CheckoutIntents::ShipmentStatus::TaggedSymbol)
+        T.let(
+          :out_for_delivery,
+          ::CheckoutIntents::ShipmentStatus::TaggedSymbol
+        )
       DELIVERED =
         T.let(:delivered, ::CheckoutIntents::ShipmentStatus::TaggedSymbol)
       SHIPPED = T.let(:shipped, ::CheckoutIntents::ShipmentStatus::TaggedSymbol)
-      CANCELED = T.let(:canceled, ::CheckoutIntents::ShipmentStatus::TaggedSymbol)
+      CANCELED =
+        T.let(:canceled, ::CheckoutIntents::ShipmentStatus::TaggedSymbol)
       DELAYED = T.let(:delayed, ::CheckoutIntents::ShipmentStatus::TaggedSymbol)
       ORDERED = T.let(:ordered, ::CheckoutIntents::ShipmentStatus::TaggedSymbol)
 

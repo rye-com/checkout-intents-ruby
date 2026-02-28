@@ -51,7 +51,9 @@ module CheckoutIntents
         sig { returns(::CheckoutIntents::ShipmentTracking) }
         attr_reader :tracking
 
-        sig { params(tracking: ::CheckoutIntents::ShipmentTracking::OrHash).void }
+        sig do
+          params(tracking: ::CheckoutIntents::ShipmentTracking::OrHash).void
+        end
         attr_writer :tracking
 
         sig do
@@ -286,7 +288,9 @@ module CheckoutIntents
         sig { returns(::CheckoutIntents::ShipmentTracking) }
         attr_reader :tracking
 
-        sig { params(tracking: ::CheckoutIntents::ShipmentTracking::OrHash).void }
+        sig do
+          params(tracking: ::CheckoutIntents::ShipmentTracking::OrHash).void
+        end
         attr_writer :tracking
 
         sig do
@@ -521,7 +525,9 @@ module CheckoutIntents
         sig { returns(::CheckoutIntents::ShipmentTracking) }
         attr_reader :tracking
 
-        sig { params(tracking: ::CheckoutIntents::ShipmentTracking::OrHash).void }
+        sig do
+          params(tracking: ::CheckoutIntents::ShipmentTracking::OrHash).void
+        end
         attr_writer :tracking
 
         sig do
@@ -753,7 +759,9 @@ module CheckoutIntents
         sig { returns(::CheckoutIntents::ShipmentTracking) }
         attr_reader :tracking
 
-        sig { params(tracking: ::CheckoutIntents::ShipmentTracking::OrHash).void }
+        sig do
+          params(tracking: ::CheckoutIntents::ShipmentTracking::OrHash).void
+        end
         attr_writer :tracking
 
         sig do
