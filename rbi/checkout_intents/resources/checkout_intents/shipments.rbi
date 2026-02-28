@@ -11,10 +11,10 @@ module CheckoutIntents
             after: String,
             before: String,
             limit: Float,
-            request_options: CheckoutIntents::RequestOptions::OrHash
+            request_options: ::CheckoutIntents::RequestOptions::OrHash
           ).returns(
-            CheckoutIntents::Internal::CursorPagination[
-              CheckoutIntents::Shipment::Variants
+            ::CheckoutIntents::Internal::CursorPagination[
+              ::CheckoutIntents::Shipment::Variants
             ]
           )
         end
@@ -30,7 +30,7 @@ module CheckoutIntents
 
         # @api private
         sig do
-          params(client: CheckoutIntents::Client).returns(T.attached_class)
+          params(client: ::CheckoutIntents::Client).returns(T.attached_class)
         end
         def self.new(client:)
         end

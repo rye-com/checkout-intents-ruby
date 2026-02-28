@@ -8,7 +8,7 @@ module CheckoutIntents
         url: String?
       }
 
-    class ShipmentTracking < CheckoutIntents::Internal::Type::BaseModel
+    class ShipmentTracking < ::CheckoutIntents::Internal::Type::BaseModel
       attr_accessor number: String?
 
       attr_accessor carrier_name: String?

@@ -38,7 +38,7 @@ module CheckoutIntents
             after: String,
             before: String,
             limit: Float,
-            request_options: CheckoutIntents::RequestOptions::OrHash
+            request_options: ::CheckoutIntents::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
         def self.new(after: nil, before: nil, limit: nil, request_options: {})

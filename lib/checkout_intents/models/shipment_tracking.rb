@@ -2,7 +2,7 @@
 
 module CheckoutIntents
   module Models
-    class ShipmentTracking < CheckoutIntents::Internal::Type::BaseModel
+    class ShipmentTracking < ::CheckoutIntents::Internal::Type::BaseModel
       # @!attribute number
       #
       #   @return [String, nil]

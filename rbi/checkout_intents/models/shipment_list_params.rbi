@@ -2,15 +2,15 @@
 
 module CheckoutIntents
   module Models
-    class ShipmentListParams < CheckoutIntents::Internal::Type::BaseModel
-      extend CheckoutIntents::Internal::Type::RequestParameters::Converter
-      include CheckoutIntents::Internal::Type::RequestParameters
+    class ShipmentListParams < ::CheckoutIntents::Internal::Type::BaseModel
+      extend ::CheckoutIntents::Internal::Type::RequestParameters::Converter
+      include ::CheckoutIntents::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
           T.any(
-            CheckoutIntents::ShipmentListParams,
-            CheckoutIntents::Internal::AnyHash
+            ::CheckoutIntents::ShipmentListParams,
+            ::CheckoutIntents::Internal::AnyHash
           )
         end
 
@@ -39,12 +39,12 @@ module CheckoutIntents
       attr_writer :limit
 
       sig do
-        returns(T.nilable(T::Array[CheckoutIntents::ShipmentStatus::OrSymbol]))
+        returns(T.nilable(T::Array[::CheckoutIntents::ShipmentStatus::OrSymbol]))
       end
       attr_reader :status
 
       sig do
-        params(status: T::Array[CheckoutIntents::ShipmentStatus::OrSymbol]).void
+        params(status: T::Array[::CheckoutIntents::ShipmentStatus::OrSymbol]).void
       end
       attr_writer :status
 
@@ -54,8 +54,8 @@ module CheckoutIntents
           before: String,
           ids: T::Array[String],
           limit: Float,
-          status: T::Array[CheckoutIntents::ShipmentStatus::OrSymbol],
-          request_options: CheckoutIntents::RequestOptions::OrHash
+          status: T::Array[::CheckoutIntents::ShipmentStatus::OrSymbol],
+          request_options: ::CheckoutIntents::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
@@ -75,8 +75,8 @@ module CheckoutIntents
             before: String,
             ids: T::Array[String],
             limit: Float,
-            status: T::Array[CheckoutIntents::ShipmentStatus::OrSymbol],
-            request_options: CheckoutIntents::RequestOptions
+            status: T::Array[::CheckoutIntents::ShipmentStatus::OrSymbol],
+            request_options: ::CheckoutIntents::RequestOptions
           }
         )
       end

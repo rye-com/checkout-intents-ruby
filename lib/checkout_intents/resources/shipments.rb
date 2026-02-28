@@ -11,16 +11,16 @@ module CheckoutIntents
       #
       # @param id [String] The id of the shipment to look up
       #
-      # @param request_options [CheckoutIntents::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::CheckoutIntents::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped, CheckoutIntents::Models::Shipment::DeliveredShipment, CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed, CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery, CheckoutIntents::Models::Shipment::WithStatusBaseShipmentOrdered, CheckoutIntents::Models::Shipment::WithStatusBaseShipmentCanceled]
+      # @return [::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped, ::CheckoutIntents::Models::Shipment::DeliveredShipment, ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed, ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery, ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentOrdered, ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentCanceled]
       #
-      # @see CheckoutIntents::Models::ShipmentRetrieveParams
+      # @see ::CheckoutIntents::Models::ShipmentRetrieveParams
       def retrieve(id, params = {})
         @client.request(
           method: :get,
           path: ["api/v1/shipments/%1$s", id],
-          model: CheckoutIntents::Shipment,
+          model: ::CheckoutIntents::Shipment,
           options: params[:request_options]
         )
       end
@@ -36,27 +36,27 @@ module CheckoutIntents
       # @param before [String]
       # @param ids [Array<String>]
       # @param limit [Float]
-      # @param status [Array<Symbol, CheckoutIntents::Models::ShipmentStatus>]
-      # @param request_options [CheckoutIntents::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param status [Array<Symbol, ::CheckoutIntents::Models::ShipmentStatus>]
+      # @param request_options [::CheckoutIntents::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [CheckoutIntents::Internal::CursorPagination<CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped, CheckoutIntents::Models::Shipment::DeliveredShipment, CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed, CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery, CheckoutIntents::Models::Shipment::WithStatusBaseShipmentOrdered, CheckoutIntents::Models::Shipment::WithStatusBaseShipmentCanceled>]
+      # @return [::CheckoutIntents::Internal::CursorPagination<::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped, ::CheckoutIntents::Models::Shipment::DeliveredShipment, ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed, ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery, ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentOrdered, ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentCanceled>]
       #
-      # @see CheckoutIntents::Models::ShipmentListParams
+      # @see ::CheckoutIntents::Models::ShipmentListParams
       def list(params = {})
-        parsed, options = CheckoutIntents::ShipmentListParams.dump_request(params)
+        parsed, options = ::CheckoutIntents::ShipmentListParams.dump_request(params)
         @client.request(
           method: :get,
           path: "api/v1/shipments",
           query: parsed,
-          page: CheckoutIntents::Internal::CursorPagination,
-          model: CheckoutIntents::Shipment,
+          page: ::CheckoutIntents::Internal::CursorPagination,
+          model: ::CheckoutIntents::Shipment,
           options: options
         )
       end
 
       # @api private
       #
-      # @param client [CheckoutIntents::Client]
+      # @param client [::CheckoutIntents::Client]
       def initialize(client:)
         @client = client
       end
