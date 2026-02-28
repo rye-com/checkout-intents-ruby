@@ -113,7 +113,8 @@ module CheckoutIntents
               else
                 Kernel.then do
                   value = @data.fetch(name_sym) { const == ::CheckoutIntents::Internal::OMIT ? nil : const }
-                  state = ::CheckoutIntents::Internal::Type::Converter.new_coerce_state(translate_names: false)
+                  converter = ::CheckoutIntents::Internal::Type::Converter
+                  state = converter.new_coerce_state(translate_names: false)
                   if (nilable || !required) && value.nil?
                     nil
                   else

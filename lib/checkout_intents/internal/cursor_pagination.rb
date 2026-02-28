@@ -37,7 +37,11 @@ module CheckoutIntents
 
         req = ::CheckoutIntents::Internal::Util.deep_merge(
           @req,
-          {query: page_info&.start_cursor.nil? ? {after: page_info&.end_cursor} : {before: page_info&.start_cursor}}
+          if page_info&.start_cursor.nil?
+            {query: {after: page_info&.end_cursor}}
+          else
+            {query: {before: page_info&.start_cursor}}
+          end
         )
         @client.request(req)
       end
