@@ -36,6 +36,9 @@ module CheckoutIntents
     # @return [::CheckoutIntents::Resources::Products]
     attr_reader :products
 
+    # @return [::CheckoutIntents::Resources::Shipments]
+    attr_reader :shipments
+
     # @return [::CheckoutIntents::Resources::Billing]
     attr_reader :billing
 
@@ -135,6 +138,7 @@ module CheckoutIntents
       @betas = ::CheckoutIntents::Resources::Betas.new(client: self)
       @brands = ::CheckoutIntents::Resources::Brands.new(client: self)
       @products = ::CheckoutIntents::Resources::Products.new(client: self)
+      @shipments = ::CheckoutIntents::Resources::Shipments.new(client: self)
       @billing = ::CheckoutIntents::Resources::Billing.new(client: self)
     end
   end
