@@ -25,6 +25,8 @@ module CheckoutIntents
 
   class CheckoutIntentRetrieveParams = ::CheckoutIntents::Models::CheckoutIntentRetrieveParams
 
+  module CheckoutIntents = ::CheckoutIntents::Models::CheckoutIntents
+
   class CheckoutSession = ::CheckoutIntents::Models::CheckoutSession
 
   class Money = ::CheckoutIntents::Models::Money
@@ -40,6 +42,16 @@ module CheckoutIntents
   class ProductImage = ::CheckoutIntents::Models::ProductImage
 
   class ProductLookupParams = ::CheckoutIntents::Models::ProductLookupParams
+
+  module Shipment = ::CheckoutIntents::Models::Shipment
+
+  class ShipmentListParams = ::CheckoutIntents::Models::ShipmentListParams
+
+  class ShipmentRetrieveParams = ::CheckoutIntents::Models::ShipmentRetrieveParams
+
+  module ShipmentStatus = ::CheckoutIntents::Models::ShipmentStatus
+
+  class ShipmentTracking = ::CheckoutIntents::Models::ShipmentTracking
 
   class VariantSelection = ::CheckoutIntents::Models::VariantSelection
 end
