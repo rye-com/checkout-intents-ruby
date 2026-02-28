@@ -7,10 +7,10 @@ module CheckoutIntents
           ?after: String,
           ?before: String,
           ?limit: Float,
-          ?request_options: CheckoutIntents::request_opts
-        ) -> CheckoutIntents::Internal::CursorPagination[CheckoutIntents::Models::shipment]
+          ?request_options: ::CheckoutIntents::request_opts
+        ) -> ::CheckoutIntents::Internal::CursorPagination[::CheckoutIntents::Models::shipment]
 
-        def initialize: (client: CheckoutIntents::Client) -> void
+        def initialize: (client: ::CheckoutIntents::Client) -> void
       end
     end
   end

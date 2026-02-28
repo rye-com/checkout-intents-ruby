@@ -3,7 +3,7 @@
 module CheckoutIntents
   module Models
     module ShipmentStatus
-      extend CheckoutIntents::Internal::Type::Enum
+      extend ::CheckoutIntents::Internal::Type::Enum
 
       OUT_FOR_DELIVERY = :out_for_delivery
       DELIVERED = :delivered

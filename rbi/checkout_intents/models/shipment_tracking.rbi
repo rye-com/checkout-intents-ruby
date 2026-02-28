@@ -2,12 +2,12 @@
 
 module CheckoutIntents
   module Models
-    class ShipmentTracking < CheckoutIntents::Internal::Type::BaseModel
+    class ShipmentTracking < ::CheckoutIntents::Internal::Type::BaseModel
       OrHash =
         T.type_alias do
           T.any(
-            CheckoutIntents::ShipmentTracking,
-            CheckoutIntents::Internal::AnyHash
+            ::CheckoutIntents::ShipmentTracking,
+            ::CheckoutIntents::Internal::AnyHash
           )
         end
 
