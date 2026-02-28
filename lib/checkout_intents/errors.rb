@@ -252,7 +252,8 @@ module CheckoutIntents
         @max_attempts = max_attempts
 
         message ||= "Polling timeout for checkout intent '#{intent_id}': " \
-                    "condition not met after #{attempts} attempts (#{(max_attempts * poll_interval).round(1)}s). " \
+                    "condition not met after #{attempts} attempts " \
+                    "(#{(max_attempts * poll_interval).round(1)}s). " \
                     "Consider increasing max_attempts or poll_interval."
         super(message)
       end

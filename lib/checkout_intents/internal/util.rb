@@ -157,7 +157,8 @@ module CheckoutIntents
           in Hash | nil => coerced
             coerced
           else
-            message = "Expected a #{Hash} or #{::CheckoutIntents::Internal::Type::BaseModel}, got #{data.inspect}"
+            base_model = ::CheckoutIntents::Internal::Type::BaseModel
+            message = "Expected a #{Hash} or #{base_model}, got #{data.inspect}"
             raise ArgumentError.new(message)
           end
         end

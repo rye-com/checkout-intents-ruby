@@ -99,7 +99,9 @@ module CheckoutIntents
       idempotency_header: "Idempotency-Key"
     )
       if api_key.nil?
-        raise ArgumentError.new("api_key is required, and can be set via environ: \"CHECKOUT_INTENTS_API_KEY\"")
+        raise ArgumentError.new(
+          "api_key is required, and can be set via environ: \"CHECKOUT_INTENTS_API_KEY\""
+        )
       end
 
       @api_key = api_key.to_s
@@ -121,7 +123,8 @@ module CheckoutIntents
       resolved_environment = environment&.to_sym || inferred_environment || :staging
 
       base_url ||= ::CheckoutIntents::Client::ENVIRONMENTS.fetch(resolved_environment) do
-        message = "environment must be one of #{::CheckoutIntents::Client::ENVIRONMENTS.keys}, got #{resolved_environment}"
+        envs = ::CheckoutIntents::Client::ENVIRONMENTS.keys
+        message = "environment must be one of #{envs}, got #{resolved_environment}"
         raise ArgumentError.new(message)
       end
 
