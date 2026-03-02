@@ -3,6 +3,9 @@
 module CheckoutIntents
   module Resources
     class CheckoutIntents
+      sig { returns(CheckoutIntents::Resources::CheckoutIntents::Shipments) }
+      attr_reader :shipments
+
       # Create a checkout intent with the given request body.
       sig do
         params(

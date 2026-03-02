@@ -1,0 +1,58 @@
+module CheckoutIntents
+  module Models
+    type shipment_list_params =
+      {
+        after: String,
+        before: String,
+        ids: ::Array[String],
+        limit: Float,
+        status: ::Array[CheckoutIntents::Models::shipment_status]
+      }
+      & CheckoutIntents::Internal::Type::request_parameters
+
+    class ShipmentListParams < CheckoutIntents::Internal::Type::BaseModel
+      extend CheckoutIntents::Internal::Type::RequestParameters::Converter
+      include CheckoutIntents::Internal::Type::RequestParameters
+
+      attr_reader after: String?
+
+      def after=: (String) -> String
+
+      attr_reader before: String?
+
+      def before=: (String) -> String
+
+      attr_reader ids: ::Array[String]?
+
+      def ids=: (::Array[String]) -> ::Array[String]
+
+      attr_reader limit: Float?
+
+      def limit=: (Float) -> Float
+
+      attr_reader status: ::Array[CheckoutIntents::Models::shipment_status]?
+
+      def status=: (
+        ::Array[CheckoutIntents::Models::shipment_status]
+      ) -> ::Array[CheckoutIntents::Models::shipment_status]
+
+      def initialize: (
+        ?after: String,
+        ?before: String,
+        ?ids: ::Array[String],
+        ?limit: Float,
+        ?status: ::Array[CheckoutIntents::Models::shipment_status],
+        ?request_options: CheckoutIntents::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        after: String,
+        before: String,
+        ids: ::Array[String],
+        limit: Float,
+        status: ::Array[CheckoutIntents::Models::shipment_status],
+        request_options: CheckoutIntents::RequestOptions
+      }
+    end
+  end
+end

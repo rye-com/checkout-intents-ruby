@@ -1,0 +1,24 @@
+module CheckoutIntents
+  module Models
+    type shipment_status =
+      :out_for_delivery
+      | :delivered
+      | :shipped
+      | :canceled
+      | :delayed
+      | :ordered
+
+    module ShipmentStatus
+      extend CheckoutIntents::Internal::Type::Enum
+
+      OUT_FOR_DELIVERY: :out_for_delivery
+      DELIVERED: :delivered
+      SHIPPED: :shipped
+      CANCELED: :canceled
+      DELAYED: :delayed
+      ORDERED: :ordered
+
+      def self?.values: -> ::Array[CheckoutIntents::Models::shipment_status]
+    end
+  end
+end
