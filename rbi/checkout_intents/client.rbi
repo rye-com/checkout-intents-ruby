@@ -35,9 +35,6 @@ module CheckoutIntents
     sig { returns(CheckoutIntents::Resources::Products) }
     attr_reader :products
 
-    sig { returns(CheckoutIntents::Resources::Shipments) }
-    attr_reader :shipments
-
     sig { returns(CheckoutIntents::Resources::Billing) }
     attr_reader :billing
 
