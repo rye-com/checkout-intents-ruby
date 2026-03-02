@@ -49,29 +49,6 @@ module CheckoutIntents
       attr_accessor :url
 
       sig do
-        returns(T.nilable(T::Array[CheckoutIntents::Product::VariantDimension]))
-      end
-      attr_reader :variant_dimensions
-
-      sig do
-        params(
-          variant_dimensions:
-            T::Array[CheckoutIntents::Product::VariantDimension::OrHash]
-        ).void
-      end
-      attr_writer :variant_dimensions
-
-      sig { returns(T.nilable(T::Array[CheckoutIntents::Product::Variant])) }
-      attr_reader :variants
-
-      sig do
-        params(
-          variants: T::Array[CheckoutIntents::Product::Variant::OrHash]
-        ).void
-      end
-      attr_writer :variants
-
-      sig do
         params(
           id: String,
           availability: CheckoutIntents::ProductAvailability::OrSymbol,
@@ -82,10 +59,7 @@ module CheckoutIntents
           name: String,
           price: CheckoutIntents::Money::OrHash,
           sku: T.nilable(String),
-          url: String,
-          variant_dimensions:
-            T::Array[CheckoutIntents::Product::VariantDimension::OrHash],
-          variants: T::Array[CheckoutIntents::Product::Variant::OrHash]
+          url: String
         ).returns(T.attached_class)
       end
       def self.new(
@@ -105,9 +79,7 @@ module CheckoutIntents
         name:,
         price:,
         sku:,
-        url:,
-        variant_dimensions: nil,
-        variants: nil
+        url:
       )
       end
 
@@ -123,124 +95,11 @@ module CheckoutIntents
             name: String,
             price: CheckoutIntents::Money,
             sku: T.nilable(String),
-            url: String,
-            variant_dimensions:
-              T::Array[CheckoutIntents::Product::VariantDimension],
-            variants: T::Array[CheckoutIntents::Product::Variant]
+            url: String
           }
         )
       end
       def to_hash
-      end
-
-      class VariantDimension < CheckoutIntents::Internal::Type::BaseModel
-        OrHash =
-          T.type_alias do
-            T.any(
-              CheckoutIntents::Product::VariantDimension,
-              CheckoutIntents::Internal::AnyHash
-            )
-          end
-
-        sig { returns(String) }
-        attr_accessor :name
-
-        sig { returns(T::Array[String]) }
-        attr_accessor :values
-
-        sig do
-          params(name: String, values: T::Array[String]).returns(
-            T.attached_class
-          )
-        end
-        def self.new(name:, values:)
-        end
-
-        sig { override.returns({ name: String, values: T::Array[String] }) }
-        def to_hash
-        end
-      end
-
-      class Variant < CheckoutIntents::Internal::Type::BaseModel
-        OrHash =
-          T.type_alias do
-            T.any(
-              CheckoutIntents::Product::Variant,
-              CheckoutIntents::Internal::AnyHash
-            )
-          end
-
-        # Construct a type with a set of properties K of type T
-        sig { returns(T::Hash[Symbol, String]) }
-        attr_accessor :attributes
-
-        # The availability status of a product.
-        #
-        # - `in_stock`: Product is available for immediate purchase
-        # - `out_of_stock`: Product is currently unavailable
-        # - `preorder`: Product is available for pre-order before release
-        # - `backorder`: Product is temporarily out of stock but can be ordered
-        # - `unknown`: Availability could not be determined
-        sig { returns(CheckoutIntents::ProductAvailability::TaggedSymbol) }
-        attr_accessor :availability
-
-        sig { returns(T::Array[CheckoutIntents::ProductImage]) }
-        attr_accessor :images
-
-        sig { returns(T.nilable(String)) }
-        attr_accessor :name
-
-        sig { returns(CheckoutIntents::Money) }
-        attr_reader :price
-
-        sig { params(price: CheckoutIntents::Money::OrHash).void }
-        attr_writer :price
-
-        sig { returns(T.nilable(String)) }
-        attr_accessor :sku
-
-        sig do
-          params(
-            attributes: T::Hash[Symbol, String],
-            availability: CheckoutIntents::ProductAvailability::OrSymbol,
-            images: T::Array[CheckoutIntents::ProductImage::OrHash],
-            name: T.nilable(String),
-            price: CheckoutIntents::Money::OrHash,
-            sku: T.nilable(String)
-          ).returns(T.attached_class)
-        end
-        def self.new(
-          # Construct a type with a set of properties K of type T
-          attributes:,
-          # The availability status of a product.
-          #
-          # - `in_stock`: Product is available for immediate purchase
-          # - `out_of_stock`: Product is currently unavailable
-          # - `preorder`: Product is available for pre-order before release
-          # - `backorder`: Product is temporarily out of stock but can be ordered
-          # - `unknown`: Availability could not be determined
-          availability:,
-          images:,
-          name:,
-          price:,
-          sku:
-        )
-        end
-
-        sig do
-          override.returns(
-            {
-              attributes: T::Hash[Symbol, String],
-              availability: CheckoutIntents::ProductAvailability::TaggedSymbol,
-              images: T::Array[CheckoutIntents::ProductImage],
-              name: T.nilable(String),
-              price: CheckoutIntents::Money,
-              sku: T.nilable(String)
-            }
-          )
-        end
-        def to_hash
-        end
       end
     end
   end
