@@ -38,10 +38,11 @@ module CheckoutIntents
       # @see CheckoutIntents::Models::BillingListTransactionsParams
       def list_transactions(params = {})
         parsed, options = CheckoutIntents::BillingListTransactionsParams.dump_request(params)
+        query = CheckoutIntents::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "api/v1/billing/transactions",
-          query: parsed,
+          query: query,
           page: CheckoutIntents::Internal::CursorPagination,
           model: CheckoutIntents::Models::BillingListTransactionsResponse,
           options: options

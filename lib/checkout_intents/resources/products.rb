@@ -15,10 +15,11 @@ module CheckoutIntents
       # @see CheckoutIntents::Models::ProductLookupParams
       def lookup(params)
         parsed, options = CheckoutIntents::ProductLookupParams.dump_request(params)
+        query = CheckoutIntents::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "api/v1/products/lookup",
-          query: parsed,
+          query: query,
           model: CheckoutIntents::Product,
           options: options
         )

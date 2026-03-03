@@ -44,10 +44,11 @@ module CheckoutIntents
       # @see CheckoutIntents::Models::ShipmentListParams
       def list(params = {})
         parsed, options = CheckoutIntents::ShipmentListParams.dump_request(params)
+        query = CheckoutIntents::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "api/v1/shipments",
-          query: parsed,
+          query: query,
           page: CheckoutIntents::Internal::CursorPagination,
           model: CheckoutIntents::Shipment,
           options: options
