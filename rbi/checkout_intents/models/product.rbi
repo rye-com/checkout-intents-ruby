@@ -51,25 +51,10 @@ module CheckoutIntents
       sig do
         returns(T.nilable(T::Array[CheckoutIntents::Product::VariantDimension]))
       end
-      attr_reader :variant_dimensions
-
-      sig do
-        params(
-          variant_dimensions:
-            T::Array[CheckoutIntents::Product::VariantDimension::OrHash]
-        ).void
-      end
-      attr_writer :variant_dimensions
+      attr_accessor :variant_dimensions
 
       sig { returns(T.nilable(T::Array[CheckoutIntents::Product::Variant])) }
-      attr_reader :variants
-
-      sig do
-        params(
-          variants: T::Array[CheckoutIntents::Product::Variant::OrHash]
-        ).void
-      end
-      attr_writer :variants
+      attr_accessor :variants
 
       sig do
         params(
@@ -84,8 +69,11 @@ module CheckoutIntents
           sku: T.nilable(String),
           url: String,
           variant_dimensions:
-            T::Array[CheckoutIntents::Product::VariantDimension::OrHash],
-          variants: T::Array[CheckoutIntents::Product::Variant::OrHash]
+            T.nilable(
+              T::Array[CheckoutIntents::Product::VariantDimension::OrHash]
+            ),
+          variants:
+            T.nilable(T::Array[CheckoutIntents::Product::Variant::OrHash])
         ).returns(T.attached_class)
       end
       def self.new(
@@ -125,8 +113,8 @@ module CheckoutIntents
             sku: T.nilable(String),
             url: String,
             variant_dimensions:
-              T::Array[CheckoutIntents::Product::VariantDimension],
-            variants: T::Array[CheckoutIntents::Product::Variant]
+              T.nilable(T::Array[CheckoutIntents::Product::VariantDimension]),
+            variants: T.nilable(T::Array[CheckoutIntents::Product::Variant])
           }
         )
       end

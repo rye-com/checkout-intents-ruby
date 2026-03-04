@@ -12,8 +12,8 @@ module CheckoutIntents
         price: CheckoutIntents::Money,
         sku: String?,
         url: String,
-        variant_dimensions: ::Array[CheckoutIntents::Product::VariantDimension],
-        variants: ::Array[CheckoutIntents::Product::Variant]
+        variant_dimensions: ::Array[CheckoutIntents::Product::VariantDimension]?,
+        variants: ::Array[CheckoutIntents::Product::Variant]?
       }
 
     class Product < CheckoutIntents::Internal::Type::BaseModel
@@ -37,17 +37,9 @@ module CheckoutIntents
 
       attr_accessor url: String
 
-      attr_reader variant_dimensions: ::Array[CheckoutIntents::Product::VariantDimension]?
+      attr_accessor variant_dimensions: ::Array[CheckoutIntents::Product::VariantDimension]?
 
-      def variant_dimensions=: (
-        ::Array[CheckoutIntents::Product::VariantDimension]
-      ) -> ::Array[CheckoutIntents::Product::VariantDimension]
-
-      attr_reader variants: ::Array[CheckoutIntents::Product::Variant]?
-
-      def variants=: (
-        ::Array[CheckoutIntents::Product::Variant]
-      ) -> ::Array[CheckoutIntents::Product::Variant]
+      attr_accessor variants: ::Array[CheckoutIntents::Product::Variant]?
 
       def initialize: (
         id: String,
@@ -60,8 +52,8 @@ module CheckoutIntents
         price: CheckoutIntents::Money,
         sku: String?,
         url: String,
-        ?variant_dimensions: ::Array[CheckoutIntents::Product::VariantDimension],
-        ?variants: ::Array[CheckoutIntents::Product::Variant]
+        ?variant_dimensions: ::Array[CheckoutIntents::Product::VariantDimension]?,
+        ?variants: ::Array[CheckoutIntents::Product::Variant]?
       ) -> void
 
       def to_hash: -> {
@@ -75,8 +67,8 @@ module CheckoutIntents
         price: CheckoutIntents::Money,
         sku: String?,
         url: String,
-        variant_dimensions: ::Array[CheckoutIntents::Product::VariantDimension],
-        variants: ::Array[CheckoutIntents::Product::Variant]
+        variant_dimensions: ::Array[CheckoutIntents::Product::VariantDimension]?,
+        variants: ::Array[CheckoutIntents::Product::Variant]?
       }
 
       type variant_dimension = { name: String, values: ::Array[String] }

@@ -66,12 +66,15 @@ module CheckoutIntents
       #   @return [Array<CheckoutIntents::Models::Product::VariantDimension>, nil]
       optional :variant_dimensions,
                -> { CheckoutIntents::Internal::Type::ArrayOf[CheckoutIntents::Product::VariantDimension] },
-               api_name: :variantDimensions
+               api_name: :variantDimensions,
+               nil?: true
 
       # @!attribute variants
       #
       #   @return [Array<CheckoutIntents::Models::Product::Variant>, nil]
-      optional :variants, -> { CheckoutIntents::Internal::Type::ArrayOf[CheckoutIntents::Product::Variant] }
+      optional :variants,
+               -> { CheckoutIntents::Internal::Type::ArrayOf[CheckoutIntents::Product::Variant] },
+               nil?: true
 
       # @!method initialize(id:, availability:, brand:, description:, images:, is_purchasable:, name:, price:, sku:, url:, variant_dimensions: nil, variants: nil)
       #   Some parameter documentations has been truncated, see
@@ -97,9 +100,9 @@ module CheckoutIntents
       #
       #   @param url [String]
       #
-      #   @param variant_dimensions [Array<CheckoutIntents::Models::Product::VariantDimension>]
+      #   @param variant_dimensions [Array<CheckoutIntents::Models::Product::VariantDimension>, nil]
       #
-      #   @param variants [Array<CheckoutIntents::Models::Product::Variant>]
+      #   @param variants [Array<CheckoutIntents::Models::Product::Variant>, nil]
 
       class VariantDimension < CheckoutIntents::Internal::Type::BaseModel
         # @!attribute name
