@@ -121,12 +121,6 @@ module CheckoutIntents
       end
 
       class Variant < CheckoutIntents::Internal::Type::BaseModel
-        # @!attribute attributes
-        #   Construct a type with a set of properties K of type T
-        #
-        #   @return [Hash{Symbol=>String}]
-        required :attributes, CheckoutIntents::Internal::Type::HashOf[String]
-
         # @!attribute availability
         #   The availability status of a product.
         #
@@ -138,6 +132,11 @@ module CheckoutIntents
         #
         #   @return [Symbol, CheckoutIntents::Models::ProductAvailability]
         required :availability, enum: -> { CheckoutIntents::ProductAvailability }
+
+        # @!attribute dimensions
+        #
+        #   @return [Array<CheckoutIntents::Models::VariantSelection>]
+        required :dimensions, -> { CheckoutIntents::Internal::Type::ArrayOf[CheckoutIntents::VariantSelection] }
 
         # @!attribute images
         #
@@ -159,13 +158,13 @@ module CheckoutIntents
         #   @return [String, nil]
         required :sku, String, nil?: true
 
-        # @!method initialize(attributes:, availability:, images:, name:, price:, sku:)
+        # @!method initialize(availability:, dimensions:, images:, name:, price:, sku:)
         #   Some parameter documentations has been truncated, see
         #   {CheckoutIntents::Models::Product::Variant} for more details.
         #
-        #   @param attributes [Hash{Symbol=>String}] Construct a type with a set of properties K of type T
-        #
         #   @param availability [Symbol, CheckoutIntents::Models::ProductAvailability] The availability status of a product.
+        #
+        #   @param dimensions [Array<CheckoutIntents::Models::VariantSelection>]
         #
         #   @param images [Array<CheckoutIntents::Models::ProductImage>]
         #

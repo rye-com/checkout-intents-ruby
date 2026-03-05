@@ -85,8 +85,8 @@ module CheckoutIntents
 
       type variant =
         {
-          attributes: ::Hash[Symbol, String],
           availability: CheckoutIntents::Models::product_availability,
+          dimensions: ::Array[CheckoutIntents::VariantSelection],
           images: ::Array[CheckoutIntents::ProductImage],
           name: String?,
           price: CheckoutIntents::Money,
@@ -94,9 +94,9 @@ module CheckoutIntents
         }
 
       class Variant < CheckoutIntents::Internal::Type::BaseModel
-        attr_accessor attributes: ::Hash[Symbol, String]
-
         attr_accessor availability: CheckoutIntents::Models::product_availability
+
+        attr_accessor dimensions: ::Array[CheckoutIntents::VariantSelection]
 
         attr_accessor images: ::Array[CheckoutIntents::ProductImage]
 
@@ -107,8 +107,8 @@ module CheckoutIntents
         attr_accessor sku: String?
 
         def initialize: (
-          attributes: ::Hash[Symbol, String],
           availability: CheckoutIntents::Models::product_availability,
+          dimensions: ::Array[CheckoutIntents::VariantSelection],
           images: ::Array[CheckoutIntents::ProductImage],
           name: String?,
           price: CheckoutIntents::Money,
@@ -116,8 +116,8 @@ module CheckoutIntents
         ) -> void
 
         def to_hash: -> {
-          attributes: ::Hash[Symbol, String],
           availability: CheckoutIntents::Models::product_availability,
+          dimensions: ::Array[CheckoutIntents::VariantSelection],
           images: ::Array[CheckoutIntents::ProductImage],
           name: String?,
           price: CheckoutIntents::Money,

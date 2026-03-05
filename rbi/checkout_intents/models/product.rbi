@@ -158,10 +158,6 @@ module CheckoutIntents
             )
           end
 
-        # Construct a type with a set of properties K of type T
-        sig { returns(T::Hash[Symbol, String]) }
-        attr_accessor :attributes
-
         # The availability status of a product.
         #
         # - `in_stock`: Product is available for immediate purchase
@@ -171,6 +167,9 @@ module CheckoutIntents
         # - `unknown`: Availability could not be determined
         sig { returns(CheckoutIntents::ProductAvailability::TaggedSymbol) }
         attr_accessor :availability
+
+        sig { returns(T::Array[CheckoutIntents::VariantSelection]) }
+        attr_accessor :dimensions
 
         sig { returns(T::Array[CheckoutIntents::ProductImage]) }
         attr_accessor :images
@@ -189,8 +188,8 @@ module CheckoutIntents
 
         sig do
           params(
-            attributes: T::Hash[Symbol, String],
             availability: CheckoutIntents::ProductAvailability::OrSymbol,
+            dimensions: T::Array[CheckoutIntents::VariantSelection::OrHash],
             images: T::Array[CheckoutIntents::ProductImage::OrHash],
             name: T.nilable(String),
             price: CheckoutIntents::Money::OrHash,
@@ -198,8 +197,6 @@ module CheckoutIntents
           ).returns(T.attached_class)
         end
         def self.new(
-          # Construct a type with a set of properties K of type T
-          attributes:,
           # The availability status of a product.
           #
           # - `in_stock`: Product is available for immediate purchase
@@ -208,6 +205,7 @@ module CheckoutIntents
           # - `backorder`: Product is temporarily out of stock but can be ordered
           # - `unknown`: Availability could not be determined
           availability:,
+          dimensions:,
           images:,
           name:,
           price:,
@@ -218,8 +216,8 @@ module CheckoutIntents
         sig do
           override.returns(
             {
-              attributes: T::Hash[Symbol, String],
               availability: CheckoutIntents::ProductAvailability::TaggedSymbol,
+              dimensions: T::Array[CheckoutIntents::VariantSelection],
               images: T::Array[CheckoutIntents::ProductImage],
               name: T.nilable(String),
               price: CheckoutIntents::Money,
