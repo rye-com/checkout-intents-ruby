@@ -131,20 +131,20 @@ module CheckoutIntents
           end
 
         sig { returns(String) }
-        attr_accessor :name
+        attr_accessor :label
 
         sig { returns(T::Array[String]) }
         attr_accessor :values
 
         sig do
-          params(name: String, values: T::Array[String]).returns(
+          params(label: String, values: T::Array[String]).returns(
             T.attached_class
           )
         end
-        def self.new(name:, values:)
+        def self.new(label:, values:)
         end
 
-        sig { override.returns({ name: String, values: T::Array[String] }) }
+        sig { override.returns({ label: String, values: T::Array[String] }) }
         def to_hash
         end
       end

@@ -105,18 +105,18 @@ module CheckoutIntents
       #   @param variants [Array<CheckoutIntents::Models::Product::Variant>, nil]
 
       class VariantDimension < CheckoutIntents::Internal::Type::BaseModel
-        # @!attribute name
+        # @!attribute label
         #
         #   @return [String]
-        required :name, String
+        required :label, String
 
         # @!attribute values
         #
         #   @return [Array<String>]
         required :values, CheckoutIntents::Internal::Type::ArrayOf[String]
 
-        # @!method initialize(name:, values:)
-        #   @param name [String]
+        # @!method initialize(label:, values:)
+        #   @param label [String]
         #   @param values [Array<String>]
       end
 

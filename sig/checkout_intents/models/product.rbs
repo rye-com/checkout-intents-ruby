@@ -71,16 +71,16 @@ module CheckoutIntents
         variants: ::Array[CheckoutIntents::Product::Variant]?
       }
 
-      type variant_dimension = { name: String, values: ::Array[String] }
+      type variant_dimension = { label: String, values: ::Array[String] }
 
       class VariantDimension < CheckoutIntents::Internal::Type::BaseModel
-        attr_accessor name: String
+        attr_accessor label: String
 
         attr_accessor values: ::Array[String]
 
-        def initialize: (name: String, values: ::Array[String]) -> void
+        def initialize: (label: String, values: ::Array[String]) -> void
 
-        def to_hash: -> { name: String, values: ::Array[String] }
+        def to_hash: -> { label: String, values: ::Array[String] }
       end
 
       type variant =
