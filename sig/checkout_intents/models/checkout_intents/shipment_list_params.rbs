@@ -2,12 +2,14 @@ module CheckoutIntents
   module Models
     module CheckoutIntents
       type shipment_list_params =
-        { after: String, before: String, limit: Float }
+        { id: String, after: String, before: String, limit: Float }
         & ::CheckoutIntents::Internal::Type::request_parameters
 
       class ShipmentListParams < ::CheckoutIntents::Internal::Type::BaseModel
         extend ::CheckoutIntents::Internal::Type::RequestParameters::Converter
         include ::CheckoutIntents::Internal::Type::RequestParameters
+
+        attr_accessor id: String
 
         attr_reader after: String?
 
@@ -22,6 +24,7 @@ module CheckoutIntents
         def limit=: (Float) -> Float
 
         def initialize: (
+          id: String,
           ?after: String,
           ?before: String,
           ?limit: Float,
@@ -29,6 +32,7 @@ module CheckoutIntents
         ) -> void
 
         def to_hash: -> {
+          id: String,
           after: String,
           before: String,
           limit: Float,

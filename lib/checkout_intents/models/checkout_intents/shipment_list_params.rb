@@ -8,6 +8,11 @@ module CheckoutIntents
         extend ::CheckoutIntents::Internal::Type::RequestParameters::Converter
         include ::CheckoutIntents::Internal::Type::RequestParameters
 
+        # @!attribute id
+        #
+        #   @return [String]
+        required :id, String
+
         # @!attribute after
         #
         #   @return [String, nil]
@@ -23,7 +28,8 @@ module CheckoutIntents
         #   @return [Float, nil]
         optional :limit, Float
 
-        # @!method initialize(after: nil, before: nil, limit: nil, request_options: {})
+        # @!method initialize(id:, after: nil, before: nil, limit: nil, request_options: {})
+        #   @param id [String]
         #   @param after [String]
         #   @param before [String]
         #   @param limit [Float]

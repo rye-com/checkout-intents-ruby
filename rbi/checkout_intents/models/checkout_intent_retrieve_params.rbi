@@ -14,16 +14,22 @@ module CheckoutIntents
           )
         end
 
+      sig { returns(String) }
+      attr_accessor :id
+
       sig do
         params(
+          id: String,
           request_options: CheckoutIntents::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
-      def self.new(request_options: {})
+      def self.new(id:, request_options: {})
       end
 
       sig do
-        override.returns({ request_options: CheckoutIntents::RequestOptions })
+        override.returns(
+          { id: String, request_options: CheckoutIntents::RequestOptions }
+        )
       end
       def to_hash
       end

@@ -7,7 +7,15 @@ module CheckoutIntents
       extend CheckoutIntents::Internal::Type::RequestParameters::Converter
       include CheckoutIntents::Internal::Type::RequestParameters
 
-      # @!method initialize(request_options: {})
+      # @!attribute domain
+      #   Represents a valid domain name string.
+      #
+      #   @return [String]
+      required :domain, String
+
+      # @!method initialize(domain:, request_options: {})
+      #   @param domain [String] Represents a valid domain name string.
+      #
       #   @param request_options [CheckoutIntents::RequestOptions, Hash{Symbol=>Object}]
     end
   end

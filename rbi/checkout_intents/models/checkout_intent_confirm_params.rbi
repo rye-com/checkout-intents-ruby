@@ -14,6 +14,9 @@ module CheckoutIntents
           )
         end
 
+      sig { returns(String) }
+      attr_accessor :id
+
       sig do
         returns(
           T.any(
@@ -29,6 +32,7 @@ module CheckoutIntents
 
       sig do
         params(
+          id: String,
           payment_method:
             T.any(
               CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod::OrHash,
@@ -40,12 +44,13 @@ module CheckoutIntents
           request_options: CheckoutIntents::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
-      def self.new(payment_method:, request_options: {})
+      def self.new(id:, payment_method:, request_options: {})
       end
 
       sig do
         override.returns(
           {
+            id: String,
             payment_method:
               T.any(
                 CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod,

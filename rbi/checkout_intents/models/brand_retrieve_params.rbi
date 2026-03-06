@@ -14,16 +14,27 @@ module CheckoutIntents
           )
         end
 
+      # Represents a valid domain name string.
+      sig { returns(String) }
+      attr_accessor :domain
+
       sig do
         params(
+          domain: String,
           request_options: CheckoutIntents::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
-      def self.new(request_options: {})
+      def self.new(
+        # Represents a valid domain name string.
+        domain:,
+        request_options: {}
+      )
       end
 
       sig do
-        override.returns({ request_options: CheckoutIntents::RequestOptions })
+        override.returns(
+          { domain: String, request_options: CheckoutIntents::RequestOptions }
+        )
       end
       def to_hash
       end
