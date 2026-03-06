@@ -1,0 +1,15 @@
+module CheckoutIntents
+  module Models
+    type variant_dimension = { label: String, values: ::Array[String] }
+
+    class VariantDimension < CheckoutIntents::Internal::Type::BaseModel
+      attr_accessor label: String
+
+      attr_accessor values: ::Array[String]
+
+      def initialize: (label: String, values: ::Array[String]) -> void
+
+      def to_hash: -> { label: String, values: ::Array[String] }
+    end
+  end
+end

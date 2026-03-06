@@ -51,6 +51,8 @@ module CheckoutIntents
 
   ProductLookupParams = CheckoutIntents::Models::ProductLookupParams
 
+  ProductVariant = CheckoutIntents::Models::ProductVariant
+
   Shipment = CheckoutIntents::Models::Shipment
 
   ShipmentListParams = CheckoutIntents::Models::ShipmentListParams
@@ -60,6 +62,8 @@ module CheckoutIntents
   ShipmentStatus = CheckoutIntents::Models::ShipmentStatus
 
   ShipmentTracking = CheckoutIntents::Models::ShipmentTracking
+
+  VariantDimension = CheckoutIntents::Models::VariantDimension
 
   VariantSelection = CheckoutIntents::Models::VariantSelection
 end

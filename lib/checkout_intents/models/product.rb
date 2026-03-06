@@ -63,17 +63,17 @@ module CheckoutIntents
 
       # @!attribute variant_dimensions
       #
-      #   @return [Array<CheckoutIntents::Models::Product::VariantDimension>, nil]
+      #   @return [Array<CheckoutIntents::Models::VariantDimension>, nil]
       optional :variant_dimensions,
-               -> { CheckoutIntents::Internal::Type::ArrayOf[CheckoutIntents::Product::VariantDimension] },
+               -> { CheckoutIntents::Internal::Type::ArrayOf[CheckoutIntents::VariantDimension] },
                api_name: :variantDimensions,
                nil?: true
 
       # @!attribute variants
       #
-      #   @return [Array<CheckoutIntents::Models::Product::Variant>, nil]
+      #   @return [Array<CheckoutIntents::Models::ProductVariant>, nil]
       optional :variants,
-               -> { CheckoutIntents::Internal::Type::ArrayOf[CheckoutIntents::Product::Variant] },
+               -> { CheckoutIntents::Internal::Type::ArrayOf[CheckoutIntents::ProductVariant] },
                nil?: true
 
       # @!method initialize(id:, availability:, brand:, description:, images:, is_purchasable:, name:, price:, sku:, url:, variant_dimensions: nil, variants: nil)
@@ -100,80 +100,9 @@ module CheckoutIntents
       #
       #   @param url [String]
       #
-      #   @param variant_dimensions [Array<CheckoutIntents::Models::Product::VariantDimension>, nil]
+      #   @param variant_dimensions [Array<CheckoutIntents::Models::VariantDimension>, nil]
       #
-      #   @param variants [Array<CheckoutIntents::Models::Product::Variant>, nil]
-
-      class VariantDimension < CheckoutIntents::Internal::Type::BaseModel
-        # @!attribute label
-        #
-        #   @return [String]
-        required :label, String
-
-        # @!attribute values
-        #
-        #   @return [Array<String>]
-        required :values, CheckoutIntents::Internal::Type::ArrayOf[String]
-
-        # @!method initialize(label:, values:)
-        #   @param label [String]
-        #   @param values [Array<String>]
-      end
-
-      class Variant < CheckoutIntents::Internal::Type::BaseModel
-        # @!attribute availability
-        #   The availability status of a product.
-        #
-        #   - `in_stock`: Product is available for immediate purchase
-        #   - `out_of_stock`: Product is currently unavailable
-        #   - `preorder`: Product is available for pre-order before release
-        #   - `backorder`: Product is temporarily out of stock but can be ordered
-        #   - `unknown`: Availability could not be determined
-        #
-        #   @return [Symbol, CheckoutIntents::Models::ProductAvailability]
-        required :availability, enum: -> { CheckoutIntents::ProductAvailability }
-
-        # @!attribute dimensions
-        #
-        #   @return [Array<CheckoutIntents::Models::VariantSelection>]
-        required :dimensions, -> { CheckoutIntents::Internal::Type::ArrayOf[CheckoutIntents::VariantSelection] }
-
-        # @!attribute images
-        #
-        #   @return [Array<CheckoutIntents::Models::ProductImage>]
-        required :images, -> { CheckoutIntents::Internal::Type::ArrayOf[CheckoutIntents::ProductImage] }
-
-        # @!attribute name
-        #
-        #   @return [String, nil]
-        required :name, String, nil?: true
-
-        # @!attribute price
-        #
-        #   @return [CheckoutIntents::Models::Money]
-        required :price, -> { CheckoutIntents::Money }
-
-        # @!attribute sku
-        #
-        #   @return [String, nil]
-        required :sku, String, nil?: true
-
-        # @!method initialize(availability:, dimensions:, images:, name:, price:, sku:)
-        #   Some parameter documentations has been truncated, see
-        #   {CheckoutIntents::Models::Product::Variant} for more details.
-        #
-        #   @param availability [Symbol, CheckoutIntents::Models::ProductAvailability] The availability status of a product.
-        #
-        #   @param dimensions [Array<CheckoutIntents::Models::VariantSelection>]
-        #
-        #   @param images [Array<CheckoutIntents::Models::ProductImage>]
-        #
-        #   @param name [String, nil]
-        #
-        #   @param price [CheckoutIntents::Models::Money]
-        #
-        #   @param sku [String, nil]
-      end
+      #   @param variants [Array<CheckoutIntents::Models::ProductVariant>, nil]
     end
   end
 end

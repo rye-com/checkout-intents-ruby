@@ -1,0 +1,45 @@
+module CheckoutIntents
+  module Models
+    type product_variant =
+      {
+        availability: CheckoutIntents::Models::product_availability,
+        dimensions: ::Array[CheckoutIntents::VariantSelection],
+        images: ::Array[CheckoutIntents::ProductImage],
+        name: String?,
+        price: CheckoutIntents::Money,
+        sku: String?
+      }
+
+    class ProductVariant < CheckoutIntents::Internal::Type::BaseModel
+      attr_accessor availability: CheckoutIntents::Models::product_availability
+
+      attr_accessor dimensions: ::Array[CheckoutIntents::VariantSelection]
+
+      attr_accessor images: ::Array[CheckoutIntents::ProductImage]
+
+      attr_accessor name: String?
+
+      attr_accessor price: CheckoutIntents::Money
+
+      attr_accessor sku: String?
+
+      def initialize: (
+        availability: CheckoutIntents::Models::product_availability,
+        dimensions: ::Array[CheckoutIntents::VariantSelection],
+        images: ::Array[CheckoutIntents::ProductImage],
+        name: String?,
+        price: CheckoutIntents::Money,
+        sku: String?
+      ) -> void
+
+      def to_hash: -> {
+        availability: CheckoutIntents::Models::product_availability,
+        dimensions: ::Array[CheckoutIntents::VariantSelection],
+        images: ::Array[CheckoutIntents::ProductImage],
+        name: String?,
+        price: CheckoutIntents::Money,
+        sku: String?
+      }
+    end
+  end
+end
