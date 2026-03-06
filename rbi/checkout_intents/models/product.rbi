@@ -52,7 +52,9 @@ module CheckoutIntents
       attr_accessor :url
 
       sig do
-        returns(T.nilable(T::Array[::CheckoutIntents::Product::VariantDimension]))
+        returns(
+          T.nilable(T::Array[::CheckoutIntents::Product::VariantDimension])
+        )
       end
       attr_reader :variant_dimensions
 
@@ -234,7 +236,8 @@ module CheckoutIntents
           override.returns(
             {
               attributes: T::Hash[Symbol, String],
-              availability: ::CheckoutIntents::ProductAvailability::TaggedSymbol,
+              availability:
+                ::CheckoutIntents::ProductAvailability::TaggedSymbol,
               images: T::Array[::CheckoutIntents::ProductImage],
               name: T.nilable(String),
               price: ::CheckoutIntents::Money,
