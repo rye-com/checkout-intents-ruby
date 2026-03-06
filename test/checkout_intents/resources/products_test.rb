@@ -23,7 +23,9 @@ class CheckoutIntents::Test::Resources::ProductsTest < CheckoutIntents::Test::Re
         name: String,
         price: CheckoutIntents::Money,
         sku: String | nil,
-        url: String
+        url: String,
+        variant_dimensions: ^(CheckoutIntents::Internal::Type::ArrayOf[CheckoutIntents::Product::VariantDimension]) | nil,
+        variants: ^(CheckoutIntents::Internal::Type::ArrayOf[CheckoutIntents::Product::Variant]) | nil
       }
     end
   end

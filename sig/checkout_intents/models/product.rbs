@@ -11,7 +11,9 @@ module CheckoutIntents
         name: String,
         price: ::CheckoutIntents::Money,
         sku: String?,
-        url: String
+        url: String,
+        variant_dimensions: ::Array[::CheckoutIntents::Product::VariantDimension],
+        variants: ::Array[::CheckoutIntents::Product::Variant]
       }
 
     class Product < ::CheckoutIntents::Internal::Type::BaseModel
@@ -35,6 +37,18 @@ module CheckoutIntents
 
       attr_accessor url: String
 
+      attr_reader variant_dimensions: ::Array[::CheckoutIntents::Product::VariantDimension]?
+
+      def variant_dimensions=: (
+        ::Array[::CheckoutIntents::Product::VariantDimension]
+      ) -> ::Array[::CheckoutIntents::Product::VariantDimension]
+
+      attr_reader variants: ::Array[::CheckoutIntents::Product::Variant]?
+
+      def variants=: (
+        ::Array[::CheckoutIntents::Product::Variant]
+      ) -> ::Array[::CheckoutIntents::Product::Variant]
+
       def initialize: (
         id: String,
         availability: ::CheckoutIntents::Models::product_availability,
@@ -45,7 +59,9 @@ module CheckoutIntents
         name: String,
         price: ::CheckoutIntents::Money,
         sku: String?,
-        url: String
+        url: String,
+        ?variant_dimensions: ::Array[::CheckoutIntents::Product::VariantDimension],
+        ?variants: ::Array[::CheckoutIntents::Product::Variant]
       ) -> void
 
       def to_hash: -> {
@@ -58,8 +74,64 @@ module CheckoutIntents
         name: String,
         price: ::CheckoutIntents::Money,
         sku: String?,
-        url: String
+        url: String,
+        variant_dimensions: ::Array[::CheckoutIntents::Product::VariantDimension],
+        variants: ::Array[::CheckoutIntents::Product::Variant]
       }
+
+      type variant_dimension = { name: String, values: ::Array[String] }
+
+      class VariantDimension < ::CheckoutIntents::Internal::Type::BaseModel
+        attr_accessor name: String
+
+        attr_accessor values: ::Array[String]
+
+        def initialize: (name: String, values: ::Array[String]) -> void
+
+        def to_hash: -> { name: String, values: ::Array[String] }
+      end
+
+      type variant =
+        {
+          attributes: ::Hash[Symbol, String],
+          availability: ::CheckoutIntents::Models::product_availability,
+          images: ::Array[::CheckoutIntents::ProductImage],
+          name: String?,
+          price: ::CheckoutIntents::Money,
+          sku: String?
+        }
+
+      class Variant < ::CheckoutIntents::Internal::Type::BaseModel
+        attr_accessor attributes: ::Hash[Symbol, String]
+
+        attr_accessor availability: ::CheckoutIntents::Models::product_availability
+
+        attr_accessor images: ::Array[::CheckoutIntents::ProductImage]
+
+        attr_accessor name: String?
+
+        attr_accessor price: ::CheckoutIntents::Money
+
+        attr_accessor sku: String?
+
+        def initialize: (
+          attributes: ::Hash[Symbol, String],
+          availability: ::CheckoutIntents::Models::product_availability,
+          images: ::Array[::CheckoutIntents::ProductImage],
+          name: String?,
+          price: ::CheckoutIntents::Money,
+          sku: String?
+        ) -> void
+
+        def to_hash: -> {
+          attributes: ::Hash[Symbol, String],
+          availability: ::CheckoutIntents::Models::product_availability,
+          images: ::Array[::CheckoutIntents::ProductImage],
+          name: String?,
+          price: ::CheckoutIntents::Money,
+          sku: String?
+        }
+      end
     end
   end
 end
