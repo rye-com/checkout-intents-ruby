@@ -35,6 +35,8 @@ module CheckoutIntents
         sig { returns(Time) }
         attr_accessor :created_at
 
+        # The external ID is provided by the marketplace and matches the shipment to their
+        # system.
         sig { returns(String) }
         attr_accessor :external_id
 
@@ -89,6 +91,8 @@ module CheckoutIntents
           id:,
           checkout_intent_id:,
           created_at:,
+          # The external ID is provided by the marketplace and matches the shipment to their
+          # system.
           external_id:,
           shipped_at:,
           status:,
@@ -161,12 +165,6 @@ module CheckoutIntents
           sig { returns(T.nilable(String)) }
           attr_accessor :description
 
-          sig { returns(T.nilable(String)) }
-          attr_accessor :display_date
-
-          sig { returns(T.nilable(String)) }
-          attr_accessor :display_time
-
           sig do
             returns(
               ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Location
@@ -183,25 +181,48 @@ module CheckoutIntents
           attr_writer :location
 
           sig do
+            returns(
+              T.nilable(
+                ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Timestamp
+              )
+            )
+          end
+          attr_reader :timestamp
+
+          sig do
+            params(
+              timestamp:
+                T.nilable(
+                  ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Timestamp::OrHash
+                )
+            ).void
+          end
+          attr_writer :timestamp
+
+          sig do
             params(
               description: T.nilable(String),
-              display_date: T.nilable(String),
-              display_time: T.nilable(String),
               location:
-                ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Location::OrHash
+                ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Location::OrHash,
+              timestamp:
+                T.nilable(
+                  ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Timestamp::OrHash
+                )
             ).returns(T.attached_class)
           end
-          def self.new(description:, display_date:, display_time:, location:)
+          def self.new(description:, location:, timestamp:)
           end
 
           sig do
             override.returns(
               {
                 description: T.nilable(String),
-                display_date: T.nilable(String),
-                display_time: T.nilable(String),
                 location:
-                  ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Location
+                  ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Location,
+                timestamp:
+                  T.nilable(
+                    ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Timestamp
+                  )
               }
             )
           end
@@ -248,6 +269,37 @@ module CheckoutIntents
             def to_hash
             end
           end
+
+          class Timestamp < ::CheckoutIntents::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Timestamp,
+                  ::CheckoutIntents::Internal::AnyHash
+                )
+              end
+
+            # ISO 8601 string with timezone offset, e.g. "2025-02-05T17:02:00.000-05:00"
+            sig { returns(String) }
+            attr_accessor :local
+
+            # UTC timestamp
+            sig { returns(Time) }
+            attr_accessor :utc
+
+            sig { params(local: String, utc: Time).returns(T.attached_class) }
+            def self.new(
+              # ISO 8601 string with timezone offset, e.g. "2025-02-05T17:02:00.000-05:00"
+              local:,
+              # UTC timestamp
+              utc:
+            )
+            end
+
+            sig { override.returns({ local: String, utc: Time }) }
+            def to_hash
+            end
+          end
         end
       end
 
@@ -272,6 +324,8 @@ module CheckoutIntents
         sig { returns(Time) }
         attr_accessor :delivered_at
 
+        # The external ID is provided by the marketplace and matches the shipment to their
+        # system.
         sig { returns(String) }
         attr_accessor :external_id
 
@@ -328,6 +382,8 @@ module CheckoutIntents
           checkout_intent_id:,
           created_at:,
           delivered_at:,
+          # The external ID is provided by the marketplace and matches the shipment to their
+          # system.
           external_id:,
           shipped_at:,
           status:,
@@ -401,12 +457,6 @@ module CheckoutIntents
           sig { returns(T.nilable(String)) }
           attr_accessor :description
 
-          sig { returns(T.nilable(String)) }
-          attr_accessor :display_date
-
-          sig { returns(T.nilable(String)) }
-          attr_accessor :display_time
-
           sig do
             returns(
               ::CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Location
@@ -423,25 +473,48 @@ module CheckoutIntents
           attr_writer :location
 
           sig do
+            returns(
+              T.nilable(
+                ::CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Timestamp
+              )
+            )
+          end
+          attr_reader :timestamp
+
+          sig do
+            params(
+              timestamp:
+                T.nilable(
+                  ::CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Timestamp::OrHash
+                )
+            ).void
+          end
+          attr_writer :timestamp
+
+          sig do
             params(
               description: T.nilable(String),
-              display_date: T.nilable(String),
-              display_time: T.nilable(String),
               location:
-                ::CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Location::OrHash
+                ::CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Location::OrHash,
+              timestamp:
+                T.nilable(
+                  ::CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Timestamp::OrHash
+                )
             ).returns(T.attached_class)
           end
-          def self.new(description:, display_date:, display_time:, location:)
+          def self.new(description:, location:, timestamp:)
           end
 
           sig do
             override.returns(
               {
                 description: T.nilable(String),
-                display_date: T.nilable(String),
-                display_time: T.nilable(String),
                 location:
-                  ::CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Location
+                  ::CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Location,
+                timestamp:
+                  T.nilable(
+                    ::CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Timestamp
+                  )
               }
             )
           end
@@ -488,6 +561,37 @@ module CheckoutIntents
             def to_hash
             end
           end
+
+          class Timestamp < ::CheckoutIntents::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  ::CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Timestamp,
+                  ::CheckoutIntents::Internal::AnyHash
+                )
+              end
+
+            # ISO 8601 string with timezone offset, e.g. "2025-02-05T17:02:00.000-05:00"
+            sig { returns(String) }
+            attr_accessor :local
+
+            # UTC timestamp
+            sig { returns(Time) }
+            attr_accessor :utc
+
+            sig { params(local: String, utc: Time).returns(T.attached_class) }
+            def self.new(
+              # ISO 8601 string with timezone offset, e.g. "2025-02-05T17:02:00.000-05:00"
+              local:,
+              # UTC timestamp
+              utc:
+            )
+            end
+
+            sig { override.returns({ local: String, utc: Time }) }
+            def to_hash
+            end
+          end
         end
       end
 
@@ -509,6 +613,8 @@ module CheckoutIntents
         sig { returns(Time) }
         attr_accessor :created_at
 
+        # The external ID is provided by the marketplace and matches the shipment to their
+        # system.
         sig { returns(String) }
         attr_accessor :external_id
 
@@ -563,6 +669,8 @@ module CheckoutIntents
           id:,
           checkout_intent_id:,
           created_at:,
+          # The external ID is provided by the marketplace and matches the shipment to their
+          # system.
           external_id:,
           shipped_at:,
           status:,
@@ -635,12 +743,6 @@ module CheckoutIntents
           sig { returns(T.nilable(String)) }
           attr_accessor :description
 
-          sig { returns(T.nilable(String)) }
-          attr_accessor :display_date
-
-          sig { returns(T.nilable(String)) }
-          attr_accessor :display_time
-
           sig do
             returns(
               ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Location
@@ -657,25 +759,48 @@ module CheckoutIntents
           attr_writer :location
 
           sig do
+            returns(
+              T.nilable(
+                ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Timestamp
+              )
+            )
+          end
+          attr_reader :timestamp
+
+          sig do
+            params(
+              timestamp:
+                T.nilable(
+                  ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Timestamp::OrHash
+                )
+            ).void
+          end
+          attr_writer :timestamp
+
+          sig do
             params(
               description: T.nilable(String),
-              display_date: T.nilable(String),
-              display_time: T.nilable(String),
               location:
-                ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Location::OrHash
+                ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Location::OrHash,
+              timestamp:
+                T.nilable(
+                  ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Timestamp::OrHash
+                )
             ).returns(T.attached_class)
           end
-          def self.new(description:, display_date:, display_time:, location:)
+          def self.new(description:, location:, timestamp:)
           end
 
           sig do
             override.returns(
               {
                 description: T.nilable(String),
-                display_date: T.nilable(String),
-                display_time: T.nilable(String),
                 location:
-                  ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Location
+                  ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Location,
+                timestamp:
+                  T.nilable(
+                    ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Timestamp
+                  )
               }
             )
           end
@@ -722,6 +847,37 @@ module CheckoutIntents
             def to_hash
             end
           end
+
+          class Timestamp < ::CheckoutIntents::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Timestamp,
+                  ::CheckoutIntents::Internal::AnyHash
+                )
+              end
+
+            # ISO 8601 string with timezone offset, e.g. "2025-02-05T17:02:00.000-05:00"
+            sig { returns(String) }
+            attr_accessor :local
+
+            # UTC timestamp
+            sig { returns(Time) }
+            attr_accessor :utc
+
+            sig { params(local: String, utc: Time).returns(T.attached_class) }
+            def self.new(
+              # ISO 8601 string with timezone offset, e.g. "2025-02-05T17:02:00.000-05:00"
+              local:,
+              # UTC timestamp
+              utc:
+            )
+            end
+
+            sig { override.returns({ local: String, utc: Time }) }
+            def to_hash
+            end
+          end
         end
       end
 
@@ -743,6 +899,8 @@ module CheckoutIntents
         sig { returns(Time) }
         attr_accessor :created_at
 
+        # The external ID is provided by the marketplace and matches the shipment to their
+        # system.
         sig { returns(String) }
         attr_accessor :external_id
 
@@ -797,6 +955,8 @@ module CheckoutIntents
           id:,
           checkout_intent_id:,
           created_at:,
+          # The external ID is provided by the marketplace and matches the shipment to their
+          # system.
           external_id:,
           shipped_at:,
           status:,
@@ -869,12 +1029,6 @@ module CheckoutIntents
           sig { returns(T.nilable(String)) }
           attr_accessor :description
 
-          sig { returns(T.nilable(String)) }
-          attr_accessor :display_date
-
-          sig { returns(T.nilable(String)) }
-          attr_accessor :display_time
-
           sig do
             returns(
               ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Location
@@ -891,25 +1045,48 @@ module CheckoutIntents
           attr_writer :location
 
           sig do
+            returns(
+              T.nilable(
+                ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Timestamp
+              )
+            )
+          end
+          attr_reader :timestamp
+
+          sig do
+            params(
+              timestamp:
+                T.nilable(
+                  ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Timestamp::OrHash
+                )
+            ).void
+          end
+          attr_writer :timestamp
+
+          sig do
             params(
               description: T.nilable(String),
-              display_date: T.nilable(String),
-              display_time: T.nilable(String),
               location:
-                ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Location::OrHash
+                ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Location::OrHash,
+              timestamp:
+                T.nilable(
+                  ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Timestamp::OrHash
+                )
             ).returns(T.attached_class)
           end
-          def self.new(description:, display_date:, display_time:, location:)
+          def self.new(description:, location:, timestamp:)
           end
 
           sig do
             override.returns(
               {
                 description: T.nilable(String),
-                display_date: T.nilable(String),
-                display_time: T.nilable(String),
                 location:
-                  ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Location
+                  ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Location,
+                timestamp:
+                  T.nilable(
+                    ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Timestamp
+                  )
               }
             )
           end
@@ -953,6 +1130,37 @@ module CheckoutIntents
                 }
               )
             end
+            def to_hash
+            end
+          end
+
+          class Timestamp < ::CheckoutIntents::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Timestamp,
+                  ::CheckoutIntents::Internal::AnyHash
+                )
+              end
+
+            # ISO 8601 string with timezone offset, e.g. "2025-02-05T17:02:00.000-05:00"
+            sig { returns(String) }
+            attr_accessor :local
+
+            # UTC timestamp
+            sig { returns(Time) }
+            attr_accessor :utc
+
+            sig { params(local: String, utc: Time).returns(T.attached_class) }
+            def self.new(
+              # ISO 8601 string with timezone offset, e.g. "2025-02-05T17:02:00.000-05:00"
+              local:,
+              # UTC timestamp
+              utc:
+            )
+            end
+
+            sig { override.returns({ local: String, utc: Time }) }
             def to_hash
             end
           end
