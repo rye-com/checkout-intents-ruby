@@ -1,5 +1,26 @@
 # Changelog
 
+## 0.7.0 (2026-03-07)
+
+Full Changelog: [v0.6.0...v0.7.0](https://github.com/rye-com/checkout-intents-ruby/compare/v0.6.0...v0.7.0)
+
+### Features
+
+* add variant types and wire through extraction pipeline (RYE-6876) ([4d90f56](https://github.com/rye-com/checkout-intents-ruby/commit/4d90f5640f2abb45d6a7b1c7e3385118f4bba6f7))
+
+
+### Bug Fixes
+
+* handle [@type](https://github.com/type) array and AggregateOffer array in JSON-LD parser ([37533f9](https://github.com/rye-com/checkout-intents-ruby/commit/37533f93ebc03a0164626535b7832a8c9181707f))
+* **internal:** missing imports ([44f5484](https://github.com/rye-com/checkout-intents-ruby/commit/44f5484ebd8caa4bc01174d7d0c692bb3ff2c8ee))
+
+
+### Chores
+
+* **internal:** format and fix absolute references ([894137b](https://github.com/rye-com/checkout-intents-ruby/commit/894137b268199fe83dffed5464a77c4d41f77e8d))
+* **internal:** improvements ([9abfe08](https://github.com/rye-com/checkout-intents-ruby/commit/9abfe0853ef6f0949e9f56501561db3b9a451d98))
+* **internal:** improvements ([63be470](https://github.com/rye-com/checkout-intents-ruby/commit/63be470fe4430ed0bf6aac561474988d23f54e21))
+
 ## 0.6.0 (2026-02-28)
 
 Full Changelog: [v0.5.0...v0.6.0](https://github.com/rye-com/checkout-intents-ruby/compare/v0.5.0...v0.6.0)
