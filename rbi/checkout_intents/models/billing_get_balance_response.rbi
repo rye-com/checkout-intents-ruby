@@ -17,15 +17,23 @@ module CheckoutIntents
       sig { params(balance: CheckoutIntents::Money::OrHash).void }
       attr_writer :balance
 
+      sig { returns(T::Boolean) }
+      attr_accessor :drawdown_enabled
+
       sig do
-        params(balance: CheckoutIntents::Money::OrHash).returns(
-          T.attached_class
-        )
+        params(
+          balance: CheckoutIntents::Money::OrHash,
+          drawdown_enabled: T::Boolean
+        ).returns(T.attached_class)
       end
-      def self.new(balance:)
+      def self.new(balance:, drawdown_enabled:)
       end
 
-      sig { override.returns({ balance: CheckoutIntents::Money }) }
+      sig do
+        override.returns(
+          { balance: CheckoutIntents::Money, drawdown_enabled: T::Boolean }
+        )
+      end
       def to_hash
       end
     end

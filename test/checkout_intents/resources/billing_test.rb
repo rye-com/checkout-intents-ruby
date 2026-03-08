@@ -14,7 +14,8 @@ class CheckoutIntents::Test::Resources::BillingTest < CheckoutIntents::Test::Res
 
     assert_pattern do
       response => {
-        balance: CheckoutIntents::Money
+        balance: CheckoutIntents::Money,
+        drawdown_enabled: CheckoutIntents::Internal::Type::Boolean
       }
     end
   end

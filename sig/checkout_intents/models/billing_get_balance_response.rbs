@@ -1,13 +1,22 @@
 module CheckoutIntents
   module Models
-    type billing_get_balance_response = { balance: CheckoutIntents::Money }
+    type billing_get_balance_response =
+      { balance: CheckoutIntents::Money, drawdown_enabled: bool }
 
     class BillingGetBalanceResponse < CheckoutIntents::Internal::Type::BaseModel
       attr_accessor balance: CheckoutIntents::Money
 
-      def initialize: (balance: CheckoutIntents::Money) -> void
+      attr_accessor drawdown_enabled: bool
 
-      def to_hash: -> { balance: CheckoutIntents::Money }
+      def initialize: (
+        balance: CheckoutIntents::Money,
+        drawdown_enabled: bool
+      ) -> void
+
+      def to_hash: -> {
+        balance: CheckoutIntents::Money,
+        drawdown_enabled: bool
+      }
     end
   end
 end
