@@ -17,7 +17,7 @@ module CheckoutIntents
 
     # rubocop:disable Style/MutableConstant
     # @type [Hash{Symbol=>String}]
-    ENVIRONMENTS = {staging: "https://staging.api.rye.com/", production: "https://api.rye.com/"}
+    ENVIRONMENTS = {staging: "https://staging.api.rye.com", production: "https://api.rye.com"}
     # rubocop:enable Style/MutableConstant
 
     # Rye API key. Format: `RYE/{environment}-abcdef`
@@ -60,8 +60,8 @@ module CheckoutIntents
     #
     # Each environment maps to a different base URL:
     #
-    # - `staging` corresponds to `https://staging.api.rye.com/`
-    # - `production` corresponds to `https://api.rye.com/`
+    # - `staging` corresponds to `https://staging.api.rye.com`
+    # - `production` corresponds to `https://api.rye.com`
     #
     # @param base_url [String, nil] Override the default base URL for the API, e.g.,
     # `"https://api.example.com/v2/"`. Defaults to `ENV["CHECKOUT_INTENTS_BASE_URL"]`

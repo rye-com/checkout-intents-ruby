@@ -13,8 +13,8 @@ module CheckoutIntents
     ENVIRONMENTS =
       T.let(
         {
-          staging: "https://staging.api.rye.com/",
-          production: "https://api.rye.com/"
+          staging: "https://staging.api.rye.com",
+          production: "https://api.rye.com"
         },
         T::Hash[Symbol, String]
       )
@@ -67,8 +67,8 @@ module CheckoutIntents
       #
       # Each environment maps to a different base URL:
       #
-      # - `staging` corresponds to `https://staging.api.rye.com/`
-      # - `production` corresponds to `https://api.rye.com/`
+      # - `staging` corresponds to `https://staging.api.rye.com`
+      # - `production` corresponds to `https://api.rye.com`
       environment: nil,
       # Override the default base URL for the API, e.g.,
       # `"https://api.example.com/v2/"`. Defaults to `ENV["CHECKOUT_INTENTS_BASE_URL"]`
