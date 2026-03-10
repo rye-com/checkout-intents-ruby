@@ -23,9 +23,10 @@ module CheckoutIntents
       optional :ids, CheckoutIntents::Internal::Type::ArrayOf[String]
 
       # @!attribute limit
+      #   Maximum number of results to return (default 100)
       #
-      #   @return [Float, nil]
-      optional :limit, Float
+      #   @return [Integer, nil]
+      optional :limit, Integer
 
       # @!attribute status
       #
@@ -34,10 +35,15 @@ module CheckoutIntents
 
       # @!method initialize(after: nil, before: nil, ids: nil, limit: nil, status: nil, request_options: {})
       #   @param after [String]
+      #
       #   @param before [String]
+      #
       #   @param ids [Array<String>]
-      #   @param limit [Float]
+      #
+      #   @param limit [Integer] Maximum number of results to return (default 100)
+      #
       #   @param status [Array<Symbol, CheckoutIntents::Models::ShipmentStatus>]
+      #
       #   @param request_options [CheckoutIntents::RequestOptions, Hash{Symbol=>Object}]
     end
   end

@@ -14,7 +14,7 @@ module CheckoutIntents
         #
         # @param before [String]
         #
-        # @param limit [Float]
+        # @param limit [Integer] Maximum number of results to return (default 100)
         #
         # @param request_options [CheckoutIntents::RequestOptions, Hash{Symbol=>Object}, nil]
         #

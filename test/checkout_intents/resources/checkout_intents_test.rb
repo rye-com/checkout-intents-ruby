@@ -19,7 +19,7 @@ class CheckoutIntents::Test::Resources::CheckoutIntentsTest < CheckoutIntents::T
           postalCode: "10001",
           province: "NY"
         },
-        product_url: "productUrl",
+        product_url: "https://www.amazon.com/dp/B0DFC9MT8Q",
         quantity: 1
       )
 
@@ -150,7 +150,7 @@ class CheckoutIntents::Test::Resources::CheckoutIntentsTest < CheckoutIntents::T
           province: "NY"
         },
         payment_method: {stripeToken: "tok_1RkrWWHGDlstla3f1Fc7ZrhH", type: :stripe_token},
-        product_url: "productUrl",
+        product_url: "https://www.amazon.com/dp/B0DFC9MT8Q",
         quantity: 1
       )
 

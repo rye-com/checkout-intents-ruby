@@ -2,7 +2,7 @@ module CheckoutIntents
   module Models
     module CheckoutIntents
       type shipment_list_params =
-        { id: String, after: String, before: String, limit: Float }
+        { id: String, after: String, before: String, limit: Integer }
         & ::CheckoutIntents::Internal::Type::request_parameters
 
       class ShipmentListParams < ::CheckoutIntents::Internal::Type::BaseModel
@@ -19,15 +19,15 @@ module CheckoutIntents
 
         def before=: (String) -> String
 
-        attr_reader limit: Float?
+        attr_reader limit: Integer?
 
-        def limit=: (Float) -> Float
+        def limit=: (Integer) -> Integer
 
         def initialize: (
           id: String,
           ?after: String,
           ?before: String,
-          ?limit: Float,
+          ?limit: Integer,
           ?request_options: CheckoutIntents::request_opts
         ) -> void
 
@@ -35,7 +35,7 @@ module CheckoutIntents
           id: String,
           after: String,
           before: String,
-          limit: Float,
+          limit: Integer,
           request_options: ::CheckoutIntents::RequestOptions
         }
       end

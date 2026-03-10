@@ -10,7 +10,7 @@ module CheckoutIntents
         ?after: String,
         ?before: String,
         ?ids: ::Array[String],
-        ?limit: Float,
+        ?limit: Integer,
         ?status: ::Array[CheckoutIntents::Models::shipment_status],
         ?request_options: CheckoutIntents::request_opts
       ) -> CheckoutIntents::Internal::CursorPagination[CheckoutIntents::Models::shipment]

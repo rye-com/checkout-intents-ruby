@@ -6,7 +6,11 @@ class CheckoutIntents::Test::Resources::Betas::CheckoutSessionsTest < CheckoutIn
   def test_create_required_params
     skip("Mock server tests are disabled")
 
-    response = @checkout_intents.betas.checkout_sessions.create(product_url: "productUrl", quantity: 1)
+    response =
+      @checkout_intents.betas.checkout_sessions.create(
+        product_url: "https://www.amazon.com/dp/B0DFC9MT8Q",
+        quantity: 1
+      )
 
     assert_pattern do
       response => CheckoutIntents::CheckoutSession

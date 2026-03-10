@@ -28,7 +28,7 @@ module CheckoutIntents
           after: String,
           before: String,
           ids: T::Array[String],
-          limit: Float,
+          limit: Integer,
           status: T::Array[CheckoutIntents::ShipmentStatus::OrSymbol],
           request_options: CheckoutIntents::RequestOptions::OrHash
         ).returns(
@@ -41,6 +41,7 @@ module CheckoutIntents
         after: nil,
         before: nil,
         ids: nil,
+        # Maximum number of results to return (default 100)
         limit: nil,
         status: nil,
         request_options: {}

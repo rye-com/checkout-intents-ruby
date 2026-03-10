@@ -33,10 +33,15 @@ module CheckoutIntents
       # @overload list(after: nil, before: nil, ids: nil, limit: nil, status: nil, request_options: {})
       #
       # @param after [String]
+      #
       # @param before [String]
+      #
       # @param ids [Array<String>]
-      # @param limit [Float]
+      #
+      # @param limit [Integer] Maximum number of results to return (default 100)
+      #
       # @param status [Array<Symbol, CheckoutIntents::Models::ShipmentStatus>]
+      #
       # @param request_options [CheckoutIntents::RequestOptions, Hash{Symbol=>Object}, nil]
       #
       # @return [CheckoutIntents::Internal::CursorPagination<CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped, CheckoutIntents::Models::Shipment::DeliveredShipment, CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed, CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery, CheckoutIntents::Models::Shipment::WithStatusBaseShipmentOrdered, CheckoutIntents::Models::Shipment::WithStatusBaseShipmentCanceled>]

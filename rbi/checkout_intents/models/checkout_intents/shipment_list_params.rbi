@@ -30,10 +30,11 @@ module CheckoutIntents
         sig { params(before: String).void }
         attr_writer :before
 
-        sig { returns(T.nilable(Float)) }
+        # Maximum number of results to return (default 100)
+        sig { returns(T.nilable(Integer)) }
         attr_reader :limit
 
-        sig { params(limit: Float).void }
+        sig { params(limit: Integer).void }
         attr_writer :limit
 
         sig do
@@ -41,7 +42,7 @@ module CheckoutIntents
             id: String,
             after: String,
             before: String,
-            limit: Float,
+            limit: Integer,
             request_options: CheckoutIntents::RequestOptions::OrHash
           ).returns(T.attached_class)
         end
@@ -49,6 +50,7 @@ module CheckoutIntents
           id:,
           after: nil,
           before: nil,
+          # Maximum number of results to return (default 100)
           limit: nil,
           request_options: {}
         )
@@ -60,7 +62,7 @@ module CheckoutIntents
               id: String,
               after: String,
               before: String,
-              limit: Float,
+              limit: Integer,
               request_options: ::CheckoutIntents::RequestOptions
             }
           )

@@ -59,7 +59,7 @@ class CheckoutIntentsTest < Minitest::Test
           postalCode: "10001",
           province: "NY"
         },
-        product_url: "productUrl",
+        product_url: "https://www.amazon.com/dp/B0DFC9MT8Q",
         quantity: 1
       )
     end
@@ -86,7 +86,7 @@ class CheckoutIntentsTest < Minitest::Test
           postalCode: "10001",
           province: "NY"
         },
-        product_url: "productUrl",
+        product_url: "https://www.amazon.com/dp/B0DFC9MT8Q",
         quantity: 1
       )
     end
@@ -112,7 +112,7 @@ class CheckoutIntentsTest < Minitest::Test
           postalCode: "10001",
           province: "NY"
         },
-        product_url: "productUrl",
+        product_url: "https://www.amazon.com/dp/B0DFC9MT8Q",
         quantity: 1,
         request_options: {max_retries: 3}
       )
@@ -140,7 +140,7 @@ class CheckoutIntentsTest < Minitest::Test
           postalCode: "10001",
           province: "NY"
         },
-        product_url: "productUrl",
+        product_url: "https://www.amazon.com/dp/B0DFC9MT8Q",
         quantity: 1,
         request_options: {max_retries: 4}
       )
@@ -172,7 +172,7 @@ class CheckoutIntentsTest < Minitest::Test
           postalCode: "10001",
           province: "NY"
         },
-        product_url: "productUrl",
+        product_url: "https://www.amazon.com/dp/B0DFC9MT8Q",
         quantity: 1
       )
     end
@@ -207,7 +207,7 @@ class CheckoutIntentsTest < Minitest::Test
           postalCode: "10001",
           province: "NY"
         },
-        product_url: "productUrl",
+        product_url: "https://www.amazon.com/dp/B0DFC9MT8Q",
         quantity: 1
       )
     end
@@ -240,7 +240,7 @@ class CheckoutIntentsTest < Minitest::Test
           postalCode: "10001",
           province: "NY"
         },
-        product_url: "productUrl",
+        product_url: "https://www.amazon.com/dp/B0DFC9MT8Q",
         quantity: 1
       )
     end
@@ -267,7 +267,7 @@ class CheckoutIntentsTest < Minitest::Test
           postalCode: "10001",
           province: "NY"
         },
-        product_url: "productUrl",
+        product_url: "https://www.amazon.com/dp/B0DFC9MT8Q",
         quantity: 1
       )
     end
@@ -295,7 +295,7 @@ class CheckoutIntentsTest < Minitest::Test
           postalCode: "10001",
           province: "NY"
         },
-        product_url: "productUrl",
+        product_url: "https://www.amazon.com/dp/B0DFC9MT8Q",
         quantity: 1,
         request_options: {extra_headers: {"x-stainless-retry-count" => nil}}
       )
@@ -324,7 +324,7 @@ class CheckoutIntentsTest < Minitest::Test
           postalCode: "10001",
           province: "NY"
         },
-        product_url: "productUrl",
+        product_url: "https://www.amazon.com/dp/B0DFC9MT8Q",
         quantity: 1,
         request_options: {extra_headers: {"x-stainless-retry-count" => "42"}}
       )
@@ -359,7 +359,7 @@ class CheckoutIntentsTest < Minitest::Test
           postalCode: "10001",
           province: "NY"
         },
-        product_url: "productUrl",
+        product_url: "https://www.amazon.com/dp/B0DFC9MT8Q",
         quantity: 1,
         request_options: {extra_headers: {}}
       )
@@ -403,7 +403,7 @@ class CheckoutIntentsTest < Minitest::Test
           postalCode: "10001",
           province: "NY"
         },
-        product_url: "productUrl",
+        product_url: "https://www.amazon.com/dp/B0DFC9MT8Q",
         quantity: 1,
         request_options: {extra_headers: {}}
       )
@@ -442,7 +442,7 @@ class CheckoutIntentsTest < Minitest::Test
           postalCode: "10001",
           province: "NY"
         },
-        product_url: "productUrl",
+        product_url: "https://www.amazon.com/dp/B0DFC9MT8Q",
         quantity: 1,
         request_options: {extra_headers: {"authorization" => "Bearer xyz"}}
       )
@@ -484,7 +484,7 @@ class CheckoutIntentsTest < Minitest::Test
           postalCode: "10001",
           province: "NY"
         },
-        product_url: "productUrl",
+        product_url: "https://www.amazon.com/dp/B0DFC9MT8Q",
         quantity: 1,
         request_options: {extra_headers: {"authorization" => "Bearer xyz"}}
       )
@@ -514,7 +514,7 @@ class CheckoutIntentsTest < Minitest::Test
           postalCode: "10001",
           province: "NY"
         },
-        product_url: "productUrl",
+        product_url: "https://www.amazon.com/dp/B0DFC9MT8Q",
         quantity: 1,
         request_options: {max_retries: 1}
       )
@@ -548,7 +548,7 @@ class CheckoutIntentsTest < Minitest::Test
           postalCode: "10001",
           province: "NY"
         },
-        product_url: "productUrl",
+        product_url: "https://www.amazon.com/dp/B0DFC9MT8Q",
         quantity: 1,
         request_options: {max_retries: 1, idempotency_key: "user-supplied-key"}
       )
@@ -579,7 +579,7 @@ class CheckoutIntentsTest < Minitest::Test
         postalCode: "10001",
         province: "NY"
       },
-      product_url: "productUrl",
+      product_url: "https://www.amazon.com/dp/B0DFC9MT8Q",
       quantity: 1
     )
 

@@ -10,7 +10,7 @@ module CheckoutIntents
             id: String,
             after: String,
             before: String,
-            limit: Float,
+            limit: Integer,
             request_options: CheckoutIntents::RequestOptions::OrHash
           ).returns(
             CheckoutIntents::Internal::CursorPagination[
@@ -23,6 +23,7 @@ module CheckoutIntents
           id,
           after: nil,
           before: nil,
+          # Maximum number of results to return (default 100)
           limit: nil,
           request_options: {}
         )

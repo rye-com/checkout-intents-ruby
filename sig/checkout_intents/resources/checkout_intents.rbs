@@ -23,7 +23,7 @@ module CheckoutIntents
         ?id: ::Array[String],
         ?after: String,
         ?before: String,
-        ?limit: Float,
+        ?limit: Integer,
         ?state: ::Array[CheckoutIntents::Models::CheckoutIntentListParams::state],
         ?request_options: CheckoutIntents::request_opts
       ) -> CheckoutIntents::Internal::CursorPagination[CheckoutIntents::Models::checkout_intent]

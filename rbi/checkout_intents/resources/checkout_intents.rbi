@@ -58,7 +58,7 @@ module CheckoutIntents
           id: T::Array[String],
           after: String,
           before: String,
-          limit: Float,
+          limit: Integer,
           state:
             T::Array[
               CheckoutIntents::CheckoutIntentListParams::State::OrSymbol
@@ -74,6 +74,7 @@ module CheckoutIntents
         id: nil,
         after: nil,
         before: nil,
+        # Maximum number of results to return (default 100)
         limit: nil,
         state: nil,
         request_options: {}

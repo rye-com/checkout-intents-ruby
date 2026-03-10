@@ -5,7 +5,7 @@ module CheckoutIntents
         after: String,
         before: String,
         ids: ::Array[String],
-        limit: Float,
+        limit: Integer,
         status: ::Array[CheckoutIntents::Models::shipment_status]
       }
       & CheckoutIntents::Internal::Type::request_parameters
@@ -26,9 +26,9 @@ module CheckoutIntents
 
       def ids=: (::Array[String]) -> ::Array[String]
 
-      attr_reader limit: Float?
+      attr_reader limit: Integer?
 
-      def limit=: (Float) -> Float
+      def limit=: (Integer) -> Integer
 
       attr_reader status: ::Array[CheckoutIntents::Models::shipment_status]?
 
@@ -40,7 +40,7 @@ module CheckoutIntents
         ?after: String,
         ?before: String,
         ?ids: ::Array[String],
-        ?limit: Float,
+        ?limit: Integer,
         ?status: ::Array[CheckoutIntents::Models::shipment_status],
         ?request_options: CheckoutIntents::request_opts
       ) -> void
@@ -49,7 +49,7 @@ module CheckoutIntents
         after: String,
         before: String,
         ids: ::Array[String],
-        limit: Float,
+        limit: Integer,
         status: ::Array[CheckoutIntents::Models::shipment_status],
         request_options: CheckoutIntents::RequestOptions
       }
