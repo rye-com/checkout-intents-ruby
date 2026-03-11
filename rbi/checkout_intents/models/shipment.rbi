@@ -40,6 +40,9 @@ module CheckoutIntents
         sig { returns(String) }
         attr_accessor :external_id
 
+        sig { returns(String) }
+        attr_accessor :marketplace_order_id
+
         sig { returns(Time) }
         attr_accessor :shipped_at
 
@@ -74,6 +77,7 @@ module CheckoutIntents
             checkout_intent_id: String,
             created_at: Time,
             external_id: String,
+            marketplace_order_id: String,
             shipped_at: Time,
             status:
               CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::Status::OrSymbol,
@@ -92,6 +96,7 @@ module CheckoutIntents
           # The external ID is provided by the marketplace and matches the shipment to their
           # system.
           external_id:,
+          marketplace_order_id:,
           shipped_at:,
           status:,
           tracking:,
@@ -107,6 +112,7 @@ module CheckoutIntents
               checkout_intent_id: String,
               created_at: Time,
               external_id: String,
+              marketplace_order_id: String,
               shipped_at: Time,
               status:
                 CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::Status::TaggedSymbol,
@@ -327,6 +333,9 @@ module CheckoutIntents
         sig { returns(String) }
         attr_accessor :external_id
 
+        sig { returns(String) }
+        attr_accessor :marketplace_order_id
+
         sig { returns(Time) }
         attr_accessor :shipped_at
 
@@ -362,6 +371,7 @@ module CheckoutIntents
             created_at: Time,
             delivered_at: Time,
             external_id: String,
+            marketplace_order_id: String,
             shipped_at: Time,
             status:
               CheckoutIntents::Shipment::DeliveredShipment::Status::OrSymbol,
@@ -381,6 +391,7 @@ module CheckoutIntents
           # The external ID is provided by the marketplace and matches the shipment to their
           # system.
           external_id:,
+          marketplace_order_id:,
           shipped_at:,
           status:,
           tracking:,
@@ -397,6 +408,7 @@ module CheckoutIntents
               created_at: Time,
               delivered_at: Time,
               external_id: String,
+              marketplace_order_id: String,
               shipped_at: Time,
               status:
                 CheckoutIntents::Shipment::DeliveredShipment::Status::TaggedSymbol,
@@ -614,6 +626,9 @@ module CheckoutIntents
         sig { returns(String) }
         attr_accessor :external_id
 
+        sig { returns(String) }
+        attr_accessor :marketplace_order_id
+
         sig { returns(Time) }
         attr_accessor :shipped_at
 
@@ -648,6 +663,7 @@ module CheckoutIntents
             checkout_intent_id: String,
             created_at: Time,
             external_id: String,
+            marketplace_order_id: String,
             shipped_at: Time,
             status:
               CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::Status::OrSymbol,
@@ -666,6 +682,7 @@ module CheckoutIntents
           # The external ID is provided by the marketplace and matches the shipment to their
           # system.
           external_id:,
+          marketplace_order_id:,
           shipped_at:,
           status:,
           tracking:,
@@ -681,6 +698,7 @@ module CheckoutIntents
               checkout_intent_id: String,
               created_at: Time,
               external_id: String,
+              marketplace_order_id: String,
               shipped_at: Time,
               status:
                 CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::Status::TaggedSymbol,
@@ -898,6 +916,9 @@ module CheckoutIntents
         sig { returns(String) }
         attr_accessor :external_id
 
+        sig { returns(String) }
+        attr_accessor :marketplace_order_id
+
         sig { returns(Time) }
         attr_accessor :shipped_at
 
@@ -932,6 +953,7 @@ module CheckoutIntents
             checkout_intent_id: String,
             created_at: Time,
             external_id: String,
+            marketplace_order_id: String,
             shipped_at: Time,
             status:
               CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::Status::OrSymbol,
@@ -950,6 +972,7 @@ module CheckoutIntents
           # The external ID is provided by the marketplace and matches the shipment to their
           # system.
           external_id:,
+          marketplace_order_id:,
           shipped_at:,
           status:,
           tracking:,
@@ -965,6 +988,7 @@ module CheckoutIntents
               checkout_intent_id: String,
               created_at: Time,
               external_id: String,
+              marketplace_order_id: String,
               shipped_at: Time,
               status:
                 CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::Status::TaggedSymbol,
@@ -1177,6 +1201,9 @@ module CheckoutIntents
         sig { returns(Time) }
         attr_accessor :created_at
 
+        sig { returns(String) }
+        attr_accessor :marketplace_order_id
+
         sig do
           returns(
             CheckoutIntents::Shipment::WithStatusBaseShipmentOrdered::Status::TaggedSymbol
@@ -1192,6 +1219,7 @@ module CheckoutIntents
             id: String,
             checkout_intent_id: String,
             created_at: Time,
+            marketplace_order_id: String,
             status:
               CheckoutIntents::Shipment::WithStatusBaseShipmentOrdered::Status::OrSymbol,
             updated_at: Time
@@ -1201,6 +1229,7 @@ module CheckoutIntents
           id:,
           checkout_intent_id:,
           created_at:,
+          marketplace_order_id:,
           status:,
           updated_at:
         )
@@ -1212,6 +1241,7 @@ module CheckoutIntents
               id: String,
               checkout_intent_id: String,
               created_at: Time,
+              marketplace_order_id: String,
               status:
                 CheckoutIntents::Shipment::WithStatusBaseShipmentOrdered::Status::TaggedSymbol,
               updated_at: Time
@@ -1269,6 +1299,9 @@ module CheckoutIntents
         sig { returns(Time) }
         attr_accessor :created_at
 
+        sig { returns(String) }
+        attr_accessor :marketplace_order_id
+
         sig do
           returns(
             CheckoutIntents::Shipment::WithStatusBaseShipmentCanceled::Status::TaggedSymbol
@@ -1284,6 +1317,7 @@ module CheckoutIntents
             id: String,
             checkout_intent_id: String,
             created_at: Time,
+            marketplace_order_id: String,
             status:
               CheckoutIntents::Shipment::WithStatusBaseShipmentCanceled::Status::OrSymbol,
             updated_at: Time
@@ -1293,6 +1327,7 @@ module CheckoutIntents
           id:,
           checkout_intent_id:,
           created_at:,
+          marketplace_order_id:,
           status:,
           updated_at:
         )
@@ -1304,6 +1339,7 @@ module CheckoutIntents
               id: String,
               checkout_intent_id: String,
               created_at: Time,
+              marketplace_order_id: String,
               status:
                 CheckoutIntents::Shipment::WithStatusBaseShipmentCanceled::Status::TaggedSymbol,
               updated_at: Time

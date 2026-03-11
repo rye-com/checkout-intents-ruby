@@ -17,6 +17,7 @@ module CheckoutIntents
           checkout_intent_id: String,
           created_at: Time,
           external_id: String,
+          marketplace_order_id: String,
           shipped_at: Time,
           status: CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped::status,
           tracking: CheckoutIntents::ShipmentTracking,
@@ -33,6 +34,8 @@ module CheckoutIntents
 
         attr_accessor external_id: String
 
+        attr_accessor marketplace_order_id: String
+
         attr_accessor shipped_at: Time
 
         attr_accessor status: CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped::status
@@ -48,6 +51,7 @@ module CheckoutIntents
           checkout_intent_id: String,
           created_at: Time,
           external_id: String,
+          marketplace_order_id: String,
           shipped_at: Time,
           status: CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped::status,
           tracking: CheckoutIntents::ShipmentTracking,
@@ -60,6 +64,7 @@ module CheckoutIntents
           checkout_intent_id: String,
           created_at: Time,
           external_id: String,
+          marketplace_order_id: String,
           shipped_at: Time,
           status: CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped::status,
           tracking: CheckoutIntents::ShipmentTracking,
@@ -146,6 +151,7 @@ module CheckoutIntents
           created_at: Time,
           delivered_at: Time,
           external_id: String,
+          marketplace_order_id: String,
           shipped_at: Time,
           status: CheckoutIntents::Models::Shipment::DeliveredShipment::status,
           tracking: CheckoutIntents::ShipmentTracking,
@@ -164,6 +170,8 @@ module CheckoutIntents
 
         attr_accessor external_id: String
 
+        attr_accessor marketplace_order_id: String
+
         attr_accessor shipped_at: Time
 
         attr_accessor status: CheckoutIntents::Models::Shipment::DeliveredShipment::status
@@ -180,6 +188,7 @@ module CheckoutIntents
           created_at: Time,
           delivered_at: Time,
           external_id: String,
+          marketplace_order_id: String,
           shipped_at: Time,
           status: CheckoutIntents::Models::Shipment::DeliveredShipment::status,
           tracking: CheckoutIntents::ShipmentTracking,
@@ -193,6 +202,7 @@ module CheckoutIntents
           created_at: Time,
           delivered_at: Time,
           external_id: String,
+          marketplace_order_id: String,
           shipped_at: Time,
           status: CheckoutIntents::Models::Shipment::DeliveredShipment::status,
           tracking: CheckoutIntents::ShipmentTracking,
@@ -278,6 +288,7 @@ module CheckoutIntents
           checkout_intent_id: String,
           created_at: Time,
           external_id: String,
+          marketplace_order_id: String,
           shipped_at: Time,
           status: CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed::status,
           tracking: CheckoutIntents::ShipmentTracking,
@@ -294,6 +305,8 @@ module CheckoutIntents
 
         attr_accessor external_id: String
 
+        attr_accessor marketplace_order_id: String
+
         attr_accessor shipped_at: Time
 
         attr_accessor status: CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed::status
@@ -309,6 +322,7 @@ module CheckoutIntents
           checkout_intent_id: String,
           created_at: Time,
           external_id: String,
+          marketplace_order_id: String,
           shipped_at: Time,
           status: CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed::status,
           tracking: CheckoutIntents::ShipmentTracking,
@@ -321,6 +335,7 @@ module CheckoutIntents
           checkout_intent_id: String,
           created_at: Time,
           external_id: String,
+          marketplace_order_id: String,
           shipped_at: Time,
           status: CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed::status,
           tracking: CheckoutIntents::ShipmentTracking,
@@ -406,6 +421,7 @@ module CheckoutIntents
           checkout_intent_id: String,
           created_at: Time,
           external_id: String,
+          marketplace_order_id: String,
           shipped_at: Time,
           status: CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::status,
           tracking: CheckoutIntents::ShipmentTracking,
@@ -422,6 +438,8 @@ module CheckoutIntents
 
         attr_accessor external_id: String
 
+        attr_accessor marketplace_order_id: String
+
         attr_accessor shipped_at: Time
 
         attr_accessor status: CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::status
@@ -437,6 +455,7 @@ module CheckoutIntents
           checkout_intent_id: String,
           created_at: Time,
           external_id: String,
+          marketplace_order_id: String,
           shipped_at: Time,
           status: CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::status,
           tracking: CheckoutIntents::ShipmentTracking,
@@ -449,6 +468,7 @@ module CheckoutIntents
           checkout_intent_id: String,
           created_at: Time,
           external_id: String,
+          marketplace_order_id: String,
           shipped_at: Time,
           status: CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::status,
           tracking: CheckoutIntents::ShipmentTracking,
@@ -533,6 +553,7 @@ module CheckoutIntents
           id: String,
           checkout_intent_id: String,
           created_at: Time,
+          marketplace_order_id: String,
           status: CheckoutIntents::Models::Shipment::WithStatusBaseShipmentOrdered::status,
           updated_at: Time
         }
@@ -544,6 +565,8 @@ module CheckoutIntents
 
         attr_accessor created_at: Time
 
+        attr_accessor marketplace_order_id: String
+
         attr_accessor status: CheckoutIntents::Models::Shipment::WithStatusBaseShipmentOrdered::status
 
         attr_accessor updated_at: Time
@@ -552,6 +575,7 @@ module CheckoutIntents
           id: String,
           checkout_intent_id: String,
           created_at: Time,
+          marketplace_order_id: String,
           status: CheckoutIntents::Models::Shipment::WithStatusBaseShipmentOrdered::status,
           updated_at: Time
         ) -> void
@@ -560,6 +584,7 @@ module CheckoutIntents
           id: String,
           checkout_intent_id: String,
           created_at: Time,
+          marketplace_order_id: String,
           status: CheckoutIntents::Models::Shipment::WithStatusBaseShipmentOrdered::status,
           updated_at: Time
         }
@@ -580,6 +605,7 @@ module CheckoutIntents
           id: String,
           checkout_intent_id: String,
           created_at: Time,
+          marketplace_order_id: String,
           status: CheckoutIntents::Models::Shipment::WithStatusBaseShipmentCanceled::status,
           updated_at: Time
         }
@@ -591,6 +617,8 @@ module CheckoutIntents
 
         attr_accessor created_at: Time
 
+        attr_accessor marketplace_order_id: String
+
         attr_accessor status: CheckoutIntents::Models::Shipment::WithStatusBaseShipmentCanceled::status
 
         attr_accessor updated_at: Time
@@ -599,6 +627,7 @@ module CheckoutIntents
           id: String,
           checkout_intent_id: String,
           created_at: Time,
+          marketplace_order_id: String,
           status: CheckoutIntents::Models::Shipment::WithStatusBaseShipmentCanceled::status,
           updated_at: Time
         ) -> void
@@ -607,6 +636,7 @@ module CheckoutIntents
           id: String,
           checkout_intent_id: String,
           created_at: Time,
+          marketplace_order_id: String,
           status: CheckoutIntents::Models::Shipment::WithStatusBaseShipmentCanceled::status,
           updated_at: Time
         }

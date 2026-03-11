@@ -41,6 +41,11 @@ module CheckoutIntents
         #   @return [String]
         required :external_id, String, api_name: :externalId
 
+        # @!attribute marketplace_order_id
+        #
+        #   @return [String]
+        required :marketplace_order_id, String, api_name: :marketplaceOrderId
+
         # @!attribute shipped_at
         #
         #   @return [Time]
@@ -71,7 +76,7 @@ module CheckoutIntents
         #   @return [Time]
         required :updated_at, Time, api_name: :updatedAt
 
-        # @!method initialize(id:, checkout_intent_id:, created_at:, external_id:, shipped_at:, status:, tracking:, tracking_events:, updated_at:)
+        # @!method initialize(id:, checkout_intent_id:, created_at:, external_id:, marketplace_order_id:, shipped_at:, status:, tracking:, tracking_events:, updated_at:)
         #   Some parameter documentations has been truncated, see
         #   {CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped}
         #   for more details.
@@ -83,6 +88,8 @@ module CheckoutIntents
         #   @param created_at [Time]
         #
         #   @param external_id [String] The external ID is provided by the marketplace and matches the shipment to their
+        #
+        #   @param marketplace_order_id [String]
         #
         #   @param shipped_at [Time]
         #
@@ -203,6 +210,11 @@ module CheckoutIntents
         #   @return [String]
         required :external_id, String, api_name: :externalId
 
+        # @!attribute marketplace_order_id
+        #
+        #   @return [String]
+        required :marketplace_order_id, String, api_name: :marketplaceOrderId
+
         # @!attribute shipped_at
         #
         #   @return [Time]
@@ -232,7 +244,7 @@ module CheckoutIntents
         #   @return [Time]
         required :updated_at, Time, api_name: :updatedAt
 
-        # @!method initialize(id:, checkout_intent_id:, created_at:, delivered_at:, external_id:, shipped_at:, status:, tracking:, tracking_events:, updated_at:)
+        # @!method initialize(id:, checkout_intent_id:, created_at:, delivered_at:, external_id:, marketplace_order_id:, shipped_at:, status:, tracking:, tracking_events:, updated_at:)
         #   Some parameter documentations has been truncated, see
         #   {CheckoutIntents::Models::Shipment::DeliveredShipment} for more details.
         #
@@ -245,6 +257,8 @@ module CheckoutIntents
         #   @param delivered_at [Time]
         #
         #   @param external_id [String] The external ID is provided by the marketplace and matches the shipment to their
+        #
+        #   @param marketplace_order_id [String]
         #
         #   @param shipped_at [Time]
         #
@@ -357,6 +371,11 @@ module CheckoutIntents
         #   @return [String]
         required :external_id, String, api_name: :externalId
 
+        # @!attribute marketplace_order_id
+        #
+        #   @return [String]
+        required :marketplace_order_id, String, api_name: :marketplaceOrderId
+
         # @!attribute shipped_at
         #
         #   @return [Time]
@@ -387,7 +406,7 @@ module CheckoutIntents
         #   @return [Time]
         required :updated_at, Time, api_name: :updatedAt
 
-        # @!method initialize(id:, checkout_intent_id:, created_at:, external_id:, shipped_at:, status:, tracking:, tracking_events:, updated_at:)
+        # @!method initialize(id:, checkout_intent_id:, created_at:, external_id:, marketplace_order_id:, shipped_at:, status:, tracking:, tracking_events:, updated_at:)
         #   Some parameter documentations has been truncated, see
         #   {CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed}
         #   for more details.
@@ -399,6 +418,8 @@ module CheckoutIntents
         #   @param created_at [Time]
         #
         #   @param external_id [String] The external ID is provided by the marketplace and matches the shipment to their
+        #
+        #   @param marketplace_order_id [String]
         #
         #   @param shipped_at [Time]
         #
@@ -514,6 +535,11 @@ module CheckoutIntents
         #   @return [String]
         required :external_id, String, api_name: :externalId
 
+        # @!attribute marketplace_order_id
+        #
+        #   @return [String]
+        required :marketplace_order_id, String, api_name: :marketplaceOrderId
+
         # @!attribute shipped_at
         #
         #   @return [Time]
@@ -544,7 +570,7 @@ module CheckoutIntents
         #   @return [Time]
         required :updated_at, Time, api_name: :updatedAt
 
-        # @!method initialize(id:, checkout_intent_id:, created_at:, external_id:, shipped_at:, status:, tracking:, tracking_events:, updated_at:)
+        # @!method initialize(id:, checkout_intent_id:, created_at:, external_id:, marketplace_order_id:, shipped_at:, status:, tracking:, tracking_events:, updated_at:)
         #   Some parameter documentations has been truncated, see
         #   {CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery}
         #   for more details.
@@ -556,6 +582,8 @@ module CheckoutIntents
         #   @param created_at [Time]
         #
         #   @param external_id [String] The external ID is provided by the marketplace and matches the shipment to their
+        #
+        #   @param marketplace_order_id [String]
         #
         #   @param shipped_at [Time]
         #
@@ -664,6 +692,11 @@ module CheckoutIntents
         #   @return [Time]
         required :created_at, Time, api_name: :createdAt
 
+        # @!attribute marketplace_order_id
+        #
+        #   @return [String]
+        required :marketplace_order_id, String, api_name: :marketplaceOrderId
+
         # @!attribute status
         #
         #   @return [Symbol, CheckoutIntents::Models::Shipment::WithStatusBaseShipmentOrdered::Status]
@@ -674,10 +707,11 @@ module CheckoutIntents
         #   @return [Time]
         required :updated_at, Time, api_name: :updatedAt
 
-        # @!method initialize(id:, checkout_intent_id:, created_at:, status:, updated_at:)
+        # @!method initialize(id:, checkout_intent_id:, created_at:, marketplace_order_id:, status:, updated_at:)
         #   @param id [String]
         #   @param checkout_intent_id [String]
         #   @param created_at [Time]
+        #   @param marketplace_order_id [String]
         #   @param status [Symbol, CheckoutIntents::Models::Shipment::WithStatusBaseShipmentOrdered::Status]
         #   @param updated_at [Time]
 
@@ -708,6 +742,11 @@ module CheckoutIntents
         #   @return [Time]
         required :created_at, Time, api_name: :createdAt
 
+        # @!attribute marketplace_order_id
+        #
+        #   @return [String]
+        required :marketplace_order_id, String, api_name: :marketplaceOrderId
+
         # @!attribute status
         #
         #   @return [Symbol, CheckoutIntents::Models::Shipment::WithStatusBaseShipmentCanceled::Status]
@@ -718,10 +757,11 @@ module CheckoutIntents
         #   @return [Time]
         required :updated_at, Time, api_name: :updatedAt
 
-        # @!method initialize(id:, checkout_intent_id:, created_at:, status:, updated_at:)
+        # @!method initialize(id:, checkout_intent_id:, created_at:, marketplace_order_id:, status:, updated_at:)
         #   @param id [String]
         #   @param checkout_intent_id [String]
         #   @param created_at [Time]
+        #   @param marketplace_order_id [String]
         #   @param status [Symbol, CheckoutIntents::Models::Shipment::WithStatusBaseShipmentCanceled::Status]
         #   @param updated_at [Time]
 
