@@ -14,7 +14,7 @@ module CheckoutIntents
         :address2 => String
       }
 
-    class Buyer < CheckoutIntents::Internal::Type::BaseModel
+    class Buyer < ::CheckoutIntents::Internal::Type::BaseModel
       attr_accessor address1: String
 
       attr_accessor city: String

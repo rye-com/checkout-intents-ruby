@@ -2,7 +2,7 @@
 
 module CheckoutIntents
   module Models
-    class Money < CheckoutIntents::Internal::Type::BaseModel
+    class Money < ::CheckoutIntents::Internal::Type::BaseModel
       # @!attribute amount_subunits
       #
       #   @return [Integer]

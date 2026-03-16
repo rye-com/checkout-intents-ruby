@@ -5,7 +5,7 @@ module CheckoutIntents
     module Type
       # @api private
       module Converter
-        extend CheckoutIntents::Internal::Util::SorbetRuntimeSupport
+        extend ::CheckoutIntents::Internal::Util::SorbetRuntimeSupport
 
         # rubocop:disable Lint/UnusedMethodArgument
 
@@ -40,17 +40,17 @@ module CheckoutIntents
         def dump(value, state:)
           case value
           in Array
-            value.map { CheckoutIntents::Internal::Type::Unknown.dump(_1, state: state) }
+            value.map { ::CheckoutIntents::Internal::Type::Unknown.dump(_1, state: state) }
           in Hash
-            value.transform_values { CheckoutIntents::Internal::Type::Unknown.dump(_1, state: state) }
-          in CheckoutIntents::Internal::Type::BaseModel
+            value.transform_values { ::CheckoutIntents::Internal::Type::Unknown.dump(_1, state: state) }
+          in ::CheckoutIntents::Internal::Type::BaseModel
             value.class.dump(value, state: state)
           in StringIO
             value.string
           in Pathname | IO
             state[:can_retry] = false if value.is_a?(IO)
-            CheckoutIntents::FilePart.new(value)
-          in CheckoutIntents::FilePart
+            ::CheckoutIntents::FilePart.new(value)
+          in ::CheckoutIntents::FilePart
             state[:can_retry] = false if value.content.is_a?(IO)
             value
           else
@@ -72,7 +72,7 @@ module CheckoutIntents
         class << self
           # @api private
           #
-          # @param spec [Hash{Symbol=>Object}, Proc, CheckoutIntents::Internal::Type::Converter, Class] .
+          # @param spec [Hash{Symbol=>Object}, Proc, ::CheckoutIntents::Internal::Type::Converter, Class] .
           #
           #   @option spec [NilClass, TrueClass, FalseClass, Integer, Float, Symbol] :const
           #
@@ -90,8 +90,8 @@ module CheckoutIntents
             in Hash
               type_info(spec.slice(:const, :enum, :union).first&.last)
             in true | false
-              -> { CheckoutIntents::Internal::Type::Boolean }
-            in CheckoutIntents::Internal::Type::Converter | Class | Symbol
+              -> { ::CheckoutIntents::Internal::Type::Boolean }
+            in ::CheckoutIntents::Internal::Type::Converter | Class | Symbol
               -> { spec }
             in NilClass | Integer | Float
               -> { spec.class }
@@ -100,7 +100,7 @@ module CheckoutIntents
 
           # @api private
           #
-          # @param type_info [Hash{Symbol=>Object}, Proc, CheckoutIntents::Internal::Type::Converter, Class] .
+          # @param type_info [Hash{Symbol=>Object}, Proc, ::CheckoutIntents::Internal::Type::Converter, Class] .
           #
           #   @option type_info [NilClass, TrueClass, FalseClass, Integer, Float, Symbol] :const
           #
@@ -110,7 +110,7 @@ module CheckoutIntents
           #
           #   @option type_info [Boolean] :"nil?"
           #
-          # @param spec [Hash{Symbol=>Object}, Proc, CheckoutIntents::Internal::Type::Converter, Class] .
+          # @param spec [Hash{Symbol=>Object}, Proc, ::CheckoutIntents::Internal::Type::Converter, Class] .
           #
           #   @option spec [NilClass, TrueClass, FalseClass, Integer, Float, Symbol] :const
           #
@@ -152,7 +152,7 @@ module CheckoutIntents
           # The coercion process is subject to improvement between minor release versions.
           # See https://docs.pydantic.dev/latest/concepts/unions/#smart-mode
           #
-          # @param target [CheckoutIntents::Internal::Type::Converter, Class]
+          # @param target [::CheckoutIntents::Internal::Type::Converter, Class]
           #
           # @param value [Object]
           #
@@ -184,12 +184,12 @@ module CheckoutIntents
           #   @option state [Integer] :branched
           #
           # @return [Object]
-          def coerce(target, value, state: CheckoutIntents::Internal::Type::Converter.new_coerce_state)
+          def coerce(target, value, state: ::CheckoutIntents::Internal::Type::Converter.new_coerce_state)
             # rubocop:disable Metrics/BlockNesting
             exactness = state.fetch(:exactness)
 
             case target
-            in CheckoutIntents::Internal::Type::Converter
+            in ::CheckoutIntents::Internal::Type::Converter
               return target.coerce(value, state: state)
             in Class
               if value.is_a?(target)
@@ -270,7 +270,7 @@ module CheckoutIntents
 
           # @api private
           #
-          # @param target [CheckoutIntents::Internal::Type::Converter, Class]
+          # @param target [::CheckoutIntents::Internal::Type::Converter, Class]
           #
           # @param value [Object]
           #
@@ -281,10 +281,10 @@ module CheckoutIntents
           # @return [Object]
           def dump(target, value, state: {can_retry: true})
             case target
-            in CheckoutIntents::Internal::Type::Converter
+            in ::CheckoutIntents::Internal::Type::Converter
               target.dump(value, state: state)
             else
-              CheckoutIntents::Internal::Type::Unknown.dump(value, state: state)
+              ::CheckoutIntents::Internal::Type::Unknown.dump(value, state: state)
             end
           end
 
@@ -296,7 +296,7 @@ module CheckoutIntents
           # @return [String]
           def inspect(target, depth:)
             case target
-            in CheckoutIntents::Internal::Type::Converter
+            in ::CheckoutIntents::Internal::Type::Converter
               target.inspect(depth: depth.succ)
             else
               target.inspect
@@ -305,7 +305,7 @@ module CheckoutIntents
         end
 
         define_sorbet_constant!(:Input) do
-          T.type_alias { T.any(CheckoutIntents::Internal::Type::Converter, T::Class[T.anything]) }
+          T.type_alias { T.any(::CheckoutIntents::Internal::Type::Converter, T::Class[T.anything]) }
         end
         define_sorbet_constant!(:CoerceState) do
           T.type_alias do

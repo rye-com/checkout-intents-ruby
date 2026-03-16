@@ -13,8 +13,8 @@ module CheckoutIntents
         alias enum_for to_enum
 
         def initialize: (
-          client: CheckoutIntents::Internal::Transport::BaseClient,
-          req: CheckoutIntents::Internal::Transport::BaseClient::request_components,
+          client: ::CheckoutIntents::Internal::Transport::BaseClient,
+          req: ::CheckoutIntents::Internal::Transport::BaseClient::request_components,
           headers: ::Hash[String, String],
           page_data: top
         ) -> void

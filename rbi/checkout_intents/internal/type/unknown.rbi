@@ -7,8 +7,8 @@ module CheckoutIntents
       #
       # When we don't know what to expect for the value.
       class Unknown
-        extend CheckoutIntents::Internal::Type::Converter
-        extend CheckoutIntents::Internal::Util::SorbetRuntimeSupport
+        extend ::CheckoutIntents::Internal::Type::Converter
+        extend ::CheckoutIntents::Internal::Util::SorbetRuntimeSupport
 
         abstract!
 
@@ -28,7 +28,7 @@ module CheckoutIntents
             override
               .params(
                 value: T.anything,
-                state: CheckoutIntents::Internal::Type::Converter::CoerceState
+                state: ::CheckoutIntents::Internal::Type::Converter::CoerceState
               )
               .returns(T.anything)
           end
@@ -40,7 +40,7 @@ module CheckoutIntents
             override
               .params(
                 value: T.anything,
-                state: CheckoutIntents::Internal::Type::Converter::DumpState
+                state: ::CheckoutIntents::Internal::Type::Converter::DumpState
               )
               .returns(T.anything)
           end

@@ -2,15 +2,15 @@
 
 module CheckoutIntents
   module Models
-    class CheckoutIntentAddPaymentParams < CheckoutIntents::Internal::Type::BaseModel
-      extend CheckoutIntents::Internal::Type::RequestParameters::Converter
-      include CheckoutIntents::Internal::Type::RequestParameters
+    class CheckoutIntentAddPaymentParams < ::CheckoutIntents::Internal::Type::BaseModel
+      extend ::CheckoutIntents::Internal::Type::RequestParameters::Converter
+      include ::CheckoutIntents::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
           T.any(
-            CheckoutIntents::CheckoutIntentAddPaymentParams,
-            CheckoutIntents::Internal::AnyHash
+            ::CheckoutIntents::CheckoutIntentAddPaymentParams,
+            ::CheckoutIntents::Internal::AnyHash
           )
         end
 
@@ -20,11 +20,11 @@ module CheckoutIntents
       sig do
         returns(
           T.any(
-            CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod,
-            CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod,
-            CheckoutIntents::PaymentMethod::NekudaPaymentMethod,
-            CheckoutIntents::PaymentMethod::PravaPaymentMethod,
-            CheckoutIntents::PaymentMethod::DrawdownPaymentMethod
+            ::CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod,
+            ::CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod,
+            ::CheckoutIntents::PaymentMethod::NekudaPaymentMethod,
+            ::CheckoutIntents::PaymentMethod::PravaPaymentMethod,
+            ::CheckoutIntents::PaymentMethod::DrawdownPaymentMethod
           )
         )
       end
@@ -35,13 +35,13 @@ module CheckoutIntents
           id: String,
           payment_method:
             T.any(
-              CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod::OrHash,
-              CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod::OrHash,
-              CheckoutIntents::PaymentMethod::NekudaPaymentMethod::OrHash,
-              CheckoutIntents::PaymentMethod::PravaPaymentMethod::OrHash,
-              CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::OrHash
+              ::CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod::OrHash,
+              ::CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod::OrHash,
+              ::CheckoutIntents::PaymentMethod::NekudaPaymentMethod::OrHash,
+              ::CheckoutIntents::PaymentMethod::PravaPaymentMethod::OrHash,
+              ::CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::OrHash
             ),
-          request_options: CheckoutIntents::RequestOptions::OrHash
+          request_options: ::CheckoutIntents::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(id:, payment_method:, request_options: {})
@@ -53,13 +53,13 @@ module CheckoutIntents
             id: String,
             payment_method:
               T.any(
-                CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod,
-                CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod,
-                CheckoutIntents::PaymentMethod::NekudaPaymentMethod,
-                CheckoutIntents::PaymentMethod::PravaPaymentMethod,
-                CheckoutIntents::PaymentMethod::DrawdownPaymentMethod
+                ::CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod,
+                ::CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod,
+                ::CheckoutIntents::PaymentMethod::NekudaPaymentMethod,
+                ::CheckoutIntents::PaymentMethod::PravaPaymentMethod,
+                ::CheckoutIntents::PaymentMethod::DrawdownPaymentMethod
               ),
-            request_options: CheckoutIntents::RequestOptions
+            request_options: ::CheckoutIntents::RequestOptions
           }
         )
       end

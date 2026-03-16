@@ -2,15 +2,15 @@
 
 module CheckoutIntents
   module Models
-    class BillingListTransactionsParams < CheckoutIntents::Internal::Type::BaseModel
-      extend CheckoutIntents::Internal::Type::RequestParameters::Converter
-      include CheckoutIntents::Internal::Type::RequestParameters
+    class BillingListTransactionsParams < ::CheckoutIntents::Internal::Type::BaseModel
+      extend ::CheckoutIntents::Internal::Type::RequestParameters::Converter
+      include ::CheckoutIntents::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
           T.any(
-            CheckoutIntents::BillingListTransactionsParams,
-            CheckoutIntents::Internal::AnyHash
+            ::CheckoutIntents::BillingListTransactionsParams,
+            ::CheckoutIntents::Internal::AnyHash
           )
         end
 
@@ -40,7 +40,7 @@ module CheckoutIntents
           after: String,
           before: String,
           limit: Integer,
-          request_options: CheckoutIntents::RequestOptions::OrHash
+          request_options: ::CheckoutIntents::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
@@ -60,7 +60,7 @@ module CheckoutIntents
             after: String,
             before: String,
             limit: Integer,
-            request_options: CheckoutIntents::RequestOptions
+            request_options: ::CheckoutIntents::RequestOptions
           }
         )
       end

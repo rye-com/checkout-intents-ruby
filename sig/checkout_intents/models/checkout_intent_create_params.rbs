@@ -2,31 +2,31 @@ module CheckoutIntents
   module Models
     type checkout_intent_create_params =
       {
-        buyer: CheckoutIntents::Buyer,
+        buyer: ::CheckoutIntents::Buyer,
         product_url: String,
         quantity: Integer,
-        constraints: CheckoutIntents::CheckoutIntentCreateParams::Constraints,
+        constraints: ::CheckoutIntents::CheckoutIntentCreateParams::Constraints,
         discover_promo_codes: bool,
         promo_codes: ::Array[String],
-        variant_selections: ::Array[CheckoutIntents::VariantSelection]
+        variant_selections: ::Array[::CheckoutIntents::VariantSelection]
       }
-      & CheckoutIntents::Internal::Type::request_parameters
+      & ::CheckoutIntents::Internal::Type::request_parameters
 
-    class CheckoutIntentCreateParams < CheckoutIntents::Internal::Type::BaseModel
-      extend CheckoutIntents::Internal::Type::RequestParameters::Converter
-      include CheckoutIntents::Internal::Type::RequestParameters
+    class CheckoutIntentCreateParams < ::CheckoutIntents::Internal::Type::BaseModel
+      extend ::CheckoutIntents::Internal::Type::RequestParameters::Converter
+      include ::CheckoutIntents::Internal::Type::RequestParameters
 
-      attr_accessor buyer: CheckoutIntents::Buyer
+      attr_accessor buyer: ::CheckoutIntents::Buyer
 
       attr_accessor product_url: String
 
       attr_accessor quantity: Integer
 
-      attr_reader constraints: CheckoutIntents::CheckoutIntentCreateParams::Constraints?
+      attr_reader constraints: ::CheckoutIntents::CheckoutIntentCreateParams::Constraints?
 
       def constraints=: (
-        CheckoutIntents::CheckoutIntentCreateParams::Constraints
-      ) -> CheckoutIntents::CheckoutIntentCreateParams::Constraints
+        ::CheckoutIntents::CheckoutIntentCreateParams::Constraints
+      ) -> ::CheckoutIntents::CheckoutIntentCreateParams::Constraints
 
       attr_reader discover_promo_codes: bool?
 
@@ -36,42 +36,42 @@ module CheckoutIntents
 
       def promo_codes=: (::Array[String]) -> ::Array[String]
 
-      attr_reader variant_selections: ::Array[CheckoutIntents::VariantSelection]?
+      attr_reader variant_selections: ::Array[::CheckoutIntents::VariantSelection]?
 
       def variant_selections=: (
-        ::Array[CheckoutIntents::VariantSelection]
-      ) -> ::Array[CheckoutIntents::VariantSelection]
+        ::Array[::CheckoutIntents::VariantSelection]
+      ) -> ::Array[::CheckoutIntents::VariantSelection]
 
       def initialize: (
-        buyer: CheckoutIntents::Buyer,
+        buyer: ::CheckoutIntents::Buyer,
         product_url: String,
         quantity: Integer,
-        ?constraints: CheckoutIntents::CheckoutIntentCreateParams::Constraints,
+        ?constraints: ::CheckoutIntents::CheckoutIntentCreateParams::Constraints,
         ?discover_promo_codes: bool,
         ?promo_codes: ::Array[String],
-        ?variant_selections: ::Array[CheckoutIntents::VariantSelection],
-        ?request_options: CheckoutIntents::request_opts
+        ?variant_selections: ::Array[::CheckoutIntents::VariantSelection],
+        ?request_options: ::CheckoutIntents::request_opts
       ) -> void
 
       def to_hash: -> {
-        buyer: CheckoutIntents::Buyer,
+        buyer: ::CheckoutIntents::Buyer,
         product_url: String,
         quantity: Integer,
-        constraints: CheckoutIntents::CheckoutIntentCreateParams::Constraints,
+        constraints: ::CheckoutIntents::CheckoutIntentCreateParams::Constraints,
         discover_promo_codes: bool,
         promo_codes: ::Array[String],
-        variant_selections: ::Array[CheckoutIntents::VariantSelection],
-        request_options: CheckoutIntents::RequestOptions
+        variant_selections: ::Array[::CheckoutIntents::VariantSelection],
+        request_options: ::CheckoutIntents::RequestOptions
       }
 
       type constraints =
         {
           max_shipping_price: Integer,
           max_total_price: Integer,
-          offer_retrieval_effort: CheckoutIntents::Models::CheckoutIntentCreateParams::Constraints::offer_retrieval_effort
+          offer_retrieval_effort: ::CheckoutIntents::Models::CheckoutIntentCreateParams::Constraints::offer_retrieval_effort
         }
 
-      class Constraints < CheckoutIntents::Internal::Type::BaseModel
+      class Constraints < ::CheckoutIntents::Internal::Type::BaseModel
         attr_reader max_shipping_price: Integer?
 
         def max_shipping_price=: (Integer) -> Integer
@@ -80,33 +80,33 @@ module CheckoutIntents
 
         def max_total_price=: (Integer) -> Integer
 
-        attr_reader offer_retrieval_effort: CheckoutIntents::Models::CheckoutIntentCreateParams::Constraints::offer_retrieval_effort?
+        attr_reader offer_retrieval_effort: ::CheckoutIntents::Models::CheckoutIntentCreateParams::Constraints::offer_retrieval_effort?
 
         def offer_retrieval_effort=: (
-          CheckoutIntents::Models::CheckoutIntentCreateParams::Constraints::offer_retrieval_effort
-        ) -> CheckoutIntents::Models::CheckoutIntentCreateParams::Constraints::offer_retrieval_effort
+          ::CheckoutIntents::Models::CheckoutIntentCreateParams::Constraints::offer_retrieval_effort
+        ) -> ::CheckoutIntents::Models::CheckoutIntentCreateParams::Constraints::offer_retrieval_effort
 
         def initialize: (
           ?max_shipping_price: Integer,
           ?max_total_price: Integer,
-          ?offer_retrieval_effort: CheckoutIntents::Models::CheckoutIntentCreateParams::Constraints::offer_retrieval_effort
+          ?offer_retrieval_effort: ::CheckoutIntents::Models::CheckoutIntentCreateParams::Constraints::offer_retrieval_effort
         ) -> void
 
         def to_hash: -> {
           max_shipping_price: Integer,
           max_total_price: Integer,
-          offer_retrieval_effort: CheckoutIntents::Models::CheckoutIntentCreateParams::Constraints::offer_retrieval_effort
+          offer_retrieval_effort: ::CheckoutIntents::Models::CheckoutIntentCreateParams::Constraints::offer_retrieval_effort
         }
 
         type offer_retrieval_effort = :max | :low
 
         module OfferRetrievalEffort
-          extend CheckoutIntents::Internal::Type::Enum
+          extend ::CheckoutIntents::Internal::Type::Enum
 
           MAX: :max
           LOW: :low
 
-          def self?.values: -> ::Array[CheckoutIntents::Models::CheckoutIntentCreateParams::Constraints::offer_retrieval_effort]
+          def self?.values: -> ::Array[::CheckoutIntents::Models::CheckoutIntentCreateParams::Constraints::offer_retrieval_effort]
         end
       end
     end

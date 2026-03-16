@@ -9,13 +9,13 @@ class CheckoutIntents::Test::Resources::BillingTest < CheckoutIntents::Test::Res
     response = @checkout_intents.billing.get_balance
 
     assert_pattern do
-      response => CheckoutIntents::Models::BillingGetBalanceResponse
+      response => ::CheckoutIntents::Models::BillingGetBalanceResponse
     end
 
     assert_pattern do
       response => {
-        balance: CheckoutIntents::Money,
-        drawdown_enabled: CheckoutIntents::Internal::Type::Boolean
+        balance: ::CheckoutIntents::Money,
+        drawdown_enabled: ::CheckoutIntents::Internal::Type::Boolean
       }
     end
   end
@@ -26,23 +26,23 @@ class CheckoutIntents::Test::Resources::BillingTest < CheckoutIntents::Test::Res
     response = @checkout_intents.billing.list_transactions
 
     assert_pattern do
-      response => CheckoutIntents::Internal::CursorPagination
+      response => ::CheckoutIntents::Internal::CursorPagination
     end
 
     row = response.to_enum.first
     return if row.nil?
 
     assert_pattern do
-      row => CheckoutIntents::Models::BillingListTransactionsResponse
+      row => ::CheckoutIntents::Models::BillingListTransactionsResponse
     end
 
     assert_pattern do
       row => {
         id: String,
-        amount: CheckoutIntents::Money,
+        amount: ::CheckoutIntents::Money,
         created_at: Time,
         description: String | nil,
-        metadata: ^(CheckoutIntents::Internal::Type::HashOf[String]) | nil
+        metadata: ^(::CheckoutIntents::Internal::Type::HashOf[String]) | nil
       }
     end
   end

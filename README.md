@@ -28,7 +28,7 @@ gem "checkout-intents", "~> 0.7.0"
 require "bundler/setup"
 require "checkout_intents"
 
-checkout_intents = CheckoutIntents::Client.new(
+checkout_intents = ::CheckoutIntents::Client.new(
   api_key: ENV["CHECKOUT_INTENTS_API_KEY"], # This is the default and can be omitted
   environment: "production" # defaults to "staging"
 )
@@ -83,7 +83,7 @@ end
 
 ### Handling errors
 
-When the library is unable to connect to the API, or if the API returns a non-success status code (i.e., 4xx or 5xx response), a subclass of `CheckoutIntents::Errors::APIError` will be thrown:
+When the library is unable to connect to the API, or if the API returns a non-success status code (i.e., 4xx or 5xx response), a subclass of `::CheckoutIntents::Errors::APIError` will be thrown:
 
 ```ruby
 begin
@@ -102,12 +102,12 @@ begin
     product_url: "https://rye-protocol.myshopify.com/products/rye-sticker",
     quantity: 1
   )
-rescue CheckoutIntents::Errors::APIConnectionError => e
+rescue ::CheckoutIntents::Errors::APIConnectionError => e
   puts("The server could not be reached")
   puts(e.cause)  # an underlying Exception, likely raised within `net/http`
-rescue CheckoutIntents::Errors::RateLimitError => e
+rescue ::CheckoutIntents::Errors::RateLimitError => e
   puts("A 429 status code was received; we should back off a bit.")
-rescue CheckoutIntents::Errors::APIStatusError => e
+rescue ::CheckoutIntents::Errors::APIStatusError => e
   puts("Another non-200-range status code was received")
   puts(e.status)
 end
@@ -139,7 +139,7 @@ You can use the `max_retries` option to configure or disable this:
 
 ```ruby
 # Configure the default for all requests:
-checkout_intents = CheckoutIntents::Client.new(
+checkout_intents = ::CheckoutIntents::Client.new(
   max_retries: 0 # default is 2
 )
 
@@ -168,7 +168,7 @@ By default, requests will time out after 60 seconds. You can use the timeout opt
 
 ```ruby
 # Configure the default for all requests:
-checkout_intents = CheckoutIntents::Client.new(
+checkout_intents = ::CheckoutIntents::Client.new(
   timeout: nil # default is 60
 )
 
@@ -191,7 +191,7 @@ checkout_intents.checkout_intents.create(
 )
 ```
 
-On timeout, `CheckoutIntents::Errors::APITimeoutError` is raised.
+On timeout, `::CheckoutIntents::Errors::APITimeoutError` is raised.
 
 Note that requests that time out are retried by default.
 
@@ -199,7 +199,7 @@ Note that requests that time out are retried by default.
 
 ### BaseModel
 
-All parameter and response objects inherit from `CheckoutIntents::Internal::Type::BaseModel`, which provides several conveniences, including:
+All parameter and response objects inherit from `::CheckoutIntents::Internal::Type::BaseModel`, which provides several conveniences, including:
 
 1. All fields, including unknown ones, are accessible with `obj[:prop]` syntax, and can be destructured with `obj => {prop: prop}` or pattern-matching syntax.
 
@@ -263,9 +263,9 @@ response = client.request(
 
 ### Concurrency & connection pooling
 
-The `CheckoutIntents::Client` instances are threadsafe, but are only are fork-safe when there are no in-flight HTTP requests.
+The `::CheckoutIntents::Client` instances are threadsafe, but are only are fork-safe when there are no in-flight HTTP requests.
 
-Each instance of `CheckoutIntents::Client` has its own HTTP connection pool with a default size of 99. As such, we recommend instantiating the client once per application in most settings.
+Each instance of `::CheckoutIntents::Client` has its own HTTP connection pool with a default size of 99. As such, we recommend instantiating the client once per application in most settings.
 
 When all available connections from the pool are checked out, requests wait for a new connection to become available, with queue time counting towards the request timeout.
 
@@ -279,7 +279,7 @@ You can provide typesafe request parameters like so:
 
 ```ruby
 checkout_intents.checkout_intents.purchase(
-  buyer: CheckoutIntents::Buyer.new(
+  buyer: ::CheckoutIntents::Buyer.new(
     address1: "123 Main St",
     city: "New York",
     country: "US",
@@ -290,7 +290,7 @@ checkout_intents.checkout_intents.purchase(
     postal_code: "10001",
     province: "NY"
   ),
-  payment_method: CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod.new(
+  payment_method: ::CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod.new(
     stripe_token: "tok_1RkrWWHGDlstla3f1Fc7ZrhH",
     type: "stripe_token"
   ),
@@ -321,8 +321,8 @@ checkout_intents.checkout_intents.purchase(
 )
 
 # You can also splat a full Params class:
-params = CheckoutIntents::CheckoutIntentPurchaseParams.new(
-  buyer: CheckoutIntents::Buyer.new(
+params = ::CheckoutIntents::CheckoutIntentPurchaseParams.new(
+  buyer: ::CheckoutIntents::Buyer.new(
     address1: "123 Main St",
     city: "New York",
     country: "US",
@@ -333,7 +333,7 @@ params = CheckoutIntents::CheckoutIntentPurchaseParams.new(
     postal_code: "10001",
     province: "NY"
   ),
-  payment_method: CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod.new(
+  payment_method: ::CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod.new(
     stripe_token: "tok_1RkrWWHGDlstla3f1Fc7ZrhH",
     type: "stripe_token"
   ),
@@ -349,10 +349,10 @@ Since this library does not depend on `sorbet-runtime`, it cannot provide [`T::E
 
 ```ruby
 # :default
-puts(CheckoutIntents::Betas::CheckoutSessionCreateParams::Layout::DEFAULT)
+puts(::CheckoutIntents::Betas::CheckoutSessionCreateParams::Layout::DEFAULT)
 
-# Revealed type: `T.all(CheckoutIntents::Betas::CheckoutSessionCreateParams::Layout, Symbol)`
-T.reveal_type(CheckoutIntents::Betas::CheckoutSessionCreateParams::Layout::DEFAULT)
+# Revealed type: `T.all(::CheckoutIntents::Betas::CheckoutSessionCreateParams::Layout, Symbol)`
+T.reveal_type(::CheckoutIntents::Betas::CheckoutSessionCreateParams::Layout::DEFAULT)
 ```
 
 Enum parameters have a "relaxed" type, so you can either pass in enum constants or their literal value:
@@ -360,7 +360,7 @@ Enum parameters have a "relaxed" type, so you can either pass in enum constants 
 ```ruby
 # Using the enum constants preserves the tagged type information:
 checkout_intents.betas.checkout_sessions.create(
-  layout: CheckoutIntents::Betas::CheckoutSessionCreateParams::Layout::DEFAULT,
+  layout: ::CheckoutIntents::Betas::CheckoutSessionCreateParams::Layout::DEFAULT,
   # …
 )
 

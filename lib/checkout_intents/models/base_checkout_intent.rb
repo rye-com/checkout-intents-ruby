@@ -2,7 +2,7 @@
 
 module CheckoutIntents
   module Models
-    class BaseCheckoutIntent < CheckoutIntents::Internal::Type::BaseModel
+    class BaseCheckoutIntent < ::CheckoutIntents::Internal::Type::BaseModel
       # @!attribute id
       #
       #   @return [String]
@@ -10,8 +10,8 @@ module CheckoutIntents
 
       # @!attribute buyer
       #
-      #   @return [CheckoutIntents::Models::Buyer]
-      required :buyer, -> { CheckoutIntents::Buyer }
+      #   @return [::CheckoutIntents::Models::Buyer]
+      required :buyer, -> { ::CheckoutIntents::Buyer }
 
       # @!attribute created_at
       #
@@ -30,39 +30,41 @@ module CheckoutIntents
 
       # @!attribute constraints
       #
-      #   @return [CheckoutIntents::Models::BaseCheckoutIntent::Constraints, nil]
-      optional :constraints, -> { CheckoutIntents::BaseCheckoutIntent::Constraints }
+      #   @return [::CheckoutIntents::Models::BaseCheckoutIntent::Constraints, nil]
+      optional :constraints, -> { ::CheckoutIntents::BaseCheckoutIntent::Constraints }
 
       # @!attribute discover_promo_codes
       #
       #   @return [Boolean, nil]
-      optional :discover_promo_codes, CheckoutIntents::Internal::Type::Boolean, api_name: :discoverPromoCodes
+      optional :discover_promo_codes,
+               ::CheckoutIntents::Internal::Type::Boolean,
+               api_name: :discoverPromoCodes
 
       # @!attribute promo_codes
       #
       #   @return [Array<String>, nil]
-      optional :promo_codes, CheckoutIntents::Internal::Type::ArrayOf[String], api_name: :promoCodes
+      optional :promo_codes, ::CheckoutIntents::Internal::Type::ArrayOf[String], api_name: :promoCodes
 
       # @!attribute variant_selections
       #
-      #   @return [Array<CheckoutIntents::Models::VariantSelection>, nil]
+      #   @return [Array<::CheckoutIntents::Models::VariantSelection>, nil]
       optional :variant_selections,
-               -> { CheckoutIntents::Internal::Type::ArrayOf[CheckoutIntents::VariantSelection] },
+               -> { ::CheckoutIntents::Internal::Type::ArrayOf[::CheckoutIntents::VariantSelection] },
                api_name: :variantSelections
 
       # @!method initialize(id:, buyer:, created_at:, product_url:, quantity:, constraints: nil, discover_promo_codes: nil, promo_codes: nil, variant_selections: nil)
       #   @param id [String]
-      #   @param buyer [CheckoutIntents::Models::Buyer]
+      #   @param buyer [::CheckoutIntents::Models::Buyer]
       #   @param created_at [Time]
       #   @param product_url [String]
       #   @param quantity [Integer]
-      #   @param constraints [CheckoutIntents::Models::BaseCheckoutIntent::Constraints]
+      #   @param constraints [::CheckoutIntents::Models::BaseCheckoutIntent::Constraints]
       #   @param discover_promo_codes [Boolean]
       #   @param promo_codes [Array<String>]
-      #   @param variant_selections [Array<CheckoutIntents::Models::VariantSelection>]
+      #   @param variant_selections [Array<::CheckoutIntents::Models::VariantSelection>]
 
-      # @see CheckoutIntents::Models::BaseCheckoutIntent#constraints
-      class Constraints < CheckoutIntents::Internal::Type::BaseModel
+      # @see ::CheckoutIntents::Models::BaseCheckoutIntent#constraints
+      class Constraints < ::CheckoutIntents::Internal::Type::BaseModel
         # @!attribute max_shipping_price
         #
         #   @return [Integer, nil]
@@ -82,20 +84,20 @@ module CheckoutIntents
         #
         #   Default: 'max'
         #
-        #   @return [Symbol, CheckoutIntents::Models::BaseCheckoutIntent::Constraints::OfferRetrievalEffort, nil]
+        #   @return [Symbol, ::CheckoutIntents::Models::BaseCheckoutIntent::Constraints::OfferRetrievalEffort, nil]
         optional :offer_retrieval_effort,
-                 enum: -> { CheckoutIntents::BaseCheckoutIntent::Constraints::OfferRetrievalEffort },
+                 enum: -> { ::CheckoutIntents::BaseCheckoutIntent::Constraints::OfferRetrievalEffort },
                  api_name: :offerRetrievalEffort
 
         # @!method initialize(max_shipping_price: nil, max_total_price: nil, offer_retrieval_effort: nil)
         #   Some parameter documentations has been truncated, see
-        #   {CheckoutIntents::Models::BaseCheckoutIntent::Constraints} for more details.
+        #   {::CheckoutIntents::Models::BaseCheckoutIntent::Constraints} for more details.
         #
         #   @param max_shipping_price [Integer]
         #
         #   @param max_total_price [Integer]
         #
-        #   @param offer_retrieval_effort [Symbol, CheckoutIntents::Models::BaseCheckoutIntent::Constraints::OfferRetrievalEffort] Controls how much effort the system should spend retrieving an offer.
+        #   @param offer_retrieval_effort [Symbol, ::CheckoutIntents::Models::BaseCheckoutIntent::Constraints::OfferRetrievalEffort] Controls how much effort the system should spend retrieving an offer.
 
         # Controls how much effort the system should spend retrieving an offer.
         #
@@ -105,9 +107,9 @@ module CheckoutIntents
         #
         # Default: 'max'
         #
-        # @see CheckoutIntents::Models::BaseCheckoutIntent::Constraints#offer_retrieval_effort
+        # @see ::CheckoutIntents::Models::BaseCheckoutIntent::Constraints#offer_retrieval_effort
         module OfferRetrievalEffort
-          extend CheckoutIntents::Internal::Type::Enum
+          extend ::CheckoutIntents::Internal::Type::Enum
 
           MAX = :max
           LOW = :low

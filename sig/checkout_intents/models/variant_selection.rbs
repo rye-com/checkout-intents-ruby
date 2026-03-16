@@ -1,29 +1,32 @@
 module CheckoutIntents
   module Models
     type variant_selection =
-      { label: String, value: CheckoutIntents::Models::VariantSelection::value }
+      {
+        label: String,
+        value: ::CheckoutIntents::Models::VariantSelection::value
+      }
 
-    class VariantSelection < CheckoutIntents::Internal::Type::BaseModel
+    class VariantSelection < ::CheckoutIntents::Internal::Type::BaseModel
       attr_accessor label: String
 
-      attr_accessor value: CheckoutIntents::Models::VariantSelection::value
+      attr_accessor value: ::CheckoutIntents::Models::VariantSelection::value
 
       def initialize: (
         label: String,
-        value: CheckoutIntents::Models::VariantSelection::value
+        value: ::CheckoutIntents::Models::VariantSelection::value
       ) -> void
 
       def to_hash: -> {
         label: String,
-        value: CheckoutIntents::Models::VariantSelection::value
+        value: ::CheckoutIntents::Models::VariantSelection::value
       }
 
       type value = String | Float
 
       module Value
-        extend CheckoutIntents::Internal::Type::Union
+        extend ::CheckoutIntents::Internal::Type::Union
 
-        def self?.variants: -> ::Array[CheckoutIntents::Models::VariantSelection::value]
+        def self?.variants: -> ::Array[::CheckoutIntents::Models::VariantSelection::value]
       end
     end
   end

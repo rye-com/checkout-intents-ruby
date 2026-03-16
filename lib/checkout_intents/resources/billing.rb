@@ -7,16 +7,16 @@ module CheckoutIntents
       #
       # @overload get_balance(request_options: {})
       #
-      # @param request_options [CheckoutIntents::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::CheckoutIntents::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [CheckoutIntents::Models::BillingGetBalanceResponse]
+      # @return [::CheckoutIntents::Models::BillingGetBalanceResponse]
       #
-      # @see CheckoutIntents::Models::BillingGetBalanceParams
+      # @see ::CheckoutIntents::Models::BillingGetBalanceParams
       def get_balance(params = {})
         @client.request(
           method: :get,
           path: "api/v1/billing/balance",
-          model: CheckoutIntents::Models::BillingGetBalanceResponse,
+          model: ::CheckoutIntents::Models::BillingGetBalanceResponse,
           options: params[:request_options]
         )
       end
@@ -31,27 +31,27 @@ module CheckoutIntents
       #
       # @param limit [Integer] Maximum number of transactions to return (default 20)
       #
-      # @param request_options [CheckoutIntents::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::CheckoutIntents::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [CheckoutIntents::Internal::CursorPagination<CheckoutIntents::Models::BillingListTransactionsResponse>]
+      # @return [::CheckoutIntents::Internal::CursorPagination<::CheckoutIntents::Models::BillingListTransactionsResponse>]
       #
-      # @see CheckoutIntents::Models::BillingListTransactionsParams
+      # @see ::CheckoutIntents::Models::BillingListTransactionsParams
       def list_transactions(params = {})
-        parsed, options = CheckoutIntents::BillingListTransactionsParams.dump_request(params)
-        query = CheckoutIntents::Internal::Util.encode_query_params(parsed)
+        parsed, options = ::CheckoutIntents::BillingListTransactionsParams.dump_request(params)
+        query = ::CheckoutIntents::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "api/v1/billing/transactions",
           query: query,
-          page: CheckoutIntents::Internal::CursorPagination,
-          model: CheckoutIntents::Models::BillingListTransactionsResponse,
+          page: ::CheckoutIntents::Internal::CursorPagination,
+          model: ::CheckoutIntents::Models::BillingListTransactionsResponse,
           options: options
         )
       end
 
       # @api private
       #
-      # @param client [CheckoutIntents::Client]
+      # @param client [::CheckoutIntents::Client]
       def initialize(client:)
         @client = client
       end

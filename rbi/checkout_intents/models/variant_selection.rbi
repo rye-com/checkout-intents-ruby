@@ -2,25 +2,25 @@
 
 module CheckoutIntents
   module Models
-    class VariantSelection < CheckoutIntents::Internal::Type::BaseModel
+    class VariantSelection < ::CheckoutIntents::Internal::Type::BaseModel
       OrHash =
         T.type_alias do
           T.any(
-            CheckoutIntents::VariantSelection,
-            CheckoutIntents::Internal::AnyHash
+            ::CheckoutIntents::VariantSelection,
+            ::CheckoutIntents::Internal::AnyHash
           )
         end
 
       sig { returns(String) }
       attr_accessor :label
 
-      sig { returns(CheckoutIntents::VariantSelection::Value::Variants) }
+      sig { returns(::CheckoutIntents::VariantSelection::Value::Variants) }
       attr_accessor :value
 
       sig do
         params(
           label: String,
-          value: CheckoutIntents::VariantSelection::Value::Variants
+          value: ::CheckoutIntents::VariantSelection::Value::Variants
         ).returns(T.attached_class)
       end
       def self.new(label:, value:)
@@ -30,7 +30,7 @@ module CheckoutIntents
         override.returns(
           {
             label: String,
-            value: CheckoutIntents::VariantSelection::Value::Variants
+            value: ::CheckoutIntents::VariantSelection::Value::Variants
           }
         )
       end
@@ -38,13 +38,13 @@ module CheckoutIntents
       end
 
       module Value
-        extend CheckoutIntents::Internal::Type::Union
+        extend ::CheckoutIntents::Internal::Type::Union
 
         Variants = T.type_alias { T.any(String, Float) }
 
         sig do
           override.returns(
-            T::Array[CheckoutIntents::VariantSelection::Value::Variants]
+            T::Array[::CheckoutIntents::VariantSelection::Value::Variants]
           )
         end
         def self.variants

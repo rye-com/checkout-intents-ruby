@@ -2,12 +2,12 @@
 
 module CheckoutIntents
   module Models
-    class VariantDimension < CheckoutIntents::Internal::Type::BaseModel
+    class VariantDimension < ::CheckoutIntents::Internal::Type::BaseModel
       OrHash =
         T.type_alias do
           T.any(
-            CheckoutIntents::VariantDimension,
-            CheckoutIntents::Internal::AnyHash
+            ::CheckoutIntents::VariantDimension,
+            ::CheckoutIntents::Internal::AnyHash
           )
         end
 

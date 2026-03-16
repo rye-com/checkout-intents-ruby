@@ -5,7 +5,8 @@ module CheckoutIntents
     class Betas
       class CheckoutSessions
         # Some parameter documentations has been truncated, see
-        # {CheckoutIntents::Models::Betas::CheckoutSessionCreateParams} for more details.
+        # {::CheckoutIntents::Models::Betas::CheckoutSessionCreateParams} for more
+        # details.
         #
         # Create a new checkout session.
         #
@@ -18,37 +19,37 @@ module CheckoutIntents
         #
         # @param quantity [Integer]
         #
-        # @param buyer [CheckoutIntents::Models::Betas::CheckoutSessionCreateParams::Buyer] Optional buyer information, used to pre-fill the checkout form with the buyer's
+        # @param buyer [::CheckoutIntents::Models::Betas::CheckoutSessionCreateParams::Buyer] Optional buyer information, used to pre-fill the checkout form with the buyer's
         #
-        # @param constraints [CheckoutIntents::Models::Betas::CheckoutSessionCreateParams::Constraints]
+        # @param constraints [::CheckoutIntents::Models::Betas::CheckoutSessionCreateParams::Constraints]
         #
         # @param discover_promo_codes [Boolean]
         #
-        # @param layout [Symbol, CheckoutIntents::Models::Betas::CheckoutSessionCreateParams::Layout] Optional layout for the checkout UI (e.g. "wizard"). Defaults to the standard la
+        # @param layout [Symbol, ::CheckoutIntents::Models::Betas::CheckoutSessionCreateParams::Layout] Optional layout for the checkout UI (e.g. "wizard"). Defaults to the standard la
         #
         # @param promo_codes [Array<String>]
         #
-        # @param variant_selections [Array<CheckoutIntents::Models::VariantSelection>]
+        # @param variant_selections [Array<::CheckoutIntents::Models::VariantSelection>]
         #
-        # @param request_options [CheckoutIntents::RequestOptions, Hash{Symbol=>Object}, nil]
+        # @param request_options [::CheckoutIntents::RequestOptions, Hash{Symbol=>Object}, nil]
         #
-        # @return [CheckoutIntents::Models::CheckoutSession]
+        # @return [::CheckoutIntents::Models::CheckoutSession]
         #
-        # @see CheckoutIntents::Models::Betas::CheckoutSessionCreateParams
+        # @see ::CheckoutIntents::Models::Betas::CheckoutSessionCreateParams
         def create(params)
-          parsed, options = CheckoutIntents::Betas::CheckoutSessionCreateParams.dump_request(params)
+          parsed, options = ::CheckoutIntents::Betas::CheckoutSessionCreateParams.dump_request(params)
           @client.request(
             method: :post,
             path: "api/v1/betas/checkout-sessions",
             body: parsed,
-            model: CheckoutIntents::CheckoutSession,
+            model: ::CheckoutIntents::CheckoutSession,
             options: options
           )
         end
 
         # @api private
         #
-        # @param client [CheckoutIntents::Client]
+        # @param client [::CheckoutIntents::Client]
         def initialize(client:)
           @client = client
         end

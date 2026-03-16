@@ -3,7 +3,7 @@
 module CheckoutIntents
   module Internal
     class CursorPagination
-      include CheckoutIntents::Internal::Type::BasePage
+      include ::CheckoutIntents::Internal::Type::BasePage
 
       Elem = type_member
 
@@ -18,9 +18,9 @@ module CheckoutIntents
       def inspect
       end
 
-      class PageInfo < CheckoutIntents::Internal::Type::BaseModel
+      class PageInfo < ::CheckoutIntents::Internal::Type::BaseModel
         OrHash =
-          T.type_alias { T.any(PageInfo, CheckoutIntents::Internal::AnyHash) }
+          T.type_alias { T.any(PageInfo, ::CheckoutIntents::Internal::AnyHash) }
 
         sig { returns(T.nilable(String)) }
         attr_accessor :end_cursor

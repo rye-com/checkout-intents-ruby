@@ -4,36 +4,36 @@ module CheckoutIntents
       {
         number: String?,
         carrier_name: String?,
-        delivery_date: CheckoutIntents::ShipmentTracking::DeliveryDate?,
+        delivery_date: ::CheckoutIntents::ShipmentTracking::DeliveryDate?,
         url: String?
       }
 
-    class ShipmentTracking < CheckoutIntents::Internal::Type::BaseModel
+    class ShipmentTracking < ::CheckoutIntents::Internal::Type::BaseModel
       attr_accessor number: String?
 
       attr_accessor carrier_name: String?
 
-      attr_accessor delivery_date: CheckoutIntents::ShipmentTracking::DeliveryDate?
+      attr_accessor delivery_date: ::CheckoutIntents::ShipmentTracking::DeliveryDate?
 
       attr_accessor url: String?
 
       def initialize: (
         number: String?,
         ?carrier_name: String?,
-        ?delivery_date: CheckoutIntents::ShipmentTracking::DeliveryDate?,
+        ?delivery_date: ::CheckoutIntents::ShipmentTracking::DeliveryDate?,
         ?url: String?
       ) -> void
 
       def to_hash: -> {
         number: String?,
         carrier_name: String?,
-        delivery_date: CheckoutIntents::ShipmentTracking::DeliveryDate?,
+        delivery_date: ::CheckoutIntents::ShipmentTracking::DeliveryDate?,
         url: String?
       }
 
       type delivery_date = { estimated: Time }
 
-      class DeliveryDate < CheckoutIntents::Internal::Type::BaseModel
+      class DeliveryDate < ::CheckoutIntents::Internal::Type::BaseModel
         attr_accessor estimated: Time
 
         def initialize: (estimated: Time) -> void

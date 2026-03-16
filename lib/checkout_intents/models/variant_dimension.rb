@@ -2,7 +2,7 @@
 
 module CheckoutIntents
   module Models
-    class VariantDimension < CheckoutIntents::Internal::Type::BaseModel
+    class VariantDimension < ::CheckoutIntents::Internal::Type::BaseModel
       # @!attribute label
       #
       #   @return [String]
@@ -11,7 +11,7 @@ module CheckoutIntents
       # @!attribute values
       #
       #   @return [Array<String>]
-      required :values, CheckoutIntents::Internal::Type::ArrayOf[String]
+      required :values, ::CheckoutIntents::Internal::Type::ArrayOf[String]
 
       # @!method initialize(label:, values:)
       #   @param label [String]

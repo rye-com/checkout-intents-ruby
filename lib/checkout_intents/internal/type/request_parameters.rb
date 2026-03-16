@@ -8,13 +8,13 @@ module CheckoutIntents
         # @!attribute request_options
         # Options to specify HTTP behaviour for this request.
         #
-        #   @return [CheckoutIntents::RequestOptions, Hash{Symbol=>Object}]
+        #   @return [::CheckoutIntents::RequestOptions, Hash{Symbol=>Object}]
 
         # @param mod [Module]
         def self.included(mod)
-          raise ArgumentError.new(mod) unless mod <= CheckoutIntents::Internal::Type::BaseModel
+          raise ArgumentError.new(mod) unless mod <= ::CheckoutIntents::Internal::Type::BaseModel
 
-          mod.optional(:request_options, CheckoutIntents::RequestOptions)
+          mod.optional(:request_options, ::CheckoutIntents::RequestOptions)
         end
 
         # @api private
@@ -28,7 +28,7 @@ module CheckoutIntents
             state = {can_retry: true}
             case (dumped = dump(params, state: state))
             in Hash
-              options = CheckoutIntents::Internal::Util.coerce_hash!(dumped[:request_options]).to_h
+              options = ::CheckoutIntents::Internal::Util.coerce_hash!(dumped[:request_options]).to_h
               request_options = state.fetch(:can_retry) ? options : {**options, max_retries: 0}
               [dumped.except(:request_options), request_options]
             else

@@ -8,12 +8,12 @@ module CheckoutIntents
       # @abstract
       #
       # Either `Pathname` or `StringIO`, or `IO`, or
-      # `CheckoutIntents::Internal::Type::FileInput`.
+      # `::CheckoutIntents::Internal::Type::FileInput`.
       #
       # Note: when `IO` is used, all retries are disabled, since many IO` streams are
       # not rewindable.
       class FileInput
-        extend CheckoutIntents::Internal::Type::Converter
+        extend ::CheckoutIntents::Internal::Type::Converter
 
         private_class_method :new
 
@@ -24,7 +24,7 @@ module CheckoutIntents
         # @return [Boolean]
         def self.===(other)
           case other
-          in Pathname | StringIO | IO | String | CheckoutIntents::FilePart
+          in Pathname | StringIO | IO | String | ::CheckoutIntents::FilePart
             true
           else
             false
@@ -36,7 +36,7 @@ module CheckoutIntents
         # @param other [Object]
         #
         # @return [Boolean]
-        def self.==(other) = other.is_a?(Class) && other <= CheckoutIntents::Internal::Type::FileInput
+        def self.==(other) = other.is_a?(Class) && other <= ::CheckoutIntents::Internal::Type::FileInput
 
         class << self
           # @api private
@@ -86,11 +86,11 @@ module CheckoutIntents
             in StringIO | String
               # https://datatracker.ietf.org/doc/html/rfc7578#section-4.2
               # while not required, a filename is recommended, and in practice many servers do expect this
-              CheckoutIntents::FilePart.new(value, filename: "upload")
+              ::CheckoutIntents::FilePart.new(value, filename: "upload")
             in IO
               state[:can_retry] = false
-              value.to_path.nil? ? CheckoutIntents::FilePart.new(value, filename: "upload") : value
-            in CheckoutIntents::FilePart if value.content.is_a?(IO)
+              value.to_path.nil? ? ::CheckoutIntents::FilePart.new(value, filename: "upload") : value
+            in ::CheckoutIntents::FilePart if value.content.is_a?(IO)
               state[:can_retry] = false
               value
             else
@@ -102,7 +102,7 @@ module CheckoutIntents
           #
           # @return [Object]
           def to_sorbet_type
-            T.any(Pathname, StringIO, IO, String, CheckoutIntents::FilePart)
+            T.any(Pathname, StringIO, IO, String, ::CheckoutIntents::FilePart)
           end
         end
       end

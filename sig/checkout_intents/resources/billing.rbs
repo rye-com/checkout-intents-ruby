@@ -2,17 +2,17 @@ module CheckoutIntents
   module Resources
     class Billing
       def get_balance: (
-        ?request_options: CheckoutIntents::request_opts
-      ) -> CheckoutIntents::Models::BillingGetBalanceResponse
+        ?request_options: ::CheckoutIntents::request_opts
+      ) -> ::CheckoutIntents::Models::BillingGetBalanceResponse
 
       def list_transactions: (
         ?after: String,
         ?before: String,
         ?limit: Integer,
-        ?request_options: CheckoutIntents::request_opts
-      ) -> CheckoutIntents::Internal::CursorPagination[CheckoutIntents::Models::BillingListTransactionsResponse]
+        ?request_options: ::CheckoutIntents::request_opts
+      ) -> ::CheckoutIntents::Internal::CursorPagination[::CheckoutIntents::Models::BillingListTransactionsResponse]
 
-      def initialize: (client: CheckoutIntents::Client) -> void
+      def initialize: (client: ::CheckoutIntents::Client) -> void
     end
   end
 end

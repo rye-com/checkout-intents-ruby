@@ -2,41 +2,41 @@
 
 require_relative "../test_helper"
 
-class CheckoutIntents::Test::SorbetRuntimeSupportTest < Minitest::Test
+class ::CheckoutIntents::Test::SorbetRuntimeSupportTest < Minitest::Test
   extend Minitest::Serial
 
   i_suck_and_my_tests_are_order_dependent!
 
   module E
-    extend CheckoutIntents::Internal::Type::Enum
+    extend ::CheckoutIntents::Internal::Type::Enum
 
     define_sorbet_constant!(:TaggedSymbol) { 1 }
   end
 
   module U
-    extend CheckoutIntents::Internal::Type::Union
+    extend ::CheckoutIntents::Internal::Type::Union
 
     define_sorbet_constant!(:Variants) { 2 }
   end
 
-  class M < CheckoutIntents::Internal::Type::BaseModel
+  class M < ::CheckoutIntents::Internal::Type::BaseModel
     define_sorbet_constant!(:OrHash) { 3 }
   end
 
   def test_nil_aliases
-    err = CheckoutIntents::Internal::Util::SorbetRuntimeSupport::MissingSorbetRuntimeError
+    err = ::CheckoutIntents::Internal::Util::SorbetRuntimeSupport::MissingSorbetRuntimeError
 
-    assert_raises(err) { CheckoutIntents::Internal::AnyHash }
-    assert_raises(err) { CheckoutIntents::Internal::FileInput }
-    assert_raises(err) { CheckoutIntents::Internal::Type::Converter::Input }
-    assert_raises(err) { CheckoutIntents::Internal::Type::Converter::CoerceState }
-    assert_raises(err) { CheckoutIntents::Internal::Type::Converter::DumpState }
-    assert_raises(err) { CheckoutIntents::Internal::Type::BaseModel::KnownField }
-    assert_raises(err) { CheckoutIntents::Internal::Util::ParsedUri }
-    assert_raises(err) { CheckoutIntents::Internal::Util::ServerSentEvent }
-    assert_raises(err) { CheckoutIntents::Internal::Transport::BaseClient::RequestComponents }
-    assert_raises(err) { CheckoutIntents::Internal::Transport::BaseClient::RequestInput }
-    assert_raises(err) { CheckoutIntents::Internal::Transport::PooledNetRequester::Request }
+    assert_raises(err) { ::CheckoutIntents::Internal::AnyHash }
+    assert_raises(err) { ::CheckoutIntents::Internal::FileInput }
+    assert_raises(err) { ::CheckoutIntents::Internal::Type::Converter::Input }
+    assert_raises(err) { ::CheckoutIntents::Internal::Type::Converter::CoerceState }
+    assert_raises(err) { ::CheckoutIntents::Internal::Type::Converter::DumpState }
+    assert_raises(err) { ::CheckoutIntents::Internal::Type::BaseModel::KnownField }
+    assert_raises(err) { ::CheckoutIntents::Internal::Util::ParsedUri }
+    assert_raises(err) { ::CheckoutIntents::Internal::Util::ServerSentEvent }
+    assert_raises(err) { ::CheckoutIntents::Internal::Transport::BaseClient::RequestComponents }
+    assert_raises(err) { ::CheckoutIntents::Internal::Transport::BaseClient::RequestInput }
+    assert_raises(err) { ::CheckoutIntents::Internal::Transport::PooledNetRequester::Request }
     assert_raises(err) { E::TaggedSymbol }
     assert_raises(err) { U::Variants }
     assert_raises(err) { M::OrHash }

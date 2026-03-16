@@ -2,10 +2,10 @@
 
 module CheckoutIntents
   module Models
-    # @see CheckoutIntents::Resources::Shipments#list
-    class ShipmentListParams < CheckoutIntents::Internal::Type::BaseModel
-      extend CheckoutIntents::Internal::Type::RequestParameters::Converter
-      include CheckoutIntents::Internal::Type::RequestParameters
+    # @see ::CheckoutIntents::Resources::Shipments#list
+    class ShipmentListParams < ::CheckoutIntents::Internal::Type::BaseModel
+      extend ::CheckoutIntents::Internal::Type::RequestParameters::Converter
+      include ::CheckoutIntents::Internal::Type::RequestParameters
 
       # @!attribute after
       #
@@ -20,7 +20,7 @@ module CheckoutIntents
       # @!attribute ids
       #
       #   @return [Array<String>, nil]
-      optional :ids, CheckoutIntents::Internal::Type::ArrayOf[String]
+      optional :ids, ::CheckoutIntents::Internal::Type::ArrayOf[String]
 
       # @!attribute limit
       #   Maximum number of results to return (default 100)
@@ -30,8 +30,9 @@ module CheckoutIntents
 
       # @!attribute status
       #
-      #   @return [Array<Symbol, CheckoutIntents::Models::ShipmentStatus>, nil]
-      optional :status, -> { CheckoutIntents::Internal::Type::ArrayOf[enum: CheckoutIntents::ShipmentStatus] }
+      #   @return [Array<Symbol, ::CheckoutIntents::Models::ShipmentStatus>, nil]
+      optional :status,
+               -> { ::CheckoutIntents::Internal::Type::ArrayOf[enum: ::CheckoutIntents::ShipmentStatus] }
 
       # @!method initialize(after: nil, before: nil, ids: nil, limit: nil, status: nil, request_options: {})
       #   @param after [String]
@@ -42,9 +43,9 @@ module CheckoutIntents
       #
       #   @param limit [Integer] Maximum number of results to return (default 100)
       #
-      #   @param status [Array<Symbol, CheckoutIntents::Models::ShipmentStatus>]
+      #   @param status [Array<Symbol, ::CheckoutIntents::Models::ShipmentStatus>]
       #
-      #   @param request_options [CheckoutIntents::RequestOptions, Hash{Symbol=>Object}]
+      #   @param request_options [::CheckoutIntents::RequestOptions, Hash{Symbol=>Object}]
     end
   end
 end

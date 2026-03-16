@@ -29,14 +29,14 @@ class CheckoutIntentsTest < Minitest::Test
 
   def test_raises_on_unknown_environment
     e = assert_raises(ArgumentError) do
-      CheckoutIntents::Client.new(environment: "wrong")
+      ::CheckoutIntents::Client.new(environment: "wrong")
     end
     assert_match(/environment must be one of/, e.message)
   end
 
   def test_raises_on_missing_non_nullable_opts
     e = assert_raises(ArgumentError) do
-      CheckoutIntents::Client.new
+      ::CheckoutIntents::Client.new
     end
     assert_match(/is required/, e.message)
   end
@@ -44,9 +44,9 @@ class CheckoutIntentsTest < Minitest::Test
   def test_client_default_request_default_retry_attempts
     stub_request(:post, "http://localhost/api/v1/checkout-intents").to_return_json(status: 500, body: {})
 
-    checkout_intents = CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key")
+    checkout_intents = ::CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
-    assert_raises(CheckoutIntents::Errors::InternalServerError) do
+    assert_raises(::CheckoutIntents::Errors::InternalServerError) do
       checkout_intents.checkout_intents.create(
         buyer: {
           address1: "123 Main St",
@@ -71,9 +71,9 @@ class CheckoutIntentsTest < Minitest::Test
     stub_request(:post, "http://localhost/api/v1/checkout-intents").to_return_json(status: 500, body: {})
 
     checkout_intents =
-      CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 3)
+      ::CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 3)
 
-    assert_raises(CheckoutIntents::Errors::InternalServerError) do
+    assert_raises(::CheckoutIntents::Errors::InternalServerError) do
       checkout_intents.checkout_intents.create(
         buyer: {
           address1: "123 Main St",
@@ -97,9 +97,9 @@ class CheckoutIntentsTest < Minitest::Test
   def test_client_default_request_given_retry_attempts
     stub_request(:post, "http://localhost/api/v1/checkout-intents").to_return_json(status: 500, body: {})
 
-    checkout_intents = CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key")
+    checkout_intents = ::CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
-    assert_raises(CheckoutIntents::Errors::InternalServerError) do
+    assert_raises(::CheckoutIntents::Errors::InternalServerError) do
       checkout_intents.checkout_intents.create(
         buyer: {
           address1: "123 Main St",
@@ -125,9 +125,9 @@ class CheckoutIntentsTest < Minitest::Test
     stub_request(:post, "http://localhost/api/v1/checkout-intents").to_return_json(status: 500, body: {})
 
     checkout_intents =
-      CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 3)
+      ::CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 3)
 
-    assert_raises(CheckoutIntents::Errors::InternalServerError) do
+    assert_raises(::CheckoutIntents::Errors::InternalServerError) do
       checkout_intents.checkout_intents.create(
         buyer: {
           address1: "123 Main St",
@@ -157,9 +157,9 @@ class CheckoutIntentsTest < Minitest::Test
     )
 
     checkout_intents =
-      CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 1)
+      ::CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 1)
 
-    assert_raises(CheckoutIntents::Errors::InternalServerError) do
+    assert_raises(::CheckoutIntents::Errors::InternalServerError) do
       checkout_intents.checkout_intents.create(
         buyer: {
           address1: "123 Main St",
@@ -191,10 +191,10 @@ class CheckoutIntentsTest < Minitest::Test
     )
 
     checkout_intents =
-      CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 1)
+      ::CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 1)
 
     Thread.current.thread_variable_set(:time_now, time_now)
-    assert_raises(CheckoutIntents::Errors::InternalServerError) do
+    assert_raises(::CheckoutIntents::Errors::InternalServerError) do
       checkout_intents.checkout_intents.create(
         buyer: {
           address1: "123 Main St",
@@ -225,9 +225,9 @@ class CheckoutIntentsTest < Minitest::Test
     )
 
     checkout_intents =
-      CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 1)
+      ::CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key", max_retries: 1)
 
-    assert_raises(CheckoutIntents::Errors::InternalServerError) do
+    assert_raises(::CheckoutIntents::Errors::InternalServerError) do
       checkout_intents.checkout_intents.create(
         buyer: {
           address1: "123 Main St",
@@ -252,9 +252,9 @@ class CheckoutIntentsTest < Minitest::Test
   def test_retry_count_header
     stub_request(:post, "http://localhost/api/v1/checkout-intents").to_return_json(status: 500, body: {})
 
-    checkout_intents = CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key")
+    checkout_intents = ::CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
-    assert_raises(CheckoutIntents::Errors::InternalServerError) do
+    assert_raises(::CheckoutIntents::Errors::InternalServerError) do
       checkout_intents.checkout_intents.create(
         buyer: {
           address1: "123 Main St",
@@ -280,9 +280,9 @@ class CheckoutIntentsTest < Minitest::Test
   def test_omit_retry_count_header
     stub_request(:post, "http://localhost/api/v1/checkout-intents").to_return_json(status: 500, body: {})
 
-    checkout_intents = CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key")
+    checkout_intents = ::CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
-    assert_raises(CheckoutIntents::Errors::InternalServerError) do
+    assert_raises(::CheckoutIntents::Errors::InternalServerError) do
       checkout_intents.checkout_intents.create(
         buyer: {
           address1: "123 Main St",
@@ -309,9 +309,9 @@ class CheckoutIntentsTest < Minitest::Test
   def test_overwrite_retry_count_header
     stub_request(:post, "http://localhost/api/v1/checkout-intents").to_return_json(status: 500, body: {})
 
-    checkout_intents = CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key")
+    checkout_intents = ::CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
-    assert_raises(CheckoutIntents::Errors::InternalServerError) do
+    assert_raises(::CheckoutIntents::Errors::InternalServerError) do
       checkout_intents.checkout_intents.create(
         buyer: {
           address1: "123 Main St",
@@ -344,9 +344,9 @@ class CheckoutIntentsTest < Minitest::Test
       headers: {"location" => "/redirected"}
     )
 
-    checkout_intents = CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key")
+    checkout_intents = ::CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
-    assert_raises(CheckoutIntents::Errors::APIConnectionError) do
+    assert_raises(::CheckoutIntents::Errors::APIConnectionError) do
       checkout_intents.checkout_intents.create(
         buyer: {
           address1: "123 Main St",
@@ -367,7 +367,7 @@ class CheckoutIntentsTest < Minitest::Test
 
     recorded, = WebMock::RequestRegistry.instance.requested_signatures.hash.first
 
-    assert_requested(:any, "http://localhost/redirected", times: CheckoutIntents::Client::MAX_REDIRECTS) do
+    assert_requested(:any, "http://localhost/redirected", times: ::CheckoutIntents::Client::MAX_REDIRECTS) do
       assert_equal(recorded.method, _1.method)
       assert_equal(recorded.body, _1.body)
       assert_equal(
@@ -388,9 +388,9 @@ class CheckoutIntentsTest < Minitest::Test
       headers: {"location" => "/redirected"}
     )
 
-    checkout_intents = CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key")
+    checkout_intents = ::CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
-    assert_raises(CheckoutIntents::Errors::APIConnectionError) do
+    assert_raises(::CheckoutIntents::Errors::APIConnectionError) do
       checkout_intents.checkout_intents.create(
         buyer: {
           address1: "123 Main St",
@@ -409,7 +409,7 @@ class CheckoutIntentsTest < Minitest::Test
       )
     end
 
-    assert_requested(:get, "http://localhost/redirected", times: CheckoutIntents::Client::MAX_REDIRECTS) do
+    assert_requested(:get, "http://localhost/redirected", times: ::CheckoutIntents::Client::MAX_REDIRECTS) do
       headers = _1.headers.keys.map(&:downcase)
       refute_includes(headers, "content-type")
       assert_nil(_1.body)
@@ -427,9 +427,9 @@ class CheckoutIntentsTest < Minitest::Test
       headers: {"location" => "/redirected"}
     )
 
-    checkout_intents = CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key")
+    checkout_intents = ::CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
-    assert_raises(CheckoutIntents::Errors::APIConnectionError) do
+    assert_raises(::CheckoutIntents::Errors::APIConnectionError) do
       checkout_intents.checkout_intents.create(
         buyer: {
           address1: "123 Main St",
@@ -452,7 +452,7 @@ class CheckoutIntentsTest < Minitest::Test
     auth_header = recorded.headers.transform_keys(&:downcase).fetch("authorization")
 
     assert_equal("Bearer xyz", auth_header)
-    assert_requested(:any, "http://localhost/redirected", times: CheckoutIntents::Client::MAX_REDIRECTS) do
+    assert_requested(:any, "http://localhost/redirected", times: ::CheckoutIntents::Client::MAX_REDIRECTS) do
       auth_header = _1.headers.transform_keys(&:downcase).fetch("authorization")
       assert_equal("Bearer xyz", auth_header)
     end
@@ -469,9 +469,9 @@ class CheckoutIntentsTest < Minitest::Test
       headers: {"location" => "https://example.com/redirected"}
     )
 
-    checkout_intents = CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key")
+    checkout_intents = ::CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
-    assert_raises(CheckoutIntents::Errors::APIConnectionError) do
+    assert_raises(::CheckoutIntents::Errors::APIConnectionError) do
       checkout_intents.checkout_intents.create(
         buyer: {
           address1: "123 Main St",
@@ -490,7 +490,11 @@ class CheckoutIntentsTest < Minitest::Test
       )
     end
 
-    assert_requested(:any, "https://example.com/redirected", times: CheckoutIntents::Client::MAX_REDIRECTS) do
+    assert_requested(
+      :any,
+      "https://example.com/redirected",
+      times: ::CheckoutIntents::Client::MAX_REDIRECTS
+    ) do
       headers = _1.headers.keys.map(&:downcase)
       refute_includes(headers, "authorization")
     end
@@ -499,9 +503,9 @@ class CheckoutIntentsTest < Minitest::Test
   def test_client_default_idempotency_key_on_writes
     stub_request(:post, "http://localhost/api/v1/checkout-intents").to_return_json(status: 500, body: {})
 
-    checkout_intents = CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key")
+    checkout_intents = ::CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
-    assert_raises(CheckoutIntents::Errors::InternalServerError) do
+    assert_raises(::CheckoutIntents::Errors::InternalServerError) do
       checkout_intents.checkout_intents.create(
         buyer: {
           address1: "123 Main St",
@@ -533,9 +537,9 @@ class CheckoutIntentsTest < Minitest::Test
   def test_request_option_idempotency_key_on_writes
     stub_request(:post, "http://localhost/api/v1/checkout-intents").to_return_json(status: 500, body: {})
 
-    checkout_intents = CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key")
+    checkout_intents = ::CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
-    assert_raises(CheckoutIntents::Errors::InternalServerError) do
+    assert_raises(::CheckoutIntents::Errors::InternalServerError) do
       checkout_intents.checkout_intents.create(
         buyer: {
           address1: "123 Main St",
@@ -565,7 +569,7 @@ class CheckoutIntentsTest < Minitest::Test
   def test_default_headers
     stub_request(:post, "http://localhost/api/v1/checkout-intents").to_return_json(status: 200, body: {})
 
-    checkout_intents = CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key")
+    checkout_intents = ::CheckoutIntents::Client.new(base_url: "http://localhost", api_key: "My API Key")
 
     checkout_intents.checkout_intents.create(
       buyer: {

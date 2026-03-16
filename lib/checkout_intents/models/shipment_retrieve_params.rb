@@ -2,10 +2,10 @@
 
 module CheckoutIntents
   module Models
-    # @see CheckoutIntents::Resources::Shipments#retrieve
-    class ShipmentRetrieveParams < CheckoutIntents::Internal::Type::BaseModel
-      extend CheckoutIntents::Internal::Type::RequestParameters::Converter
-      include CheckoutIntents::Internal::Type::RequestParameters
+    # @see ::CheckoutIntents::Resources::Shipments#retrieve
+    class ShipmentRetrieveParams < ::CheckoutIntents::Internal::Type::BaseModel
+      extend ::CheckoutIntents::Internal::Type::RequestParameters::Converter
+      include ::CheckoutIntents::Internal::Type::RequestParameters
 
       # @!attribute id
       #
@@ -14,7 +14,7 @@ module CheckoutIntents
 
       # @!method initialize(id:, request_options: {})
       #   @param id [String]
-      #   @param request_options [CheckoutIntents::RequestOptions, Hash{Symbol=>Object}]
+      #   @param request_options [::CheckoutIntents::RequestOptions, Hash{Symbol=>Object}]
     end
   end
 end

@@ -2,7 +2,7 @@
 
 module CheckoutIntents
   module Models
-    class Buyer < CheckoutIntents::Internal::Type::BaseModel
+    class Buyer < ::CheckoutIntents::Internal::Type::BaseModel
       # @!attribute address1
       #
       #   @return [String]

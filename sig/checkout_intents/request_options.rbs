@@ -1,7 +1,7 @@
 module CheckoutIntents
   type request_opts =
-    CheckoutIntents::RequestOptions
-    | CheckoutIntents::request_options
+    ::CheckoutIntents::RequestOptions
+    | ::CheckoutIntents::request_options
     | ::Hash[Symbol, top]
 
   type request_options =
@@ -14,8 +14,8 @@ module CheckoutIntents
       timeout: Float?
     }
 
-  class RequestOptions < CheckoutIntents::Internal::Type::BaseModel
-    def self.validate!: (CheckoutIntents::request_opts opts) -> void
+  class RequestOptions < ::CheckoutIntents::Internal::Type::BaseModel
+    def self.validate!: (::CheckoutIntents::request_opts opts) -> void
 
     attr_accessor idempotency_key: String?
 
@@ -30,7 +30,7 @@ module CheckoutIntents
     attr_accessor timeout: Float?
 
     def initialize: (
-      ?CheckoutIntents::request_options | ::Hash[Symbol, top] values
+      ?::CheckoutIntents::request_options | ::Hash[Symbol, top] values
     ) -> void
   end
 end

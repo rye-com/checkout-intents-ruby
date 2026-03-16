@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module CheckoutIntents
-  class Client < CheckoutIntents::Internal::Transport::BaseClient
+  class Client < ::CheckoutIntents::Internal::Transport::BaseClient
     # Default max number of retries to attempt after a failed retryable request.
     DEFAULT_MAX_RETRIES = 2
 
@@ -24,22 +24,22 @@ module CheckoutIntents
     # @return [String]
     attr_reader :api_key
 
-    # @return [CheckoutIntents::Resources::CheckoutIntents]
+    # @return [::CheckoutIntents::Resources::CheckoutIntents]
     attr_reader :checkout_intents
 
-    # @return [CheckoutIntents::Resources::Betas]
+    # @return [::CheckoutIntents::Resources::Betas]
     attr_reader :betas
 
-    # @return [CheckoutIntents::Resources::Brands]
+    # @return [::CheckoutIntents::Resources::Brands]
     attr_reader :brands
 
-    # @return [CheckoutIntents::Resources::Products]
+    # @return [::CheckoutIntents::Resources::Products]
     attr_reader :products
 
-    # @return [CheckoutIntents::Resources::Shipments]
+    # @return [::CheckoutIntents::Resources::Shipments]
     attr_reader :shipments
 
-    # @return [CheckoutIntents::Resources::Billing]
+    # @return [::CheckoutIntents::Resources::Billing]
     attr_reader :billing
 
     # @api private
@@ -85,8 +85,8 @@ module CheckoutIntents
       max_retry_delay: self.class::DEFAULT_MAX_RETRY_DELAY,
       idempotency_header: "Idempotency-Key"
     )
-      base_url ||= CheckoutIntents::Client::ENVIRONMENTS.fetch(environment&.to_sym || :production) do
-        message = "environment must be one of #{CheckoutIntents::Client::ENVIRONMENTS.keys}, got #{environment}"
+      base_url ||= ::CheckoutIntents::Client::ENVIRONMENTS.fetch(environment&.to_sym || :production) do
+        message = "environment must be one of #{::CheckoutIntents::Client::ENVIRONMENTS.keys}, got #{environment}"
         raise ArgumentError.new(message)
       end
 
@@ -105,12 +105,12 @@ module CheckoutIntents
         idempotency_header: idempotency_header
       )
 
-      @checkout_intents = CheckoutIntents::Resources::CheckoutIntents.new(client: self)
-      @betas = CheckoutIntents::Resources::Betas.new(client: self)
-      @brands = CheckoutIntents::Resources::Brands.new(client: self)
-      @products = CheckoutIntents::Resources::Products.new(client: self)
-      @shipments = CheckoutIntents::Resources::Shipments.new(client: self)
-      @billing = CheckoutIntents::Resources::Billing.new(client: self)
+      @checkout_intents = ::CheckoutIntents::Resources::CheckoutIntents.new(client: self)
+      @betas = ::CheckoutIntents::Resources::Betas.new(client: self)
+      @brands = ::CheckoutIntents::Resources::Brands.new(client: self)
+      @products = ::CheckoutIntents::Resources::Products.new(client: self)
+      @shipments = ::CheckoutIntents::Resources::Shipments.new(client: self)
+      @billing = ::CheckoutIntents::Resources::Billing.new(client: self)
     end
   end
 end

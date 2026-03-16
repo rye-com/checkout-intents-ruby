@@ -9,8 +9,8 @@ module CheckoutIntents
       #
       # When we don't know what to expect for the value.
       class Unknown
-        extend CheckoutIntents::Internal::Type::Converter
-        extend CheckoutIntents::Internal::Util::SorbetRuntimeSupport
+        extend ::CheckoutIntents::Internal::Type::Converter
+        extend ::CheckoutIntents::Internal::Util::SorbetRuntimeSupport
 
         # rubocop:disable Lint/UnusedMethodArgument
 
@@ -28,7 +28,7 @@ module CheckoutIntents
         # @param other [Object]
         #
         # @return [Boolean]
-        def self.==(other) = other.is_a?(Class) && other <= CheckoutIntents::Internal::Type::Unknown
+        def self.==(other) = other.is_a?(Class) && other <= ::CheckoutIntents::Internal::Type::Unknown
 
         class << self
           # @api private

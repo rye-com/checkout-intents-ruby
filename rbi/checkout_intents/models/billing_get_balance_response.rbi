@@ -2,19 +2,19 @@
 
 module CheckoutIntents
   module Models
-    class BillingGetBalanceResponse < CheckoutIntents::Internal::Type::BaseModel
+    class BillingGetBalanceResponse < ::CheckoutIntents::Internal::Type::BaseModel
       OrHash =
         T.type_alias do
           T.any(
-            CheckoutIntents::Models::BillingGetBalanceResponse,
-            CheckoutIntents::Internal::AnyHash
+            ::CheckoutIntents::Models::BillingGetBalanceResponse,
+            ::CheckoutIntents::Internal::AnyHash
           )
         end
 
-      sig { returns(CheckoutIntents::Money) }
+      sig { returns(::CheckoutIntents::Money) }
       attr_reader :balance
 
-      sig { params(balance: CheckoutIntents::Money::OrHash).void }
+      sig { params(balance: ::CheckoutIntents::Money::OrHash).void }
       attr_writer :balance
 
       sig { returns(T::Boolean) }
@@ -22,7 +22,7 @@ module CheckoutIntents
 
       sig do
         params(
-          balance: CheckoutIntents::Money::OrHash,
+          balance: ::CheckoutIntents::Money::OrHash,
           drawdown_enabled: T::Boolean
         ).returns(T.attached_class)
       end
@@ -31,7 +31,7 @@ module CheckoutIntents
 
       sig do
         override.returns(
-          { balance: CheckoutIntents::Money, drawdown_enabled: T::Boolean }
+          { balance: ::CheckoutIntents::Money, drawdown_enabled: T::Boolean }
         )
       end
       def to_hash

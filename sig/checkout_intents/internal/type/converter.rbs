@@ -2,9 +2,9 @@ module CheckoutIntents
   module Internal
     module Type
       module Converter
-        extend CheckoutIntents::Internal::Util::SorbetRuntimeSupport
+        extend ::CheckoutIntents::Internal::Util::SorbetRuntimeSupport
 
-        type input = CheckoutIntents::Internal::Type::Converter | Class
+        type input = ::CheckoutIntents::Internal::Type::Converter | Class
 
         type coerce_state =
           {
@@ -19,12 +19,12 @@ module CheckoutIntents
 
         def coerce: (
           top value,
-          state: CheckoutIntents::Internal::Type::Converter::coerce_state
+          state: ::CheckoutIntents::Internal::Type::Converter::coerce_state
         ) -> top
 
         def dump: (
           top value,
-          state: CheckoutIntents::Internal::Type::Converter::dump_state
+          state: ::CheckoutIntents::Internal::Type::Converter::dump_state
         ) -> top
 
         def inspect: (?depth: Integer) -> String
@@ -32,44 +32,44 @@ module CheckoutIntents
         def self.type_info: (
           {
             const: (nil | bool | Integer | Float | Symbol)?,
-            enum: ^-> CheckoutIntents::Internal::Type::Converter::input?,
-            union: ^-> CheckoutIntents::Internal::Type::Converter::input?
+            enum: ^-> ::CheckoutIntents::Internal::Type::Converter::input?,
+            union: ^-> ::CheckoutIntents::Internal::Type::Converter::input?
           }
-          | ^-> CheckoutIntents::Internal::Type::Converter::input
-          | CheckoutIntents::Internal::Type::Converter::input spec
+          | ^-> ::CheckoutIntents::Internal::Type::Converter::input
+          | ::CheckoutIntents::Internal::Type::Converter::input spec
         ) -> (^-> top)
 
         def self.meta_info: (
           {
             const: (nil | bool | Integer | Float | Symbol)?,
-            enum: ^-> CheckoutIntents::Internal::Type::Converter::input?,
-            union: ^-> CheckoutIntents::Internal::Type::Converter::input?
+            enum: ^-> ::CheckoutIntents::Internal::Type::Converter::input?,
+            union: ^-> ::CheckoutIntents::Internal::Type::Converter::input?
           }
-          | ^-> CheckoutIntents::Internal::Type::Converter::input
-          | CheckoutIntents::Internal::Type::Converter::input type_info,
+          | ^-> ::CheckoutIntents::Internal::Type::Converter::input
+          | ::CheckoutIntents::Internal::Type::Converter::input type_info,
           {
             const: (nil | bool | Integer | Float | Symbol)?,
-            enum: ^-> CheckoutIntents::Internal::Type::Converter::input?,
-            union: ^-> CheckoutIntents::Internal::Type::Converter::input?
+            enum: ^-> ::CheckoutIntents::Internal::Type::Converter::input?,
+            union: ^-> ::CheckoutIntents::Internal::Type::Converter::input?
           }
-          | ^-> CheckoutIntents::Internal::Type::Converter::input
-          | CheckoutIntents::Internal::Type::Converter::input spec
+          | ^-> ::CheckoutIntents::Internal::Type::Converter::input
+          | ::CheckoutIntents::Internal::Type::Converter::input spec
         ) -> ::Hash[Symbol, top]
 
         def self.new_coerce_state: (
           ?translate_names: bool
-        ) -> CheckoutIntents::Internal::Type::Converter::coerce_state
+        ) -> ::CheckoutIntents::Internal::Type::Converter::coerce_state
 
         def self.coerce: (
-          CheckoutIntents::Internal::Type::Converter::input target,
+          ::CheckoutIntents::Internal::Type::Converter::input target,
           top value,
-          ?state: CheckoutIntents::Internal::Type::Converter::coerce_state
+          ?state: ::CheckoutIntents::Internal::Type::Converter::coerce_state
         ) -> top
 
         def self.dump: (
-          CheckoutIntents::Internal::Type::Converter::input target,
+          ::CheckoutIntents::Internal::Type::Converter::input target,
           top value,
-          ?state: CheckoutIntents::Internal::Type::Converter::dump_state
+          ?state: ::CheckoutIntents::Internal::Type::Converter::dump_state
         ) -> top
 
         def self.inspect: (top target, depth: Integer) -> String

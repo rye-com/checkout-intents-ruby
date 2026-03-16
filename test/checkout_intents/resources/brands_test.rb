@@ -9,14 +9,14 @@ class CheckoutIntents::Test::Resources::BrandsTest < CheckoutIntents::Test::Reso
     response = @checkout_intents.brands.retrieve("shop.aloyoga.com")
 
     assert_pattern do
-      response => CheckoutIntents::Models::BrandRetrieveResponse
+      response => ::CheckoutIntents::Models::BrandRetrieveResponse
     end
 
     assert_pattern do
       response => {
         id: String,
-        marketplace: CheckoutIntents::Models::BrandRetrieveResponse::Marketplace,
-        supported: CheckoutIntents::Internal::Type::Boolean
+        marketplace: ::CheckoutIntents::Models::BrandRetrieveResponse::Marketplace,
+        supported: ::CheckoutIntents::Internal::Type::Boolean
       }
     end
   end

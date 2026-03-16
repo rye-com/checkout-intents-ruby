@@ -18,7 +18,7 @@ module CheckoutIntents
 
         # @api public
         #
-        # @raise [CheckoutIntents::Errors::APIError]
+        # @raise [::CheckoutIntents::Errors::APIError]
         # @return [self]
         def next_page = (raise NotImplementedError)
 
@@ -37,7 +37,7 @@ module CheckoutIntents
 
         # @api private
         #
-        # @param client [CheckoutIntents::Internal::Transport::BaseClient]
+        # @param client [::CheckoutIntents::Internal::Transport::BaseClient]
         # @param req [Hash{Symbol=>Object}]
         # @param headers [Hash{String=>String}]
         # @param page_data [Object]

@@ -4,7 +4,7 @@ require_relative "lib/checkout_intents/version"
 
 Gem::Specification.new do |s|
   s.name = "checkout-intents"
-  s.version = CheckoutIntents::VERSION
+  s.version = ::CheckoutIntents::VERSION
   s.summary = "Ruby library to access the Checkout Intents API"
   s.authors = ["Checkout Intents"]
   s.email = "dev@rye.com"

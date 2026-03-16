@@ -5,7 +5,7 @@ module CheckoutIntents
     module Transport
       # @api private
       class PooledNetRequester
-        extend CheckoutIntents::Internal::Util::SorbetRuntimeSupport
+        extend ::CheckoutIntents::Internal::Util::SorbetRuntimeSupport
 
         Request =
           T.type_alias do
@@ -43,7 +43,7 @@ module CheckoutIntents
           sig do
             params(
               request:
-                CheckoutIntents::Internal::Transport::PooledNetRequester::Request,
+                ::CheckoutIntents::Internal::Transport::PooledNetRequester::Request,
               blk: T.proc.params(arg0: String).void
             ).returns([Net::HTTPGenericRequest, T.proc.void])
           end
@@ -66,7 +66,7 @@ module CheckoutIntents
         sig do
           params(
             request:
-              CheckoutIntents::Internal::Transport::PooledNetRequester::Request
+              ::CheckoutIntents::Internal::Transport::PooledNetRequester::Request
           ).returns([Integer, Net::HTTPResponse, T::Enumerable[String]])
         end
         def execute(request)
@@ -75,7 +75,7 @@ module CheckoutIntents
         # @api private
         sig { params(size: Integer).returns(T.attached_class) }
         def self.new(
-          size: CheckoutIntents::Internal::Transport::PooledNetRequester::DEFAULT_MAX_CONNECTIONS
+          size: ::CheckoutIntents::Internal::Transport::PooledNetRequester::DEFAULT_MAX_CONNECTIONS
         )
         end
       end

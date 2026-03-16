@@ -2,22 +2,22 @@
 
 module CheckoutIntents
   module Models
-    class CheckoutIntentCreateParams < CheckoutIntents::Internal::Type::BaseModel
-      extend CheckoutIntents::Internal::Type::RequestParameters::Converter
-      include CheckoutIntents::Internal::Type::RequestParameters
+    class CheckoutIntentCreateParams < ::CheckoutIntents::Internal::Type::BaseModel
+      extend ::CheckoutIntents::Internal::Type::RequestParameters::Converter
+      include ::CheckoutIntents::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
           T.any(
-            CheckoutIntents::CheckoutIntentCreateParams,
-            CheckoutIntents::Internal::AnyHash
+            ::CheckoutIntents::CheckoutIntentCreateParams,
+            ::CheckoutIntents::Internal::AnyHash
           )
         end
 
-      sig { returns(CheckoutIntents::Buyer) }
+      sig { returns(::CheckoutIntents::Buyer) }
       attr_reader :buyer
 
-      sig { params(buyer: CheckoutIntents::Buyer::OrHash).void }
+      sig { params(buyer: ::CheckoutIntents::Buyer::OrHash).void }
       attr_writer :buyer
 
       sig { returns(String) }
@@ -28,7 +28,7 @@ module CheckoutIntents
 
       sig do
         returns(
-          T.nilable(CheckoutIntents::CheckoutIntentCreateParams::Constraints)
+          T.nilable(::CheckoutIntents::CheckoutIntentCreateParams::Constraints)
         )
       end
       attr_reader :constraints
@@ -36,7 +36,7 @@ module CheckoutIntents
       sig do
         params(
           constraints:
-            CheckoutIntents::CheckoutIntentCreateParams::Constraints::OrHash
+            ::CheckoutIntents::CheckoutIntentCreateParams::Constraints::OrHash
         ).void
       end
       attr_writer :constraints
@@ -53,29 +53,29 @@ module CheckoutIntents
       sig { params(promo_codes: T::Array[String]).void }
       attr_writer :promo_codes
 
-      sig { returns(T.nilable(T::Array[CheckoutIntents::VariantSelection])) }
+      sig { returns(T.nilable(T::Array[::CheckoutIntents::VariantSelection])) }
       attr_reader :variant_selections
 
       sig do
         params(
           variant_selections:
-            T::Array[CheckoutIntents::VariantSelection::OrHash]
+            T::Array[::CheckoutIntents::VariantSelection::OrHash]
         ).void
       end
       attr_writer :variant_selections
 
       sig do
         params(
-          buyer: CheckoutIntents::Buyer::OrHash,
+          buyer: ::CheckoutIntents::Buyer::OrHash,
           product_url: String,
           quantity: Integer,
           constraints:
-            CheckoutIntents::CheckoutIntentCreateParams::Constraints::OrHash,
+            ::CheckoutIntents::CheckoutIntentCreateParams::Constraints::OrHash,
           discover_promo_codes: T::Boolean,
           promo_codes: T::Array[String],
           variant_selections:
-            T::Array[CheckoutIntents::VariantSelection::OrHash],
-          request_options: CheckoutIntents::RequestOptions::OrHash
+            T::Array[::CheckoutIntents::VariantSelection::OrHash],
+          request_options: ::CheckoutIntents::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
@@ -93,27 +93,27 @@ module CheckoutIntents
       sig do
         override.returns(
           {
-            buyer: CheckoutIntents::Buyer,
+            buyer: ::CheckoutIntents::Buyer,
             product_url: String,
             quantity: Integer,
             constraints:
-              CheckoutIntents::CheckoutIntentCreateParams::Constraints,
+              ::CheckoutIntents::CheckoutIntentCreateParams::Constraints,
             discover_promo_codes: T::Boolean,
             promo_codes: T::Array[String],
-            variant_selections: T::Array[CheckoutIntents::VariantSelection],
-            request_options: CheckoutIntents::RequestOptions
+            variant_selections: T::Array[::CheckoutIntents::VariantSelection],
+            request_options: ::CheckoutIntents::RequestOptions
           }
         )
       end
       def to_hash
       end
 
-      class Constraints < CheckoutIntents::Internal::Type::BaseModel
+      class Constraints < ::CheckoutIntents::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
             T.any(
-              CheckoutIntents::CheckoutIntentCreateParams::Constraints,
-              CheckoutIntents::Internal::AnyHash
+              ::CheckoutIntents::CheckoutIntentCreateParams::Constraints,
+              ::CheckoutIntents::Internal::AnyHash
             )
           end
 
@@ -139,7 +139,7 @@ module CheckoutIntents
         sig do
           returns(
             T.nilable(
-              CheckoutIntents::CheckoutIntentCreateParams::Constraints::OfferRetrievalEffort::OrSymbol
+              ::CheckoutIntents::CheckoutIntentCreateParams::Constraints::OfferRetrievalEffort::OrSymbol
             )
           )
         end
@@ -148,7 +148,7 @@ module CheckoutIntents
         sig do
           params(
             offer_retrieval_effort:
-              CheckoutIntents::CheckoutIntentCreateParams::Constraints::OfferRetrievalEffort::OrSymbol
+              ::CheckoutIntents::CheckoutIntentCreateParams::Constraints::OfferRetrievalEffort::OrSymbol
           ).void
         end
         attr_writer :offer_retrieval_effort
@@ -158,7 +158,7 @@ module CheckoutIntents
             max_shipping_price: Integer,
             max_total_price: Integer,
             offer_retrieval_effort:
-              CheckoutIntents::CheckoutIntentCreateParams::Constraints::OfferRetrievalEffort::OrSymbol
+              ::CheckoutIntents::CheckoutIntentCreateParams::Constraints::OfferRetrievalEffort::OrSymbol
           ).returns(T.attached_class)
         end
         def self.new(
@@ -181,7 +181,7 @@ module CheckoutIntents
               max_shipping_price: Integer,
               max_total_price: Integer,
               offer_retrieval_effort:
-                CheckoutIntents::CheckoutIntentCreateParams::Constraints::OfferRetrievalEffort::OrSymbol
+                ::CheckoutIntents::CheckoutIntentCreateParams::Constraints::OfferRetrievalEffort::OrSymbol
             }
           )
         end
@@ -196,13 +196,13 @@ module CheckoutIntents
         #
         # Default: 'max'
         module OfferRetrievalEffort
-          extend CheckoutIntents::Internal::Type::Enum
+          extend ::CheckoutIntents::Internal::Type::Enum
 
           TaggedSymbol =
             T.type_alias do
               T.all(
                 Symbol,
-                CheckoutIntents::CheckoutIntentCreateParams::Constraints::OfferRetrievalEffort
+                ::CheckoutIntents::CheckoutIntentCreateParams::Constraints::OfferRetrievalEffort
               )
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -210,18 +210,18 @@ module CheckoutIntents
           MAX =
             T.let(
               :max,
-              CheckoutIntents::CheckoutIntentCreateParams::Constraints::OfferRetrievalEffort::TaggedSymbol
+              ::CheckoutIntents::CheckoutIntentCreateParams::Constraints::OfferRetrievalEffort::TaggedSymbol
             )
           LOW =
             T.let(
               :low,
-              CheckoutIntents::CheckoutIntentCreateParams::Constraints::OfferRetrievalEffort::TaggedSymbol
+              ::CheckoutIntents::CheckoutIntentCreateParams::Constraints::OfferRetrievalEffort::TaggedSymbol
             )
 
           sig do
             override.returns(
               T::Array[
-                CheckoutIntents::CheckoutIntentCreateParams::Constraints::OfferRetrievalEffort::TaggedSymbol
+                ::CheckoutIntents::CheckoutIntentCreateParams::Constraints::OfferRetrievalEffort::TaggedSymbol
               ]
             )
           end

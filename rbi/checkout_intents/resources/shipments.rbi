@@ -9,8 +9,8 @@ module CheckoutIntents
       sig do
         params(
           id: String,
-          request_options: CheckoutIntents::RequestOptions::OrHash
-        ).returns(CheckoutIntents::Shipment::Variants)
+          request_options: ::CheckoutIntents::RequestOptions::OrHash
+        ).returns(::CheckoutIntents::Shipment::Variants)
       end
       def retrieve(
         # The id of the shipment to look up
@@ -29,11 +29,11 @@ module CheckoutIntents
           before: String,
           ids: T::Array[String],
           limit: Integer,
-          status: T::Array[CheckoutIntents::ShipmentStatus::OrSymbol],
-          request_options: CheckoutIntents::RequestOptions::OrHash
+          status: T::Array[::CheckoutIntents::ShipmentStatus::OrSymbol],
+          request_options: ::CheckoutIntents::RequestOptions::OrHash
         ).returns(
-          CheckoutIntents::Internal::CursorPagination[
-            CheckoutIntents::Shipment::Variants
+          ::CheckoutIntents::Internal::CursorPagination[
+            ::CheckoutIntents::Shipment::Variants
           ]
         )
       end
@@ -49,7 +49,9 @@ module CheckoutIntents
       end
 
       # @api private
-      sig { params(client: CheckoutIntents::Client).returns(T.attached_class) }
+      sig do
+        params(client: ::CheckoutIntents::Client).returns(T.attached_class)
+      end
       def self.new(client:)
       end
     end

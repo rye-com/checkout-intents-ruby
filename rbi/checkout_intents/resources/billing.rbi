@@ -6,8 +6,8 @@ module CheckoutIntents
       # Get current drawdown balance for the authenticated developer
       sig do
         params(
-          request_options: CheckoutIntents::RequestOptions::OrHash
-        ).returns(CheckoutIntents::Models::BillingGetBalanceResponse)
+          request_options: ::CheckoutIntents::RequestOptions::OrHash
+        ).returns(::CheckoutIntents::Models::BillingGetBalanceResponse)
       end
       def get_balance(request_options: {})
       end
@@ -18,10 +18,10 @@ module CheckoutIntents
           after: String,
           before: String,
           limit: Integer,
-          request_options: CheckoutIntents::RequestOptions::OrHash
+          request_options: ::CheckoutIntents::RequestOptions::OrHash
         ).returns(
-          CheckoutIntents::Internal::CursorPagination[
-            CheckoutIntents::Models::BillingListTransactionsResponse
+          ::CheckoutIntents::Internal::CursorPagination[
+            ::CheckoutIntents::Models::BillingListTransactionsResponse
           ]
         )
       end
@@ -37,7 +37,9 @@ module CheckoutIntents
       end
 
       # @api private
-      sig { params(client: CheckoutIntents::Client).returns(T.attached_class) }
+      sig do
+        params(client: ::CheckoutIntents::Client).returns(T.attached_class)
+      end
       def self.new(client:)
       end
     end

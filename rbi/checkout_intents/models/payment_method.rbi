@@ -3,25 +3,25 @@
 module CheckoutIntents
   module Models
     module PaymentMethod
-      extend CheckoutIntents::Internal::Type::Union
+      extend ::CheckoutIntents::Internal::Type::Union
 
       Variants =
         T.type_alias do
           T.any(
-            CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod,
-            CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod,
-            CheckoutIntents::PaymentMethod::NekudaPaymentMethod,
-            CheckoutIntents::PaymentMethod::PravaPaymentMethod,
-            CheckoutIntents::PaymentMethod::DrawdownPaymentMethod
+            ::CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod,
+            ::CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod,
+            ::CheckoutIntents::PaymentMethod::NekudaPaymentMethod,
+            ::CheckoutIntents::PaymentMethod::PravaPaymentMethod,
+            ::CheckoutIntents::PaymentMethod::DrawdownPaymentMethod
           )
         end
 
-      class StripeTokenPaymentMethod < CheckoutIntents::Internal::Type::BaseModel
+      class StripeTokenPaymentMethod < ::CheckoutIntents::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
             T.any(
-              CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod,
-              CheckoutIntents::Internal::AnyHash
+              ::CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod,
+              ::CheckoutIntents::Internal::AnyHash
             )
           end
 
@@ -30,7 +30,7 @@ module CheckoutIntents
 
         sig do
           returns(
-            CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod::Type::OrSymbol
+            ::CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod::Type::OrSymbol
           )
         end
         attr_accessor :type
@@ -39,7 +39,7 @@ module CheckoutIntents
           params(
             stripe_token: String,
             type:
-              CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod::Type::OrSymbol
+              ::CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod::Type::OrSymbol
           ).returns(T.attached_class)
         end
         def self.new(stripe_token:, type:)
@@ -50,7 +50,7 @@ module CheckoutIntents
             {
               stripe_token: String,
               type:
-                CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod::Type::OrSymbol
+                ::CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod::Type::OrSymbol
             }
           )
         end
@@ -58,13 +58,13 @@ module CheckoutIntents
         end
 
         module Type
-          extend CheckoutIntents::Internal::Type::Enum
+          extend ::CheckoutIntents::Internal::Type::Enum
 
           TaggedSymbol =
             T.type_alias do
               T.all(
                 Symbol,
-                CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod::Type
+                ::CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod::Type
               )
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -72,13 +72,13 @@ module CheckoutIntents
           STRIPE_TOKEN =
             T.let(
               :stripe_token,
-              CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod::Type::TaggedSymbol
+              ::CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod::Type::TaggedSymbol
             )
 
           sig do
             override.returns(
               T::Array[
-                CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod::Type::TaggedSymbol
+                ::CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod::Type::TaggedSymbol
               ]
             )
           end
@@ -87,12 +87,12 @@ module CheckoutIntents
         end
       end
 
-      class BasisTheoryPaymentMethod < CheckoutIntents::Internal::Type::BaseModel
+      class BasisTheoryPaymentMethod < ::CheckoutIntents::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
             T.any(
-              CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod,
-              CheckoutIntents::Internal::AnyHash
+              ::CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod,
+              ::CheckoutIntents::Internal::AnyHash
             )
           end
 
@@ -101,7 +101,7 @@ module CheckoutIntents
 
         sig do
           returns(
-            CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod::Type::OrSymbol
+            ::CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod::Type::OrSymbol
           )
         end
         attr_accessor :type
@@ -110,7 +110,7 @@ module CheckoutIntents
           params(
             basis_theory_token: String,
             type:
-              CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod::Type::OrSymbol
+              ::CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod::Type::OrSymbol
           ).returns(T.attached_class)
         end
         def self.new(basis_theory_token:, type:)
@@ -121,7 +121,7 @@ module CheckoutIntents
             {
               basis_theory_token: String,
               type:
-                CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod::Type::OrSymbol
+                ::CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod::Type::OrSymbol
             }
           )
         end
@@ -129,13 +129,13 @@ module CheckoutIntents
         end
 
         module Type
-          extend CheckoutIntents::Internal::Type::Enum
+          extend ::CheckoutIntents::Internal::Type::Enum
 
           TaggedSymbol =
             T.type_alias do
               T.all(
                 Symbol,
-                CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod::Type
+                ::CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod::Type
               )
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -143,13 +143,13 @@ module CheckoutIntents
           BASIS_THEORY_TOKEN =
             T.let(
               :basis_theory_token,
-              CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod::Type::TaggedSymbol
+              ::CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod::Type::TaggedSymbol
             )
 
           sig do
             override.returns(
               T::Array[
-                CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod::Type::TaggedSymbol
+                ::CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod::Type::TaggedSymbol
               ]
             )
           end
@@ -158,12 +158,12 @@ module CheckoutIntents
         end
       end
 
-      class NekudaPaymentMethod < CheckoutIntents::Internal::Type::BaseModel
+      class NekudaPaymentMethod < ::CheckoutIntents::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
             T.any(
-              CheckoutIntents::PaymentMethod::NekudaPaymentMethod,
-              CheckoutIntents::Internal::AnyHash
+              ::CheckoutIntents::PaymentMethod::NekudaPaymentMethod,
+              ::CheckoutIntents::Internal::AnyHash
             )
           end
 
@@ -172,7 +172,7 @@ module CheckoutIntents
 
         sig do
           returns(
-            CheckoutIntents::PaymentMethod::NekudaPaymentMethod::Type::OrSymbol
+            ::CheckoutIntents::PaymentMethod::NekudaPaymentMethod::Type::OrSymbol
           )
         end
         attr_accessor :type
@@ -183,7 +183,7 @@ module CheckoutIntents
             T.nilable(
               T::Hash[
                 Symbol,
-                CheckoutIntents::PaymentMethod::NekudaPaymentMethod::NekudaMandateData::Variants
+                ::CheckoutIntents::PaymentMethod::NekudaPaymentMethod::NekudaMandateData::Variants
               ]
             )
           )
@@ -195,7 +195,7 @@ module CheckoutIntents
             nekuda_mandate_data:
               T::Hash[
                 Symbol,
-                CheckoutIntents::PaymentMethod::NekudaPaymentMethod::NekudaMandateData::Variants
+                ::CheckoutIntents::PaymentMethod::NekudaPaymentMethod::NekudaMandateData::Variants
               ]
           ).void
         end
@@ -205,11 +205,11 @@ module CheckoutIntents
           params(
             nekuda_user_id: String,
             type:
-              CheckoutIntents::PaymentMethod::NekudaPaymentMethod::Type::OrSymbol,
+              ::CheckoutIntents::PaymentMethod::NekudaPaymentMethod::Type::OrSymbol,
             nekuda_mandate_data:
               T::Hash[
                 Symbol,
-                CheckoutIntents::PaymentMethod::NekudaPaymentMethod::NekudaMandateData::Variants
+                ::CheckoutIntents::PaymentMethod::NekudaPaymentMethod::NekudaMandateData::Variants
               ]
           ).returns(T.attached_class)
         end
@@ -226,11 +226,11 @@ module CheckoutIntents
             {
               nekuda_user_id: String,
               type:
-                CheckoutIntents::PaymentMethod::NekudaPaymentMethod::Type::OrSymbol,
+                ::CheckoutIntents::PaymentMethod::NekudaPaymentMethod::Type::OrSymbol,
               nekuda_mandate_data:
                 T::Hash[
                   Symbol,
-                  CheckoutIntents::PaymentMethod::NekudaPaymentMethod::NekudaMandateData::Variants
+                  ::CheckoutIntents::PaymentMethod::NekudaPaymentMethod::NekudaMandateData::Variants
                 ]
             }
           )
@@ -239,13 +239,13 @@ module CheckoutIntents
         end
 
         module Type
-          extend CheckoutIntents::Internal::Type::Enum
+          extend ::CheckoutIntents::Internal::Type::Enum
 
           TaggedSymbol =
             T.type_alias do
               T.all(
                 Symbol,
-                CheckoutIntents::PaymentMethod::NekudaPaymentMethod::Type
+                ::CheckoutIntents::PaymentMethod::NekudaPaymentMethod::Type
               )
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -253,13 +253,13 @@ module CheckoutIntents
           NEKUDA_TOKEN =
             T.let(
               :nekuda_token,
-              CheckoutIntents::PaymentMethod::NekudaPaymentMethod::Type::TaggedSymbol
+              ::CheckoutIntents::PaymentMethod::NekudaPaymentMethod::Type::TaggedSymbol
             )
 
           sig do
             override.returns(
               T::Array[
-                CheckoutIntents::PaymentMethod::NekudaPaymentMethod::Type::TaggedSymbol
+                ::CheckoutIntents::PaymentMethod::NekudaPaymentMethod::Type::TaggedSymbol
               ]
             )
           end
@@ -268,14 +268,14 @@ module CheckoutIntents
         end
 
         module NekudaMandateData
-          extend CheckoutIntents::Internal::Type::Union
+          extend ::CheckoutIntents::Internal::Type::Union
 
           Variants = T.type_alias { T.any(String, Float) }
 
           sig do
             override.returns(
               T::Array[
-                CheckoutIntents::PaymentMethod::NekudaPaymentMethod::NekudaMandateData::Variants
+                ::CheckoutIntents::PaymentMethod::NekudaPaymentMethod::NekudaMandateData::Variants
               ]
             )
           end
@@ -284,12 +284,12 @@ module CheckoutIntents
         end
       end
 
-      class PravaPaymentMethod < CheckoutIntents::Internal::Type::BaseModel
+      class PravaPaymentMethod < ::CheckoutIntents::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
             T.any(
-              CheckoutIntents::PaymentMethod::PravaPaymentMethod,
-              CheckoutIntents::Internal::AnyHash
+              ::CheckoutIntents::PaymentMethod::PravaPaymentMethod,
+              ::CheckoutIntents::Internal::AnyHash
             )
           end
 
@@ -298,7 +298,7 @@ module CheckoutIntents
 
         sig do
           returns(
-            CheckoutIntents::PaymentMethod::PravaPaymentMethod::Type::OrSymbol
+            ::CheckoutIntents::PaymentMethod::PravaPaymentMethod::Type::OrSymbol
           )
         end
         attr_accessor :type
@@ -307,7 +307,7 @@ module CheckoutIntents
           params(
             prava_token: String,
             type:
-              CheckoutIntents::PaymentMethod::PravaPaymentMethod::Type::OrSymbol
+              ::CheckoutIntents::PaymentMethod::PravaPaymentMethod::Type::OrSymbol
           ).returns(T.attached_class)
         end
         def self.new(prava_token:, type:)
@@ -318,7 +318,7 @@ module CheckoutIntents
             {
               prava_token: String,
               type:
-                CheckoutIntents::PaymentMethod::PravaPaymentMethod::Type::OrSymbol
+                ::CheckoutIntents::PaymentMethod::PravaPaymentMethod::Type::OrSymbol
             }
           )
         end
@@ -326,13 +326,13 @@ module CheckoutIntents
         end
 
         module Type
-          extend CheckoutIntents::Internal::Type::Enum
+          extend ::CheckoutIntents::Internal::Type::Enum
 
           TaggedSymbol =
             T.type_alias do
               T.all(
                 Symbol,
-                CheckoutIntents::PaymentMethod::PravaPaymentMethod::Type
+                ::CheckoutIntents::PaymentMethod::PravaPaymentMethod::Type
               )
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -340,13 +340,13 @@ module CheckoutIntents
           PRAVA_TOKEN =
             T.let(
               :prava_token,
-              CheckoutIntents::PaymentMethod::PravaPaymentMethod::Type::TaggedSymbol
+              ::CheckoutIntents::PaymentMethod::PravaPaymentMethod::Type::TaggedSymbol
             )
 
           sig do
             override.returns(
               T::Array[
-                CheckoutIntents::PaymentMethod::PravaPaymentMethod::Type::TaggedSymbol
+                ::CheckoutIntents::PaymentMethod::PravaPaymentMethod::Type::TaggedSymbol
               ]
             )
           end
@@ -355,18 +355,18 @@ module CheckoutIntents
         end
       end
 
-      class DrawdownPaymentMethod < CheckoutIntents::Internal::Type::BaseModel
+      class DrawdownPaymentMethod < ::CheckoutIntents::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
             T.any(
-              CheckoutIntents::PaymentMethod::DrawdownPaymentMethod,
-              CheckoutIntents::Internal::AnyHash
+              ::CheckoutIntents::PaymentMethod::DrawdownPaymentMethod,
+              ::CheckoutIntents::Internal::AnyHash
             )
           end
 
         sig do
           returns(
-            CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::Type::OrSymbol
+            ::CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::Type::OrSymbol
           )
         end
         attr_accessor :type
@@ -374,7 +374,7 @@ module CheckoutIntents
         sig do
           params(
             type:
-              CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::Type::OrSymbol
+              ::CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::Type::OrSymbol
           ).returns(T.attached_class)
         end
         def self.new(type:)
@@ -384,7 +384,7 @@ module CheckoutIntents
           override.returns(
             {
               type:
-                CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::Type::OrSymbol
+                ::CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::Type::OrSymbol
             }
           )
         end
@@ -392,13 +392,13 @@ module CheckoutIntents
         end
 
         module Type
-          extend CheckoutIntents::Internal::Type::Enum
+          extend ::CheckoutIntents::Internal::Type::Enum
 
           TaggedSymbol =
             T.type_alias do
               T.all(
                 Symbol,
-                CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::Type
+                ::CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::Type
               )
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -406,13 +406,13 @@ module CheckoutIntents
           DRAWDOWN =
             T.let(
               :drawdown,
-              CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::Type::TaggedSymbol
+              ::CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::Type::TaggedSymbol
             )
 
           sig do
             override.returns(
               T::Array[
-                CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::Type::TaggedSymbol
+                ::CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::Type::TaggedSymbol
               ]
             )
           end
@@ -422,7 +422,7 @@ module CheckoutIntents
       end
 
       sig do
-        override.returns(T::Array[CheckoutIntents::PaymentMethod::Variants])
+        override.returns(T::Array[::CheckoutIntents::PaymentMethod::Variants])
       end
       def self.variants
       end

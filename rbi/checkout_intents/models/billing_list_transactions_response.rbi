@@ -2,22 +2,22 @@
 
 module CheckoutIntents
   module Models
-    class BillingListTransactionsResponse < CheckoutIntents::Internal::Type::BaseModel
+    class BillingListTransactionsResponse < ::CheckoutIntents::Internal::Type::BaseModel
       OrHash =
         T.type_alias do
           T.any(
-            CheckoutIntents::Models::BillingListTransactionsResponse,
-            CheckoutIntents::Internal::AnyHash
+            ::CheckoutIntents::Models::BillingListTransactionsResponse,
+            ::CheckoutIntents::Internal::AnyHash
           )
         end
 
       sig { returns(String) }
       attr_accessor :id
 
-      sig { returns(CheckoutIntents::Money) }
+      sig { returns(::CheckoutIntents::Money) }
       attr_reader :amount
 
-      sig { params(amount: CheckoutIntents::Money::OrHash).void }
+      sig { params(amount: ::CheckoutIntents::Money::OrHash).void }
       attr_writer :amount
 
       sig { returns(Time) }
@@ -39,7 +39,7 @@ module CheckoutIntents
       sig do
         params(
           id: String,
-          amount: CheckoutIntents::Money::OrHash,
+          amount: ::CheckoutIntents::Money::OrHash,
           created_at: Time,
           description: String,
           metadata: T::Hash[Symbol, String]
@@ -59,7 +59,7 @@ module CheckoutIntents
         override.returns(
           {
             id: String,
-            amount: CheckoutIntents::Money,
+            amount: ::CheckoutIntents::Money,
             created_at: Time,
             description: String,
             metadata: T::Hash[Symbol, String]

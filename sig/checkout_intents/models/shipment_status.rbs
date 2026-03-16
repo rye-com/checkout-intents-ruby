@@ -9,7 +9,7 @@ module CheckoutIntents
       | :ordered
 
     module ShipmentStatus
-      extend CheckoutIntents::Internal::Type::Enum
+      extend ::CheckoutIntents::Internal::Type::Enum
 
       OUT_FOR_DELIVERY: :out_for_delivery
       DELIVERED: :delivered
@@ -18,7 +18,7 @@ module CheckoutIntents
       DELAYED: :delayed
       ORDERED: :ordered
 
-      def self?.values: -> ::Array[CheckoutIntents::Models::shipment_status]
+      def self?.values: -> ::Array[::CheckoutIntents::Models::shipment_status]
     end
   end
 end

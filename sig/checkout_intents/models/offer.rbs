@@ -2,131 +2,131 @@ module CheckoutIntents
   module Models
     type offer =
       {
-        cost: CheckoutIntents::Offer::Cost,
-        shipping: CheckoutIntents::Offer::Shipping,
+        cost: ::CheckoutIntents::Offer::Cost,
+        shipping: ::CheckoutIntents::Offer::Shipping,
         applied_promo_codes: ::Array[String]
       }
 
-    class Offer < CheckoutIntents::Internal::Type::BaseModel
-      attr_accessor cost: CheckoutIntents::Offer::Cost
+    class Offer < ::CheckoutIntents::Internal::Type::BaseModel
+      attr_accessor cost: ::CheckoutIntents::Offer::Cost
 
-      attr_accessor shipping: CheckoutIntents::Offer::Shipping
+      attr_accessor shipping: ::CheckoutIntents::Offer::Shipping
 
       attr_reader applied_promo_codes: ::Array[String]?
 
       def applied_promo_codes=: (::Array[String]) -> ::Array[String]
 
       def initialize: (
-        cost: CheckoutIntents::Offer::Cost,
-        shipping: CheckoutIntents::Offer::Shipping,
+        cost: ::CheckoutIntents::Offer::Cost,
+        shipping: ::CheckoutIntents::Offer::Shipping,
         ?applied_promo_codes: ::Array[String]
       ) -> void
 
       def to_hash: -> {
-        cost: CheckoutIntents::Offer::Cost,
-        shipping: CheckoutIntents::Offer::Shipping,
+        cost: ::CheckoutIntents::Offer::Cost,
+        shipping: ::CheckoutIntents::Offer::Shipping,
         applied_promo_codes: ::Array[String]
       }
 
       type cost =
         {
-          subtotal: CheckoutIntents::Money,
-          total: CheckoutIntents::Money,
-          discount: CheckoutIntents::Money,
-          shipping: CheckoutIntents::Money,
-          surcharge: CheckoutIntents::Money,
-          tax: CheckoutIntents::Money
+          subtotal: ::CheckoutIntents::Money,
+          total: ::CheckoutIntents::Money,
+          discount: ::CheckoutIntents::Money,
+          shipping: ::CheckoutIntents::Money,
+          surcharge: ::CheckoutIntents::Money,
+          tax: ::CheckoutIntents::Money
         }
 
-      class Cost < CheckoutIntents::Internal::Type::BaseModel
-        attr_accessor subtotal: CheckoutIntents::Money
+      class Cost < ::CheckoutIntents::Internal::Type::BaseModel
+        attr_accessor subtotal: ::CheckoutIntents::Money
 
-        attr_accessor total: CheckoutIntents::Money
+        attr_accessor total: ::CheckoutIntents::Money
 
-        attr_reader discount: CheckoutIntents::Money?
+        attr_reader discount: ::CheckoutIntents::Money?
 
-        def discount=: (CheckoutIntents::Money) -> CheckoutIntents::Money
+        def discount=: (::CheckoutIntents::Money) -> ::CheckoutIntents::Money
 
-        attr_reader shipping: CheckoutIntents::Money?
+        attr_reader shipping: ::CheckoutIntents::Money?
 
-        def shipping=: (CheckoutIntents::Money) -> CheckoutIntents::Money
+        def shipping=: (::CheckoutIntents::Money) -> ::CheckoutIntents::Money
 
-        attr_reader surcharge: CheckoutIntents::Money?
+        attr_reader surcharge: ::CheckoutIntents::Money?
 
-        def surcharge=: (CheckoutIntents::Money) -> CheckoutIntents::Money
+        def surcharge=: (::CheckoutIntents::Money) -> ::CheckoutIntents::Money
 
-        attr_reader tax: CheckoutIntents::Money?
+        attr_reader tax: ::CheckoutIntents::Money?
 
-        def tax=: (CheckoutIntents::Money) -> CheckoutIntents::Money
+        def tax=: (::CheckoutIntents::Money) -> ::CheckoutIntents::Money
 
         def initialize: (
-          subtotal: CheckoutIntents::Money,
-          total: CheckoutIntents::Money,
-          ?discount: CheckoutIntents::Money,
-          ?shipping: CheckoutIntents::Money,
-          ?surcharge: CheckoutIntents::Money,
-          ?tax: CheckoutIntents::Money
+          subtotal: ::CheckoutIntents::Money,
+          total: ::CheckoutIntents::Money,
+          ?discount: ::CheckoutIntents::Money,
+          ?shipping: ::CheckoutIntents::Money,
+          ?surcharge: ::CheckoutIntents::Money,
+          ?tax: ::CheckoutIntents::Money
         ) -> void
 
         def to_hash: -> {
-          subtotal: CheckoutIntents::Money,
-          total: CheckoutIntents::Money,
-          discount: CheckoutIntents::Money,
-          shipping: CheckoutIntents::Money,
-          surcharge: CheckoutIntents::Money,
-          tax: CheckoutIntents::Money
+          subtotal: ::CheckoutIntents::Money,
+          total: ::CheckoutIntents::Money,
+          discount: ::CheckoutIntents::Money,
+          shipping: ::CheckoutIntents::Money,
+          surcharge: ::CheckoutIntents::Money,
+          tax: ::CheckoutIntents::Money
         }
       end
 
       type shipping =
         {
-          available_options: ::Array[CheckoutIntents::Offer::Shipping::AvailableOption],
+          available_options: ::Array[::CheckoutIntents::Offer::Shipping::AvailableOption],
           selected_option_id: String
         }
 
-      class Shipping < CheckoutIntents::Internal::Type::BaseModel
-        attr_accessor available_options: ::Array[CheckoutIntents::Offer::Shipping::AvailableOption]
+      class Shipping < ::CheckoutIntents::Internal::Type::BaseModel
+        attr_accessor available_options: ::Array[::CheckoutIntents::Offer::Shipping::AvailableOption]
 
         attr_reader selected_option_id: String?
 
         def selected_option_id=: (String) -> String
 
         def initialize: (
-          available_options: ::Array[CheckoutIntents::Offer::Shipping::AvailableOption],
+          available_options: ::Array[::CheckoutIntents::Offer::Shipping::AvailableOption],
           ?selected_option_id: String
         ) -> void
 
         def to_hash: -> {
-          available_options: ::Array[CheckoutIntents::Offer::Shipping::AvailableOption],
+          available_options: ::Array[::CheckoutIntents::Offer::Shipping::AvailableOption],
           selected_option_id: String
         }
 
         type available_option =
           {
             id: String,
-            cost: CheckoutIntents::Money,
-            discount: CheckoutIntents::Money
+            cost: ::CheckoutIntents::Money,
+            discount: ::CheckoutIntents::Money
           }
 
-        class AvailableOption < CheckoutIntents::Internal::Type::BaseModel
+        class AvailableOption < ::CheckoutIntents::Internal::Type::BaseModel
           attr_accessor id: String
 
-          attr_accessor cost: CheckoutIntents::Money
+          attr_accessor cost: ::CheckoutIntents::Money
 
-          attr_reader discount: CheckoutIntents::Money?
+          attr_reader discount: ::CheckoutIntents::Money?
 
-          def discount=: (CheckoutIntents::Money) -> CheckoutIntents::Money
+          def discount=: (::CheckoutIntents::Money) -> ::CheckoutIntents::Money
 
           def initialize: (
             id: String,
-            cost: CheckoutIntents::Money,
-            ?discount: CheckoutIntents::Money
+            cost: ::CheckoutIntents::Money,
+            ?discount: ::CheckoutIntents::Money
           ) -> void
 
           def to_hash: -> {
             id: String,
-            cost: CheckoutIntents::Money,
-            discount: CheckoutIntents::Money
+            cost: ::CheckoutIntents::Money,
+            discount: ::CheckoutIntents::Money
           }
         end
       end

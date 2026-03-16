@@ -17,13 +17,13 @@ module CheckoutIntents
       # values safely.
       #
       # @example
-      #   # `product_availability` is a `CheckoutIntents::ProductAvailability`
+      #   # `product_availability` is a `::CheckoutIntents::ProductAvailability`
       #   case product_availability
-      #   when CheckoutIntents::ProductAvailability::IN_STOCK
+      #   when ::CheckoutIntents::ProductAvailability::IN_STOCK
       #     # ...
-      #   when CheckoutIntents::ProductAvailability::OUT_OF_STOCK
+      #   when ::CheckoutIntents::ProductAvailability::OUT_OF_STOCK
       #     # ...
-      #   when CheckoutIntents::ProductAvailability::PREORDER
+      #   when ::CheckoutIntents::ProductAvailability::PREORDER
       #     # ...
       #   else
       #     puts(product_availability)
@@ -41,8 +41,8 @@ module CheckoutIntents
       #     puts(product_availability)
       #   end
       module Enum
-        include CheckoutIntents::Internal::Type::Converter
-        include CheckoutIntents::Internal::Util::SorbetRuntimeSupport
+        include ::CheckoutIntents::Internal::Type::Converter
+        include ::CheckoutIntents::Internal::Util::SorbetRuntimeSupport
 
         # All of the valid Symbol values for this enum.
         #
@@ -63,7 +63,7 @@ module CheckoutIntents
         # @return [Boolean]
         def ==(other)
           # rubocop:disable Style/CaseEquality
-          CheckoutIntents::Internal::Type::Enum === other && other.values.to_set == values.to_set
+          ::CheckoutIntents::Internal::Type::Enum === other && other.values.to_set == values.to_set
           # rubocop:enable Style/CaseEquality
         end
 
@@ -124,7 +124,9 @@ module CheckoutIntents
         #
         # @return [Object]
         def to_sorbet_type
-          types = values.map { CheckoutIntents::Internal::Util::SorbetRuntimeSupport.to_sorbet_type(_1) }.uniq
+          types = values.map do
+            ::CheckoutIntents::Internal::Util::SorbetRuntimeSupport.to_sorbet_type(_1)
+          end.uniq
           case types
           in []
             T.noreturn
@@ -145,7 +147,7 @@ module CheckoutIntents
             return is_a?(Module) ? super() : self.class.name
           end
 
-          members = values.map { CheckoutIntents::Internal::Type::Converter.inspect(_1, depth: depth.succ) }
+          members = values.map { ::CheckoutIntents::Internal::Type::Converter.inspect(_1, depth: depth.succ) }
           prefix = is_a?(Module) ? name : self.class.name
 
           "#{prefix}[#{members.join(' | ')}]"

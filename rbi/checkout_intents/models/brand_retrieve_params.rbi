@@ -2,15 +2,15 @@
 
 module CheckoutIntents
   module Models
-    class BrandRetrieveParams < CheckoutIntents::Internal::Type::BaseModel
-      extend CheckoutIntents::Internal::Type::RequestParameters::Converter
-      include CheckoutIntents::Internal::Type::RequestParameters
+    class BrandRetrieveParams < ::CheckoutIntents::Internal::Type::BaseModel
+      extend ::CheckoutIntents::Internal::Type::RequestParameters::Converter
+      include ::CheckoutIntents::Internal::Type::RequestParameters
 
       OrHash =
         T.type_alias do
           T.any(
-            CheckoutIntents::BrandRetrieveParams,
-            CheckoutIntents::Internal::AnyHash
+            ::CheckoutIntents::BrandRetrieveParams,
+            ::CheckoutIntents::Internal::AnyHash
           )
         end
 
@@ -21,7 +21,7 @@ module CheckoutIntents
       sig do
         params(
           domain: String,
-          request_options: CheckoutIntents::RequestOptions::OrHash
+          request_options: ::CheckoutIntents::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
@@ -33,7 +33,7 @@ module CheckoutIntents
 
       sig do
         override.returns(
-          { domain: String, request_options: CheckoutIntents::RequestOptions }
+          { domain: String, request_options: ::CheckoutIntents::RequestOptions }
         )
       end
       def to_hash

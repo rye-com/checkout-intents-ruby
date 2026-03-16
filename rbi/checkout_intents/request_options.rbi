@@ -6,17 +6,17 @@ module CheckoutIntents
   #
   # When making a request, you can pass an actual {RequestOptions} instance, or
   # simply pass a Hash with symbol keys matching the attributes on this class.
-  class RequestOptions < CheckoutIntents::Internal::Type::BaseModel
+  class RequestOptions < ::CheckoutIntents::Internal::Type::BaseModel
     OrHash =
       T.type_alias do
         T.any(
-          CheckoutIntents::RequestOptions,
-          CheckoutIntents::Internal::AnyHash
+          ::CheckoutIntents::RequestOptions,
+          ::CheckoutIntents::Internal::AnyHash
         )
       end
 
     # @api private
-    sig { params(opts: CheckoutIntents::RequestOptions::OrHash).void }
+    sig { params(opts: ::CheckoutIntents::RequestOptions::OrHash).void }
     def self.validate!(opts)
     end
 
@@ -54,7 +54,7 @@ module CheckoutIntents
 
     # Returns a new instance of RequestOptions.
     sig do
-      params(values: CheckoutIntents::Internal::AnyHash).returns(
+      params(values: ::CheckoutIntents::Internal::AnyHash).returns(
         T.attached_class
       )
     end

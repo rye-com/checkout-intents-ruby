@@ -5,8 +5,8 @@ module CheckoutIntents
     module Type
       # @abstract
       class BaseModel
-        extend CheckoutIntents::Internal::Type::Converter
-        extend CheckoutIntents::Internal::Util::SorbetRuntimeSupport
+        extend ::CheckoutIntents::Internal::Type::Converter
+        extend ::CheckoutIntents::Internal::Util::SorbetRuntimeSupport
 
         class << self
           # @api private
@@ -14,7 +14,7 @@ module CheckoutIntents
           # Assumes superclass fields are totally defined before fields are accessed /
           # defined on subclasses.
           #
-          # @param child [Class<CheckoutIntents::Internal::Type::BaseModel>]
+          # @param child [Class<::CheckoutIntents::Internal::Type::BaseModel>]
           def inherited(child)
             super
             child.known_fields.replace(known_fields.dup)
@@ -40,7 +40,7 @@ module CheckoutIntents
           #
           # @param required [Boolean]
           #
-          # @param type_info [Hash{Symbol=>Object}, Proc, CheckoutIntents::Internal::Type::Converter, Class]
+          # @param type_info [Hash{Symbol=>Object}, Proc, ::CheckoutIntents::Internal::Type::Converter, Class]
           #
           # @param spec [Hash{Symbol=>Object}] .
           #
@@ -52,19 +52,19 @@ module CheckoutIntents
           #
           #   @option spec [Boolean] :"nil?"
           private def add_field(name_sym, required:, type_info:, spec:)
-            meta = CheckoutIntents::Internal::Type::Converter.meta_info(type_info, spec)
+            meta = ::CheckoutIntents::Internal::Type::Converter.meta_info(type_info, spec)
             type_fn, info =
               case type_info
-              in Proc | CheckoutIntents::Internal::Type::Converter | Class
-                [CheckoutIntents::Internal::Type::Converter.type_info({**spec, union: type_info}), spec]
+              in Proc | ::CheckoutIntents::Internal::Type::Converter | Class
+                [::CheckoutIntents::Internal::Type::Converter.type_info({**spec, union: type_info}), spec]
               in Hash
-                [CheckoutIntents::Internal::Type::Converter.type_info(type_info), type_info]
+                [::CheckoutIntents::Internal::Type::Converter.type_info(type_info), type_info]
               end
 
             setter = :"#{name_sym}="
             api_name = info.fetch(:api_name, name_sym)
             nilable = info.fetch(:nil?, false)
-            const = required && !nilable ? info.fetch(:const, CheckoutIntents::Internal::OMIT) : CheckoutIntents::Internal::OMIT
+            const = required && !nilable ? info.fetch(:const, ::CheckoutIntents::Internal::OMIT) : ::CheckoutIntents::Internal::OMIT
 
             [name_sym, setter].each { undef_method(_1) } if known_fields.key?(name_sym)
 
@@ -81,12 +81,12 @@ module CheckoutIntents
 
             define_method(setter) do |value|
               target = type_fn.call
-              state = CheckoutIntents::Internal::Type::Converter.new_coerce_state(translate_names: false)
-              coerced = CheckoutIntents::Internal::Type::Converter.coerce(target, value, state: state)
+              state = ::CheckoutIntents::Internal::Type::Converter.new_coerce_state(translate_names: false)
+              coerced = ::CheckoutIntents::Internal::Type::Converter.coerce(target, value, state: state)
               status = @coerced.store(name_sym, state.fetch(:error) || true)
               stored =
                 case [target, status]
-                in [CheckoutIntents::Internal::Type::Converter | Symbol, true]
+                in [::CheckoutIntents::Internal::Type::Converter | Symbol, true]
                   coerced
                 else
                   value
@@ -100,10 +100,10 @@ module CheckoutIntents
               target = type_fn.call
 
               case @coerced[name_sym]
-              in true | false if CheckoutIntents::Internal::Type::Converter === target
+              in true | false if ::CheckoutIntents::Internal::Type::Converter === target
                 @data.fetch(name_sym)
               in ::StandardError => e
-                raise CheckoutIntents::Errors::ConversionError.new(
+                raise ::CheckoutIntents::Errors::ConversionError.new(
                   on: self.class,
                   method: __method__,
                   target: target,
@@ -112,17 +112,17 @@ module CheckoutIntents
                 )
               else
                 Kernel.then do
-                  value = @data.fetch(name_sym) { const == CheckoutIntents::Internal::OMIT ? nil : const }
-                  state = CheckoutIntents::Internal::Type::Converter.new_coerce_state(translate_names: false)
+                  value = @data.fetch(name_sym) { const == ::CheckoutIntents::Internal::OMIT ? nil : const }
+                  state = ::CheckoutIntents::Internal::Type::Converter.new_coerce_state(translate_names: false)
                   if (nilable || !required) && value.nil?
                     nil
                   else
-                    CheckoutIntents::Internal::Type::Converter.coerce(
+                    ::CheckoutIntents::Internal::Type::Converter.coerce(
                       target, value, state: state
                     )
                   end
                 rescue StandardError => e
-                  raise CheckoutIntents::Errors::ConversionError.new(
+                  raise ::CheckoutIntents::Errors::ConversionError.new(
                     on: self.class,
                     method: __method__,
                     target: target,
@@ -140,7 +140,7 @@ module CheckoutIntents
           #
           # @param name_sym [Symbol]
           #
-          # @param type_info [Hash{Symbol=>Object}, Proc, CheckoutIntents::Internal::Type::Converter, Class]
+          # @param type_info [Hash{Symbol=>Object}, Proc, ::CheckoutIntents::Internal::Type::Converter, Class]
           #
           # @param spec [Hash{Symbol=>Object}] .
           #
@@ -159,7 +159,7 @@ module CheckoutIntents
           #
           # @param name_sym [Symbol]
           #
-          # @param type_info [Hash{Symbol=>Object}, Proc, CheckoutIntents::Internal::Type::Converter, Class]
+          # @param type_info [Hash{Symbol=>Object}, Proc, ::CheckoutIntents::Internal::Type::Converter, Class]
           #
           # @param spec [Hash{Symbol=>Object}] .
           #
@@ -206,7 +206,7 @@ module CheckoutIntents
           # @return [Boolean]
           def ==(other)
             # rubocop:disable Layout/LineLength
-            other.is_a?(Class) && other <= CheckoutIntents::Internal::Type::BaseModel && other.fields == fields
+            other.is_a?(Class) && other <= ::CheckoutIntents::Internal::Type::BaseModel && other.fields == fields
             # rubocop:enable Layout/LineLength
           end
 
@@ -231,7 +231,7 @@ module CheckoutIntents
         class << self
           # @api private
           #
-          # @param value [CheckoutIntents::Internal::Type::BaseModel, Hash{Object=>Object}, Object]
+          # @param value [::CheckoutIntents::Internal::Type::BaseModel, Hash{Object=>Object}, Object]
           #
           # @param state [Hash{Symbol=>Object}] .
           #
@@ -254,7 +254,7 @@ module CheckoutIntents
               return value
             end
 
-            unless (val = CheckoutIntents::Internal::Util.coerce_hash(value)).is_a?(Hash)
+            unless (val = ::CheckoutIntents::Internal::Util.coerce_hash(value)).is_a?(Hash)
               exactness[:no] += 1
               state[:error] = TypeError.new("#{value.class} can't be coerced into #{Hash}")
               return value
@@ -273,7 +273,7 @@ module CheckoutIntents
               src_name = state.fetch(:translate_names) ? api_name : name
 
               unless val.key?(src_name)
-                if required && mode != :dump && const == CheckoutIntents::Internal::OMIT
+                if required && mode != :dump && const == ::CheckoutIntents::Internal::OMIT
                   exactness[nilable ? :maybe : :no] += 1
                 else
                   exactness[:yes] += 1
@@ -290,9 +290,9 @@ module CheckoutIntents
                   exactness[nilable ? :yes : :maybe] += 1
                   nil
                 else
-                  coerced = CheckoutIntents::Internal::Type::Converter.coerce(target, item, state: state)
+                  coerced = ::CheckoutIntents::Internal::Type::Converter.coerce(target, item, state: state)
                   case target
-                  in CheckoutIntents::Internal::Type::Converter | Symbol
+                  in ::CheckoutIntents::Internal::Type::Converter | Symbol
                     coerced
                   else
                     item
@@ -318,7 +318,7 @@ module CheckoutIntents
           #
           # @return [Hash{Object=>Object}, Object]
           def dump(value, state:)
-            unless (coerced = CheckoutIntents::Internal::Util.coerce_hash(value)).is_a?(Hash)
+            unless (coerced = ::CheckoutIntents::Internal::Util.coerce_hash(value)).is_a?(Hash)
               return super
             end
 
@@ -338,7 +338,7 @@ module CheckoutIntents
                   target = type_fn.call
                   acc.store(
                     api_name,
-                    CheckoutIntents::Internal::Type::Converter.dump(target, val, state: state)
+                    ::CheckoutIntents::Internal::Type::Converter.dump(target, val, state: state)
                   )
                 end
               end
@@ -346,7 +346,7 @@ module CheckoutIntents
 
             known_fields.each_value do |field|
               api_name, mode, const = field.fetch_values(:api_name, :mode, :const)
-              next if mode == :coerce || acc.key?(api_name) || const == CheckoutIntents::Internal::OMIT
+              next if mode == :coerce || acc.key?(api_name) || const == ::CheckoutIntents::Internal::OMIT
               acc.store(api_name, const)
             end
 
@@ -364,19 +364,19 @@ module CheckoutIntents
         class << self
           # @api private
           #
-          # @param model [CheckoutIntents::Internal::Type::BaseModel]
+          # @param model [::CheckoutIntents::Internal::Type::BaseModel]
           # @param convert [Boolean]
           #
           # @return [Hash{Symbol=>Object}]
           def recursively_to_h(model, convert:)
             rec = ->(x) do
               case x
-              in CheckoutIntents::Internal::Type::BaseModel
+              in ::CheckoutIntents::Internal::Type::BaseModel
                 if convert
                   fields = x.class.known_fields
                   x.to_h.to_h do |key, val|
                     [key, rec.call(fields.key?(key) ? x.public_send(key) : val)]
-                  rescue CheckoutIntents::Errors::ConversionError
+                  rescue ::CheckoutIntents::Errors::ConversionError
                     [key, rec.call(val)]
                   end
                 else
@@ -443,7 +443,7 @@ module CheckoutIntents
         # @return [Hash{Symbol=>Object}]
         #
         # @example
-        #   # `base_checkout_intent` is a `CheckoutIntents::BaseCheckoutIntent`
+        #   # `base_checkout_intent` is a `::CheckoutIntents::BaseCheckoutIntent`
         #   base_checkout_intent => {
         #     id: id,
         #     buyer: buyer,
@@ -466,14 +466,14 @@ module CheckoutIntents
         # @param a [Object]
         #
         # @return [String]
-        def to_json(*a) = CheckoutIntents::Internal::Type::Converter.dump(self.class, self).to_json(*a)
+        def to_json(*a) = ::CheckoutIntents::Internal::Type::Converter.dump(self.class, self).to_json(*a)
 
         # @api public
         #
         # @param a [Object]
         #
         # @return [String]
-        def to_yaml(*a) = CheckoutIntents::Internal::Type::Converter.dump(self.class, self).to_yaml(*a)
+        def to_yaml(*a) = ::CheckoutIntents::Internal::Type::Converter.dump(self.class, self).to_yaml(*a)
 
         # Create a new instance of a model.
         #
@@ -481,7 +481,7 @@ module CheckoutIntents
         def initialize(data = {})
           @data = {}
           @coerced = {}
-          CheckoutIntents::Internal::Util.coerce_hash!(data).each do
+          ::CheckoutIntents::Internal::Util.coerce_hash!(data).each do
             if self.class.known_fields.key?(_1)
               public_send(:"#{_1}=", _2)
             else
@@ -504,7 +504,7 @@ module CheckoutIntents
             deferred = fields.transform_values do |field|
               type, required, nilable = field.fetch_values(:type, :required, :nilable)
               inspected = [
-                CheckoutIntents::Internal::Type::Converter.inspect(type, depth: depth),
+                ::CheckoutIntents::Internal::Type::Converter.inspect(type, depth: depth),
                 !required || nilable ? "nil" : nil
               ].compact.join(" | ")
               -> { inspected }.tap { _1.define_singleton_method(:inspect) { call } }

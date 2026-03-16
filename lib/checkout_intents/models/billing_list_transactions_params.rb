@@ -2,10 +2,10 @@
 
 module CheckoutIntents
   module Models
-    # @see CheckoutIntents::Resources::Billing#list_transactions
-    class BillingListTransactionsParams < CheckoutIntents::Internal::Type::BaseModel
-      extend CheckoutIntents::Internal::Type::RequestParameters::Converter
-      include CheckoutIntents::Internal::Type::RequestParameters
+    # @see ::CheckoutIntents::Resources::Billing#list_transactions
+    class BillingListTransactionsParams < ::CheckoutIntents::Internal::Type::BaseModel
+      extend ::CheckoutIntents::Internal::Type::RequestParameters::Converter
+      include ::CheckoutIntents::Internal::Type::RequestParameters
 
       # @!attribute after
       #   Cursor for forward pagination (transaction ID to start after)
@@ -32,7 +32,7 @@ module CheckoutIntents
       #
       #   @param limit [Integer] Maximum number of transactions to return (default 20)
       #
-      #   @param request_options [CheckoutIntents::RequestOptions, Hash{Symbol=>Object}]
+      #   @param request_options [::CheckoutIntents::RequestOptions, Hash{Symbol=>Object}]
     end
   end
 end

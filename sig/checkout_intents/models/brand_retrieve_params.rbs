@@ -1,22 +1,22 @@
 module CheckoutIntents
   module Models
     type brand_retrieve_params =
-      { domain: String } & CheckoutIntents::Internal::Type::request_parameters
+      { domain: String } & ::CheckoutIntents::Internal::Type::request_parameters
 
-    class BrandRetrieveParams < CheckoutIntents::Internal::Type::BaseModel
-      extend CheckoutIntents::Internal::Type::RequestParameters::Converter
-      include CheckoutIntents::Internal::Type::RequestParameters
+    class BrandRetrieveParams < ::CheckoutIntents::Internal::Type::BaseModel
+      extend ::CheckoutIntents::Internal::Type::RequestParameters::Converter
+      include ::CheckoutIntents::Internal::Type::RequestParameters
 
       attr_accessor domain: String
 
       def initialize: (
         domain: String,
-        ?request_options: CheckoutIntents::request_opts
+        ?request_options: ::CheckoutIntents::request_opts
       ) -> void
 
       def to_hash: -> {
         domain: String,
-        request_options: CheckoutIntents::RequestOptions
+        request_options: ::CheckoutIntents::RequestOptions
       }
     end
   end

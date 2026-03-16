@@ -8,26 +8,26 @@ module CheckoutIntents
       # @overload lookup(url:, request_options: {})
       #
       # @param url [String]
-      # @param request_options [CheckoutIntents::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::CheckoutIntents::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [CheckoutIntents::Models::Product]
+      # @return [::CheckoutIntents::Models::Product]
       #
-      # @see CheckoutIntents::Models::ProductLookupParams
+      # @see ::CheckoutIntents::Models::ProductLookupParams
       def lookup(params)
-        parsed, options = CheckoutIntents::ProductLookupParams.dump_request(params)
-        query = CheckoutIntents::Internal::Util.encode_query_params(parsed)
+        parsed, options = ::CheckoutIntents::ProductLookupParams.dump_request(params)
+        query = ::CheckoutIntents::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "api/v1/products/lookup",
           query: query,
-          model: CheckoutIntents::Product,
+          model: ::CheckoutIntents::Product,
           options: options
         )
       end
 
       # @api private
       #
-      # @param client [CheckoutIntents::Client]
+      # @param client [::CheckoutIntents::Client]
       def initialize(client:)
         @client = client
       end

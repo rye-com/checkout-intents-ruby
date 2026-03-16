@@ -13,7 +13,7 @@ class CheckoutIntents::Test::Resources::Betas::CheckoutSessionsTest < CheckoutIn
       )
 
     assert_pattern do
-      response => CheckoutIntents::CheckoutSession
+      response => ::CheckoutIntents::CheckoutSession
     end
 
     assert_pattern do

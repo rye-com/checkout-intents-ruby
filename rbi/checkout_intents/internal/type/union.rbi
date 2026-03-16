@@ -5,8 +5,8 @@ module CheckoutIntents
     module Type
       # @api private
       module Union
-        include CheckoutIntents::Internal::Type::Converter
-        include CheckoutIntents::Internal::Util::SorbetRuntimeSupport
+        include ::CheckoutIntents::Internal::Type::Converter
+        include ::CheckoutIntents::Internal::Util::SorbetRuntimeSupport
 
         # @api private
         #
@@ -17,9 +17,9 @@ module CheckoutIntents
               [
                 T.nilable(Symbol),
                 T.proc.returns(
-                  CheckoutIntents::Internal::Type::Converter::Input
+                  ::CheckoutIntents::Internal::Type::Converter::Input
                 ),
-                CheckoutIntents::Internal::AnyHash
+                ::CheckoutIntents::Internal::AnyHash
               ]
             ]
           )
@@ -34,7 +34,7 @@ module CheckoutIntents
               [
                 T.nilable(Symbol),
                 T.anything,
-                CheckoutIntents::Internal::AnyHash
+                ::CheckoutIntents::Internal::AnyHash
               ]
             ]
           )
@@ -58,13 +58,13 @@ module CheckoutIntents
             key:
               T.any(
                 Symbol,
-                CheckoutIntents::Internal::AnyHash,
+                ::CheckoutIntents::Internal::AnyHash,
                 T.proc.returns(T.anything),
                 T.anything
               ),
             spec:
               T.any(
-                CheckoutIntents::Internal::AnyHash,
+                ::CheckoutIntents::Internal::AnyHash,
                 T.proc.returns(T.anything),
                 T.anything
               )
@@ -100,7 +100,7 @@ module CheckoutIntents
           override
             .params(
               value: T.anything,
-              state: CheckoutIntents::Internal::Type::Converter::CoerceState
+              state: ::CheckoutIntents::Internal::Type::Converter::CoerceState
             )
             .returns(T.anything)
         end
@@ -112,7 +112,7 @@ module CheckoutIntents
           override
             .params(
               value: T.anything,
-              state: CheckoutIntents::Internal::Type::Converter::DumpState
+              state: ::CheckoutIntents::Internal::Type::Converter::DumpState
             )
             .returns(T.anything)
         end

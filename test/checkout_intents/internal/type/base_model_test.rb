@@ -2,27 +2,27 @@
 
 require_relative "../../test_helper"
 
-class CheckoutIntents::Test::PrimitiveModelTest < Minitest::Test
-  A = CheckoutIntents::Internal::Type::ArrayOf[-> { Integer }]
-  H = CheckoutIntents::Internal::Type::HashOf[-> { Integer }, nil?: true]
+class ::CheckoutIntents::Test::PrimitiveModelTest < Minitest::Test
+  A = ::CheckoutIntents::Internal::Type::ArrayOf[-> { Integer }]
+  H = ::CheckoutIntents::Internal::Type::HashOf[-> { Integer }, nil?: true]
 
   module E
-    extend CheckoutIntents::Internal::Type::Enum
+    extend ::CheckoutIntents::Internal::Type::Enum
   end
 
   module U
-    extend CheckoutIntents::Internal::Type::Union
+    extend ::CheckoutIntents::Internal::Type::Union
   end
 
-  class B < CheckoutIntents::Internal::Type::BaseModel
+  class B < ::CheckoutIntents::Internal::Type::BaseModel
     optional :a, Integer
     optional :b, B
   end
 
   def test_typing
     converters = [
-      CheckoutIntents::Internal::Type::Unknown,
-      CheckoutIntents::Internal::Type::Boolean,
+      ::CheckoutIntents::Internal::Type::Unknown,
+      ::CheckoutIntents::Internal::Type::Boolean,
       A,
       H,
       E,
@@ -32,18 +32,18 @@ class CheckoutIntents::Test::PrimitiveModelTest < Minitest::Test
 
     converters.each do |conv|
       assert_pattern do
-        conv => CheckoutIntents::Internal::Type::Converter
+        conv => ::CheckoutIntents::Internal::Type::Converter
       end
     end
   end
 
   def test_coerce
     cases = {
-      [CheckoutIntents::Internal::Type::Unknown, :a] => [{yes: 1}, :a],
+      [::CheckoutIntents::Internal::Type::Unknown, :a] => [{yes: 1}, :a],
       [NilClass, :a] => [{maybe: 1}, nil],
       [NilClass, nil] => [{yes: 1}, nil],
-      [CheckoutIntents::Internal::Type::Boolean, true] => [{yes: 1}, true],
-      [CheckoutIntents::Internal::Type::Boolean, "true"] => [{no: 1}, "true"],
+      [::CheckoutIntents::Internal::Type::Boolean, true] => [{yes: 1}, true],
+      [::CheckoutIntents::Internal::Type::Boolean, "true"] => [{no: 1}, "true"],
       [Integer, 1] => [{yes: 1}, 1],
       [Integer, 1.0] => [{maybe: 1}, 1],
       [Integer, "1"] => [{maybe: 1}, 1],
@@ -66,9 +66,9 @@ class CheckoutIntents::Test::PrimitiveModelTest < Minitest::Test
     cases.each do |lhs, rhs|
       target, input = lhs
       exactness, expect = rhs
-      state = CheckoutIntents::Internal::Type::Converter.new_coerce_state
+      state = ::CheckoutIntents::Internal::Type::Converter.new_coerce_state
       assert_pattern do
-        CheckoutIntents::Internal::Type::Converter.coerce(target, input, state: state) => ^expect
+        ::CheckoutIntents::Internal::Type::Converter.coerce(target, input, state: state) => ^expect
         state.fetch(:exactness).filter { _2.nonzero? }.to_h => ^exactness
       end
     end
@@ -76,7 +76,10 @@ class CheckoutIntents::Test::PrimitiveModelTest < Minitest::Test
 
   def test_dump
     cases = {
-      [CheckoutIntents::Internal::Type::Unknown, B.new(a: "one", b: B.new(a: 1.0))] => {a: "one", b: {a: 1}},
+      [
+        ::CheckoutIntents::Internal::Type::Unknown,
+        B.new(a: "one", b: B.new(a: 1.0))
+      ] => {a: "one", b: {a: 1}},
       [A, B.new(a: "one", b: B.new(a: 1.0))] => {a: "one", b: {a: 1}},
       [H, B.new(a: "one", b: B.new(a: 1.0))] => {a: "one", b: {a: 1}},
       [E, B.new(a: "one", b: B.new(a: 1.0))] => {a: "one", b: {a: 1}},
@@ -85,8 +88,8 @@ class CheckoutIntents::Test::PrimitiveModelTest < Minitest::Test
       [String, B.new(a: "one", b: B.new(a: 1.0))] => {a: "one", b: {a: 1}},
       [:b, B.new(a: "one", b: B.new(a: 1.0))] => {a: "one", b: {a: 1}},
       [nil, B.new(a: "one", b: B.new(a: 1.0))] => {a: "one", b: {a: 1}},
-      [CheckoutIntents::Internal::Type::Boolean, true] => true,
-      [CheckoutIntents::Internal::Type::Boolean, "true"] => "true",
+      [::CheckoutIntents::Internal::Type::Boolean, true] => true,
+      [::CheckoutIntents::Internal::Type::Boolean, "true"] => "true",
       [Integer, "1"] => "1",
       [Float, 1] => 1,
       [String, "one"] => "one",
@@ -94,14 +97,14 @@ class CheckoutIntents::Test::PrimitiveModelTest < Minitest::Test
       [:a, :b] => :b,
       [:a, "a"] => "a",
       [String, StringIO.new("one")] => "one",
-      [String, Pathname(__FILE__)] => CheckoutIntents::FilePart
+      [String, Pathname(__FILE__)] => ::CheckoutIntents::FilePart
     }
 
     cases.each do
       target, input = _1
       expect = _2
       assert_pattern do
-        CheckoutIntents::Internal::Type::Converter.dump(target, input) => ^expect
+        ::CheckoutIntents::Internal::Type::Converter.dump(target, input) => ^expect
       end
     end
   end
@@ -117,8 +120,8 @@ class CheckoutIntents::Test::PrimitiveModelTest < Minitest::Test
 
     cases.each do |testcase, expect|
       target, input = testcase
-      state = CheckoutIntents::Internal::Type::Converter.new_coerce_state
-      CheckoutIntents::Internal::Type::Converter.coerce(target, input, state: state)
+      state = ::CheckoutIntents::Internal::Type::Converter.new_coerce_state
+      ::CheckoutIntents::Internal::Type::Converter.coerce(target, input, state: state)
       assert_pattern do
         state => {error: ^expect}
       end
@@ -127,8 +130,8 @@ class CheckoutIntents::Test::PrimitiveModelTest < Minitest::Test
 
   def test_dump_retry
     types = [
-      CheckoutIntents::Internal::Type::Unknown,
-      CheckoutIntents::Internal::Type::Boolean,
+      ::CheckoutIntents::Internal::Type::Unknown,
+      ::CheckoutIntents::Internal::Type::Boolean,
       A,
       H,
       E,
@@ -144,7 +147,7 @@ class CheckoutIntents::Test::PrimitiveModelTest < Minitest::Test
       ]
       types.product(cases).each do |target, input|
         state = {can_retry: true}
-        CheckoutIntents::Internal::Type::Converter.dump(target, input, state: state)
+        ::CheckoutIntents::Internal::Type::Converter.dump(target, input, state: state)
 
         assert_pattern do
           state => {can_retry: false}
@@ -154,9 +157,9 @@ class CheckoutIntents::Test::PrimitiveModelTest < Minitest::Test
   end
 end
 
-class CheckoutIntents::Test::EnumModelTest < Minitest::Test
+class ::CheckoutIntents::Test::EnumModelTest < Minitest::Test
   class E0
-    include CheckoutIntents::Internal::Type::Enum
+    include ::CheckoutIntents::Internal::Type::Enum
 
     attr_reader :values
 
@@ -164,27 +167,27 @@ class CheckoutIntents::Test::EnumModelTest < Minitest::Test
   end
 
   module E1
-    extend CheckoutIntents::Internal::Type::Enum
+    extend ::CheckoutIntents::Internal::Type::Enum
 
     TRUE = true
   end
 
   module E2
-    extend CheckoutIntents::Internal::Type::Enum
+    extend ::CheckoutIntents::Internal::Type::Enum
 
     ONE = 1
     TWO = 2
   end
 
   module E3
-    extend CheckoutIntents::Internal::Type::Enum
+    extend ::CheckoutIntents::Internal::Type::Enum
 
     ONE = 1.0
     TWO = 2.0
   end
 
   module E4
-    extend CheckoutIntents::Internal::Type::Enum
+    extend ::CheckoutIntents::Internal::Type::Enum
 
     ONE = :one
     TWO = :two
@@ -219,9 +222,9 @@ class CheckoutIntents::Test::EnumModelTest < Minitest::Test
     cases.each do |lhs, rhs|
       target, input = lhs
       exactness, expect = rhs
-      state = CheckoutIntents::Internal::Type::Converter.new_coerce_state
+      state = ::CheckoutIntents::Internal::Type::Converter.new_coerce_state
       assert_pattern do
-        CheckoutIntents::Internal::Type::Converter.coerce(target, input, state: state) => ^expect
+        ::CheckoutIntents::Internal::Type::Converter.coerce(target, input, state: state) => ^expect
         state.fetch(:exactness).filter { _2.nonzero? }.to_h => ^exactness
       end
     end
@@ -249,21 +252,21 @@ class CheckoutIntents::Test::EnumModelTest < Minitest::Test
       target, input = _1
       expect = _2
       assert_pattern do
-        CheckoutIntents::Internal::Type::Converter.dump(target, input) => ^expect
+        ::CheckoutIntents::Internal::Type::Converter.dump(target, input) => ^expect
       end
     end
   end
 end
 
-class CheckoutIntents::Test::CollectionModelTest < Minitest::Test
-  A1 = CheckoutIntents::Internal::Type::ArrayOf[-> { Integer }]
-  H1 = CheckoutIntents::Internal::Type::HashOf[Integer]
+class ::CheckoutIntents::Test::CollectionModelTest < Minitest::Test
+  A1 = ::CheckoutIntents::Internal::Type::ArrayOf[-> { Integer }]
+  H1 = ::CheckoutIntents::Internal::Type::HashOf[Integer]
 
-  A2 = CheckoutIntents::Internal::Type::ArrayOf[H1]
-  H2 = CheckoutIntents::Internal::Type::HashOf[-> { A1 }]
+  A2 = ::CheckoutIntents::Internal::Type::ArrayOf[H1]
+  H2 = ::CheckoutIntents::Internal::Type::HashOf[-> { A1 }]
 
-  A3 = CheckoutIntents::Internal::Type::ArrayOf[Integer, nil?: true]
-  H3 = CheckoutIntents::Internal::Type::HashOf[Integer, nil?: true]
+  A3 = ::CheckoutIntents::Internal::Type::ArrayOf[Integer, nil?: true]
+  H3 = ::CheckoutIntents::Internal::Type::HashOf[Integer, nil?: true]
 
   def test_coerce
     cases = {
@@ -293,17 +296,17 @@ class CheckoutIntents::Test::CollectionModelTest < Minitest::Test
     cases.each do |lhs, rhs|
       target, input = lhs
       exactness, expect = rhs
-      state = CheckoutIntents::Internal::Type::Converter.new_coerce_state
+      state = ::CheckoutIntents::Internal::Type::Converter.new_coerce_state
       assert_pattern do
-        CheckoutIntents::Internal::Type::Converter.coerce(target, input, state: state) => ^expect
+        ::CheckoutIntents::Internal::Type::Converter.coerce(target, input, state: state) => ^expect
         state.fetch(:exactness).filter { _2.nonzero? }.to_h => ^exactness
       end
     end
   end
 end
 
-class CheckoutIntents::Test::BaseModelTest < Minitest::Test
-  class M1 < CheckoutIntents::Internal::Type::BaseModel
+class ::CheckoutIntents::Test::BaseModelTest < Minitest::Test
+  class M1 < ::CheckoutIntents::Internal::Type::BaseModel
     required :a, Integer
   end
 
@@ -313,7 +316,7 @@ class CheckoutIntents::Test::BaseModelTest < Minitest::Test
     optional :c, String
   end
 
-  class M3 < CheckoutIntents::Internal::Type::BaseModel
+  class M3 < ::CheckoutIntents::Internal::Type::BaseModel
     optional :c, const: :c
     required :d, const: :d
   end
@@ -330,7 +333,7 @@ class CheckoutIntents::Test::BaseModelTest < Minitest::Test
     end
   end
 
-  class M5 < CheckoutIntents::Internal::Type::BaseModel
+  class M5 < ::CheckoutIntents::Internal::Type::BaseModel
     request_only do
       required :c, const: :c
     end
@@ -341,7 +344,7 @@ class CheckoutIntents::Test::BaseModelTest < Minitest::Test
   end
 
   class M6 < M1
-    required :a, CheckoutIntents::Internal::Type::ArrayOf[M6]
+    required :a, ::CheckoutIntents::Internal::Type::ArrayOf[M6]
     optional :b, M6
   end
 
@@ -375,11 +378,11 @@ class CheckoutIntents::Test::BaseModelTest < Minitest::Test
     cases.each do |lhs, rhs|
       target, input = lhs
       exactness, expect = rhs
-      state = CheckoutIntents::Internal::Type::Converter.new_coerce_state
+      state = ::CheckoutIntents::Internal::Type::Converter.new_coerce_state
       assert_pattern do
-        coerced = CheckoutIntents::Internal::Type::Converter.coerce(target, input, state: state)
+        coerced = ::CheckoutIntents::Internal::Type::Converter.coerce(target, input, state: state)
         assert_equal(coerced, coerced)
-        if coerced.is_a?(CheckoutIntents::Internal::Type::BaseModel)
+        if coerced.is_a?(::CheckoutIntents::Internal::Type::BaseModel)
           coerced.to_h => ^expect
         else
           coerced => ^expect
@@ -407,7 +410,7 @@ class CheckoutIntents::Test::BaseModelTest < Minitest::Test
       target, input = _1
       expect = _2
       assert_pattern do
-        CheckoutIntents::Internal::Type::Converter.dump(target, input) => ^expect
+        ::CheckoutIntents::Internal::Type::Converter.dump(target, input) => ^expect
       end
     end
   end
@@ -439,7 +442,7 @@ class CheckoutIntents::Test::BaseModelTest < Minitest::Test
           tap do
             target.public_send(accessor)
             flunk
-          rescue CheckoutIntents::Errors::ConversionError => e
+          rescue ::CheckoutIntents::Errors::ConversionError => e
             assert_kind_of(expect, e.cause)
           end
         else
@@ -468,32 +471,32 @@ class CheckoutIntents::Test::BaseModelTest < Minitest::Test
   end
 end
 
-class CheckoutIntents::Test::UnionTest < Minitest::Test
+class ::CheckoutIntents::Test::UnionTest < Minitest::Test
   class U0
-    include CheckoutIntents::Internal::Type::Union
+    include ::CheckoutIntents::Internal::Type::Union
 
     def initialize(*variants) = variants.each { variant(_1) }
   end
 
   module U1
-    extend CheckoutIntents::Internal::Type::Union
+    extend ::CheckoutIntents::Internal::Type::Union
 
     variant const: :a
     variant const: 2
   end
 
-  class M1 < CheckoutIntents::Internal::Type::BaseModel
+  class M1 < ::CheckoutIntents::Internal::Type::BaseModel
     required :t, const: :a, api_name: :type
     optional :c, String
   end
 
-  class M2 < CheckoutIntents::Internal::Type::BaseModel
+  class M2 < ::CheckoutIntents::Internal::Type::BaseModel
     required :type, const: :b
     optional :c, String
   end
 
   module U2
-    extend CheckoutIntents::Internal::Type::Union
+    extend ::CheckoutIntents::Internal::Type::Union
 
     discriminator :type
 
@@ -502,7 +505,7 @@ class CheckoutIntents::Test::UnionTest < Minitest::Test
   end
 
   module U3
-    extend CheckoutIntents::Internal::Type::Union
+    extend ::CheckoutIntents::Internal::Type::Union
 
     discriminator :type
 
@@ -511,7 +514,7 @@ class CheckoutIntents::Test::UnionTest < Minitest::Test
   end
 
   module U4
-    extend CheckoutIntents::Internal::Type::Union
+    extend ::CheckoutIntents::Internal::Type::Union
 
     discriminator :type
 
@@ -519,30 +522,30 @@ class CheckoutIntents::Test::UnionTest < Minitest::Test
     variant :a, M1
   end
 
-  class M3 < CheckoutIntents::Internal::Type::BaseModel
+  class M3 < ::CheckoutIntents::Internal::Type::BaseModel
     optional :recur, -> { U5 }
     required :a, Integer
   end
 
-  class M4 < CheckoutIntents::Internal::Type::BaseModel
+  class M4 < ::CheckoutIntents::Internal::Type::BaseModel
     optional :recur, -> { U5 }
-    required :a, CheckoutIntents::Internal::Type::ArrayOf[-> { U5 }]
+    required :a, ::CheckoutIntents::Internal::Type::ArrayOf[-> { U5 }]
   end
 
-  class M5 < CheckoutIntents::Internal::Type::BaseModel
+  class M5 < ::CheckoutIntents::Internal::Type::BaseModel
     optional :recur, -> { U5 }
-    required :b, CheckoutIntents::Internal::Type::ArrayOf[-> { U5 }]
+    required :b, ::CheckoutIntents::Internal::Type::ArrayOf[-> { U5 }]
   end
 
   module U5
-    extend CheckoutIntents::Internal::Type::Union
+    extend ::CheckoutIntents::Internal::Type::Union
 
     variant -> { M3 }
     variant -> { M4 }
   end
 
   module U6
-    extend CheckoutIntents::Internal::Type::Union
+    extend ::CheckoutIntents::Internal::Type::Union
 
     variant -> { M3 }
     variant -> { M5 }
@@ -553,7 +556,7 @@ class CheckoutIntents::Test::UnionTest < Minitest::Test
     tap do
       model.recur
       flunk
-    rescue CheckoutIntents::Errors::ConversionError => e
+    rescue ::CheckoutIntents::Errors::ConversionError => e
       assert_kind_of(ArgumentError, e.cause)
     end
   end
@@ -587,11 +590,11 @@ class CheckoutIntents::Test::UnionTest < Minitest::Test
     cases.each do |lhs, rhs|
       target, input = lhs
       exactness, branched, expect = rhs
-      state = CheckoutIntents::Internal::Type::Converter.new_coerce_state
+      state = ::CheckoutIntents::Internal::Type::Converter.new_coerce_state
       assert_pattern do
-        coerced = CheckoutIntents::Internal::Type::Converter.coerce(target, input, state: state)
+        coerced = ::CheckoutIntents::Internal::Type::Converter.coerce(target, input, state: state)
         assert_equal(coerced, coerced)
-        if coerced.is_a?(CheckoutIntents::Internal::Type::BaseModel)
+        if coerced.is_a?(::CheckoutIntents::Internal::Type::BaseModel)
           coerced.to_h => ^expect
         else
           coerced => ^expect
@@ -603,9 +606,9 @@ class CheckoutIntents::Test::UnionTest < Minitest::Test
   end
 end
 
-class CheckoutIntents::Test::BaseModelQoLTest < Minitest::Test
+class ::CheckoutIntents::Test::BaseModelQoLTest < Minitest::Test
   class E0
-    include CheckoutIntents::Internal::Type::Enum
+    include ::CheckoutIntents::Internal::Type::Enum
 
     attr_reader :values
 
@@ -613,49 +616,49 @@ class CheckoutIntents::Test::BaseModelQoLTest < Minitest::Test
   end
 
   module E1
-    extend CheckoutIntents::Internal::Type::Enum
+    extend ::CheckoutIntents::Internal::Type::Enum
 
     A = 1
   end
 
   module E2
-    extend CheckoutIntents::Internal::Type::Enum
+    extend ::CheckoutIntents::Internal::Type::Enum
 
     A = 1
   end
 
   module E3
-    extend CheckoutIntents::Internal::Type::Enum
+    extend ::CheckoutIntents::Internal::Type::Enum
 
     A = 2
     B = 3
   end
 
   class U0
-    include CheckoutIntents::Internal::Type::Union
+    include ::CheckoutIntents::Internal::Type::Union
 
     def initialize(*variants) = variants.each { variant(_1) }
   end
 
   module U1
-    extend CheckoutIntents::Internal::Type::Union
+    extend ::CheckoutIntents::Internal::Type::Union
 
     variant String
     variant Integer
   end
 
   module U2
-    extend CheckoutIntents::Internal::Type::Union
+    extend ::CheckoutIntents::Internal::Type::Union
 
     variant String
     variant Integer
   end
 
-  class M1 < CheckoutIntents::Internal::Type::BaseModel
+  class M1 < ::CheckoutIntents::Internal::Type::BaseModel
     required :a, Integer
   end
 
-  class M2 < CheckoutIntents::Internal::Type::BaseModel
+  class M2 < ::CheckoutIntents::Internal::Type::BaseModel
     required :a, Integer, nil?: true
   end
 
@@ -665,9 +668,9 @@ class CheckoutIntents::Test::BaseModelQoLTest < Minitest::Test
 
   def test_equality
     cases = {
-      [CheckoutIntents::Internal::Type::Unknown, CheckoutIntents::Internal::Type::Unknown] => true,
-      [CheckoutIntents::Internal::Type::Boolean, CheckoutIntents::Internal::Type::Boolean] => true,
-      [CheckoutIntents::Internal::Type::Unknown, CheckoutIntents::Internal::Type::Boolean] => false,
+      [::CheckoutIntents::Internal::Type::Unknown, ::CheckoutIntents::Internal::Type::Unknown] => true,
+      [::CheckoutIntents::Internal::Type::Boolean, ::CheckoutIntents::Internal::Type::Boolean] => true,
+      [::CheckoutIntents::Internal::Type::Unknown, ::CheckoutIntents::Internal::Type::Boolean] => false,
       [E0.new(:a, :b), E0.new(:a, :b)] => true,
       [E0.new(:a, :b), E0.new(:b, :a)] => true,
       [E0.new(:a, :b), E0.new(:b, :c)] => false,
@@ -694,17 +697,17 @@ class CheckoutIntents::Test::BaseModelQoLTest < Minitest::Test
   end
 end
 
-class CheckoutIntents::Test::MetaInfoTest < Minitest::Test
-  A1 = CheckoutIntents::Internal::Type::ArrayOf[Integer, nil?: true, doc: "dog"]
-  H1 = CheckoutIntents::Internal::Type::HashOf[-> { String }, nil?: true, doc: "dawg"]
+class ::CheckoutIntents::Test::MetaInfoTest < Minitest::Test
+  A1 = ::CheckoutIntents::Internal::Type::ArrayOf[Integer, nil?: true, doc: "dog"]
+  H1 = ::CheckoutIntents::Internal::Type::HashOf[-> { String }, nil?: true, doc: "dawg"]
 
-  class M1 < CheckoutIntents::Internal::Type::BaseModel
+  class M1 < ::CheckoutIntents::Internal::Type::BaseModel
     required :a, Integer, doc: "dog"
     optional :b, -> { String }, nil?: true, doc: "dawg"
   end
 
   module U1
-    extend CheckoutIntents::Internal::Type::Union
+    extend ::CheckoutIntents::Internal::Type::Union
 
     variant -> { Integer }, const: 2, doc: "dog"
     variant -> { String }, doc: "dawg"

@@ -2,7 +2,7 @@ module CheckoutIntents
   module Models
     type variant_dimension = { label: String, values: ::Array[String] }
 
-    class VariantDimension < CheckoutIntents::Internal::Type::BaseModel
+    class VariantDimension < ::CheckoutIntents::Internal::Type::BaseModel
       attr_accessor label: String
 
       attr_accessor values: ::Array[String]

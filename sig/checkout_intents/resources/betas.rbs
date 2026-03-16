@@ -1,9 +1,9 @@
 module CheckoutIntents
   module Resources
     class Betas
-      attr_reader checkout_sessions: CheckoutIntents::Resources::Betas::CheckoutSessions
+      attr_reader checkout_sessions: ::CheckoutIntents::Resources::Betas::CheckoutSessions
 
-      def initialize: (client: CheckoutIntents::Client) -> void
+      def initialize: (client: ::CheckoutIntents::Client) -> void
     end
   end
 end

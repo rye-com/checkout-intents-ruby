@@ -9,17 +9,17 @@ class CheckoutIntents::Test::Resources::ShipmentsTest < CheckoutIntents::Test::R
     response = @checkout_intents.shipments.retrieve("id")
 
     assert_pattern do
-      response => CheckoutIntents::Shipment
+      response => ::CheckoutIntents::Shipment
     end
 
     assert_pattern do
       case response
-      in CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped
-      in CheckoutIntents::Shipment::DeliveredShipment
-      in CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed
-      in CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery
-      in CheckoutIntents::Shipment::WithStatusBaseShipmentOrdered
-      in CheckoutIntents::Shipment::WithStatusBaseShipmentCanceled
+      in ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped
+      in ::CheckoutIntents::Shipment::DeliveredShipment
+      in ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed
+      in ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery
+      in ::CheckoutIntents::Shipment::WithStatusBaseShipmentOrdered
+      in ::CheckoutIntents::Shipment::WithStatusBaseShipmentCanceled
       end
     end
   end
@@ -30,24 +30,24 @@ class CheckoutIntents::Test::Resources::ShipmentsTest < CheckoutIntents::Test::R
     response = @checkout_intents.shipments.list
 
     assert_pattern do
-      response => CheckoutIntents::Internal::CursorPagination
+      response => ::CheckoutIntents::Internal::CursorPagination
     end
 
     row = response.to_enum.first
     return if row.nil?
 
     assert_pattern do
-      row => CheckoutIntents::Shipment
+      row => ::CheckoutIntents::Shipment
     end
 
     assert_pattern do
       case row
-      in CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped
-      in CheckoutIntents::Shipment::DeliveredShipment
-      in CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed
-      in CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery
-      in CheckoutIntents::Shipment::WithStatusBaseShipmentOrdered
-      in CheckoutIntents::Shipment::WithStatusBaseShipmentCanceled
+      in ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped
+      in ::CheckoutIntents::Shipment::DeliveredShipment
+      in ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed
+      in ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery
+      in ::CheckoutIntents::Shipment::WithStatusBaseShipmentOrdered
+      in ::CheckoutIntents::Shipment::WithStatusBaseShipmentCanceled
       end
     end
   end

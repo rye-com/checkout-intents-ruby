@@ -9,24 +9,24 @@ class CheckoutIntents::Test::Resources::CheckoutIntents::ShipmentsTest < Checkou
     response = @checkout_intents.checkout_intents.shipments.list("id")
 
     assert_pattern do
-      response => CheckoutIntents::Internal::CursorPagination
+      response => ::CheckoutIntents::Internal::CursorPagination
     end
 
     row = response.to_enum.first
     return if row.nil?
 
     assert_pattern do
-      row => CheckoutIntents::Shipment
+      row => ::CheckoutIntents::Shipment
     end
 
     assert_pattern do
       case row
-      in CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped
-      in CheckoutIntents::Shipment::DeliveredShipment
-      in CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed
-      in CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery
-      in CheckoutIntents::Shipment::WithStatusBaseShipmentOrdered
-      in CheckoutIntents::Shipment::WithStatusBaseShipmentCanceled
+      in ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped
+      in ::CheckoutIntents::Shipment::DeliveredShipment
+      in ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed
+      in ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery
+      in ::CheckoutIntents::Shipment::WithStatusBaseShipmentOrdered
+      in ::CheckoutIntents::Shipment::WithStatusBaseShipmentCanceled
       end
     end
   end

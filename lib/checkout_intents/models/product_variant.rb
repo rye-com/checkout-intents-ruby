@@ -2,7 +2,7 @@
 
 module CheckoutIntents
   module Models
-    class ProductVariant < CheckoutIntents::Internal::Type::BaseModel
+    class ProductVariant < ::CheckoutIntents::Internal::Type::BaseModel
       # @!attribute availability
       #   The availability status of a product.
       #
@@ -12,18 +12,19 @@ module CheckoutIntents
       #   - `backorder`: Product is temporarily out of stock but can be ordered
       #   - `unknown`: Availability could not be determined
       #
-      #   @return [Symbol, CheckoutIntents::Models::ProductAvailability]
-      required :availability, enum: -> { CheckoutIntents::ProductAvailability }
+      #   @return [Symbol, ::CheckoutIntents::Models::ProductAvailability]
+      required :availability, enum: -> { ::CheckoutIntents::ProductAvailability }
 
       # @!attribute dimensions
       #
-      #   @return [Array<CheckoutIntents::Models::VariantSelection>]
-      required :dimensions, -> { CheckoutIntents::Internal::Type::ArrayOf[CheckoutIntents::VariantSelection] }
+      #   @return [Array<::CheckoutIntents::Models::VariantSelection>]
+      required :dimensions,
+               -> { ::CheckoutIntents::Internal::Type::ArrayOf[::CheckoutIntents::VariantSelection] }
 
       # @!attribute images
       #
-      #   @return [Array<CheckoutIntents::Models::ProductImage>]
-      required :images, -> { CheckoutIntents::Internal::Type::ArrayOf[CheckoutIntents::ProductImage] }
+      #   @return [Array<::CheckoutIntents::Models::ProductImage>]
+      required :images, -> { ::CheckoutIntents::Internal::Type::ArrayOf[::CheckoutIntents::ProductImage] }
 
       # @!attribute name
       #
@@ -32,8 +33,8 @@ module CheckoutIntents
 
       # @!attribute price
       #
-      #   @return [CheckoutIntents::Models::Money]
-      required :price, -> { CheckoutIntents::Money }
+      #   @return [::CheckoutIntents::Models::Money]
+      required :price, -> { ::CheckoutIntents::Money }
 
       # @!attribute sku
       #
@@ -42,17 +43,17 @@ module CheckoutIntents
 
       # @!method initialize(availability:, dimensions:, images:, name:, price:, sku:)
       #   Some parameter documentations has been truncated, see
-      #   {CheckoutIntents::Models::ProductVariant} for more details.
+      #   {::CheckoutIntents::Models::ProductVariant} for more details.
       #
-      #   @param availability [Symbol, CheckoutIntents::Models::ProductAvailability] The availability status of a product.
+      #   @param availability [Symbol, ::CheckoutIntents::Models::ProductAvailability] The availability status of a product.
       #
-      #   @param dimensions [Array<CheckoutIntents::Models::VariantSelection>]
+      #   @param dimensions [Array<::CheckoutIntents::Models::VariantSelection>]
       #
-      #   @param images [Array<CheckoutIntents::Models::ProductImage>]
+      #   @param images [Array<::CheckoutIntents::Models::ProductImage>]
       #
       #   @param name [String, nil]
       #
-      #   @param price [CheckoutIntents::Models::Money]
+      #   @param price [::CheckoutIntents::Models::Money]
       #
       #   @param sku [String, nil]
     end

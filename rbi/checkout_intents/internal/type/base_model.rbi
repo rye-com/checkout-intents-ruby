@@ -4,8 +4,8 @@ module CheckoutIntents
   module Internal
     module Type
       class BaseModel
-        extend CheckoutIntents::Internal::Type::Converter
-        extend CheckoutIntents::Internal::Util::SorbetRuntimeSupport
+        extend ::CheckoutIntents::Internal::Type::Converter
+        extend ::CheckoutIntents::Internal::Util::SorbetRuntimeSupport
 
         abstract!
 
@@ -21,8 +21,8 @@ module CheckoutIntents
         OrHash =
           T.type_alias do
             T.any(
-              CheckoutIntents::Internal::Type::BaseModel,
-              CheckoutIntents::Internal::AnyHash
+              ::CheckoutIntents::Internal::Type::BaseModel,
+              ::CheckoutIntents::Internal::AnyHash
             )
           end
 
@@ -31,7 +31,9 @@ module CheckoutIntents
           #
           # Assumes superclass fields are totally defined before fields are accessed /
           # defined on subclasses.
-          sig { params(child: CheckoutIntents::Internal::Type::BaseModel).void }
+          sig do
+            params(child: ::CheckoutIntents::Internal::Type::BaseModel).void
+          end
           def inherited(child)
           end
 
@@ -41,11 +43,11 @@ module CheckoutIntents
               T::Hash[
                 Symbol,
                 T.all(
-                  CheckoutIntents::Internal::Type::BaseModel::KnownField,
+                  ::CheckoutIntents::Internal::Type::BaseModel::KnownField,
                   {
                     type_fn:
                       T.proc.returns(
-                        CheckoutIntents::Internal::Type::Converter::Input
+                        ::CheckoutIntents::Internal::Type::Converter::Input
                       )
                   }
                 )
@@ -61,8 +63,8 @@ module CheckoutIntents
               T::Hash[
                 Symbol,
                 T.all(
-                  CheckoutIntents::Internal::Type::BaseModel::KnownField,
-                  { type: CheckoutIntents::Internal::Type::Converter::Input }
+                  ::CheckoutIntents::Internal::Type::BaseModel::KnownField,
+                  { type: ::CheckoutIntents::Internal::Type::Converter::Input }
                 )
               ]
             )
@@ -85,24 +87,24 @@ module CheckoutIntents
                     enum:
                       T.nilable(
                         T.proc.returns(
-                          CheckoutIntents::Internal::Type::Converter::Input
+                          ::CheckoutIntents::Internal::Type::Converter::Input
                         )
                       ),
                     union:
                       T.nilable(
                         T.proc.returns(
-                          CheckoutIntents::Internal::Type::Converter::Input
+                          ::CheckoutIntents::Internal::Type::Converter::Input
                         )
                       ),
                     api_name: Symbol,
                     nil?: T::Boolean
                   },
                   T.proc.returns(
-                    CheckoutIntents::Internal::Type::Converter::Input
+                    ::CheckoutIntents::Internal::Type::Converter::Input
                   ),
-                  CheckoutIntents::Internal::Type::Converter::Input
+                  ::CheckoutIntents::Internal::Type::Converter::Input
                 ),
-              spec: CheckoutIntents::Internal::AnyHash
+              spec: ::CheckoutIntents::Internal::AnyHash
             ).void
           end
           private def add_field(name_sym, required:, type_info:, spec:)
@@ -114,13 +116,13 @@ module CheckoutIntents
               name_sym: Symbol,
               type_info:
                 T.any(
-                  CheckoutIntents::Internal::AnyHash,
+                  ::CheckoutIntents::Internal::AnyHash,
                   T.proc.returns(
-                    CheckoutIntents::Internal::Type::Converter::Input
+                    ::CheckoutIntents::Internal::Type::Converter::Input
                   ),
-                  CheckoutIntents::Internal::Type::Converter::Input
+                  ::CheckoutIntents::Internal::Type::Converter::Input
                 ),
-              spec: CheckoutIntents::Internal::AnyHash
+              spec: ::CheckoutIntents::Internal::AnyHash
             ).void
           end
           def required(name_sym, type_info, spec = {})
@@ -132,13 +134,13 @@ module CheckoutIntents
               name_sym: Symbol,
               type_info:
                 T.any(
-                  CheckoutIntents::Internal::AnyHash,
+                  ::CheckoutIntents::Internal::AnyHash,
                   T.proc.returns(
-                    CheckoutIntents::Internal::Type::Converter::Input
+                    ::CheckoutIntents::Internal::Type::Converter::Input
                   ),
-                  CheckoutIntents::Internal::Type::Converter::Input
+                  ::CheckoutIntents::Internal::Type::Converter::Input
                 ),
-              spec: CheckoutIntents::Internal::AnyHash
+              spec: ::CheckoutIntents::Internal::AnyHash
             ).void
           end
           def optional(name_sym, type_info, spec = {})
@@ -183,11 +185,11 @@ module CheckoutIntents
               .params(
                 value:
                   T.any(
-                    CheckoutIntents::Internal::Type::BaseModel,
+                    ::CheckoutIntents::Internal::Type::BaseModel,
                     T::Hash[T.anything, T.anything],
                     T.anything
                   ),
-                state: CheckoutIntents::Internal::Type::Converter::CoerceState
+                state: ::CheckoutIntents::Internal::Type::Converter::CoerceState
               )
               .returns(T.any(T.attached_class, T.anything))
           end
@@ -199,7 +201,7 @@ module CheckoutIntents
             override
               .params(
                 value: T.any(T.attached_class, T.anything),
-                state: CheckoutIntents::Internal::Type::Converter::DumpState
+                state: ::CheckoutIntents::Internal::Type::Converter::DumpState
               )
               .returns(T.any(T::Hash[T.anything, T.anything], T.anything))
           end
@@ -216,9 +218,9 @@ module CheckoutIntents
           # @api private
           sig do
             params(
-              model: CheckoutIntents::Internal::Type::BaseModel,
+              model: ::CheckoutIntents::Internal::Type::BaseModel,
               convert: T::Boolean
-            ).returns(CheckoutIntents::Internal::AnyHash)
+            ).returns(::CheckoutIntents::Internal::AnyHash)
           end
           def recursively_to_h(model, convert:)
           end
@@ -242,7 +244,7 @@ module CheckoutIntents
         #
         # This method is not recursive. The returned value is shared by the object, so it
         # should not be mutated.
-        sig { overridable.returns(CheckoutIntents::Internal::AnyHash) }
+        sig { overridable.returns(::CheckoutIntents::Internal::AnyHash) }
         def to_h
         end
 
@@ -254,19 +256,19 @@ module CheckoutIntents
         #
         # This method is not recursive. The returned value is shared by the object, so it
         # should not be mutated.
-        sig { overridable.returns(CheckoutIntents::Internal::AnyHash) }
+        sig { overridable.returns(::CheckoutIntents::Internal::AnyHash) }
         def to_hash
         end
 
         # In addition to the behaviour of `#to_h`, this method will recursively call
         # `#to_h` on nested models.
-        sig { overridable.returns(CheckoutIntents::Internal::AnyHash) }
+        sig { overridable.returns(::CheckoutIntents::Internal::AnyHash) }
         def deep_to_h
         end
 
         sig do
           params(keys: T.nilable(T::Array[Symbol])).returns(
-            CheckoutIntents::Internal::AnyHash
+            ::CheckoutIntents::Internal::AnyHash
           )
         end
         def deconstruct_keys(keys)
@@ -286,7 +288,7 @@ module CheckoutIntents
             data:
               T.any(
                 T::Hash[Symbol, T.anything],
-                CheckoutIntents::Internal::Type::BaseModel
+                ::CheckoutIntents::Internal::Type::BaseModel
               )
           ).returns(T.attached_class)
         end

@@ -16,8 +16,8 @@ module CheckoutIntents
       # We can therefore convert string values to Symbols, but can't convert other
       # values safely.
       module Enum
-        include CheckoutIntents::Internal::Type::Converter
-        include CheckoutIntents::Internal::Util::SorbetRuntimeSupport
+        include ::CheckoutIntents::Internal::Type::Converter
+        include ::CheckoutIntents::Internal::Util::SorbetRuntimeSupport
 
         # All of the valid Symbol values for this enum.
         sig do
@@ -48,7 +48,7 @@ module CheckoutIntents
           override
             .params(
               value: T.any(String, Symbol, T.anything),
-              state: CheckoutIntents::Internal::Type::Converter::CoerceState
+              state: ::CheckoutIntents::Internal::Type::Converter::CoerceState
             )
             .returns(T.any(Symbol, T.anything))
         end
@@ -60,7 +60,7 @@ module CheckoutIntents
           override
             .params(
               value: T.any(Symbol, T.anything),
-              state: CheckoutIntents::Internal::Type::Converter::DumpState
+              state: ::CheckoutIntents::Internal::Type::Converter::DumpState
             )
             .returns(T.any(Symbol, T.anything))
         end

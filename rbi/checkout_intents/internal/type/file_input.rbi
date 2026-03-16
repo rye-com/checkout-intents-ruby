@@ -6,12 +6,12 @@ module CheckoutIntents
       # @api private
       #
       # Either `Pathname` or `StringIO`, or `IO`, or
-      # `CheckoutIntents::Internal::Type::FileInput`.
+      # `::CheckoutIntents::Internal::Type::FileInput`.
       #
       # Note: when `IO` is used, all retries are disabled, since many IO` streams are
       # not rewindable.
       class FileInput
-        extend CheckoutIntents::Internal::Type::Converter
+        extend ::CheckoutIntents::Internal::Type::Converter
 
         abstract!
 
@@ -29,7 +29,7 @@ module CheckoutIntents
             override
               .params(
                 value: T.any(StringIO, String, T.anything),
-                state: CheckoutIntents::Internal::Type::Converter::CoerceState
+                state: ::CheckoutIntents::Internal::Type::Converter::CoerceState
               )
               .returns(T.any(StringIO, T.anything))
           end
@@ -41,7 +41,7 @@ module CheckoutIntents
             override
               .params(
                 value: T.any(Pathname, StringIO, IO, String, T.anything),
-                state: CheckoutIntents::Internal::Type::Converter::DumpState
+                state: ::CheckoutIntents::Internal::Type::Converter::DumpState
               )
               .returns(T.any(Pathname, StringIO, IO, String, T.anything))
           end

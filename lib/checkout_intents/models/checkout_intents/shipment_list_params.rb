@@ -3,7 +3,7 @@
 module CheckoutIntents
   module Models
     module CheckoutIntents
-      # @see CheckoutIntents::Resources::CheckoutIntents::Shipments#list
+      # @see ::CheckoutIntents::Resources::CheckoutIntents::Shipments#list
       class ShipmentListParams < ::CheckoutIntents::Internal::Type::BaseModel
         extend ::CheckoutIntents::Internal::Type::RequestParameters::Converter
         include ::CheckoutIntents::Internal::Type::RequestParameters
@@ -38,7 +38,7 @@ module CheckoutIntents
         #
         #   @param limit [Integer] Maximum number of results to return (default 100)
         #
-        #   @param request_options [CheckoutIntents::RequestOptions, Hash{Symbol=>Object}]
+        #   @param request_options [::CheckoutIntents::RequestOptions, Hash{Symbol=>Object}]
       end
     end
   end

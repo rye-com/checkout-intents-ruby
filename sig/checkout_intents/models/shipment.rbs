@@ -1,15 +1,15 @@
 module CheckoutIntents
   module Models
     type shipment =
-      CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped
-      | CheckoutIntents::Shipment::DeliveredShipment
-      | CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed
-      | CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery
-      | CheckoutIntents::Shipment::WithStatusBaseShipmentOrdered
-      | CheckoutIntents::Shipment::WithStatusBaseShipmentCanceled
+      ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped
+      | ::CheckoutIntents::Shipment::DeliveredShipment
+      | ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed
+      | ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery
+      | ::CheckoutIntents::Shipment::WithStatusBaseShipmentOrdered
+      | ::CheckoutIntents::Shipment::WithStatusBaseShipmentCanceled
 
     module Shipment
-      extend CheckoutIntents::Internal::Type::Union
+      extend ::CheckoutIntents::Internal::Type::Union
 
       type with_status_base_shipment_with_tracking_shipped =
         {
@@ -19,13 +19,13 @@ module CheckoutIntents
           external_id: String,
           marketplace_order_id: String,
           shipped_at: Time,
-          status: CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped::status,
-          tracking: CheckoutIntents::ShipmentTracking,
-          tracking_events: ::Array[CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent],
+          status: ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped::status,
+          tracking: ::CheckoutIntents::ShipmentTracking,
+          tracking_events: ::Array[::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent],
           updated_at: Time
         }
 
-      class WithStatusBaseShipmentWithTrackingShipped < CheckoutIntents::Internal::Type::BaseModel
+      class WithStatusBaseShipmentWithTrackingShipped < ::CheckoutIntents::Internal::Type::BaseModel
         attr_accessor id: String
 
         attr_accessor checkout_intent_id: String
@@ -38,11 +38,11 @@ module CheckoutIntents
 
         attr_accessor shipped_at: Time
 
-        attr_accessor status: CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped::status
+        attr_accessor status: ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped::status
 
-        attr_accessor tracking: CheckoutIntents::ShipmentTracking
+        attr_accessor tracking: ::CheckoutIntents::ShipmentTracking
 
-        attr_accessor tracking_events: ::Array[CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent]
+        attr_accessor tracking_events: ::Array[::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent]
 
         attr_accessor updated_at: Time
 
@@ -53,9 +53,9 @@ module CheckoutIntents
           external_id: String,
           marketplace_order_id: String,
           shipped_at: Time,
-          status: CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped::status,
-          tracking: CheckoutIntents::ShipmentTracking,
-          tracking_events: ::Array[CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent],
+          status: ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped::status,
+          tracking: ::CheckoutIntents::ShipmentTracking,
+          tracking_events: ::Array[::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent],
           updated_at: Time
         ) -> void
 
@@ -66,51 +66,51 @@ module CheckoutIntents
           external_id: String,
           marketplace_order_id: String,
           shipped_at: Time,
-          status: CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped::status,
-          tracking: CheckoutIntents::ShipmentTracking,
-          tracking_events: ::Array[CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent],
+          status: ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped::status,
+          tracking: ::CheckoutIntents::ShipmentTracking,
+          tracking_events: ::Array[::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent],
           updated_at: Time
         }
 
         type status = :shipped
 
         module Status
-          extend CheckoutIntents::Internal::Type::Enum
+          extend ::CheckoutIntents::Internal::Type::Enum
 
           SHIPPED: :shipped
 
-          def self?.values: -> ::Array[CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped::status]
+          def self?.values: -> ::Array[::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped::status]
         end
 
         type tracking_event =
           {
             description: String?,
-            location: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Location,
-            timestamp: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Timestamp?
+            location: ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Location,
+            timestamp: ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Timestamp?
           }
 
-        class TrackingEvent < CheckoutIntents::Internal::Type::BaseModel
+        class TrackingEvent < ::CheckoutIntents::Internal::Type::BaseModel
           attr_accessor description: String?
 
-          attr_accessor location: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Location
+          attr_accessor location: ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Location
 
-          attr_accessor timestamp: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Timestamp?
+          attr_accessor timestamp: ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Timestamp?
 
           def initialize: (
             description: String?,
-            location: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Location,
-            timestamp: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Timestamp?
+            location: ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Location,
+            timestamp: ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Timestamp?
           ) -> void
 
           def to_hash: -> {
             description: String?,
-            location: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Location,
-            timestamp: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Timestamp?
+            location: ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Location,
+            timestamp: ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Timestamp?
           }
 
           type location = { city: String?, country: String?, province: String? }
 
-          class Location < CheckoutIntents::Internal::Type::BaseModel
+          class Location < ::CheckoutIntents::Internal::Type::BaseModel
             attr_accessor city: String?
 
             attr_accessor country: String?
@@ -132,7 +132,7 @@ module CheckoutIntents
 
           type timestamp = { local: String, utc: Time }
 
-          class Timestamp < CheckoutIntents::Internal::Type::BaseModel
+          class Timestamp < ::CheckoutIntents::Internal::Type::BaseModel
             attr_accessor local: String
 
             attr_accessor utc: Time
@@ -153,13 +153,13 @@ module CheckoutIntents
           external_id: String,
           marketplace_order_id: String,
           shipped_at: Time,
-          status: CheckoutIntents::Models::Shipment::DeliveredShipment::status,
-          tracking: CheckoutIntents::ShipmentTracking,
-          tracking_events: ::Array[CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent],
+          status: ::CheckoutIntents::Models::Shipment::DeliveredShipment::status,
+          tracking: ::CheckoutIntents::ShipmentTracking,
+          tracking_events: ::Array[::CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent],
           updated_at: Time
         }
 
-      class DeliveredShipment < CheckoutIntents::Internal::Type::BaseModel
+      class DeliveredShipment < ::CheckoutIntents::Internal::Type::BaseModel
         attr_accessor id: String
 
         attr_accessor checkout_intent_id: String
@@ -174,11 +174,11 @@ module CheckoutIntents
 
         attr_accessor shipped_at: Time
 
-        attr_accessor status: CheckoutIntents::Models::Shipment::DeliveredShipment::status
+        attr_accessor status: ::CheckoutIntents::Models::Shipment::DeliveredShipment::status
 
-        attr_accessor tracking: CheckoutIntents::ShipmentTracking
+        attr_accessor tracking: ::CheckoutIntents::ShipmentTracking
 
-        attr_accessor tracking_events: ::Array[CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent]
+        attr_accessor tracking_events: ::Array[::CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent]
 
         attr_accessor updated_at: Time
 
@@ -190,9 +190,9 @@ module CheckoutIntents
           external_id: String,
           marketplace_order_id: String,
           shipped_at: Time,
-          status: CheckoutIntents::Models::Shipment::DeliveredShipment::status,
-          tracking: CheckoutIntents::ShipmentTracking,
-          tracking_events: ::Array[CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent],
+          status: ::CheckoutIntents::Models::Shipment::DeliveredShipment::status,
+          tracking: ::CheckoutIntents::ShipmentTracking,
+          tracking_events: ::Array[::CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent],
           updated_at: Time
         ) -> void
 
@@ -204,51 +204,51 @@ module CheckoutIntents
           external_id: String,
           marketplace_order_id: String,
           shipped_at: Time,
-          status: CheckoutIntents::Models::Shipment::DeliveredShipment::status,
-          tracking: CheckoutIntents::ShipmentTracking,
-          tracking_events: ::Array[CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent],
+          status: ::CheckoutIntents::Models::Shipment::DeliveredShipment::status,
+          tracking: ::CheckoutIntents::ShipmentTracking,
+          tracking_events: ::Array[::CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent],
           updated_at: Time
         }
 
         type status = :delivered
 
         module Status
-          extend CheckoutIntents::Internal::Type::Enum
+          extend ::CheckoutIntents::Internal::Type::Enum
 
           DELIVERED: :delivered
 
-          def self?.values: -> ::Array[CheckoutIntents::Models::Shipment::DeliveredShipment::status]
+          def self?.values: -> ::Array[::CheckoutIntents::Models::Shipment::DeliveredShipment::status]
         end
 
         type tracking_event =
           {
             description: String?,
-            location: CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Location,
-            timestamp: CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Timestamp?
+            location: ::CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Location,
+            timestamp: ::CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Timestamp?
           }
 
-        class TrackingEvent < CheckoutIntents::Internal::Type::BaseModel
+        class TrackingEvent < ::CheckoutIntents::Internal::Type::BaseModel
           attr_accessor description: String?
 
-          attr_accessor location: CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Location
+          attr_accessor location: ::CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Location
 
-          attr_accessor timestamp: CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Timestamp?
+          attr_accessor timestamp: ::CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Timestamp?
 
           def initialize: (
             description: String?,
-            location: CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Location,
-            timestamp: CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Timestamp?
+            location: ::CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Location,
+            timestamp: ::CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Timestamp?
           ) -> void
 
           def to_hash: -> {
             description: String?,
-            location: CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Location,
-            timestamp: CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Timestamp?
+            location: ::CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Location,
+            timestamp: ::CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Timestamp?
           }
 
           type location = { city: String?, country: String?, province: String? }
 
-          class Location < CheckoutIntents::Internal::Type::BaseModel
+          class Location < ::CheckoutIntents::Internal::Type::BaseModel
             attr_accessor city: String?
 
             attr_accessor country: String?
@@ -270,7 +270,7 @@ module CheckoutIntents
 
           type timestamp = { local: String, utc: Time }
 
-          class Timestamp < CheckoutIntents::Internal::Type::BaseModel
+          class Timestamp < ::CheckoutIntents::Internal::Type::BaseModel
             attr_accessor local: String
 
             attr_accessor utc: Time
@@ -290,13 +290,13 @@ module CheckoutIntents
           external_id: String,
           marketplace_order_id: String,
           shipped_at: Time,
-          status: CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed::status,
-          tracking: CheckoutIntents::ShipmentTracking,
-          tracking_events: ::Array[CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent],
+          status: ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed::status,
+          tracking: ::CheckoutIntents::ShipmentTracking,
+          tracking_events: ::Array[::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent],
           updated_at: Time
         }
 
-      class WithStatusBaseShipmentWithTrackingDelayed < CheckoutIntents::Internal::Type::BaseModel
+      class WithStatusBaseShipmentWithTrackingDelayed < ::CheckoutIntents::Internal::Type::BaseModel
         attr_accessor id: String
 
         attr_accessor checkout_intent_id: String
@@ -309,11 +309,11 @@ module CheckoutIntents
 
         attr_accessor shipped_at: Time
 
-        attr_accessor status: CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed::status
+        attr_accessor status: ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed::status
 
-        attr_accessor tracking: CheckoutIntents::ShipmentTracking
+        attr_accessor tracking: ::CheckoutIntents::ShipmentTracking
 
-        attr_accessor tracking_events: ::Array[CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent]
+        attr_accessor tracking_events: ::Array[::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent]
 
         attr_accessor updated_at: Time
 
@@ -324,9 +324,9 @@ module CheckoutIntents
           external_id: String,
           marketplace_order_id: String,
           shipped_at: Time,
-          status: CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed::status,
-          tracking: CheckoutIntents::ShipmentTracking,
-          tracking_events: ::Array[CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent],
+          status: ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed::status,
+          tracking: ::CheckoutIntents::ShipmentTracking,
+          tracking_events: ::Array[::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent],
           updated_at: Time
         ) -> void
 
@@ -337,51 +337,51 @@ module CheckoutIntents
           external_id: String,
           marketplace_order_id: String,
           shipped_at: Time,
-          status: CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed::status,
-          tracking: CheckoutIntents::ShipmentTracking,
-          tracking_events: ::Array[CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent],
+          status: ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed::status,
+          tracking: ::CheckoutIntents::ShipmentTracking,
+          tracking_events: ::Array[::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent],
           updated_at: Time
         }
 
         type status = :delayed
 
         module Status
-          extend CheckoutIntents::Internal::Type::Enum
+          extend ::CheckoutIntents::Internal::Type::Enum
 
           DELAYED: :delayed
 
-          def self?.values: -> ::Array[CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed::status]
+          def self?.values: -> ::Array[::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed::status]
         end
 
         type tracking_event =
           {
             description: String?,
-            location: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Location,
-            timestamp: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Timestamp?
+            location: ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Location,
+            timestamp: ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Timestamp?
           }
 
-        class TrackingEvent < CheckoutIntents::Internal::Type::BaseModel
+        class TrackingEvent < ::CheckoutIntents::Internal::Type::BaseModel
           attr_accessor description: String?
 
-          attr_accessor location: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Location
+          attr_accessor location: ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Location
 
-          attr_accessor timestamp: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Timestamp?
+          attr_accessor timestamp: ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Timestamp?
 
           def initialize: (
             description: String?,
-            location: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Location,
-            timestamp: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Timestamp?
+            location: ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Location,
+            timestamp: ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Timestamp?
           ) -> void
 
           def to_hash: -> {
             description: String?,
-            location: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Location,
-            timestamp: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Timestamp?
+            location: ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Location,
+            timestamp: ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Timestamp?
           }
 
           type location = { city: String?, country: String?, province: String? }
 
-          class Location < CheckoutIntents::Internal::Type::BaseModel
+          class Location < ::CheckoutIntents::Internal::Type::BaseModel
             attr_accessor city: String?
 
             attr_accessor country: String?
@@ -403,7 +403,7 @@ module CheckoutIntents
 
           type timestamp = { local: String, utc: Time }
 
-          class Timestamp < CheckoutIntents::Internal::Type::BaseModel
+          class Timestamp < ::CheckoutIntents::Internal::Type::BaseModel
             attr_accessor local: String
 
             attr_accessor utc: Time
@@ -423,13 +423,13 @@ module CheckoutIntents
           external_id: String,
           marketplace_order_id: String,
           shipped_at: Time,
-          status: CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::status,
-          tracking: CheckoutIntents::ShipmentTracking,
-          tracking_events: ::Array[CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent],
+          status: ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::status,
+          tracking: ::CheckoutIntents::ShipmentTracking,
+          tracking_events: ::Array[::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent],
           updated_at: Time
         }
 
-      class WithStatusBaseShipmentWithTrackingOutForDelivery < CheckoutIntents::Internal::Type::BaseModel
+      class WithStatusBaseShipmentWithTrackingOutForDelivery < ::CheckoutIntents::Internal::Type::BaseModel
         attr_accessor id: String
 
         attr_accessor checkout_intent_id: String
@@ -442,11 +442,11 @@ module CheckoutIntents
 
         attr_accessor shipped_at: Time
 
-        attr_accessor status: CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::status
+        attr_accessor status: ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::status
 
-        attr_accessor tracking: CheckoutIntents::ShipmentTracking
+        attr_accessor tracking: ::CheckoutIntents::ShipmentTracking
 
-        attr_accessor tracking_events: ::Array[CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent]
+        attr_accessor tracking_events: ::Array[::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent]
 
         attr_accessor updated_at: Time
 
@@ -457,9 +457,9 @@ module CheckoutIntents
           external_id: String,
           marketplace_order_id: String,
           shipped_at: Time,
-          status: CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::status,
-          tracking: CheckoutIntents::ShipmentTracking,
-          tracking_events: ::Array[CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent],
+          status: ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::status,
+          tracking: ::CheckoutIntents::ShipmentTracking,
+          tracking_events: ::Array[::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent],
           updated_at: Time
         ) -> void
 
@@ -470,51 +470,51 @@ module CheckoutIntents
           external_id: String,
           marketplace_order_id: String,
           shipped_at: Time,
-          status: CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::status,
-          tracking: CheckoutIntents::ShipmentTracking,
-          tracking_events: ::Array[CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent],
+          status: ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::status,
+          tracking: ::CheckoutIntents::ShipmentTracking,
+          tracking_events: ::Array[::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent],
           updated_at: Time
         }
 
         type status = :out_for_delivery
 
         module Status
-          extend CheckoutIntents::Internal::Type::Enum
+          extend ::CheckoutIntents::Internal::Type::Enum
 
           OUT_FOR_DELIVERY: :out_for_delivery
 
-          def self?.values: -> ::Array[CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::status]
+          def self?.values: -> ::Array[::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::status]
         end
 
         type tracking_event =
           {
             description: String?,
-            location: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Location,
-            timestamp: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Timestamp?
+            location: ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Location,
+            timestamp: ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Timestamp?
           }
 
-        class TrackingEvent < CheckoutIntents::Internal::Type::BaseModel
+        class TrackingEvent < ::CheckoutIntents::Internal::Type::BaseModel
           attr_accessor description: String?
 
-          attr_accessor location: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Location
+          attr_accessor location: ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Location
 
-          attr_accessor timestamp: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Timestamp?
+          attr_accessor timestamp: ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Timestamp?
 
           def initialize: (
             description: String?,
-            location: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Location,
-            timestamp: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Timestamp?
+            location: ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Location,
+            timestamp: ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Timestamp?
           ) -> void
 
           def to_hash: -> {
             description: String?,
-            location: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Location,
-            timestamp: CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Timestamp?
+            location: ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Location,
+            timestamp: ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Timestamp?
           }
 
           type location = { city: String?, country: String?, province: String? }
 
-          class Location < CheckoutIntents::Internal::Type::BaseModel
+          class Location < ::CheckoutIntents::Internal::Type::BaseModel
             attr_accessor city: String?
 
             attr_accessor country: String?
@@ -536,7 +536,7 @@ module CheckoutIntents
 
           type timestamp = { local: String, utc: Time }
 
-          class Timestamp < CheckoutIntents::Internal::Type::BaseModel
+          class Timestamp < ::CheckoutIntents::Internal::Type::BaseModel
             attr_accessor local: String
 
             attr_accessor utc: Time
@@ -554,11 +554,11 @@ module CheckoutIntents
           checkout_intent_id: String,
           created_at: Time,
           marketplace_order_id: String,
-          status: CheckoutIntents::Models::Shipment::WithStatusBaseShipmentOrdered::status,
+          status: ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentOrdered::status,
           updated_at: Time
         }
 
-      class WithStatusBaseShipmentOrdered < CheckoutIntents::Internal::Type::BaseModel
+      class WithStatusBaseShipmentOrdered < ::CheckoutIntents::Internal::Type::BaseModel
         attr_accessor id: String
 
         attr_accessor checkout_intent_id: String
@@ -567,7 +567,7 @@ module CheckoutIntents
 
         attr_accessor marketplace_order_id: String
 
-        attr_accessor status: CheckoutIntents::Models::Shipment::WithStatusBaseShipmentOrdered::status
+        attr_accessor status: ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentOrdered::status
 
         attr_accessor updated_at: Time
 
@@ -576,7 +576,7 @@ module CheckoutIntents
           checkout_intent_id: String,
           created_at: Time,
           marketplace_order_id: String,
-          status: CheckoutIntents::Models::Shipment::WithStatusBaseShipmentOrdered::status,
+          status: ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentOrdered::status,
           updated_at: Time
         ) -> void
 
@@ -585,18 +585,18 @@ module CheckoutIntents
           checkout_intent_id: String,
           created_at: Time,
           marketplace_order_id: String,
-          status: CheckoutIntents::Models::Shipment::WithStatusBaseShipmentOrdered::status,
+          status: ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentOrdered::status,
           updated_at: Time
         }
 
         type status = :ordered
 
         module Status
-          extend CheckoutIntents::Internal::Type::Enum
+          extend ::CheckoutIntents::Internal::Type::Enum
 
           ORDERED: :ordered
 
-          def self?.values: -> ::Array[CheckoutIntents::Models::Shipment::WithStatusBaseShipmentOrdered::status]
+          def self?.values: -> ::Array[::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentOrdered::status]
         end
       end
 
@@ -606,11 +606,11 @@ module CheckoutIntents
           checkout_intent_id: String,
           created_at: Time,
           marketplace_order_id: String,
-          status: CheckoutIntents::Models::Shipment::WithStatusBaseShipmentCanceled::status,
+          status: ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentCanceled::status,
           updated_at: Time
         }
 
-      class WithStatusBaseShipmentCanceled < CheckoutIntents::Internal::Type::BaseModel
+      class WithStatusBaseShipmentCanceled < ::CheckoutIntents::Internal::Type::BaseModel
         attr_accessor id: String
 
         attr_accessor checkout_intent_id: String
@@ -619,7 +619,7 @@ module CheckoutIntents
 
         attr_accessor marketplace_order_id: String
 
-        attr_accessor status: CheckoutIntents::Models::Shipment::WithStatusBaseShipmentCanceled::status
+        attr_accessor status: ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentCanceled::status
 
         attr_accessor updated_at: Time
 
@@ -628,7 +628,7 @@ module CheckoutIntents
           checkout_intent_id: String,
           created_at: Time,
           marketplace_order_id: String,
-          status: CheckoutIntents::Models::Shipment::WithStatusBaseShipmentCanceled::status,
+          status: ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentCanceled::status,
           updated_at: Time
         ) -> void
 
@@ -637,22 +637,22 @@ module CheckoutIntents
           checkout_intent_id: String,
           created_at: Time,
           marketplace_order_id: String,
-          status: CheckoutIntents::Models::Shipment::WithStatusBaseShipmentCanceled::status,
+          status: ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentCanceled::status,
           updated_at: Time
         }
 
         type status = :canceled
 
         module Status
-          extend CheckoutIntents::Internal::Type::Enum
+          extend ::CheckoutIntents::Internal::Type::Enum
 
           CANCELED: :canceled
 
-          def self?.values: -> ::Array[CheckoutIntents::Models::Shipment::WithStatusBaseShipmentCanceled::status]
+          def self?.values: -> ::Array[::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentCanceled::status]
         end
       end
 
-      def self?.variants: -> ::Array[CheckoutIntents::Models::shipment]
+      def self?.variants: -> ::Array[::CheckoutIntents::Models::shipment]
     end
   end
 end

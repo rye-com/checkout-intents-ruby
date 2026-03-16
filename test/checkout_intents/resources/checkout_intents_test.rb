@@ -24,16 +24,16 @@ class CheckoutIntents::Test::Resources::CheckoutIntentsTest < CheckoutIntents::T
       )
 
     assert_pattern do
-      response => CheckoutIntents::CheckoutIntent
+      response => ::CheckoutIntents::CheckoutIntent
     end
 
     assert_pattern do
       case response
-      in CheckoutIntents::CheckoutIntent::RetrievingOfferCheckoutIntent
-      in CheckoutIntents::CheckoutIntent::AwaitingConfirmationCheckoutIntent
-      in CheckoutIntents::CheckoutIntent::PlacingOrderCheckoutIntent
-      in CheckoutIntents::CheckoutIntent::CompletedCheckoutIntent
-      in CheckoutIntents::CheckoutIntent::FailedCheckoutIntent
+      in ::CheckoutIntents::CheckoutIntent::RetrievingOfferCheckoutIntent
+      in ::CheckoutIntents::CheckoutIntent::AwaitingConfirmationCheckoutIntent
+      in ::CheckoutIntents::CheckoutIntent::PlacingOrderCheckoutIntent
+      in ::CheckoutIntents::CheckoutIntent::CompletedCheckoutIntent
+      in ::CheckoutIntents::CheckoutIntent::FailedCheckoutIntent
       end
     end
   end
@@ -44,16 +44,16 @@ class CheckoutIntents::Test::Resources::CheckoutIntentsTest < CheckoutIntents::T
     response = @checkout_intents.checkout_intents.retrieve("id")
 
     assert_pattern do
-      response => CheckoutIntents::CheckoutIntent
+      response => ::CheckoutIntents::CheckoutIntent
     end
 
     assert_pattern do
       case response
-      in CheckoutIntents::CheckoutIntent::RetrievingOfferCheckoutIntent
-      in CheckoutIntents::CheckoutIntent::AwaitingConfirmationCheckoutIntent
-      in CheckoutIntents::CheckoutIntent::PlacingOrderCheckoutIntent
-      in CheckoutIntents::CheckoutIntent::CompletedCheckoutIntent
-      in CheckoutIntents::CheckoutIntent::FailedCheckoutIntent
+      in ::CheckoutIntents::CheckoutIntent::RetrievingOfferCheckoutIntent
+      in ::CheckoutIntents::CheckoutIntent::AwaitingConfirmationCheckoutIntent
+      in ::CheckoutIntents::CheckoutIntent::PlacingOrderCheckoutIntent
+      in ::CheckoutIntents::CheckoutIntent::CompletedCheckoutIntent
+      in ::CheckoutIntents::CheckoutIntent::FailedCheckoutIntent
       end
     end
   end
@@ -64,23 +64,23 @@ class CheckoutIntents::Test::Resources::CheckoutIntentsTest < CheckoutIntents::T
     response = @checkout_intents.checkout_intents.list
 
     assert_pattern do
-      response => CheckoutIntents::Internal::CursorPagination
+      response => ::CheckoutIntents::Internal::CursorPagination
     end
 
     row = response.to_enum.first
     return if row.nil?
 
     assert_pattern do
-      row => CheckoutIntents::CheckoutIntent
+      row => ::CheckoutIntents::CheckoutIntent
     end
 
     assert_pattern do
       case row
-      in CheckoutIntents::CheckoutIntent::RetrievingOfferCheckoutIntent
-      in CheckoutIntents::CheckoutIntent::AwaitingConfirmationCheckoutIntent
-      in CheckoutIntents::CheckoutIntent::PlacingOrderCheckoutIntent
-      in CheckoutIntents::CheckoutIntent::CompletedCheckoutIntent
-      in CheckoutIntents::CheckoutIntent::FailedCheckoutIntent
+      in ::CheckoutIntents::CheckoutIntent::RetrievingOfferCheckoutIntent
+      in ::CheckoutIntents::CheckoutIntent::AwaitingConfirmationCheckoutIntent
+      in ::CheckoutIntents::CheckoutIntent::PlacingOrderCheckoutIntent
+      in ::CheckoutIntents::CheckoutIntent::CompletedCheckoutIntent
+      in ::CheckoutIntents::CheckoutIntent::FailedCheckoutIntent
       end
     end
   end
@@ -95,16 +95,16 @@ class CheckoutIntents::Test::Resources::CheckoutIntentsTest < CheckoutIntents::T
       )
 
     assert_pattern do
-      response => CheckoutIntents::CheckoutIntent
+      response => ::CheckoutIntents::CheckoutIntent
     end
 
     assert_pattern do
       case response
-      in CheckoutIntents::CheckoutIntent::RetrievingOfferCheckoutIntent
-      in CheckoutIntents::CheckoutIntent::AwaitingConfirmationCheckoutIntent
-      in CheckoutIntents::CheckoutIntent::PlacingOrderCheckoutIntent
-      in CheckoutIntents::CheckoutIntent::CompletedCheckoutIntent
-      in CheckoutIntents::CheckoutIntent::FailedCheckoutIntent
+      in ::CheckoutIntents::CheckoutIntent::RetrievingOfferCheckoutIntent
+      in ::CheckoutIntents::CheckoutIntent::AwaitingConfirmationCheckoutIntent
+      in ::CheckoutIntents::CheckoutIntent::PlacingOrderCheckoutIntent
+      in ::CheckoutIntents::CheckoutIntent::CompletedCheckoutIntent
+      in ::CheckoutIntents::CheckoutIntent::FailedCheckoutIntent
       end
     end
   end
@@ -119,16 +119,16 @@ class CheckoutIntents::Test::Resources::CheckoutIntentsTest < CheckoutIntents::T
       )
 
     assert_pattern do
-      response => CheckoutIntents::CheckoutIntent
+      response => ::CheckoutIntents::CheckoutIntent
     end
 
     assert_pattern do
       case response
-      in CheckoutIntents::CheckoutIntent::RetrievingOfferCheckoutIntent
-      in CheckoutIntents::CheckoutIntent::AwaitingConfirmationCheckoutIntent
-      in CheckoutIntents::CheckoutIntent::PlacingOrderCheckoutIntent
-      in CheckoutIntents::CheckoutIntent::CompletedCheckoutIntent
-      in CheckoutIntents::CheckoutIntent::FailedCheckoutIntent
+      in ::CheckoutIntents::CheckoutIntent::RetrievingOfferCheckoutIntent
+      in ::CheckoutIntents::CheckoutIntent::AwaitingConfirmationCheckoutIntent
+      in ::CheckoutIntents::CheckoutIntent::PlacingOrderCheckoutIntent
+      in ::CheckoutIntents::CheckoutIntent::CompletedCheckoutIntent
+      in ::CheckoutIntents::CheckoutIntent::FailedCheckoutIntent
       end
     end
   end
@@ -155,16 +155,16 @@ class CheckoutIntents::Test::Resources::CheckoutIntentsTest < CheckoutIntents::T
       )
 
     assert_pattern do
-      response => CheckoutIntents::CheckoutIntent
+      response => ::CheckoutIntents::CheckoutIntent
     end
 
     assert_pattern do
       case response
-      in CheckoutIntents::CheckoutIntent::RetrievingOfferCheckoutIntent
-      in CheckoutIntents::CheckoutIntent::AwaitingConfirmationCheckoutIntent
-      in CheckoutIntents::CheckoutIntent::PlacingOrderCheckoutIntent
-      in CheckoutIntents::CheckoutIntent::CompletedCheckoutIntent
-      in CheckoutIntents::CheckoutIntent::FailedCheckoutIntent
+      in ::CheckoutIntents::CheckoutIntent::RetrievingOfferCheckoutIntent
+      in ::CheckoutIntents::CheckoutIntent::AwaitingConfirmationCheckoutIntent
+      in ::CheckoutIntents::CheckoutIntent::PlacingOrderCheckoutIntent
+      in ::CheckoutIntents::CheckoutIntent::CompletedCheckoutIntent
+      in ::CheckoutIntents::CheckoutIntent::FailedCheckoutIntent
       end
     end
   end

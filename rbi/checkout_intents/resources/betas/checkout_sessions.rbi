@@ -13,17 +13,17 @@ module CheckoutIntents
             product_url: String,
             quantity: Integer,
             buyer:
-              CheckoutIntents::Betas::CheckoutSessionCreateParams::Buyer::OrHash,
+              ::CheckoutIntents::Betas::CheckoutSessionCreateParams::Buyer::OrHash,
             constraints:
-              CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints::OrHash,
+              ::CheckoutIntents::Betas::CheckoutSessionCreateParams::Constraints::OrHash,
             discover_promo_codes: T::Boolean,
             layout:
-              CheckoutIntents::Betas::CheckoutSessionCreateParams::Layout::OrSymbol,
+              ::CheckoutIntents::Betas::CheckoutSessionCreateParams::Layout::OrSymbol,
             promo_codes: T::Array[String],
             variant_selections:
-              T::Array[CheckoutIntents::VariantSelection::OrHash],
-            request_options: CheckoutIntents::RequestOptions::OrHash
-          ).returns(CheckoutIntents::CheckoutSession)
+              T::Array[::CheckoutIntents::VariantSelection::OrHash],
+            request_options: ::CheckoutIntents::RequestOptions::OrHash
+          ).returns(::CheckoutIntents::CheckoutSession)
         end
         def create(
           product_url:,
@@ -44,7 +44,7 @@ module CheckoutIntents
 
         # @api private
         sig do
-          params(client: CheckoutIntents::Client).returns(T.attached_class)
+          params(client: ::CheckoutIntents::Client).returns(T.attached_class)
         end
         def self.new(client:)
         end

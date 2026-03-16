@@ -40,9 +40,9 @@ Layout/LineLength:
   AllowedPatterns:
     - "^\\s*#.*$"
     - ^require(_relative)?
-    - "CheckoutIntents::Internal::Type::BaseModel$"
+    - "::CheckoutIntents::Internal::Type::BaseModel$"
     - "^\\s*[A-Z0-9_]+ = :"
-    - "CheckoutIntents::(Models|Resources|Test)::"
+    - "::CheckoutIntents::(Models|Resources|Test)::"
   Max: 110
 
 Layout/MultilineArrayLineBreaks:

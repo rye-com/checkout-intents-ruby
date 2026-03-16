@@ -3,16 +3,16 @@ module CheckoutIntents
     type billing_list_transactions_response =
       {
         id: String,
-        amount: CheckoutIntents::Money,
+        amount: ::CheckoutIntents::Money,
         created_at: Time,
         description: String,
         metadata: ::Hash[Symbol, String]
       }
 
-    class BillingListTransactionsResponse < CheckoutIntents::Internal::Type::BaseModel
+    class BillingListTransactionsResponse < ::CheckoutIntents::Internal::Type::BaseModel
       attr_accessor id: String
 
-      attr_accessor amount: CheckoutIntents::Money
+      attr_accessor amount: ::CheckoutIntents::Money
 
       attr_accessor created_at: Time
 
@@ -26,7 +26,7 @@ module CheckoutIntents
 
       def initialize: (
         id: String,
-        amount: CheckoutIntents::Money,
+        amount: ::CheckoutIntents::Money,
         created_at: Time,
         ?description: String,
         ?metadata: ::Hash[Symbol, String]
@@ -34,7 +34,7 @@ module CheckoutIntents
 
       def to_hash: -> {
         id: String,
-        amount: CheckoutIntents::Money,
+        amount: ::CheckoutIntents::Money,
         created_at: Time,
         description: String,
         metadata: ::Hash[Symbol, String]

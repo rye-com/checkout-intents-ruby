@@ -3,32 +3,32 @@
 module CheckoutIntents
   module Resources
     class CheckoutIntents
-      # @return [CheckoutIntents::Resources::CheckoutIntents::Shipments]
+      # @return [::CheckoutIntents::Resources::CheckoutIntents::Shipments]
       attr_reader :shipments
 
       # Create a checkout intent with the given request body.
       #
       # @overload create(buyer:, product_url:, quantity:, constraints: nil, discover_promo_codes: nil, promo_codes: nil, variant_selections: nil, request_options: {})
       #
-      # @param buyer [CheckoutIntents::Models::Buyer]
+      # @param buyer [::CheckoutIntents::Models::Buyer]
       # @param product_url [String]
       # @param quantity [Integer]
-      # @param constraints [CheckoutIntents::Models::CheckoutIntentCreateParams::Constraints]
+      # @param constraints [::CheckoutIntents::Models::CheckoutIntentCreateParams::Constraints]
       # @param discover_promo_codes [Boolean]
       # @param promo_codes [Array<String>]
-      # @param variant_selections [Array<CheckoutIntents::Models::VariantSelection>]
-      # @param request_options [CheckoutIntents::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param variant_selections [Array<::CheckoutIntents::Models::VariantSelection>]
+      # @param request_options [::CheckoutIntents::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [CheckoutIntents::Models::CheckoutIntent::RetrievingOfferCheckoutIntent, CheckoutIntents::Models::CheckoutIntent::AwaitingConfirmationCheckoutIntent, CheckoutIntents::Models::CheckoutIntent::PlacingOrderCheckoutIntent, CheckoutIntents::Models::CheckoutIntent::CompletedCheckoutIntent, CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent]
+      # @return [::CheckoutIntents::Models::CheckoutIntent::RetrievingOfferCheckoutIntent, ::CheckoutIntents::Models::CheckoutIntent::AwaitingConfirmationCheckoutIntent, ::CheckoutIntents::Models::CheckoutIntent::PlacingOrderCheckoutIntent, ::CheckoutIntents::Models::CheckoutIntent::CompletedCheckoutIntent, ::CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent]
       #
-      # @see CheckoutIntents::Models::CheckoutIntentCreateParams
+      # @see ::CheckoutIntents::Models::CheckoutIntentCreateParams
       def create(params)
-        parsed, options = CheckoutIntents::CheckoutIntentCreateParams.dump_request(params)
+        parsed, options = ::CheckoutIntents::CheckoutIntentCreateParams.dump_request(params)
         @client.request(
           method: :post,
           path: "api/v1/checkout-intents",
           body: parsed,
-          model: CheckoutIntents::CheckoutIntent,
+          model: ::CheckoutIntents::CheckoutIntent,
           options: options
         )
       end
@@ -41,16 +41,16 @@ module CheckoutIntents
       #
       # @param id [String] The id of the checkout intent to look up
       #
-      # @param request_options [CheckoutIntents::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::CheckoutIntents::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [CheckoutIntents::Models::CheckoutIntent::RetrievingOfferCheckoutIntent, CheckoutIntents::Models::CheckoutIntent::AwaitingConfirmationCheckoutIntent, CheckoutIntents::Models::CheckoutIntent::PlacingOrderCheckoutIntent, CheckoutIntents::Models::CheckoutIntent::CompletedCheckoutIntent, CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent]
+      # @return [::CheckoutIntents::Models::CheckoutIntent::RetrievingOfferCheckoutIntent, ::CheckoutIntents::Models::CheckoutIntent::AwaitingConfirmationCheckoutIntent, ::CheckoutIntents::Models::CheckoutIntent::PlacingOrderCheckoutIntent, ::CheckoutIntents::Models::CheckoutIntent::CompletedCheckoutIntent, ::CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent]
       #
-      # @see CheckoutIntents::Models::CheckoutIntentRetrieveParams
+      # @see ::CheckoutIntents::Models::CheckoutIntentRetrieveParams
       def retrieve(id, params = {})
         @client.request(
           method: :get,
           path: ["api/v1/checkout-intents/%1$s", id],
-          model: CheckoutIntents::CheckoutIntent,
+          model: ::CheckoutIntents::CheckoutIntent,
           options: params[:request_options]
         )
       end
@@ -70,22 +70,22 @@ module CheckoutIntents
       #
       # @param limit [Integer] Maximum number of results to return (default 100)
       #
-      # @param state [Array<Symbol, CheckoutIntents::Models::CheckoutIntentListParams::State>]
+      # @param state [Array<Symbol, ::CheckoutIntents::Models::CheckoutIntentListParams::State>]
       #
-      # @param request_options [CheckoutIntents::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::CheckoutIntents::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [CheckoutIntents::Internal::CursorPagination<CheckoutIntents::Models::CheckoutIntent::RetrievingOfferCheckoutIntent, CheckoutIntents::Models::CheckoutIntent::AwaitingConfirmationCheckoutIntent, CheckoutIntents::Models::CheckoutIntent::PlacingOrderCheckoutIntent, CheckoutIntents::Models::CheckoutIntent::CompletedCheckoutIntent, CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent>]
+      # @return [::CheckoutIntents::Internal::CursorPagination<::CheckoutIntents::Models::CheckoutIntent::RetrievingOfferCheckoutIntent, ::CheckoutIntents::Models::CheckoutIntent::AwaitingConfirmationCheckoutIntent, ::CheckoutIntents::Models::CheckoutIntent::PlacingOrderCheckoutIntent, ::CheckoutIntents::Models::CheckoutIntent::CompletedCheckoutIntent, ::CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent>]
       #
-      # @see CheckoutIntents::Models::CheckoutIntentListParams
+      # @see ::CheckoutIntents::Models::CheckoutIntentListParams
       def list(params = {})
-        parsed, options = CheckoutIntents::CheckoutIntentListParams.dump_request(params)
-        query = CheckoutIntents::Internal::Util.encode_query_params(parsed)
+        parsed, options = ::CheckoutIntents::CheckoutIntentListParams.dump_request(params)
+        query = ::CheckoutIntents::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "api/v1/checkout-intents",
           query: query,
-          page: CheckoutIntents::Internal::CursorPagination,
-          model: CheckoutIntents::CheckoutIntent,
+          page: ::CheckoutIntents::Internal::CursorPagination,
+          model: ::CheckoutIntents::CheckoutIntent,
           options: options
         )
       end
@@ -96,20 +96,20 @@ module CheckoutIntents
       #
       # @param id [String] The id of the checkout intent to add payment details to
       #
-      # @param payment_method [CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod, CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod, CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod]
+      # @param payment_method [::CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod]
       #
-      # @param request_options [CheckoutIntents::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::CheckoutIntents::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [CheckoutIntents::Models::CheckoutIntent::RetrievingOfferCheckoutIntent, CheckoutIntents::Models::CheckoutIntent::AwaitingConfirmationCheckoutIntent, CheckoutIntents::Models::CheckoutIntent::PlacingOrderCheckoutIntent, CheckoutIntents::Models::CheckoutIntent::CompletedCheckoutIntent, CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent]
+      # @return [::CheckoutIntents::Models::CheckoutIntent::RetrievingOfferCheckoutIntent, ::CheckoutIntents::Models::CheckoutIntent::AwaitingConfirmationCheckoutIntent, ::CheckoutIntents::Models::CheckoutIntent::PlacingOrderCheckoutIntent, ::CheckoutIntents::Models::CheckoutIntent::CompletedCheckoutIntent, ::CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent]
       #
-      # @see CheckoutIntents::Models::CheckoutIntentAddPaymentParams
+      # @see ::CheckoutIntents::Models::CheckoutIntentAddPaymentParams
       def add_payment(id, params)
-        parsed, options = CheckoutIntents::CheckoutIntentAddPaymentParams.dump_request(params)
+        parsed, options = ::CheckoutIntents::CheckoutIntentAddPaymentParams.dump_request(params)
         @client.request(
           method: :post,
           path: ["api/v1/checkout-intents/%1$s/payment", id],
           body: parsed,
-          model: CheckoutIntents::CheckoutIntent,
+          model: ::CheckoutIntents::CheckoutIntent,
           options: options
         )
       end
@@ -123,20 +123,20 @@ module CheckoutIntents
       #
       # @param id [String] The id of the checkout intent to confirm
       #
-      # @param payment_method [CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod, CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod, CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod]
+      # @param payment_method [::CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod]
       #
-      # @param request_options [CheckoutIntents::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param request_options [::CheckoutIntents::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [CheckoutIntents::Models::CheckoutIntent::RetrievingOfferCheckoutIntent, CheckoutIntents::Models::CheckoutIntent::AwaitingConfirmationCheckoutIntent, CheckoutIntents::Models::CheckoutIntent::PlacingOrderCheckoutIntent, CheckoutIntents::Models::CheckoutIntent::CompletedCheckoutIntent, CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent]
+      # @return [::CheckoutIntents::Models::CheckoutIntent::RetrievingOfferCheckoutIntent, ::CheckoutIntents::Models::CheckoutIntent::AwaitingConfirmationCheckoutIntent, ::CheckoutIntents::Models::CheckoutIntent::PlacingOrderCheckoutIntent, ::CheckoutIntents::Models::CheckoutIntent::CompletedCheckoutIntent, ::CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent]
       #
-      # @see CheckoutIntents::Models::CheckoutIntentConfirmParams
+      # @see ::CheckoutIntents::Models::CheckoutIntentConfirmParams
       def confirm(id, params)
-        parsed, options = CheckoutIntents::CheckoutIntentConfirmParams.dump_request(params)
+        parsed, options = ::CheckoutIntents::CheckoutIntentConfirmParams.dump_request(params)
         @client.request(
           method: :post,
           path: ["api/v1/checkout-intents/%1$s/confirm", id],
           body: parsed,
-          model: CheckoutIntents::CheckoutIntent,
+          model: ::CheckoutIntents::CheckoutIntent,
           options: options
         )
       end
@@ -149,36 +149,36 @@ module CheckoutIntents
       #
       # @overload purchase(buyer:, payment_method:, product_url:, quantity:, constraints: nil, discover_promo_codes: nil, promo_codes: nil, variant_selections: nil, request_options: {})
       #
-      # @param buyer [CheckoutIntents::Models::Buyer]
-      # @param payment_method [CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod, CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod, CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod]
+      # @param buyer [::CheckoutIntents::Models::Buyer]
+      # @param payment_method [::CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod]
       # @param product_url [String]
       # @param quantity [Integer]
-      # @param constraints [CheckoutIntents::Models::CheckoutIntentPurchaseParams::Constraints]
+      # @param constraints [::CheckoutIntents::Models::CheckoutIntentPurchaseParams::Constraints]
       # @param discover_promo_codes [Boolean]
       # @param promo_codes [Array<String>]
-      # @param variant_selections [Array<CheckoutIntents::Models::VariantSelection>]
-      # @param request_options [CheckoutIntents::RequestOptions, Hash{Symbol=>Object}, nil]
+      # @param variant_selections [Array<::CheckoutIntents::Models::VariantSelection>]
+      # @param request_options [::CheckoutIntents::RequestOptions, Hash{Symbol=>Object}, nil]
       #
-      # @return [CheckoutIntents::Models::CheckoutIntent::RetrievingOfferCheckoutIntent, CheckoutIntents::Models::CheckoutIntent::AwaitingConfirmationCheckoutIntent, CheckoutIntents::Models::CheckoutIntent::PlacingOrderCheckoutIntent, CheckoutIntents::Models::CheckoutIntent::CompletedCheckoutIntent, CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent]
+      # @return [::CheckoutIntents::Models::CheckoutIntent::RetrievingOfferCheckoutIntent, ::CheckoutIntents::Models::CheckoutIntent::AwaitingConfirmationCheckoutIntent, ::CheckoutIntents::Models::CheckoutIntent::PlacingOrderCheckoutIntent, ::CheckoutIntents::Models::CheckoutIntent::CompletedCheckoutIntent, ::CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent]
       #
-      # @see CheckoutIntents::Models::CheckoutIntentPurchaseParams
+      # @see ::CheckoutIntents::Models::CheckoutIntentPurchaseParams
       def purchase(params)
-        parsed, options = CheckoutIntents::CheckoutIntentPurchaseParams.dump_request(params)
+        parsed, options = ::CheckoutIntents::CheckoutIntentPurchaseParams.dump_request(params)
         @client.request(
           method: :post,
           path: "api/v1/checkout-intents/purchase",
           body: parsed,
-          model: CheckoutIntents::CheckoutIntent,
+          model: ::CheckoutIntents::CheckoutIntent,
           options: options
         )
       end
 
       # @api private
       #
-      # @param client [CheckoutIntents::Client]
+      # @param client [::CheckoutIntents::Client]
       def initialize(client:)
         @client = client
-        @shipments = CheckoutIntents::Resources::CheckoutIntents::Shipments.new(client: client)
+        @shipments = ::CheckoutIntents::Resources::CheckoutIntents::Shipments.new(client: client)
       end
     end
   end

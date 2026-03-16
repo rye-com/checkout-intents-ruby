@@ -2,12 +2,12 @@
 
 module CheckoutIntents
   module Models
-    class BrandRetrieveResponse < CheckoutIntents::Internal::Type::BaseModel
+    class BrandRetrieveResponse < ::CheckoutIntents::Internal::Type::BaseModel
       OrHash =
         T.type_alias do
           T.any(
-            CheckoutIntents::Models::BrandRetrieveResponse,
-            CheckoutIntents::Internal::AnyHash
+            ::CheckoutIntents::Models::BrandRetrieveResponse,
+            ::CheckoutIntents::Internal::AnyHash
           )
         end
 
@@ -18,7 +18,7 @@ module CheckoutIntents
       # Indicates what ecommerce platform the brand uses.
       sig do
         returns(
-          CheckoutIntents::Models::BrandRetrieveResponse::Marketplace::TaggedSymbol
+          ::CheckoutIntents::Models::BrandRetrieveResponse::Marketplace::TaggedSymbol
         )
       end
       attr_accessor :marketplace
@@ -32,7 +32,7 @@ module CheckoutIntents
         params(
           id: String,
           marketplace:
-            CheckoutIntents::Models::BrandRetrieveResponse::Marketplace::OrSymbol,
+            ::CheckoutIntents::Models::BrandRetrieveResponse::Marketplace::OrSymbol,
           supported: T::Boolean
         ).returns(T.attached_class)
       end
@@ -52,7 +52,7 @@ module CheckoutIntents
           {
             id: String,
             marketplace:
-              CheckoutIntents::Models::BrandRetrieveResponse::Marketplace::TaggedSymbol,
+              ::CheckoutIntents::Models::BrandRetrieveResponse::Marketplace::TaggedSymbol,
             supported: T::Boolean
           }
         )
@@ -62,13 +62,13 @@ module CheckoutIntents
 
       # Indicates what ecommerce platform the brand uses.
       module Marketplace
-        extend CheckoutIntents::Internal::Type::Enum
+        extend ::CheckoutIntents::Internal::Type::Enum
 
         TaggedSymbol =
           T.type_alias do
             T.all(
               Symbol,
-              CheckoutIntents::Models::BrandRetrieveResponse::Marketplace
+              ::CheckoutIntents::Models::BrandRetrieveResponse::Marketplace
             )
           end
         OrSymbol = T.type_alias { T.any(Symbol, String) }
@@ -76,28 +76,28 @@ module CheckoutIntents
         AMAZON =
           T.let(
             :AMAZON,
-            CheckoutIntents::Models::BrandRetrieveResponse::Marketplace::TaggedSymbol
+            ::CheckoutIntents::Models::BrandRetrieveResponse::Marketplace::TaggedSymbol
           )
         SHOPIFY =
           T.let(
             :SHOPIFY,
-            CheckoutIntents::Models::BrandRetrieveResponse::Marketplace::TaggedSymbol
+            ::CheckoutIntents::Models::BrandRetrieveResponse::Marketplace::TaggedSymbol
           )
         BESTBUY =
           T.let(
             :BESTBUY,
-            CheckoutIntents::Models::BrandRetrieveResponse::Marketplace::TaggedSymbol
+            ::CheckoutIntents::Models::BrandRetrieveResponse::Marketplace::TaggedSymbol
           )
         UNKNOWN =
           T.let(
             :UNKNOWN,
-            CheckoutIntents::Models::BrandRetrieveResponse::Marketplace::TaggedSymbol
+            ::CheckoutIntents::Models::BrandRetrieveResponse::Marketplace::TaggedSymbol
           )
 
         sig do
           override.returns(
             T::Array[
-              CheckoutIntents::Models::BrandRetrieveResponse::Marketplace::TaggedSymbol
+              ::CheckoutIntents::Models::BrandRetrieveResponse::Marketplace::TaggedSymbol
             ]
           )
         end

@@ -2,12 +2,12 @@
 
 module CheckoutIntents
   module Models
-    class ShipmentTracking < CheckoutIntents::Internal::Type::BaseModel
+    class ShipmentTracking < ::CheckoutIntents::Internal::Type::BaseModel
       OrHash =
         T.type_alias do
           T.any(
-            CheckoutIntents::ShipmentTracking,
-            CheckoutIntents::Internal::AnyHash
+            ::CheckoutIntents::ShipmentTracking,
+            ::CheckoutIntents::Internal::AnyHash
           )
         end
 
@@ -18,14 +18,14 @@ module CheckoutIntents
       attr_accessor :carrier_name
 
       sig do
-        returns(T.nilable(CheckoutIntents::ShipmentTracking::DeliveryDate))
+        returns(T.nilable(::CheckoutIntents::ShipmentTracking::DeliveryDate))
       end
       attr_reader :delivery_date
 
       sig do
         params(
           delivery_date:
-            T.nilable(CheckoutIntents::ShipmentTracking::DeliveryDate::OrHash)
+            T.nilable(::CheckoutIntents::ShipmentTracking::DeliveryDate::OrHash)
         ).void
       end
       attr_writer :delivery_date
@@ -38,7 +38,9 @@ module CheckoutIntents
           number: T.nilable(String),
           carrier_name: T.nilable(String),
           delivery_date:
-            T.nilable(CheckoutIntents::ShipmentTracking::DeliveryDate::OrHash),
+            T.nilable(
+              ::CheckoutIntents::ShipmentTracking::DeliveryDate::OrHash
+            ),
           url: T.nilable(String)
         ).returns(T.attached_class)
       end
@@ -51,7 +53,7 @@ module CheckoutIntents
             number: T.nilable(String),
             carrier_name: T.nilable(String),
             delivery_date:
-              T.nilable(CheckoutIntents::ShipmentTracking::DeliveryDate),
+              T.nilable(::CheckoutIntents::ShipmentTracking::DeliveryDate),
             url: T.nilable(String)
           }
         )
@@ -59,12 +61,12 @@ module CheckoutIntents
       def to_hash
       end
 
-      class DeliveryDate < CheckoutIntents::Internal::Type::BaseModel
+      class DeliveryDate < ::CheckoutIntents::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
             T.any(
-              CheckoutIntents::ShipmentTracking::DeliveryDate,
-              CheckoutIntents::Internal::AnyHash
+              ::CheckoutIntents::ShipmentTracking::DeliveryDate,
+              ::CheckoutIntents::Internal::AnyHash
             )
           end
 
