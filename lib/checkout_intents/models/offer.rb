@@ -97,15 +97,41 @@ module CheckoutIntents
           #   @return [::CheckoutIntents::Models::Money]
           required :cost, -> { ::CheckoutIntents::Money }
 
+          # @!attribute delivery_estimate
+          #
+          #   @return [::CheckoutIntents::Models::Offer::Shipping::AvailableOption::DeliveryEstimate, nil]
+          optional :delivery_estimate,
+                   -> { ::CheckoutIntents::Offer::Shipping::AvailableOption::DeliveryEstimate },
+                   api_name: :deliveryEstimate,
+                   nil?: true
+
           # @!attribute discount
           #
           #   @return [::CheckoutIntents::Models::Money, nil]
           optional :discount, -> { ::CheckoutIntents::Money }
 
-          # @!method initialize(id:, cost:, discount: nil)
+          # @!method initialize(id:, cost:, delivery_estimate: nil, discount: nil)
           #   @param id [String]
           #   @param cost [::CheckoutIntents::Models::Money]
+          #   @param delivery_estimate [::CheckoutIntents::Models::Offer::Shipping::AvailableOption::DeliveryEstimate, nil]
           #   @param discount [::CheckoutIntents::Models::Money]
+
+          # @see ::CheckoutIntents::Models::Offer::Shipping::AvailableOption#delivery_estimate
+          class DeliveryEstimate < ::CheckoutIntents::Internal::Type::BaseModel
+            # @!attribute earliest
+            #
+            #   @return [Time]
+            required :earliest, Time
+
+            # @!attribute latest
+            #
+            #   @return [Time]
+            required :latest, Time
+
+            # @!method initialize(earliest:, latest:)
+            #   @param earliest [Time]
+            #   @param latest [Time]
+          end
         end
       end
     end

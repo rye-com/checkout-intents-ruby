@@ -98,11 +98,6 @@ module CheckoutIntents
       end
 
       class CompletedCheckoutIntent < ::CheckoutIntents::Models::BaseCheckoutIntent
-        # @!attribute estimated_delivery_date
-        #
-        #   @return [Time, nil]
-        required :estimated_delivery_date, Time, api_name: :estimatedDeliveryDate, nil?: true
-
         # @!attribute offer
         #
         #   @return [::CheckoutIntents::Models::Offer]
@@ -123,12 +118,18 @@ module CheckoutIntents
         #   @return [Symbol, ::CheckoutIntents::Models::CheckoutIntent::CompletedCheckoutIntent::State]
         required :state, enum: -> { ::CheckoutIntents::CheckoutIntent::CompletedCheckoutIntent::State }
 
-        # @!method initialize(estimated_delivery_date:, offer:, order_id:, payment_method:, state:)
-        #   @param estimated_delivery_date [Time, nil]
+        # @!attribute estimated_delivery_date
+        #   @deprecated
+        #
+        #   @return [Time, nil]
+        optional :estimated_delivery_date, Time, api_name: :estimatedDeliveryDate, nil?: true
+
+        # @!method initialize(offer:, order_id:, payment_method:, state:, estimated_delivery_date: nil)
         #   @param offer [::CheckoutIntents::Models::Offer]
         #   @param order_id [String, nil]
         #   @param payment_method [::CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod]
         #   @param state [Symbol, ::CheckoutIntents::Models::CheckoutIntent::CompletedCheckoutIntent::State]
+        #   @param estimated_delivery_date [Time, nil]
 
         module State
           extend ::CheckoutIntents::Internal::Type::Enum

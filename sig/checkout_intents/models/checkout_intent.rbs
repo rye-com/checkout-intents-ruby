@@ -137,18 +137,14 @@ module CheckoutIntents
 
       type completed_checkout_intent =
         {
-          estimated_delivery_date: Time?,
           offer: ::CheckoutIntents::Offer,
           order_id: String?,
           payment_method: ::CheckoutIntents::Models::payment_method,
-          state: ::CheckoutIntents::Models::CheckoutIntent::CompletedCheckoutIntent::state
+          state: ::CheckoutIntents::Models::CheckoutIntent::CompletedCheckoutIntent::state,
+          estimated_delivery_date: Time?
         }
 
       class CompletedCheckoutIntent < ::CheckoutIntents::Models::BaseCheckoutIntent
-        def estimated_delivery_date: -> Time?
-
-        def estimated_delivery_date=: (Time? _) -> Time?
-
         def offer: -> ::CheckoutIntents::Offer
 
         def offer=: (::CheckoutIntents::Offer _) -> ::CheckoutIntents::Offer
@@ -169,20 +165,24 @@ module CheckoutIntents
           ::CheckoutIntents::Models::CheckoutIntent::CompletedCheckoutIntent::state _
         ) -> ::CheckoutIntents::Models::CheckoutIntent::CompletedCheckoutIntent::state
 
+        def estimated_delivery_date: -> Time?
+
+        def estimated_delivery_date=: (Time? _) -> Time?
+
         def initialize: (
-          estimated_delivery_date: Time?,
           offer: ::CheckoutIntents::Offer,
           order_id: String?,
           payment_method: ::CheckoutIntents::Models::payment_method,
-          state: ::CheckoutIntents::Models::CheckoutIntent::CompletedCheckoutIntent::state
+          state: ::CheckoutIntents::Models::CheckoutIntent::CompletedCheckoutIntent::state,
+          ?estimated_delivery_date: Time?
         ) -> void
 
         def to_hash: -> {
-          estimated_delivery_date: Time?,
           offer: ::CheckoutIntents::Offer,
           order_id: String?,
           payment_method: ::CheckoutIntents::Models::payment_method,
-          state: ::CheckoutIntents::Models::CheckoutIntent::CompletedCheckoutIntent::state
+          state: ::CheckoutIntents::Models::CheckoutIntent::CompletedCheckoutIntent::state,
+          estimated_delivery_date: Time?
         }
 
         type state = :completed

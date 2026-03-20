@@ -277,9 +277,6 @@ module CheckoutIntents
             )
           end
 
-        sig { returns(T.nilable(Time)) }
-        attr_accessor :estimated_delivery_date
-
         sig { returns(::CheckoutIntents::Offer) }
         attr_reader :offer
 
@@ -299,9 +296,11 @@ module CheckoutIntents
         end
         attr_accessor :state
 
+        sig { returns(T.nilable(Time)) }
+        attr_accessor :estimated_delivery_date
+
         sig do
           params(
-            estimated_delivery_date: T.nilable(Time),
             offer: ::CheckoutIntents::Offer::OrHash,
             order_id: T.nilable(String),
             payment_method:
@@ -313,27 +312,28 @@ module CheckoutIntents
                 ::CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::OrHash
               ),
             state:
-              ::CheckoutIntents::CheckoutIntent::CompletedCheckoutIntent::State::OrSymbol
+              ::CheckoutIntents::CheckoutIntent::CompletedCheckoutIntent::State::OrSymbol,
+            estimated_delivery_date: T.nilable(Time)
           ).returns(T.attached_class)
         end
         def self.new(
-          estimated_delivery_date:,
           offer:,
           order_id:,
           payment_method:,
-          state:
+          state:,
+          estimated_delivery_date: nil
         )
         end
 
         sig do
           override.returns(
             {
-              estimated_delivery_date: T.nilable(Time),
               offer: ::CheckoutIntents::Offer,
               order_id: T.nilable(String),
               payment_method: ::CheckoutIntents::PaymentMethod::Variants,
               state:
-                ::CheckoutIntents::CheckoutIntent::CompletedCheckoutIntent::State::TaggedSymbol
+                ::CheckoutIntents::CheckoutIntent::CompletedCheckoutIntent::State::TaggedSymbol,
+              estimated_delivery_date: T.nilable(Time)
             }
           )
         end

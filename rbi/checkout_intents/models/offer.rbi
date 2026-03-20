@@ -191,6 +191,25 @@ module CheckoutIntents
           sig { params(cost: ::CheckoutIntents::Money::OrHash).void }
           attr_writer :cost
 
+          sig do
+            returns(
+              T.nilable(
+                ::CheckoutIntents::Offer::Shipping::AvailableOption::DeliveryEstimate
+              )
+            )
+          end
+          attr_reader :delivery_estimate
+
+          sig do
+            params(
+              delivery_estimate:
+                T.nilable(
+                  ::CheckoutIntents::Offer::Shipping::AvailableOption::DeliveryEstimate::OrHash
+                )
+            ).void
+          end
+          attr_writer :delivery_estimate
+
           sig { returns(T.nilable(::CheckoutIntents::Money)) }
           attr_reader :discount
 
@@ -201,10 +220,14 @@ module CheckoutIntents
             params(
               id: String,
               cost: ::CheckoutIntents::Money::OrHash,
+              delivery_estimate:
+                T.nilable(
+                  ::CheckoutIntents::Offer::Shipping::AvailableOption::DeliveryEstimate::OrHash
+                ),
               discount: ::CheckoutIntents::Money::OrHash
             ).returns(T.attached_class)
           end
-          def self.new(id:, cost:, discount: nil)
+          def self.new(id:, cost:, delivery_estimate: nil, discount: nil)
           end
 
           sig do
@@ -212,11 +235,41 @@ module CheckoutIntents
               {
                 id: String,
                 cost: ::CheckoutIntents::Money,
+                delivery_estimate:
+                  T.nilable(
+                    ::CheckoutIntents::Offer::Shipping::AvailableOption::DeliveryEstimate
+                  ),
                 discount: ::CheckoutIntents::Money
               }
             )
           end
           def to_hash
+          end
+
+          class DeliveryEstimate < ::CheckoutIntents::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  ::CheckoutIntents::Offer::Shipping::AvailableOption::DeliveryEstimate,
+                  ::CheckoutIntents::Internal::AnyHash
+                )
+              end
+
+            sig { returns(Time) }
+            attr_accessor :earliest
+
+            sig { returns(Time) }
+            attr_accessor :latest
+
+            sig do
+              params(earliest: Time, latest: Time).returns(T.attached_class)
+            end
+            def self.new(earliest:, latest:)
+            end
+
+            sig { override.returns({ earliest: Time, latest: Time }) }
+            def to_hash
+            end
           end
         end
       end

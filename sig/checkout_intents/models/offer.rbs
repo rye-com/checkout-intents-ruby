@@ -105,6 +105,7 @@ module CheckoutIntents
           {
             id: String,
             cost: ::CheckoutIntents::Money,
+            delivery_estimate: ::CheckoutIntents::Offer::Shipping::AvailableOption::DeliveryEstimate?,
             discount: ::CheckoutIntents::Money
           }
 
@@ -113,6 +114,8 @@ module CheckoutIntents
 
           attr_accessor cost: ::CheckoutIntents::Money
 
+          attr_accessor delivery_estimate: ::CheckoutIntents::Offer::Shipping::AvailableOption::DeliveryEstimate?
+
           attr_reader discount: ::CheckoutIntents::Money?
 
           def discount=: (::CheckoutIntents::Money) -> ::CheckoutIntents::Money
@@ -120,14 +123,28 @@ module CheckoutIntents
           def initialize: (
             id: String,
             cost: ::CheckoutIntents::Money,
+            ?delivery_estimate: ::CheckoutIntents::Offer::Shipping::AvailableOption::DeliveryEstimate?,
             ?discount: ::CheckoutIntents::Money
           ) -> void
 
           def to_hash: -> {
             id: String,
             cost: ::CheckoutIntents::Money,
+            delivery_estimate: ::CheckoutIntents::Offer::Shipping::AvailableOption::DeliveryEstimate?,
             discount: ::CheckoutIntents::Money
           }
+
+          type delivery_estimate = { earliest: Time, latest: Time }
+
+          class DeliveryEstimate < ::CheckoutIntents::Internal::Type::BaseModel
+            attr_accessor earliest: Time
+
+            attr_accessor latest: Time
+
+            def initialize: (earliest: Time, latest: Time) -> void
+
+            def to_hash: -> { earliest: Time, latest: Time }
+          end
         end
       end
     end
