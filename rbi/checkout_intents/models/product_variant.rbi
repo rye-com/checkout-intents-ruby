@@ -11,6 +11,9 @@ module CheckoutIntents
           )
         end
 
+      sig { returns(T.nilable(String)) }
+      attr_accessor :id
+
       # The availability status of a product.
       #
       # - `in_stock`: Product is available for immediate purchase
@@ -41,6 +44,7 @@ module CheckoutIntents
 
       sig do
         params(
+          id: T.nilable(String),
           availability: ::CheckoutIntents::ProductAvailability::OrSymbol,
           dimensions: T::Array[::CheckoutIntents::VariantSelection::OrHash],
           images: T::Array[::CheckoutIntents::ProductImage::OrHash],
@@ -50,6 +54,7 @@ module CheckoutIntents
         ).returns(T.attached_class)
       end
       def self.new(
+        id:,
         # The availability status of a product.
         #
         # - `in_stock`: Product is available for immediate purchase
@@ -69,6 +74,7 @@ module CheckoutIntents
       sig do
         override.returns(
           {
+            id: T.nilable(String),
             availability: ::CheckoutIntents::ProductAvailability::TaggedSymbol,
             dimensions: T::Array[::CheckoutIntents::VariantSelection],
             images: T::Array[::CheckoutIntents::ProductImage],

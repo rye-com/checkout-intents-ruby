@@ -3,6 +3,11 @@
 module CheckoutIntents
   module Models
     class ProductVariant < ::CheckoutIntents::Internal::Type::BaseModel
+      # @!attribute id
+      #
+      #   @return [String, nil]
+      required :id, String, nil?: true
+
       # @!attribute availability
       #   The availability status of a product.
       #
@@ -41,9 +46,11 @@ module CheckoutIntents
       #   @return [String, nil]
       required :sku, String, nil?: true
 
-      # @!method initialize(availability:, dimensions:, images:, name:, price:, sku:)
+      # @!method initialize(id:, availability:, dimensions:, images:, name:, price:, sku:)
       #   Some parameter documentations has been truncated, see
       #   {::CheckoutIntents::Models::ProductVariant} for more details.
+      #
+      #   @param id [String, nil]
       #
       #   @param availability [Symbol, ::CheckoutIntents::Models::ProductAvailability] The availability status of a product.
       #
