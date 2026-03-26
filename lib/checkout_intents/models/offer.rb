@@ -98,6 +98,17 @@ module CheckoutIntents
           required :cost, -> { ::CheckoutIntents::Money }
 
           # @!attribute delivery_estimate
+          #   Estimated range of dates that items will be delivered in. At least one of
+          #   `earliest` or `latest` are guaranteed to be set.
+          #
+          #   Interpretation:
+          #
+          #   - If both `earliest` and `latest` are set, then the delivery estimate is the
+          #     range between the two dates.
+          #   - If only `earliest` is set, then the delivery estimate is any date after that
+          #     date.
+          #   - If only `latest` is set, then the delivery estimate is any date before that
+          #     date.
           #
           #   @return [::CheckoutIntents::Models::Offer::Shipping::AvailableOption::DeliveryEstimate, nil]
           optional :delivery_estimate,
@@ -111,26 +122,47 @@ module CheckoutIntents
           optional :discount, -> { ::CheckoutIntents::Money }
 
           # @!method initialize(id:, cost:, delivery_estimate: nil, discount: nil)
+          #   Some parameter documentations has been truncated, see
+          #   {::CheckoutIntents::Models::Offer::Shipping::AvailableOption} for more details.
+          #
           #   @param id [String]
+          #
           #   @param cost [::CheckoutIntents::Models::Money]
-          #   @param delivery_estimate [::CheckoutIntents::Models::Offer::Shipping::AvailableOption::DeliveryEstimate, nil]
+          #
+          #   @param delivery_estimate [::CheckoutIntents::Models::Offer::Shipping::AvailableOption::DeliveryEstimate, nil] Estimated range of dates that items will be delivered in. At least one of
+          #
           #   @param discount [::CheckoutIntents::Models::Money]
 
           # @see ::CheckoutIntents::Models::Offer::Shipping::AvailableOption#delivery_estimate
           class DeliveryEstimate < ::CheckoutIntents::Internal::Type::BaseModel
             # @!attribute earliest
+            #   Earliest date that items will be delivered by.
             #
-            #   @return [Time]
-            required :earliest, Time
+            #   @return [Time, nil]
+            optional :earliest, Time
 
             # @!attribute latest
+            #   Latest date that items will be delivered by.
             #
-            #   @return [Time]
-            required :latest, Time
+            #   @return [Time, nil]
+            optional :latest, Time
 
-            # @!method initialize(earliest:, latest:)
-            #   @param earliest [Time]
-            #   @param latest [Time]
+            # @!method initialize(earliest: nil, latest: nil)
+            #   Estimated range of dates that items will be delivered in. At least one of
+            #   `earliest` or `latest` are guaranteed to be set.
+            #
+            #   Interpretation:
+            #
+            #   - If both `earliest` and `latest` are set, then the delivery estimate is the
+            #     range between the two dates.
+            #   - If only `earliest` is set, then the delivery estimate is any date after that
+            #     date.
+            #   - If only `latest` is set, then the delivery estimate is any date before that
+            #     date.
+            #
+            #   @param earliest [Time] Earliest date that items will be delivered by.
+            #
+            #   @param latest [Time] Latest date that items will be delivered by.
           end
         end
       end

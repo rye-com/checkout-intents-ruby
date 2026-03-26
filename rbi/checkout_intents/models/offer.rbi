@@ -191,6 +191,17 @@ module CheckoutIntents
           sig { params(cost: ::CheckoutIntents::Money::OrHash).void }
           attr_writer :cost
 
+          # Estimated range of dates that items will be delivered in. At least one of
+          # `earliest` or `latest` are guaranteed to be set.
+          #
+          # Interpretation:
+          #
+          # - If both `earliest` and `latest` are set, then the delivery estimate is the
+          #   range between the two dates.
+          # - If only `earliest` is set, then the delivery estimate is any date after that
+          #   date.
+          # - If only `latest` is set, then the delivery estimate is any date before that
+          #   date.
           sig do
             returns(
               T.nilable(
@@ -227,7 +238,23 @@ module CheckoutIntents
               discount: ::CheckoutIntents::Money::OrHash
             ).returns(T.attached_class)
           end
-          def self.new(id:, cost:, delivery_estimate: nil, discount: nil)
+          def self.new(
+            id:,
+            cost:,
+            # Estimated range of dates that items will be delivered in. At least one of
+            # `earliest` or `latest` are guaranteed to be set.
+            #
+            # Interpretation:
+            #
+            # - If both `earliest` and `latest` are set, then the delivery estimate is the
+            #   range between the two dates.
+            # - If only `earliest` is set, then the delivery estimate is any date after that
+            #   date.
+            # - If only `latest` is set, then the delivery estimate is any date before that
+            #   date.
+            delivery_estimate: nil,
+            discount: nil
+          )
           end
 
           sig do
@@ -255,16 +282,40 @@ module CheckoutIntents
                 )
               end
 
-            sig { returns(Time) }
-            attr_accessor :earliest
+            # Earliest date that items will be delivered by.
+            sig { returns(T.nilable(Time)) }
+            attr_reader :earliest
 
-            sig { returns(Time) }
-            attr_accessor :latest
+            sig { params(earliest: Time).void }
+            attr_writer :earliest
 
+            # Latest date that items will be delivered by.
+            sig { returns(T.nilable(Time)) }
+            attr_reader :latest
+
+            sig { params(latest: Time).void }
+            attr_writer :latest
+
+            # Estimated range of dates that items will be delivered in. At least one of
+            # `earliest` or `latest` are guaranteed to be set.
+            #
+            # Interpretation:
+            #
+            # - If both `earliest` and `latest` are set, then the delivery estimate is the
+            #   range between the two dates.
+            # - If only `earliest` is set, then the delivery estimate is any date after that
+            #   date.
+            # - If only `latest` is set, then the delivery estimate is any date before that
+            #   date.
             sig do
               params(earliest: Time, latest: Time).returns(T.attached_class)
             end
-            def self.new(earliest:, latest:)
+            def self.new(
+              # Earliest date that items will be delivered by.
+              earliest: nil,
+              # Latest date that items will be delivered by.
+              latest: nil
+            )
             end
 
             sig { override.returns({ earliest: Time, latest: Time }) }

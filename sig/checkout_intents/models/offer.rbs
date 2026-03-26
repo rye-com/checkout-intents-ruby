@@ -137,11 +137,15 @@ module CheckoutIntents
           type delivery_estimate = { earliest: Time, latest: Time }
 
           class DeliveryEstimate < ::CheckoutIntents::Internal::Type::BaseModel
-            attr_accessor earliest: Time
+            attr_reader earliest: Time?
 
-            attr_accessor latest: Time
+            def earliest=: (Time) -> Time
 
-            def initialize: (earliest: Time, latest: Time) -> void
+            attr_reader latest: Time?
+
+            def latest=: (Time) -> Time
+
+            def initialize: (?earliest: Time, ?latest: Time) -> void
 
             def to_hash: -> { earliest: Time, latest: Time }
           end
