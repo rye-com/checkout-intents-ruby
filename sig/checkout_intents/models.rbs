@@ -33,6 +33,12 @@ module CheckoutIntents
 
   class Offer = ::CheckoutIntents::Models::Offer
 
+  module PaymentGateway = ::CheckoutIntents::Models::PaymentGateway
+
+  class PaymentGatewayCreateSessionParams = ::CheckoutIntents::Models::PaymentGatewayCreateSessionParams
+
+  class PaymentGatewaySession = ::CheckoutIntents::Models::PaymentGatewaySession
+
   module PaymentMethod = ::CheckoutIntents::Models::PaymentMethod
 
   class Product = ::CheckoutIntents::Models::Product

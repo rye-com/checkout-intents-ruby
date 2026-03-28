@@ -76,6 +76,12 @@ module CheckoutIntents
 
   Offer = ::CheckoutIntents::Models::Offer
 
+  PaymentGateway = ::CheckoutIntents::Models::PaymentGateway
+
+  PaymentGatewayCreateSessionParams = ::CheckoutIntents::Models::PaymentGatewayCreateSessionParams
+
+  PaymentGatewaySession = ::CheckoutIntents::Models::PaymentGatewaySession
+
   PaymentMethod = ::CheckoutIntents::Models::PaymentMethod
 
   Product = ::CheckoutIntents::Models::Product

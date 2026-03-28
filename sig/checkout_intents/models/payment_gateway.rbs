@@ -1,0 +1,13 @@
+module CheckoutIntents
+  module Models
+    type payment_gateway = :"basis-theory"
+
+    module PaymentGateway
+      extend ::CheckoutIntents::Internal::Type::Enum
+
+      BASIS_THEORY: :"basis-theory"
+
+      def self?.values: -> ::Array[::CheckoutIntents::Models::payment_gateway]
+    end
+  end
+end

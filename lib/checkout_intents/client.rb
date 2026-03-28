@@ -39,6 +39,9 @@ module CheckoutIntents
     # @return [::CheckoutIntents::Resources::Shipments]
     attr_reader :shipments
 
+    # @return [::CheckoutIntents::Resources::PaymentGateways]
+    attr_reader :payment_gateways
+
     # @return [::CheckoutIntents::Resources::Billing]
     attr_reader :billing
 
@@ -110,6 +113,7 @@ module CheckoutIntents
       @brands = ::CheckoutIntents::Resources::Brands.new(client: self)
       @products = ::CheckoutIntents::Resources::Products.new(client: self)
       @shipments = ::CheckoutIntents::Resources::Shipments.new(client: self)
+      @payment_gateways = ::CheckoutIntents::Resources::PaymentGateways.new(client: self)
       @billing = ::CheckoutIntents::Resources::Billing.new(client: self)
     end
   end

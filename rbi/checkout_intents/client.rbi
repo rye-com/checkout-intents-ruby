@@ -38,6 +38,9 @@ module CheckoutIntents
     sig { returns(::CheckoutIntents::Resources::Shipments) }
     attr_reader :shipments
 
+    sig { returns(::CheckoutIntents::Resources::PaymentGateways) }
+    attr_reader :payment_gateways
+
     sig { returns(::CheckoutIntents::Resources::Billing) }
     attr_reader :billing
 

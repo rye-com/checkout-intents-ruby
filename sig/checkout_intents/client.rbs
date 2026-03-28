@@ -25,6 +25,8 @@ module CheckoutIntents
 
     attr_reader shipments: ::CheckoutIntents::Resources::Shipments
 
+    attr_reader payment_gateways: ::CheckoutIntents::Resources::PaymentGateways
+
     attr_reader billing: ::CheckoutIntents::Resources::Billing
 
     private def auth_headers: -> ::Hash[String, String]

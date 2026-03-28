@@ -1,0 +1,40 @@
+module CheckoutIntents
+  module Models
+    type payment_gateway_session =
+      {
+        container: String,
+        gateway: ::CheckoutIntents::Models::PaymentGatewaySession::gateway,
+        session_key: String
+      }
+
+    class PaymentGatewaySession < ::CheckoutIntents::Internal::Type::BaseModel
+      attr_accessor container: String
+
+      attr_accessor gateway: ::CheckoutIntents::Models::PaymentGatewaySession::gateway
+
+      attr_accessor session_key: String
+
+      def initialize: (
+        container: String,
+        gateway: ::CheckoutIntents::Models::PaymentGatewaySession::gateway,
+        session_key: String
+      ) -> void
+
+      def to_hash: -> {
+        container: String,
+        gateway: ::CheckoutIntents::Models::PaymentGatewaySession::gateway,
+        session_key: String
+      }
+
+      type gateway = :basis_theory
+
+      module Gateway
+        extend ::CheckoutIntents::Internal::Type::Enum
+
+        BASIS_THEORY: :basis_theory
+
+        def self?.values: -> ::Array[::CheckoutIntents::Models::PaymentGatewaySession::gateway]
+      end
+    end
+  end
+end

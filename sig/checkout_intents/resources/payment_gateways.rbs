@@ -1,0 +1,12 @@
+module CheckoutIntents
+  module Resources
+    class PaymentGateways
+      def create_session: (
+        ::CheckoutIntents::Models::payment_gateway gateway,
+        ?request_options: ::CheckoutIntents::request_opts
+      ) -> ::CheckoutIntents::PaymentGatewaySession
+
+      def initialize: (client: ::CheckoutIntents::Client) -> void
+    end
+  end
+end
