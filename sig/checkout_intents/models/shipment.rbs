@@ -86,6 +86,7 @@ module CheckoutIntents
           {
             description: String?,
             location: ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Location,
+            status: ::CheckoutIntents::Models::shipment_status,
             timestamp: ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Timestamp?
           }
 
@@ -94,17 +95,21 @@ module CheckoutIntents
 
           attr_accessor location: ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Location
 
+          attr_accessor status: ::CheckoutIntents::Models::shipment_status
+
           attr_accessor timestamp: ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Timestamp?
 
           def initialize: (
             description: String?,
             location: ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Location,
+            status: ::CheckoutIntents::Models::shipment_status,
             timestamp: ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Timestamp?
           ) -> void
 
           def to_hash: -> {
             description: String?,
             location: ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Location,
+            status: ::CheckoutIntents::Models::shipment_status,
             timestamp: ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Timestamp?
           }
 
@@ -224,6 +229,7 @@ module CheckoutIntents
           {
             description: String?,
             location: ::CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Location,
+            status: ::CheckoutIntents::Models::shipment_status,
             timestamp: ::CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Timestamp?
           }
 
@@ -232,17 +238,21 @@ module CheckoutIntents
 
           attr_accessor location: ::CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Location
 
+          attr_accessor status: ::CheckoutIntents::Models::shipment_status
+
           attr_accessor timestamp: ::CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Timestamp?
 
           def initialize: (
             description: String?,
             location: ::CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Location,
+            status: ::CheckoutIntents::Models::shipment_status,
             timestamp: ::CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Timestamp?
           ) -> void
 
           def to_hash: -> {
             description: String?,
             location: ::CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Location,
+            status: ::CheckoutIntents::Models::shipment_status,
             timestamp: ::CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Timestamp?
           }
 
@@ -357,6 +367,7 @@ module CheckoutIntents
           {
             description: String?,
             location: ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Location,
+            status: ::CheckoutIntents::Models::shipment_status,
             timestamp: ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Timestamp?
           }
 
@@ -365,17 +376,21 @@ module CheckoutIntents
 
           attr_accessor location: ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Location
 
+          attr_accessor status: ::CheckoutIntents::Models::shipment_status
+
           attr_accessor timestamp: ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Timestamp?
 
           def initialize: (
             description: String?,
             location: ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Location,
+            status: ::CheckoutIntents::Models::shipment_status,
             timestamp: ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Timestamp?
           ) -> void
 
           def to_hash: -> {
             description: String?,
             location: ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Location,
+            status: ::CheckoutIntents::Models::shipment_status,
             timestamp: ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Timestamp?
           }
 
@@ -490,6 +505,7 @@ module CheckoutIntents
           {
             description: String?,
             location: ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Location,
+            status: ::CheckoutIntents::Models::shipment_status,
             timestamp: ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Timestamp?
           }
 
@@ -498,17 +514,21 @@ module CheckoutIntents
 
           attr_accessor location: ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Location
 
+          attr_accessor status: ::CheckoutIntents::Models::shipment_status
+
           attr_accessor timestamp: ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Timestamp?
 
           def initialize: (
             description: String?,
             location: ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Location,
+            status: ::CheckoutIntents::Models::shipment_status,
             timestamp: ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Timestamp?
           ) -> void
 
           def to_hash: -> {
             description: String?,
             location: ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Location,
+            status: ::CheckoutIntents::Models::shipment_status,
             timestamp: ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Timestamp?
           }
 

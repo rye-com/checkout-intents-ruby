@@ -123,6 +123,11 @@ module CheckoutIntents
           required :location,
                    -> { ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Location }
 
+          # @!attribute status
+          #
+          #   @return [Symbol, ::CheckoutIntents::Models::ShipmentStatus]
+          required :status, enum: -> { ::CheckoutIntents::ShipmentStatus }
+
           # @!attribute timestamp
           #
           #   @return [::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Timestamp, nil]
@@ -132,9 +137,10 @@ module CheckoutIntents
                    },
                    nil?: true
 
-          # @!method initialize(description:, location:, timestamp:)
+          # @!method initialize(description:, location:, status:, timestamp:)
           #   @param description [String, nil]
           #   @param location [::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Location]
+          #   @param status [Symbol, ::CheckoutIntents::Models::ShipmentStatus]
           #   @param timestamp [::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Timestamp, nil]
 
           # @see ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent#location
@@ -291,6 +297,11 @@ module CheckoutIntents
           #   @return [::CheckoutIntents::Models::Shipment::DeliveredShipment::TrackingEvent::Location]
           required :location, -> { ::CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Location }
 
+          # @!attribute status
+          #
+          #   @return [Symbol, ::CheckoutIntents::Models::ShipmentStatus]
+          required :status, enum: -> { ::CheckoutIntents::ShipmentStatus }
+
           # @!attribute timestamp
           #
           #   @return [::CheckoutIntents::Models::Shipment::DeliveredShipment::TrackingEvent::Timestamp, nil]
@@ -298,9 +309,10 @@ module CheckoutIntents
                    -> { ::CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Timestamp },
                    nil?: true
 
-          # @!method initialize(description:, location:, timestamp:)
+          # @!method initialize(description:, location:, status:, timestamp:)
           #   @param description [String, nil]
           #   @param location [::CheckoutIntents::Models::Shipment::DeliveredShipment::TrackingEvent::Location]
+          #   @param status [Symbol, ::CheckoutIntents::Models::ShipmentStatus]
           #   @param timestamp [::CheckoutIntents::Models::Shipment::DeliveredShipment::TrackingEvent::Timestamp, nil]
 
           # @see ::CheckoutIntents::Models::Shipment::DeliveredShipment::TrackingEvent#location
@@ -453,6 +465,11 @@ module CheckoutIntents
           required :location,
                    -> { ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Location }
 
+          # @!attribute status
+          #
+          #   @return [Symbol, ::CheckoutIntents::Models::ShipmentStatus]
+          required :status, enum: -> { ::CheckoutIntents::ShipmentStatus }
+
           # @!attribute timestamp
           #
           #   @return [::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Timestamp, nil]
@@ -462,9 +479,10 @@ module CheckoutIntents
                    },
                    nil?: true
 
-          # @!method initialize(description:, location:, timestamp:)
+          # @!method initialize(description:, location:, status:, timestamp:)
           #   @param description [String, nil]
           #   @param location [::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Location]
+          #   @param status [Symbol, ::CheckoutIntents::Models::ShipmentStatus]
           #   @param timestamp [::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Timestamp, nil]
 
           # @see ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent#location
@@ -617,6 +635,11 @@ module CheckoutIntents
           required :location,
                    -> { ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Location }
 
+          # @!attribute status
+          #
+          #   @return [Symbol, ::CheckoutIntents::Models::ShipmentStatus]
+          required :status, enum: -> { ::CheckoutIntents::ShipmentStatus }
+
           # @!attribute timestamp
           #
           #   @return [::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Timestamp, nil]
@@ -626,9 +649,10 @@ module CheckoutIntents
                    },
                    nil?: true
 
-          # @!method initialize(description:, location:, timestamp:)
+          # @!method initialize(description:, location:, status:, timestamp:)
           #   @param description [String, nil]
           #   @param location [::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Location]
+          #   @param status [Symbol, ::CheckoutIntents::Models::ShipmentStatus]
           #   @param timestamp [::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Timestamp, nil]
 
           # @see ::CheckoutIntents::Models::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent#location

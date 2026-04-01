@@ -186,6 +186,9 @@ module CheckoutIntents
           end
           attr_writer :location
 
+          sig { returns(::CheckoutIntents::ShipmentStatus::TaggedSymbol) }
+          attr_accessor :status
+
           sig do
             returns(
               T.nilable(
@@ -210,13 +213,14 @@ module CheckoutIntents
               description: T.nilable(String),
               location:
                 ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Location::OrHash,
+              status: ::CheckoutIntents::ShipmentStatus::OrSymbol,
               timestamp:
                 T.nilable(
                   ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Timestamp::OrHash
                 )
             ).returns(T.attached_class)
           end
-          def self.new(description:, location:, timestamp:)
+          def self.new(description:, location:, status:, timestamp:)
           end
 
           sig do
@@ -225,6 +229,7 @@ module CheckoutIntents
                 description: T.nilable(String),
                 location:
                   ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Location,
+                status: ::CheckoutIntents::ShipmentStatus::TaggedSymbol,
                 timestamp:
                   T.nilable(
                     ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingShipped::TrackingEvent::Timestamp
@@ -484,6 +489,9 @@ module CheckoutIntents
           end
           attr_writer :location
 
+          sig { returns(::CheckoutIntents::ShipmentStatus::TaggedSymbol) }
+          attr_accessor :status
+
           sig do
             returns(
               T.nilable(
@@ -508,13 +516,14 @@ module CheckoutIntents
               description: T.nilable(String),
               location:
                 ::CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Location::OrHash,
+              status: ::CheckoutIntents::ShipmentStatus::OrSymbol,
               timestamp:
                 T.nilable(
                   ::CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Timestamp::OrHash
                 )
             ).returns(T.attached_class)
           end
-          def self.new(description:, location:, timestamp:)
+          def self.new(description:, location:, status:, timestamp:)
           end
 
           sig do
@@ -523,6 +532,7 @@ module CheckoutIntents
                 description: T.nilable(String),
                 location:
                   ::CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Location,
+                status: ::CheckoutIntents::ShipmentStatus::TaggedSymbol,
                 timestamp:
                   T.nilable(
                     ::CheckoutIntents::Shipment::DeliveredShipment::TrackingEvent::Timestamp
@@ -776,6 +786,9 @@ module CheckoutIntents
           end
           attr_writer :location
 
+          sig { returns(::CheckoutIntents::ShipmentStatus::TaggedSymbol) }
+          attr_accessor :status
+
           sig do
             returns(
               T.nilable(
@@ -800,13 +813,14 @@ module CheckoutIntents
               description: T.nilable(String),
               location:
                 ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Location::OrHash,
+              status: ::CheckoutIntents::ShipmentStatus::OrSymbol,
               timestamp:
                 T.nilable(
                   ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Timestamp::OrHash
                 )
             ).returns(T.attached_class)
           end
-          def self.new(description:, location:, timestamp:)
+          def self.new(description:, location:, status:, timestamp:)
           end
 
           sig do
@@ -815,6 +829,7 @@ module CheckoutIntents
                 description: T.nilable(String),
                 location:
                   ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Location,
+                status: ::CheckoutIntents::ShipmentStatus::TaggedSymbol,
                 timestamp:
                   T.nilable(
                     ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingDelayed::TrackingEvent::Timestamp
@@ -1068,6 +1083,9 @@ module CheckoutIntents
           end
           attr_writer :location
 
+          sig { returns(::CheckoutIntents::ShipmentStatus::TaggedSymbol) }
+          attr_accessor :status
+
           sig do
             returns(
               T.nilable(
@@ -1092,13 +1110,14 @@ module CheckoutIntents
               description: T.nilable(String),
               location:
                 ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Location::OrHash,
+              status: ::CheckoutIntents::ShipmentStatus::OrSymbol,
               timestamp:
                 T.nilable(
                   ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Timestamp::OrHash
                 )
             ).returns(T.attached_class)
           end
-          def self.new(description:, location:, timestamp:)
+          def self.new(description:, location:, status:, timestamp:)
           end
 
           sig do
@@ -1107,6 +1126,7 @@ module CheckoutIntents
                 description: T.nilable(String),
                 location:
                   ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Location,
+                status: ::CheckoutIntents::ShipmentStatus::TaggedSymbol,
                 timestamp:
                   T.nilable(
                     ::CheckoutIntents::Shipment::WithStatusBaseShipmentWithTrackingOutForDelivery::TrackingEvent::Timestamp
