@@ -27,7 +27,8 @@ module CheckoutIntents
             ::CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod,
             ::CheckoutIntents::PaymentMethod::NekudaPaymentMethod,
             ::CheckoutIntents::PaymentMethod::PravaPaymentMethod,
-            ::CheckoutIntents::PaymentMethod::DrawdownPaymentMethod
+            ::CheckoutIntents::PaymentMethod::DrawdownPaymentMethod,
+            ::CheckoutIntents::PaymentMethod::X402PaymentMethod
           )
         )
       end
@@ -88,7 +89,8 @@ module CheckoutIntents
               ::CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod::OrHash,
               ::CheckoutIntents::PaymentMethod::NekudaPaymentMethod::OrHash,
               ::CheckoutIntents::PaymentMethod::PravaPaymentMethod::OrHash,
-              ::CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::OrHash
+              ::CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::OrHash,
+              ::CheckoutIntents::PaymentMethod::X402PaymentMethod::OrHash
             ),
           product_url: String,
           quantity: Integer,
@@ -124,7 +126,8 @@ module CheckoutIntents
                 ::CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod,
                 ::CheckoutIntents::PaymentMethod::NekudaPaymentMethod,
                 ::CheckoutIntents::PaymentMethod::PravaPaymentMethod,
-                ::CheckoutIntents::PaymentMethod::DrawdownPaymentMethod
+                ::CheckoutIntents::PaymentMethod::DrawdownPaymentMethod,
+                ::CheckoutIntents::PaymentMethod::X402PaymentMethod
               ),
             product_url: String,
             quantity: Integer,

@@ -12,7 +12,8 @@ module CheckoutIntents
             ::CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod,
             ::CheckoutIntents::PaymentMethod::NekudaPaymentMethod,
             ::CheckoutIntents::PaymentMethod::PravaPaymentMethod,
-            ::CheckoutIntents::PaymentMethod::DrawdownPaymentMethod
+            ::CheckoutIntents::PaymentMethod::DrawdownPaymentMethod,
+            ::CheckoutIntents::PaymentMethod::X402PaymentMethod
           )
         end
 
@@ -413,6 +414,122 @@ module CheckoutIntents
             override.returns(
               T::Array[
                 ::CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::Type::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
+        end
+      end
+
+      class X402PaymentMethod < ::CheckoutIntents::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              ::CheckoutIntents::PaymentMethod::X402PaymentMethod,
+              ::CheckoutIntents::Internal::AnyHash
+            )
+          end
+
+        sig do
+          returns(
+            ::CheckoutIntents::PaymentMethod::X402PaymentMethod::Network::OrSymbol
+          )
+        end
+        attr_accessor :network
+
+        sig do
+          returns(
+            ::CheckoutIntents::PaymentMethod::X402PaymentMethod::Type::OrSymbol
+          )
+        end
+        attr_accessor :type
+
+        sig do
+          params(
+            network:
+              ::CheckoutIntents::PaymentMethod::X402PaymentMethod::Network::OrSymbol,
+            type:
+              ::CheckoutIntents::PaymentMethod::X402PaymentMethod::Type::OrSymbol
+          ).returns(T.attached_class)
+        end
+        def self.new(network:, type:)
+        end
+
+        sig do
+          override.returns(
+            {
+              network:
+                ::CheckoutIntents::PaymentMethod::X402PaymentMethod::Network::OrSymbol,
+              type:
+                ::CheckoutIntents::PaymentMethod::X402PaymentMethod::Type::OrSymbol
+            }
+          )
+        end
+        def to_hash
+        end
+
+        module Network
+          extend ::CheckoutIntents::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                ::CheckoutIntents::PaymentMethod::X402PaymentMethod::Network
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          BASE =
+            T.let(
+              :base,
+              ::CheckoutIntents::PaymentMethod::X402PaymentMethod::Network::TaggedSymbol
+            )
+          SOLANA =
+            T.let(
+              :solana,
+              ::CheckoutIntents::PaymentMethod::X402PaymentMethod::Network::TaggedSymbol
+            )
+          TEMPO =
+            T.let(
+              :tempo,
+              ::CheckoutIntents::PaymentMethod::X402PaymentMethod::Network::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                ::CheckoutIntents::PaymentMethod::X402PaymentMethod::Network::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
+        end
+
+        module Type
+          extend ::CheckoutIntents::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                ::CheckoutIntents::PaymentMethod::X402PaymentMethod::Type
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          X402 =
+            T.let(
+              :x402,
+              ::CheckoutIntents::PaymentMethod::X402PaymentMethod::Type::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                ::CheckoutIntents::PaymentMethod::X402PaymentMethod::Type::TaggedSymbol
               ]
             )
           end

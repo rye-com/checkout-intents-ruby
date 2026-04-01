@@ -15,6 +15,8 @@ module CheckoutIntents
 
       variant -> { ::CheckoutIntents::PaymentMethod::DrawdownPaymentMethod }
 
+      variant -> { ::CheckoutIntents::PaymentMethod::X402PaymentMethod }
+
       class StripeTokenPaymentMethod < ::CheckoutIntents::Internal::Type::BaseModel
         # @!attribute stripe_token
         #
@@ -163,8 +165,46 @@ module CheckoutIntents
         end
       end
 
+      class X402PaymentMethod < ::CheckoutIntents::Internal::Type::BaseModel
+        # @!attribute network
+        #
+        #   @return [Symbol, ::CheckoutIntents::Models::PaymentMethod::X402PaymentMethod::Network]
+        required :network, enum: -> { ::CheckoutIntents::PaymentMethod::X402PaymentMethod::Network }
+
+        # @!attribute type
+        #
+        #   @return [Symbol, ::CheckoutIntents::Models::PaymentMethod::X402PaymentMethod::Type]
+        required :type, enum: -> { ::CheckoutIntents::PaymentMethod::X402PaymentMethod::Type }
+
+        # @!method initialize(network:, type:)
+        #   @param network [Symbol, ::CheckoutIntents::Models::PaymentMethod::X402PaymentMethod::Network]
+        #   @param type [Symbol, ::CheckoutIntents::Models::PaymentMethod::X402PaymentMethod::Type]
+
+        # @see ::CheckoutIntents::Models::PaymentMethod::X402PaymentMethod#network
+        module Network
+          extend ::CheckoutIntents::Internal::Type::Enum
+
+          BASE = :base
+          SOLANA = :solana
+          TEMPO = :tempo
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+
+        # @see ::CheckoutIntents::Models::PaymentMethod::X402PaymentMethod#type
+        module Type
+          extend ::CheckoutIntents::Internal::Type::Enum
+
+          X402 = :x402
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+      end
+
       # @!method self.variants
-      #   @return [Array(::CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod)]
+      #   @return [Array(::CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::X402PaymentMethod)]
     end
   end
 end

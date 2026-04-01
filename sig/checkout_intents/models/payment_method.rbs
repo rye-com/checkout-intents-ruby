@@ -6,6 +6,7 @@ module CheckoutIntents
       | ::CheckoutIntents::PaymentMethod::NekudaPaymentMethod
       | ::CheckoutIntents::PaymentMethod::PravaPaymentMethod
       | ::CheckoutIntents::PaymentMethod::DrawdownPaymentMethod
+      | ::CheckoutIntents::PaymentMethod::X402PaymentMethod
 
     module PaymentMethod
       extend ::CheckoutIntents::Internal::Type::Union
@@ -179,6 +180,50 @@ module CheckoutIntents
           DRAWDOWN: :drawdown
 
           def self?.values: -> ::Array[::CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod::type_]
+        end
+      end
+
+      type x402_payment_method =
+        {
+          network: ::CheckoutIntents::Models::PaymentMethod::X402PaymentMethod::network,
+          type: ::CheckoutIntents::Models::PaymentMethod::X402PaymentMethod::type_
+        }
+
+      class X402PaymentMethod < ::CheckoutIntents::Internal::Type::BaseModel
+        attr_accessor network: ::CheckoutIntents::Models::PaymentMethod::X402PaymentMethod::network
+
+        attr_accessor type: ::CheckoutIntents::Models::PaymentMethod::X402PaymentMethod::type_
+
+        def initialize: (
+          network: ::CheckoutIntents::Models::PaymentMethod::X402PaymentMethod::network,
+          type: ::CheckoutIntents::Models::PaymentMethod::X402PaymentMethod::type_
+        ) -> void
+
+        def to_hash: -> {
+          network: ::CheckoutIntents::Models::PaymentMethod::X402PaymentMethod::network,
+          type: ::CheckoutIntents::Models::PaymentMethod::X402PaymentMethod::type_
+        }
+
+        type network = :base | :solana | :tempo
+
+        module Network
+          extend ::CheckoutIntents::Internal::Type::Enum
+
+          BASE: :base
+          SOLANA: :solana
+          TEMPO: :tempo
+
+          def self?.values: -> ::Array[::CheckoutIntents::Models::PaymentMethod::X402PaymentMethod::network]
+        end
+
+        type type_ = :x402
+
+        module Type
+          extend ::CheckoutIntents::Internal::Type::Enum
+
+          X402: :x402
+
+          def self?.values: -> ::Array[::CheckoutIntents::Models::PaymentMethod::X402PaymentMethod::type_]
         end
       end
 

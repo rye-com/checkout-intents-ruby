@@ -115,7 +115,8 @@ module CheckoutIntents
                 ::CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod::OrHash,
                 ::CheckoutIntents::PaymentMethod::NekudaPaymentMethod::OrHash,
                 ::CheckoutIntents::PaymentMethod::PravaPaymentMethod::OrHash,
-                ::CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::OrHash
+                ::CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::OrHash,
+                ::CheckoutIntents::PaymentMethod::X402PaymentMethod::OrHash
               )
           ).void
         end
@@ -132,7 +133,8 @@ module CheckoutIntents
                 ::CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod::OrHash,
                 ::CheckoutIntents::PaymentMethod::NekudaPaymentMethod::OrHash,
                 ::CheckoutIntents::PaymentMethod::PravaPaymentMethod::OrHash,
-                ::CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::OrHash
+                ::CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::OrHash,
+                ::CheckoutIntents::PaymentMethod::X402PaymentMethod::OrHash
               )
           ).returns(T.attached_class)
         end
@@ -216,7 +218,8 @@ module CheckoutIntents
                 ::CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod::OrHash,
                 ::CheckoutIntents::PaymentMethod::NekudaPaymentMethod::OrHash,
                 ::CheckoutIntents::PaymentMethod::PravaPaymentMethod::OrHash,
-                ::CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::OrHash
+                ::CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::OrHash,
+                ::CheckoutIntents::PaymentMethod::X402PaymentMethod::OrHash
               ),
             state:
               ::CheckoutIntents::CheckoutIntent::PlacingOrderCheckoutIntent::State::OrSymbol
@@ -309,7 +312,8 @@ module CheckoutIntents
                 ::CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod::OrHash,
                 ::CheckoutIntents::PaymentMethod::NekudaPaymentMethod::OrHash,
                 ::CheckoutIntents::PaymentMethod::PravaPaymentMethod::OrHash,
-                ::CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::OrHash
+                ::CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::OrHash,
+                ::CheckoutIntents::PaymentMethod::X402PaymentMethod::OrHash
               ),
             state:
               ::CheckoutIntents::CheckoutIntent::CompletedCheckoutIntent::State::OrSymbol,
@@ -418,7 +422,8 @@ module CheckoutIntents
                 ::CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod::OrHash,
                 ::CheckoutIntents::PaymentMethod::NekudaPaymentMethod::OrHash,
                 ::CheckoutIntents::PaymentMethod::PravaPaymentMethod::OrHash,
-                ::CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::OrHash
+                ::CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::OrHash,
+                ::CheckoutIntents::PaymentMethod::X402PaymentMethod::OrHash
               )
           ).void
         end
@@ -437,7 +442,8 @@ module CheckoutIntents
                 ::CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod::OrHash,
                 ::CheckoutIntents::PaymentMethod::NekudaPaymentMethod::OrHash,
                 ::CheckoutIntents::PaymentMethod::PravaPaymentMethod::OrHash,
-                ::CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::OrHash
+                ::CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::OrHash,
+                ::CheckoutIntents::PaymentMethod::X402PaymentMethod::OrHash
               )
           ).returns(T.attached_class)
         end

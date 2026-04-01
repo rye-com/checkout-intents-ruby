@@ -48,13 +48,13 @@ module CheckoutIntents
 
         # @!attribute payment_method
         #
-        #   @return [::CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod, nil]
+        #   @return [::CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::X402PaymentMethod, nil]
         optional :payment_method, union: -> { ::CheckoutIntents::PaymentMethod }, api_name: :paymentMethod
 
         # @!method initialize(offer:, state:, payment_method: nil)
         #   @param offer [::CheckoutIntents::Models::Offer]
         #   @param state [Symbol, ::CheckoutIntents::Models::CheckoutIntent::AwaitingConfirmationCheckoutIntent::State]
-        #   @param payment_method [::CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod]
+        #   @param payment_method [::CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::X402PaymentMethod]
 
         module State
           extend ::CheckoutIntents::Internal::Type::Enum
@@ -74,7 +74,7 @@ module CheckoutIntents
 
         # @!attribute payment_method
         #
-        #   @return [::CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod]
+        #   @return [::CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::X402PaymentMethod]
         required :payment_method, union: -> { ::CheckoutIntents::PaymentMethod }, api_name: :paymentMethod
 
         # @!attribute state
@@ -84,7 +84,7 @@ module CheckoutIntents
 
         # @!method initialize(offer:, payment_method:, state:)
         #   @param offer [::CheckoutIntents::Models::Offer]
-        #   @param payment_method [::CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod]
+        #   @param payment_method [::CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::X402PaymentMethod]
         #   @param state [Symbol, ::CheckoutIntents::Models::CheckoutIntent::PlacingOrderCheckoutIntent::State]
 
         module State
@@ -110,7 +110,7 @@ module CheckoutIntents
 
         # @!attribute payment_method
         #
-        #   @return [::CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod]
+        #   @return [::CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::X402PaymentMethod]
         required :payment_method, union: -> { ::CheckoutIntents::PaymentMethod }, api_name: :paymentMethod
 
         # @!attribute state
@@ -127,7 +127,7 @@ module CheckoutIntents
         # @!method initialize(offer:, order_id:, payment_method:, state:, estimated_delivery_date: nil)
         #   @param offer [::CheckoutIntents::Models::Offer]
         #   @param order_id [String, nil]
-        #   @param payment_method [::CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod]
+        #   @param payment_method [::CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::X402PaymentMethod]
         #   @param state [Symbol, ::CheckoutIntents::Models::CheckoutIntent::CompletedCheckoutIntent::State]
         #   @param estimated_delivery_date [Time, nil]
 
@@ -161,14 +161,14 @@ module CheckoutIntents
 
         # @!attribute payment_method
         #
-        #   @return [::CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod, nil]
+        #   @return [::CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::X402PaymentMethod, nil]
         optional :payment_method, union: -> { ::CheckoutIntents::PaymentMethod }, api_name: :paymentMethod
 
         # @!method initialize(failure_reason:, state:, offer: nil, payment_method: nil)
         #   @param failure_reason [::CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent::FailureReason]
         #   @param state [Symbol, ::CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent::State]
         #   @param offer [::CheckoutIntents::Models::Offer]
-        #   @param payment_method [::CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod]
+        #   @param payment_method [::CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::X402PaymentMethod]
 
         class FailureReason < ::CheckoutIntents::Internal::Type::BaseModel
           # @!attribute code
