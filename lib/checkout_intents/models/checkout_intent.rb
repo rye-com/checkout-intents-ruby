@@ -10,6 +10,8 @@ module CheckoutIntents
 
       variant -> { ::CheckoutIntents::CheckoutIntent::AwaitingConfirmationCheckoutIntent }
 
+      variant -> { ::CheckoutIntents::CheckoutIntent::AwaitingPaymentCheckoutIntent }
+
       variant -> { ::CheckoutIntents::CheckoutIntent::PlacingOrderCheckoutIntent }
 
       variant -> { ::CheckoutIntents::CheckoutIntent::CompletedCheckoutIntent }
@@ -60,6 +62,37 @@ module CheckoutIntents
           extend ::CheckoutIntents::Internal::Type::Enum
 
           AWAITING_CONFIRMATION = :awaiting_confirmation
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+      end
+
+      class AwaitingPaymentCheckoutIntent < ::CheckoutIntents::Models::BaseCheckoutIntent
+        # @!attribute offer
+        #
+        #   @return [::CheckoutIntents::Models::Offer]
+        required :offer, -> { ::CheckoutIntents::Offer }
+
+        # @!attribute payment_method
+        #
+        #   @return [::CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::X402PaymentMethod]
+        required :payment_method, union: -> { ::CheckoutIntents::PaymentMethod }, api_name: :paymentMethod
+
+        # @!attribute state
+        #
+        #   @return [Symbol, ::CheckoutIntents::Models::CheckoutIntent::AwaitingPaymentCheckoutIntent::State]
+        required :state, enum: -> { ::CheckoutIntents::CheckoutIntent::AwaitingPaymentCheckoutIntent::State }
+
+        # @!method initialize(offer:, payment_method:, state:)
+        #   @param offer [::CheckoutIntents::Models::Offer]
+        #   @param payment_method [::CheckoutIntents::Models::PaymentMethod::StripeTokenPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::BasisTheoryPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::NekudaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::PravaPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::DrawdownPaymentMethod, ::CheckoutIntents::Models::PaymentMethod::X402PaymentMethod]
+        #   @param state [Symbol, ::CheckoutIntents::Models::CheckoutIntent::AwaitingPaymentCheckoutIntent::State]
+
+        module State
+          extend ::CheckoutIntents::Internal::Type::Enum
+
+          AWAITING_PAYMENT = :awaiting_payment
 
           # @!method self.values
           #   @return [Array<Symbol>]
@@ -232,7 +265,7 @@ module CheckoutIntents
       end
 
       # @!method self.variants
-      #   @return [Array(::CheckoutIntents::Models::CheckoutIntent::RetrievingOfferCheckoutIntent, ::CheckoutIntents::Models::CheckoutIntent::AwaitingConfirmationCheckoutIntent, ::CheckoutIntents::Models::CheckoutIntent::PlacingOrderCheckoutIntent, ::CheckoutIntents::Models::CheckoutIntent::CompletedCheckoutIntent, ::CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent)]
+      #   @return [Array(::CheckoutIntents::Models::CheckoutIntent::RetrievingOfferCheckoutIntent, ::CheckoutIntents::Models::CheckoutIntent::AwaitingConfirmationCheckoutIntent, ::CheckoutIntents::Models::CheckoutIntent::AwaitingPaymentCheckoutIntent, ::CheckoutIntents::Models::CheckoutIntent::PlacingOrderCheckoutIntent, ::CheckoutIntents::Models::CheckoutIntent::CompletedCheckoutIntent, ::CheckoutIntents::Models::CheckoutIntent::FailedCheckoutIntent)]
     end
   end
 end

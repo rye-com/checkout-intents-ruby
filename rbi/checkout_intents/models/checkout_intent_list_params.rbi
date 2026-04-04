@@ -131,6 +131,11 @@ module CheckoutIntents
             :awaiting_confirmation,
             ::CheckoutIntents::CheckoutIntentListParams::State::TaggedSymbol
           )
+        AWAITING_PAYMENT =
+          T.let(
+            :awaiting_payment,
+            ::CheckoutIntents::CheckoutIntentListParams::State::TaggedSymbol
+          )
         PLACING_ORDER =
           T.let(
             :placing_order,

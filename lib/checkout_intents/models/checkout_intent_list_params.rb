@@ -54,6 +54,7 @@ module CheckoutIntents
         FAILED = :failed
         RETRIEVING_OFFER = :retrieving_offer
         AWAITING_CONFIRMATION = :awaiting_confirmation
+        AWAITING_PAYMENT = :awaiting_payment
         PLACING_ORDER = :placing_order
 
         # @!method self.values

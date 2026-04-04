@@ -31,6 +31,7 @@ class CheckoutIntents::Test::Resources::CheckoutIntentsTest < CheckoutIntents::T
       case response
       in ::CheckoutIntents::CheckoutIntent::RetrievingOfferCheckoutIntent
       in ::CheckoutIntents::CheckoutIntent::AwaitingConfirmationCheckoutIntent
+      in ::CheckoutIntents::CheckoutIntent::AwaitingPaymentCheckoutIntent
       in ::CheckoutIntents::CheckoutIntent::PlacingOrderCheckoutIntent
       in ::CheckoutIntents::CheckoutIntent::CompletedCheckoutIntent
       in ::CheckoutIntents::CheckoutIntent::FailedCheckoutIntent
@@ -51,6 +52,7 @@ class CheckoutIntents::Test::Resources::CheckoutIntentsTest < CheckoutIntents::T
       case response
       in ::CheckoutIntents::CheckoutIntent::RetrievingOfferCheckoutIntent
       in ::CheckoutIntents::CheckoutIntent::AwaitingConfirmationCheckoutIntent
+      in ::CheckoutIntents::CheckoutIntent::AwaitingPaymentCheckoutIntent
       in ::CheckoutIntents::CheckoutIntent::PlacingOrderCheckoutIntent
       in ::CheckoutIntents::CheckoutIntent::CompletedCheckoutIntent
       in ::CheckoutIntents::CheckoutIntent::FailedCheckoutIntent
@@ -78,6 +80,7 @@ class CheckoutIntents::Test::Resources::CheckoutIntentsTest < CheckoutIntents::T
       case row
       in ::CheckoutIntents::CheckoutIntent::RetrievingOfferCheckoutIntent
       in ::CheckoutIntents::CheckoutIntent::AwaitingConfirmationCheckoutIntent
+      in ::CheckoutIntents::CheckoutIntent::AwaitingPaymentCheckoutIntent
       in ::CheckoutIntents::CheckoutIntent::PlacingOrderCheckoutIntent
       in ::CheckoutIntents::CheckoutIntent::CompletedCheckoutIntent
       in ::CheckoutIntents::CheckoutIntent::FailedCheckoutIntent
@@ -102,6 +105,7 @@ class CheckoutIntents::Test::Resources::CheckoutIntentsTest < CheckoutIntents::T
       case response
       in ::CheckoutIntents::CheckoutIntent::RetrievingOfferCheckoutIntent
       in ::CheckoutIntents::CheckoutIntent::AwaitingConfirmationCheckoutIntent
+      in ::CheckoutIntents::CheckoutIntent::AwaitingPaymentCheckoutIntent
       in ::CheckoutIntents::CheckoutIntent::PlacingOrderCheckoutIntent
       in ::CheckoutIntents::CheckoutIntent::CompletedCheckoutIntent
       in ::CheckoutIntents::CheckoutIntent::FailedCheckoutIntent
@@ -126,6 +130,7 @@ class CheckoutIntents::Test::Resources::CheckoutIntentsTest < CheckoutIntents::T
       case response
       in ::CheckoutIntents::CheckoutIntent::RetrievingOfferCheckoutIntent
       in ::CheckoutIntents::CheckoutIntent::AwaitingConfirmationCheckoutIntent
+      in ::CheckoutIntents::CheckoutIntent::AwaitingPaymentCheckoutIntent
       in ::CheckoutIntents::CheckoutIntent::PlacingOrderCheckoutIntent
       in ::CheckoutIntents::CheckoutIntent::CompletedCheckoutIntent
       in ::CheckoutIntents::CheckoutIntent::FailedCheckoutIntent
@@ -162,6 +167,7 @@ class CheckoutIntents::Test::Resources::CheckoutIntentsTest < CheckoutIntents::T
       case response
       in ::CheckoutIntents::CheckoutIntent::RetrievingOfferCheckoutIntent
       in ::CheckoutIntents::CheckoutIntent::AwaitingConfirmationCheckoutIntent
+      in ::CheckoutIntents::CheckoutIntent::AwaitingPaymentCheckoutIntent
       in ::CheckoutIntents::CheckoutIntent::PlacingOrderCheckoutIntent
       in ::CheckoutIntents::CheckoutIntent::CompletedCheckoutIntent
       in ::CheckoutIntents::CheckoutIntent::FailedCheckoutIntent

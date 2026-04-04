@@ -10,6 +10,7 @@ module CheckoutIntents
           T.any(
             ::CheckoutIntents::CheckoutIntent::RetrievingOfferCheckoutIntent,
             ::CheckoutIntents::CheckoutIntent::AwaitingConfirmationCheckoutIntent,
+            ::CheckoutIntents::CheckoutIntent::AwaitingPaymentCheckoutIntent,
             ::CheckoutIntents::CheckoutIntent::PlacingOrderCheckoutIntent,
             ::CheckoutIntents::CheckoutIntent::CompletedCheckoutIntent,
             ::CheckoutIntents::CheckoutIntent::FailedCheckoutIntent
@@ -176,6 +177,93 @@ module CheckoutIntents
             override.returns(
               T::Array[
                 ::CheckoutIntents::CheckoutIntent::AwaitingConfirmationCheckoutIntent::State::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
+        end
+      end
+
+      class AwaitingPaymentCheckoutIntent < ::CheckoutIntents::Models::BaseCheckoutIntent
+        OrHash =
+          T.type_alias do
+            T.any(
+              ::CheckoutIntents::CheckoutIntent::AwaitingPaymentCheckoutIntent,
+              ::CheckoutIntents::Internal::AnyHash
+            )
+          end
+
+        sig { returns(::CheckoutIntents::Offer) }
+        attr_reader :offer
+
+        sig { params(offer: ::CheckoutIntents::Offer::OrHash).void }
+        attr_writer :offer
+
+        sig { returns(::CheckoutIntents::PaymentMethod::Variants) }
+        attr_accessor :payment_method
+
+        sig do
+          returns(
+            ::CheckoutIntents::CheckoutIntent::AwaitingPaymentCheckoutIntent::State::TaggedSymbol
+          )
+        end
+        attr_accessor :state
+
+        sig do
+          params(
+            offer: ::CheckoutIntents::Offer::OrHash,
+            payment_method:
+              T.any(
+                ::CheckoutIntents::PaymentMethod::StripeTokenPaymentMethod::OrHash,
+                ::CheckoutIntents::PaymentMethod::BasisTheoryPaymentMethod::OrHash,
+                ::CheckoutIntents::PaymentMethod::NekudaPaymentMethod::OrHash,
+                ::CheckoutIntents::PaymentMethod::PravaPaymentMethod::OrHash,
+                ::CheckoutIntents::PaymentMethod::DrawdownPaymentMethod::OrHash,
+                ::CheckoutIntents::PaymentMethod::X402PaymentMethod::OrHash
+              ),
+            state:
+              ::CheckoutIntents::CheckoutIntent::AwaitingPaymentCheckoutIntent::State::OrSymbol
+          ).returns(T.attached_class)
+        end
+        def self.new(offer:, payment_method:, state:)
+        end
+
+        sig do
+          override.returns(
+            {
+              offer: ::CheckoutIntents::Offer,
+              payment_method: ::CheckoutIntents::PaymentMethod::Variants,
+              state:
+                ::CheckoutIntents::CheckoutIntent::AwaitingPaymentCheckoutIntent::State::TaggedSymbol
+            }
+          )
+        end
+        def to_hash
+        end
+
+        module State
+          extend ::CheckoutIntents::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                ::CheckoutIntents::CheckoutIntent::AwaitingPaymentCheckoutIntent::State
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          AWAITING_PAYMENT =
+            T.let(
+              :awaiting_payment,
+              ::CheckoutIntents::CheckoutIntent::AwaitingPaymentCheckoutIntent::State::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                ::CheckoutIntents::CheckoutIntent::AwaitingPaymentCheckoutIntent::State::TaggedSymbol
               ]
             )
           end

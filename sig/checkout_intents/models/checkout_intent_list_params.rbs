@@ -59,6 +59,7 @@ module CheckoutIntents
         | :failed
         | :retrieving_offer
         | :awaiting_confirmation
+        | :awaiting_payment
         | :placing_order
 
       module State
@@ -68,6 +69,7 @@ module CheckoutIntents
         FAILED: :failed
         RETRIEVING_OFFER: :retrieving_offer
         AWAITING_CONFIRMATION: :awaiting_confirmation
+        AWAITING_PAYMENT: :awaiting_payment
         PLACING_ORDER: :placing_order
 
         def self?.values: -> ::Array[::CheckoutIntents::Models::CheckoutIntentListParams::state]
